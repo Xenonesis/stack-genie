@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "NODE_ENV=production tsx server.ts 2>&1 | tee server.log",
+    "build": "prisma generate && next build",
+    "start": "NODE_ENV=production tsx server.ts",
     "lint": "next lint",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
-    "db:migrate": "prisma migrate dev",
-    "db:reset": "prisma migrate reset"
+    "db:migrate": "prisma migrate deploy",
+    "postinstall": "prisma generate",
+    "verify:production": "node scripts/verify-production.js",
+    "build:production": "npm run verify:production && npm run build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

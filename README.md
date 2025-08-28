@@ -54,21 +54,91 @@
 
 ## 🚀 Quick Start
 
-Get up and running in seconds:
-
+### Development
 ```bash
 # 📦 Install dependencies
 npm install
 
+# 🔧 Set up environment
+cp .env.production .env.local
+# Edit .env.local with your API keys
+
 # ▶️ Start development server
 npm run dev
+```
 
+### Production Deployment
+```bash
 # 🏗️ Build for production
 npm run build
 
 # ▶️ Start production server
 npm start
+
+# 🐳 Or use Docker
+docker-compose up -d
 ```
+
+---
+
+## 🤖 AI Integration
+
+Tech Genie includes powerful AI integration with support for multiple providers:
+
+### 🎯 Supported AI Providers
+
+| Provider | Model | Features |
+|----------|-------|----------|
+| **🚀 Chutes AI** | GLM-4.5-Air | Fast, cost-effective, excellent for tech stacks |
+| **🧠 OpenAI** | GPT-3.5-turbo/GPT-4 | Industry standard, comprehensive knowledge |
+| **🏠 Local AI** | Ollama/Custom | Privacy-focused, offline capability |
+
+### ⚙️ Configuration
+
+1. **Copy environment template**:
+```bash
+cp .env.local.example .env.local
+```
+
+2. **Configure your preferred AI provider** in `.env.local`:
+
+#### Chutes AI (Recommended for Tech Stacks)
+```bash
+NEXT_PUBLIC_AI_URL=https://llm.chutes.ai/v1
+NEXT_PUBLIC_AI_API_KEY=your-chutes-api-key-here
+NEXT_PUBLIC_AI_MODEL=zai-org/GLM-4.5-Air
+NEXT_PUBLIC_AI_MAX_TOKENS=4096
+```
+
+#### OpenAI
+```bash
+NEXT_PUBLIC_AI_URL=https://api.openai.com/v1
+NEXT_PUBLIC_AI_API_KEY=sk-your-openai-key-here
+NEXT_PUBLIC_AI_MODEL=gpt-3.5-turbo
+NEXT_PUBLIC_AI_MAX_TOKENS=4096
+```
+
+#### Local Ollama
+```bash
+NEXT_PUBLIC_AI_URL=http://localhost:11434/v1
+NEXT_PUBLIC_AI_API_KEY=ollama
+NEXT_PUBLIC_AI_MODEL=llama2
+NEXT_PUBLIC_AI_MAX_TOKENS=4096
+```
+
+### 🔄 Fallback System
+
+- **Smart Fallbacks**: Automatically tries multiple providers if one fails
+- **Local Generation**: Keyword-based stack generation when AI is unavailable  
+- **Graceful Degradation**: Full functionality even without API keys
+- **Error Handling**: User-friendly messages for all failure scenarios
+
+### 🎯 AI Features
+
+- **🔧 Tech Stack Generation**: AI-powered technology recommendations
+- **📊 Stack Analysis**: Intelligent analysis of your technology choices
+- **💡 Smart Suggestions**: Context-aware technology recommendations
+- **🤖 Interactive Chat**: Ask questions about your tech stack
 
 <div align="center">
   
@@ -185,6 +255,33 @@ This scaffold is optimized for use with **Tech Genie** - your AI assistant for:
 2. **Access Tech Genie** to get your AI coding assistant
 3. **Start building** with intelligent code generation and assistance
 4. **Deploy with confidence** using the production-ready setup
+
+---
+
+## 🚀 Production Deployment
+
+This application is production-ready with optimized configurations:
+
+### ✅ Production Features
+- **Performance**: Optimized builds with compression and caching
+- **Security**: Secure headers, CORS configuration, and environment validation
+- **Monitoring**: Health check endpoints and error tracking ready
+- **Scalability**: Docker support and horizontal scaling ready
+- **Database**: Production-ready Prisma configuration
+
+### 🔧 Deployment Options
+1. **Vercel** (Recommended): One-click deployment with automatic CI/CD
+2. **Docker**: Containerized deployment for any cloud provider
+3. **Traditional Server**: Direct deployment to VPS or dedicated servers
+
+### 📋 Pre-deployment Checklist
+- [ ] Set production environment variables
+- [ ] Configure database for production
+- [ ] Set up monitoring and error tracking
+- [ ] Configure domain and SSL certificates
+- [ ] Test the production build locally
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment instructions.
 
 ---
 

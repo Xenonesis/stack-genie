@@ -17,6 +17,8 @@ export interface AIRecommendation {
     technology: Technology;
     reason: string;
     confidence: number;
+    category?: string;
+    priority?: 'High' | 'Medium' | 'Low';
 }
 
 export interface AIAnalysis {
@@ -25,10 +27,18 @@ export interface AIAnalysis {
     suggestions: string[];
     projectType: string;
     complexity: 'Simple' | 'Moderate' | 'Complex';
+    stackScore?: number;
+    missingCategories?: string[];
+    architecturalPatterns?: string[];
+    deploymentStrategy?: string;
+    scalabilityNotes?: string;
+    securityConsiderations?: string[];
+    performanceOptimizations?: string[];
 }
 
 export interface AIConfig {
     url: string;
     apiKey: string;
     model: string;
+    maxTokens: number;
 }

@@ -13,7 +13,7 @@ import Image from "next/image";
 import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare } from "lucide-react";
 import { technologyData, categories } from "@/data/technologies";
 import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tech-stack";
-import { AI_CONFIG } from "@/config/ai";
+import { AI_CONFIG, AI_PROVIDERS } from "@/config/ai";
 
 // Fallback icon component
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
@@ -68,60 +68,97 @@ const TechIcon = ({ src, alt, width, height, className }: {
 
 // AI Service Functions
 const callAI = async (prompt: string): Promise<string> => {
-    try {
-        console.log('Making AI API call with prompt:', prompt.substring(0, 100) + '...');
-
-        const requestBody = {
+    // Try multiple AI providers in sequence
+    const providers = [
+        // Try configured provider first
+        {
+            name: "Primary AI Service",
+            url: AI_CONFIG.url,
+            apiKey: AI_CONFIG.apiKey,
             model: AI_CONFIG.model,
-            messages: [
-                {
-                    role: "system",
-                    content: "You are an expert software architect and tech stack consultant. When asked to generate a tech stack, respond ONLY with valid JSON in the exact format requested. Do not include any explanatory text before or after the JSON. Your response must be parseable by JSON.parse()."
-                },
-                {
-                    role: "user",
-                    content: prompt
+            maxTokens: AI_CONFIG.maxTokens,
+            type: "openai"
+        },
+        // Fallback providers from AI_PROVIDERS
+        ...AI_PROVIDERS.filter(p => p.url && p.url !== AI_CONFIG.url)
+    ];
+
+    for (const provider of providers) {
+        // Skip providers without API keys (except fallback)
+        if (!provider.apiKey && provider.type !== "fallback") {
+            console.log(`Skipping ${provider.name} - no API key available`);
+            continue;
+        }
+
+        try {
+            console.log(`Trying AI provider: ${provider.name} (${provider.url})`);
+            
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+            try {
+                const requestBody = {
+                    model: provider.model,
+                    messages: [
+                        {
+                            role: "system",
+                            content: "You are an expert software architect and tech stack consultant. When asked to generate a tech stack, respond ONLY with valid JSON in the exact format requested. Do not include any explanatory text before or after the JSON. Your response must be parseable by JSON.parse()."
+                        },
+                        {
+                            role: "user",
+                            content: prompt
+                        }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: provider.maxTokens || 4096
+                };
+
+                const headers: HeadersInit = {
+                    'Content-Type': 'application/json'
+                };
+
+                // Add authorization header if API key exists
+                if (provider.apiKey && provider.apiKey.trim()) {
+                    headers['Authorization'] = `Bearer ${provider.apiKey}`;
                 }
-            ],
-            temperature: 0.7,
-            max_tokens: 1000
-        };
 
-        console.log('Request body:', JSON.stringify(requestBody, null, 2));
+                const response = await fetch(`${provider.url}/chat/completions`, {
+                    method: 'POST',
+                    headers,
+                    body: JSON.stringify(requestBody),
+                    signal: controller.signal
+                });
 
-        const response = await fetch(`${AI_CONFIG.url}/chat/completions`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${AI_CONFIG.apiKey}`
-            },
-            body: JSON.stringify(requestBody)
-        });
+                clearTimeout(timeoutId);
 
-        console.log('Response status:', response.status);
-        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
+                console.log(`${provider.name} response status:`, response.status);
 
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('API Error Response:', errorText);
-            throw new Error(`AI API error: ${response.status} - ${errorText}`);
+                if (response.ok) {
+                    const data = await response.json();
+                    const content = data.choices?.[0]?.message?.content || data.content;
+                    if (content && content.trim()) {
+                        console.log(`✅ Successfully got response from ${provider.name}`);
+                        return content;
+                    }
+                } else {
+                    const errorText = await response.text();
+                    console.log(`❌ ${provider.name} failed with status ${response.status}:`, errorText);
+                }
+                
+            } catch (error) {
+                clearTimeout(timeoutId);
+                console.log(`❌ ${provider.name} request failed:`, error);
+            }
+            
+        } catch (error) {
+            console.log(`❌ Provider ${provider.name} failed:`, error);
+            continue;
         }
-
-        const data = await response.json();
-        console.log('API Response data:', data);
-
-        const content = data.choices?.[0]?.message?.content || "";
-        console.log('Extracted content:', content);
-
-        if (!content) {
-            throw new Error('Empty response from AI API');
-        }
-
-        return content;
-    } catch (error) {
-        console.error('AI API Error:', error);
-        throw error;
     }
+
+    // All providers failed, throw error for fallback handling
+    console.log('❌ All AI providers failed, using fallback');
+    throw new Error('ALL_PROVIDERS_FAILED');
 };
 
 export function TechStackBuilderContent() {
@@ -247,7 +284,7 @@ export function TechStackBuilderContent() {
         }
 
         // Find primary framework for project creation
-        const webFramework = selectedTechs.find(tech => tech.category === "Web Framework");
+        const webFramework: Technology | undefined = selectedTechs.find(tech => tech.category === "Web Framework");
         const nativeFramework = selectedTechs.find(tech => tech.category === "Native Framework");
         const backendFramework = selectedTechs.find(tech => tech.category === "Backend Framework");
         const monorepo = selectedTechs.find(tech => tech.category === "Monorepo");
@@ -335,7 +372,8 @@ export function TechStackBuilderContent() {
                     createCommand = `npx create-expo-app@latest ${projectName} --template`;
                     break;
                 case "ionic":
-                    const ionicType = webFramework?.id === "vue" ? "vue" : webFramework?.id === "angular" ? "angular" : "react";
+                    const ionicType = ((webFramework as Technology | undefined)?.id === "vue") ? "vue" : 
+                                     ((webFramework as Technology | undefined)?.id === "angular") ? "angular" : "react";
                     createCommand = `ionic start ${projectName} tabs --type=${ionicType}`;
                     break;
                 case "tauri":
@@ -748,9 +786,36 @@ export function TechStackBuilderContent() {
             });
         } catch (error) {
             console.error('AI Analysis Error:', error);
+            
+            // Handle specific AI API errors
+            let errorTitle = "AI Analysis Failed";
+            let errorDescription = "Unable to analyze your stack. Please try again.";
+            
+            if (error instanceof Error) {
+                if (error.message === 'ALL_PROVIDERS_FAILED') {
+                    errorTitle = "AI Services Unavailable";
+                    errorDescription = "All AI providers failed to respond. Please try again later or check your API configuration.";
+                } else if (error.message === 'NO_API_KEY') {
+                    errorTitle = "AI Service Not Configured";
+                    errorDescription = "No API key is configured for AI analysis. Please configure an API key to use AI features.";
+                } else if (error.message === 'UNAUTHORIZED') {
+                    errorTitle = "AI Service Authentication Failed";
+                    errorDescription = "Cannot connect to AI service due to authentication issues. Please try again later.";
+                } else if (error.message === 'TIMEOUT') {
+                    errorTitle = "AI Analysis Timed Out";
+                    errorDescription = "The AI service took too long to respond. Please try again.";
+                } else if (error.message === 'RATE_LIMITED') {
+                    errorTitle = "AI Service Busy";
+                    errorDescription = "Too many requests to the AI service. Please wait a moment and try again.";
+                } else if (error.message === 'SERVER_ERROR') {
+                    errorTitle = "AI Service Error";
+                    errorDescription = "The AI service is experiencing issues. Please try again later.";
+                }
+            }
+            
             toast({
-                title: "AI Analysis Failed",
-                description: "Unable to analyze your stack. Please try again.",
+                title: errorTitle,
+                description: errorDescription,
                 variant: "destructive",
             });
         } finally {
@@ -862,22 +927,7 @@ export function TechStackBuilderContent() {
 
         setIsAnalyzing(true);
 
-        // First, try the fallback approach since AI seems to be having issues
-        console.log('Generating fallback stack due to AI API issues...');
-        const fallbackStack = generateFallbackStack(projectDescription);
-
-        if (fallbackStack && Object.keys(fallbackStack).length > 0) {
-            setSelectedStack(fallbackStack);
-            toast({
-                title: "Tech Stack Generated!",
-                description: "Generated a curated tech stack based on your project description.",
-                variant: "default",
-            });
-            setIsAnalyzing(false);
-            return;
-        }
-
-        // If fallback fails, try AI as backup
+        // Try real AI first
         try {
             const prompt = `
             Generate a complete tech stack for this project:
@@ -947,24 +997,69 @@ export function TechStackBuilderContent() {
 
             toast({
                 title: "AI Stack Generated!",
-                description: result.reasoning || "AI has created a recommended tech stack for your project.",
+                description: result.reasoning || "AI has analyzed your project and created a personalized tech stack recommendation.",
             });
         } catch (error) {
             console.error('AI Stack Generation Error:', error);
+
+            // Handle specific AI API errors with user-friendly messages
+            if (error instanceof Error) {
+                if (error.message === 'ALL_PROVIDERS_FAILED') {
+                    toast({
+                        title: "AI Services Unavailable",
+                        description: "All AI providers failed to respond. Using smart local recommendation instead.",
+                        variant: "default",
+                    });
+                } else if (error.message === 'NO_API_KEY') {
+                    toast({
+                        title: "AI Service Not Configured",
+                        description: "No API key is configured. Using local fallback recommendation instead.",
+                        variant: "default",
+                    });
+                } else if (error.message === 'UNAUTHORIZED') {
+                    toast({
+                        title: "AI Service Authentication Failed",
+                        description: "The AI service is currently unavailable due to authentication issues. Using fallback recommendation instead.",
+                        variant: "default",
+                    });
+                } else if (error.message === 'TIMEOUT') {
+                    toast({
+                        title: "AI Request Timed Out",
+                        description: "The AI service took too long to respond. Using fallback recommendation instead.",
+                        variant: "default",
+                    });
+                } else if (error.message === 'RATE_LIMITED') {
+                    toast({
+                        title: "AI Service Busy",
+                        description: "Too many requests to the AI service. Please try again in a moment or use the fallback.",
+                        variant: "default",
+                    });
+                } else if (error.message === 'SERVER_ERROR') {
+                    toast({
+                        title: "AI Service Error",
+                        description: "The AI service is experiencing issues. Using fallback recommendation instead.",
+                        variant: "default",
+                    });
+                }
+            }
 
             // Fallback: Generate a basic stack based on project description keywords
             const fallbackStack = generateFallbackStack(projectDescription);
             if (fallbackStack && Object.keys(fallbackStack).length > 0) {
                 setSelectedStack(fallbackStack);
-                toast({
-                    title: "Fallback Stack Generated",
-                    description: "AI service unavailable. Generated a basic stack based on your description.",
-                    variant: "default",
-                });
+                
+                // Only show fallback message if we haven't shown a specific error message
+                if (!(error instanceof Error && ['ALL_PROVIDERS_FAILED', 'NO_API_KEY', 'UNAUTHORIZED', 'TIMEOUT', 'RATE_LIMITED', 'SERVER_ERROR'].includes(error.message))) {
+                    toast({
+                        title: "Smart Fallback Stack Generated",
+                        description: "AI service unavailable. Generated an intelligent stack based on your description.",
+                        variant: "default",
+                    });
+                }
             } else {
                 toast({
-                    title: "AI Generation Failed",
-                    description: "Unable to generate stack. Please try again or select technologies manually.",
+                    title: "Unable to Generate Stack",
+                    description: "Both AI service and fallback failed. Please select technologies manually or try again later.",
                     variant: "destructive",
                 });
             }
@@ -1045,8 +1140,8 @@ export function TechStackBuilderContent() {
     return (
         <div className="min-h-screen bg-[#0d1117] text-white flex">
             {/* Sidebar */}
-            <div className="w-80 bg-[#161b22] border-r border-gray-800 flex flex-col h-screen overflow-hidden">
-                {/* Project Name Section */}
+            <div className="w-80 bg-[#161b22] border-r border-gray-800 flex flex-col h-screen">
+                {/* Fixed Header - Project Name */}
                 <div className="p-4 border-b border-gray-800 flex-shrink-0">
                     <label className="block text-sm text-gray-400 mb-2">Project Name:</label>
                     <Input
@@ -1056,6 +1151,10 @@ export function TechStackBuilderContent() {
                         placeholder="my-tech-genie-app"
                     />
                 </div>
+
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto">
+                    <div className="flex flex-col">
 
                 {/* AI-Powered Section */}
                 <div className="p-4 border-b border-gray-800 flex-shrink-0">
@@ -1450,6 +1549,8 @@ export function TechStackBuilderContent() {
                         >
                             Full Featured
                         </Button>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
