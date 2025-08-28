@@ -1,6 +1,6 @@
-# 🚀 Welcome to Z.ai Code Scaffold
+# 🚀 Welcome to Tech Genie
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with [Z.ai](https://chat.z.ai)'s AI-powered coding assistance.
+A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with Tech Genie's AI-powered coding assistance.
 
 ## ✨ Technology Stack
 
@@ -72,9 +72,9 @@ npm start
 
 Open [http://localhost:3000](http://localhost:3000) to see your application running.
 
-## 🤖 Powered by Z.ai
+## 🤖 Powered by Tech Genie
 
-This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assistant for:
+This scaffold is optimized for use with Tech Genie - your AI assistant for:
 
 - **💻 Code Generation** - Generate components, pages, and features instantly
 - **🎨 UI Development** - Create beautiful interfaces with AI assistance  
@@ -82,7 +82,7 @@ This scaffold is optimized for use with [Z.ai](https://chat.z.ai) - your AI assi
 - **📝 Documentation** - Auto-generate comprehensive documentation
 - **🚀 Optimization** - Performance improvements and best practices
 
-Ready to build something amazing? Start chatting with Z.ai at [chat.z.ai](https://chat.z.ai) and experience the future of AI-powered development!
+Ready to build something amazing? Experience the future of AI-powered development with Tech Genie!
 
 ## 📁 Project Structure
 
@@ -129,13 +129,13 @@ This scaffold includes a comprehensive set of modern web development tools:
 - **Type Safety**: End-to-end TypeScript with Zod validation
 - **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
 
-## 🤝 Get Started with Z.ai
+## 🤝 Get Started with Tech Genie
 
 1. **Clone this scaffold** to jumpstart your project
-2. **Visit [chat.z.ai](https://chat.z.ai)** to access your AI coding assistant
+2. **Access Tech Genie** to get your AI coding assistant
 3. **Start building** with intelligent code generation and assistance
 4. **Deploy with confidence** using the production-ready setup
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by [Z.ai](https://chat.z.ai) 🚀
+Built with ❤️ for the developer community. Supercharged by Tech Genie 🚀

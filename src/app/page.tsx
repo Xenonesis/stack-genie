@@ -6,9 +6,9 @@ function LoadingFallback() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
       <div className="text-center">
         <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto mb-4">
-          T
+          TG
         </div>
-        <div className="text-lg font-semibold text-slate-600 dark:text-slate-400">Loading Tech Stack Builder...</div>
+        <div className="text-lg font-semibold text-slate-600 dark:text-slate-400">Loading Tech Genie...</div>
       </div>
     </div>
   );

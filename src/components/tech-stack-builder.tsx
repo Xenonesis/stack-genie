@@ -161,7 +161,7 @@ export function TechStackBuilderContent() {
     const [selectedStack, setSelectedStack] = useState<TechStack>({});
     const [searchTerm, setSearchTerm] = useState("");
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(categories));
-    const [projectName, setProjectName] = useState("my-better-t-app");
+    const [projectName, setProjectName] = useState("my-tech-genie-app");
     const { toast } = useToast();
     const searchParams = useSearchParams();
 
@@ -252,7 +252,7 @@ export function TechStackBuilderContent() {
         if (selectedTechs.length === 0) return "";
         const hasBun = selectedTechs.some(tech => tech.id === "bun");
         const packageManager = hasBun ? "bun" : "npm";
-        return `${packageManager} create better-t-stack@latest ${projectName}`;
+        return `${packageManager} create tech-genie@latest ${projectName}`;
     };
 
     const copyCommand = async () => {
@@ -352,7 +352,7 @@ export function TechStackBuilderContent() {
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
                         className="bg-[#0d1117] border-gray-700 text-white"
-                        placeholder="my-better-t-app"
+                        placeholder="my-tech-genie-app"
                     />
                 </div>
 
@@ -545,8 +545,8 @@ export function TechStackBuilderContent() {
                 <div className="p-6 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">Tech Stack Builder</h1>
-                            <p className="text-gray-400">Choose your technologies to build the perfect stack</p>
+                            <h1 className="text-2xl font-bold text-white">Tech Genie Stack Builder</h1>
+                            <p className="text-gray-400">Build your perfect tech stack with AI-powered recommendations</p>
                         </div>
                     </div>
 
