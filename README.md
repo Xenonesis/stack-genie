@@ -1,88 +1,151 @@
-# 🚀 Welcome to Tech Genie
+<!-- Improved README.md with modern UI/UX -->
+<div align="center">
+  <img src="public/logo.svg" alt="Tech Genie Logo" width="120" height="120">
+  
+  <h1>🚀 Tech Genie</h1>
+  
+  <p align="center">
+    <em>A modern, production-ready web application scaffold powered by cutting-edge technologies</em>
+  </p>
+  
+  <p align="center">
+    <strong>Accelerate your development with AI-powered coding assistance</strong>
+  </p>
+  
+  <p align="center">
+    <a href="#-quick-start">Quick Start</a> •
+    <a href="#-technology-stack">Tech Stack</a> •
+    <a href="#-features">Features</a> •
+    <a href="#-powered-by-tech-genie">AI Assistant</a>
+  </p>
+  
+  <br/>
+</div>
 
-A modern, production-ready web application scaffold powered by cutting-edge technologies, designed to accelerate your development with Tech Genie's AI-powered coding assistance.
+<div align="center">
+  
+![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?style=for-the-badge&logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Prisma](https://img.shields.io/badge/Prisma-Black?style=for-the-badge&logo=prisma)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+  
+</div>
 
-## ✨ Technology Stack
+---
 
-This scaffold provides a robust foundation built with:
+## 🌟 Why Tech Genie?
 
-### 🎯 Core Framework
-- **⚡ Next.js 15** - The React framework for production with App Router
-- **📘 TypeScript 5** - Type-safe JavaScript for better developer experience
-- **🎨 Tailwind CSS 4** - Utility-first CSS framework for rapid UI development
+> **Tech Genie** is not just another starter template - it's a comprehensive development ecosystem designed to supercharge your productivity with AI assistance and modern web technologies.
 
-### 🧩 UI Components & Styling
-- **🧩 shadcn/ui** - High-quality, accessible components built on Radix UI
-- **🎯 Lucide React** - Beautiful & consistent icon library
-- **🌈 Framer Motion** - Production-ready motion library for React
-- **🎨 Next Themes** - Perfect dark mode in 2 lines of code
+### Key Benefits
 
-### 📋 Forms & Validation
-- **🎣 React Hook Form** - Performant forms with easy validation
-- **✅ Zod** - TypeScript-first schema validation
+| Benefit | Description |
+|--------|-------------|
+| ⚡ **Lightning Fast** | Pre-configured tooling for immediate development |
+| 🎨 **Beautiful UI** | shadcn/ui components with advanced interactions |
+| 🔒 **Type Safe** | Full TypeScript configuration with Zod validation |
+| 📱 **Responsive** | Mobile-first design with smooth animations |
+| 🗄️ **Database Ready** | Prisma ORM for rapid backend development |
+| 🔐 **Auth Included** | NextAuth.js for secure authentication flows |
+| 🌍 **i18n Ready** | Multi-language support with Next Intl |
 
-### 🔄 State Management & Data Fetching
-- **🐻 Zustand** - Simple, scalable state management
-- **🔄 TanStack Query** - Powerful data synchronization for React
-- **🌐 Axios** - Promise-based HTTP client
-
-### 🗄️ Database & Backend
-- **🗄️ Prisma** - Next-generation Node.js and TypeScript ORM
-- **🔐 NextAuth.js** - Complete open-source authentication solution
-
-### 🎨 Advanced UI Features
-- **📊 TanStack Table** - Headless UI for building tables and datagrids
-- **🖱️ DND Kit** - Modern drag and drop toolkit for React
-- **📊 Recharts** - Redefined chart library built with React and D3
-- **🖼️ Sharp** - High performance image processing
-
-### 🌍 Internationalization & Utilities
-- **🌍 Next Intl** - Internationalization library for Next.js
-- **📅 Date-fns** - Modern JavaScript date utility library
-- **🪝 ReactUse** - Collection of essential React hooks for modern development
-
-## 🎯 Why This Scaffold?
-
-- **🏎️ Fast Development** - Pre-configured tooling and best practices
-- **🎨 Beautiful UI** - Complete shadcn/ui component library with advanced interactions
-- **🔒 Type Safety** - Full TypeScript configuration with Zod validation
-- **📱 Responsive** - Mobile-first design principles with smooth animations
-- **🗄️ Database Ready** - Prisma ORM configured for rapid backend development
-- **🔐 Auth Included** - NextAuth.js for secure authentication flows
-- **📊 Data Visualization** - Charts, tables, and drag-and-drop functionality
-- **🌍 i18n Ready** - Multi-language support with Next Intl
-- **🚀 Production Ready** - Optimized build and deployment settings
-- **🤖 AI-Friendly** - Structured codebase perfect for AI assistance
+---
 
 ## 🚀 Quick Start
 
+Get up and running in seconds:
+
 ```bash
-# Install dependencies
+# 📦 Install dependencies
 npm install
 
-# Start development server
+# ▶️ Start development server
 npm run dev
 
-# Build for production
+# 🏗️ Build for production
 npm run build
 
-# Start production server
+# ▶️ Start production server
 npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see your application running.
+<div align="center">
+  
+👉 **Open [http://localhost:3000](http://localhost:3000) to see your application running**
 
-## 🤖 Powered by Tech Genie
+</div>
 
-This scaffold is optimized for use with Tech Genie - your AI assistant for:
+---
 
-- **💻 Code Generation** - Generate components, pages, and features instantly
-- **🎨 UI Development** - Create beautiful interfaces with AI assistance  
-- **🔧 Bug Fixing** - Identify and resolve issues with intelligent suggestions
-- **📝 Documentation** - Auto-generate comprehensive documentation
-- **🚀 Optimization** - Performance improvements and best practices
+## 🧰 Technology Stack
 
-Ready to build something amazing? Experience the future of AI-powered development with Tech Genie!
+A carefully curated set of modern technologies for building production-ready applications.
+
+### 🎯 Core Framework
+- **⚡ [Next.js 15](https://nextjs.org/)** - React framework with App Router
+- **📘 [TypeScript 5](https://www.typescriptlang.org/)** - Type-safe JavaScript
+- **🎨 [Tailwind CSS 4](https://tailwindcss.com/)** - Utility-first CSS framework
+
+### 🧩 UI Components & Styling
+- **🧩 [shadcn/ui](https://ui.shadcn.com/)** - Accessible components on Radix UI
+- **🎯 [Lucide React](https://lucide.dev/)** - Beautiful icon library
+- **🌈 [Framer Motion](https://www.framer.com/motion/)** - Motion library for React
+- **🎨 [Next Themes](https://github.com/pacocoursey/next-themes)** - Dark mode in 2 lines
+
+### 📋 Forms & Validation
+- **🎣 [React Hook Form](https://react-hook-form.com/)** - Performant forms
+- **✅ [Zod](https://zod.dev/)** - TypeScript-first schema validation
+
+### 🔄 State Management & Data Fetching
+- **🐻 [Zustand](https://zustand-demo.pmnd.rs/)** - Simple state management
+- **🔄 [TanStack Query](https://tanstack.com/query)** - Data synchronization
+- **🌐 [Axios](https://axios-http.com/)** - Promise-based HTTP client
+
+### 🗄️ Database & Backend
+- **🗄️ [Prisma](https://www.prisma.io/)** - Next-generation ORM
+- **🔐 [NextAuth.js](https://next-auth.js.org/)** - Authentication solution
+
+### 🎨 Advanced UI Features
+- **📊 [TanStack Table](https://tanstack.com/table/)** - Headless table UI
+- **🖱️ [DND Kit](https://dndkit.com/)** - Drag and drop toolkit
+- **📊 [Recharts](https://recharts.org/)** - Chart library with React
+- **🖼️ [Sharp](https://sharp.pixelplumbing.com/)** - Image processing
+
+### 🌍 Internationalization & Utilities
+- **🌍 [Next Intl](https://next-intl-docs.vercel.app/)** - i18n for Next.js
+- **📅 [Date-fns](https://date-fns.org/)** - Date utility library
+- **🪝 [ReactUse](https://streamich.github.io/react-use/)** - Essential React hooks
+
+---
+
+## 🎨 Features & Components
+
+### 🧩 UI Components (shadcn/ui)
+- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
+- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
+- **Feedback**: Alert, Toast, Progress, Skeleton
+- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
+- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
+- **Data Display**: Badge, Avatar, Calendar
+
+### 📊 Advanced Data Features
+- **Tables**: Powerful data tables with sorting, filtering, pagination
+- **Charts**: Beautiful visualizations with Recharts
+- **Forms**: Type-safe forms with React Hook Form + Zod validation
+
+### 🎨 Interactive Features
+- **Animations**: Smooth micro-interactions with Framer Motion
+- **Drag & Drop**: Modern drag-and-drop functionality
+- **Theme Switching**: Built-in dark/light mode support
+
+### 🔐 Backend Integration
+- **Authentication**: Ready-to-use auth flows with NextAuth.js
+- **Database**: Type-safe database operations with Prisma
+- **API Client**: HTTP requests with Axios + TanStack Query
+- **State Management**: Simple and scalable with Zustand
+
+---
 
 ## 📁 Project Structure
 
@@ -92,44 +155,31 @@ src/
 ├── components/          # Reusable React components
 │   └── ui/             # shadcn/ui components
 ├── hooks/              # Custom React hooks
-└── lib/                # Utility functions and configurations
+├── lib/                # Utility functions and configurations
+├── config/              # Configuration files
+├── data/                # Data files
+└── types/               # TypeScript types
 ```
 
-## 🎨 Available Features & Components
+---
 
-This scaffold includes a comprehensive set of modern web development tools:
+## 🤖 Powered by Tech Genie
 
-### 🧩 UI Components (shadcn/ui)
-- **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
-- **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch
-- **Feedback**: Alert, Toast (Sonner), Progress, Skeleton
-- **Navigation**: Breadcrumb, Menubar, Navigation Menu, Pagination
-- **Overlay**: Dialog, Sheet, Popover, Tooltip, Hover Card
-- **Data Display**: Badge, Avatar, Calendar
+This scaffold is optimized for use with **Tech Genie** - your AI assistant for:
 
-### 📊 Advanced Data Features
-- **Tables**: Powerful data tables with sorting, filtering, pagination (TanStack Table)
-- **Charts**: Beautiful visualizations with Recharts
-- **Forms**: Type-safe forms with React Hook Form + Zod validation
+<div align="center">
+  
+| Feature | Description |
+|---------|-------------|
+| 💻 **Code Generation** | Generate components, pages, and features instantly |
+| 🎨 **UI Development** | Create beautiful interfaces with AI assistance |
+| 🔧 **Bug Fixing** | Identify and resolve issues with intelligent suggestions |
+| 📝 **Documentation** | Auto-generate comprehensive documentation |
+| 🚀 **Optimization** | Performance improvements and best practices |
 
-### 🎨 Interactive Features
-- **Animations**: Smooth micro-interactions with Framer Motion
-- **Drag & Drop**: Modern drag-and-drop functionality with DND Kit
-- **Theme Switching**: Built-in dark/light mode support
+</div>
 
-### 🔐 Backend Integration
-- **Authentication**: Ready-to-use auth flows with NextAuth.js
-- **Database**: Type-safe database operations with Prisma
-- **API Client**: HTTP requests with Axios + TanStack Query
-- **State Management**: Simple and scalable with Zustand
-
-### 🌍 Production Features
-- **Internationalization**: Multi-language support with Next Intl
-- **Image Optimization**: Automatic image processing with Sharp
-- **Type Safety**: End-to-end TypeScript with Zod validation
-- **Essential Hooks**: 100+ useful React hooks with ReactUse for common patterns
-
-## 🤝 Get Started with Tech Genie
+### 🚀 Experience the Future of Development
 
 1. **Clone this scaffold** to jumpstart your project
 2. **Access Tech Genie** to get your AI coding assistant
@@ -138,4 +188,21 @@ This scaffold includes a comprehensive set of modern web development tools:
 
 ---
 
-Built with ❤️ for the developer community. Supercharged by Tech Genie 🚀
+<div align="center">
+  
+### 🤝 Join Our Community
+
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github)](https://github.com/Xenonesis/stack-genie)
+[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord)](#)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter)](#)
+
+</div>
+
+<div align="center">
+  
+---
+
+**Built with ❤️ for the developer community**  
+**Supercharged by Tech Genie 🚀**
+
+</div>
