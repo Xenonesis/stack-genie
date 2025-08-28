@@ -1271,11 +1271,27 @@ export function TechStackBuilderContent() {
                                 }, {} as Record<string, string[]>);
                                 const encodedStack = btoa(JSON.stringify(stackData));
                                 const shareUrl = `${window.location.origin}${window.location.pathname}?stack=${encodedStack}`;
-                                navigator.clipboard.writeText(shareUrl);
-                                toast({
-                                    title: "Share link copied!",
-                                    description: "Share this URL to let others see your tech stack.",
-                                });
+                                
+                                // Try to copy to clipboard with fallback
+                                if (navigator.clipboard && navigator.clipboard.writeText) {
+                                    navigator.clipboard.writeText(shareUrl);
+                                    toast({
+                                        title: "Share link copied!",
+                                        description: "Share this URL to let others see your tech stack.",
+                                    });
+                                } else {
+                                    // Fallback for browsers without clipboard API
+                                    const textArea = document.createElement('textarea');
+                                    textArea.value = shareUrl;
+                                    document.body.appendChild(textArea);
+                                    textArea.select();
+                                    document.execCommand('copy');
+                                    document.body.removeChild(textArea);
+                                    toast({
+                                        title: "Share link copied!",
+                                        description: "Share this URL to let others see your tech stack.",
+                                    });
+                                }
                             }}
                             disabled={getTotalSelected() === 0}
                             className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50"
