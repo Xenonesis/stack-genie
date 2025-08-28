@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -10,160 +10,133 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import Image from "next/image";
-import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy } from "lucide-react";
+import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare } from "lucide-react";
+import { technologyData, categories } from "@/data/technologies";
+import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tech-stack";
+import { AI_CONFIG } from "@/config/ai";
 
-interface Technology {
-    id: string;
-    name: string;
-    category: string;
-    description: string;
-    website?: string;
-    color: string;
-    installCommand?: string;
-    icon: string;
-}
+// Fallback icon component
+const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
+    <div
+        className="bg-gray-600 rounded flex items-center justify-center text-white font-bold"
+        style={{ width: `${size}px`, height: `${size}px`, fontSize: `${size * 0.4}px` }}
+    >
+        {name.charAt(0).toUpperCase()}
+    </div>
+);
 
-interface TechStack {
-    [category: string]: Technology[];
-}
+// Custom Image component with error handling
+const TechIcon = ({ src, alt, width, height, className }: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+    className?: string;
+}) => {
+    const [hasError, setHasError] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
-const technologyData: Technology[] = [
-    // Web Framework
-    { id: "react", name: "React", category: "Web Framework", description: "A JavaScript library for building user interfaces", website: "https://reactjs.org", color: "#61DAFB", installCommand: "npm install react", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { id: "tanstack-router", name: "TanStack Router", category: "Web Framework", description: "Type-safe router for React applications", website: "https://tanstack.com/router", color: "#FD4F00", installCommand: "npm install @tanstack/react-router", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4" },
-    { id: "nextjs", name: "Next.js", category: "Web Framework", description: "The React Framework for Production", website: "https://nextjs.org", color: "#000000", installCommand: "npx create-next-app@latest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-    { id: "vue", name: "Vue.js", category: "Web Framework", description: "The Progressive JavaScript Framework", website: "https://vuejs.org", color: "#4FC08D", installCommand: "npm install vue", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-    { id: "nuxt", name: "Nuxt.js", category: "Web Framework", description: "The Intuitive Vue Framework", website: "https://nuxt.com", color: "#00DC82", installCommand: "npx nuxi@latest init", icon: "https://nuxt.com/assets/design-kit/icon-green.png" },
-    { id: "angular", name: "Angular", category: "Web Framework", description: "Platform for building mobile and desktop web applications", website: "https://angular.io", color: "#DD0031", installCommand: "npm install -g @angular/cli", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
-    { id: "svelte", name: "Svelte", category: "Web Framework", description: "Cybernetically enhanced web apps", website: "https://svelte.dev", color: "#FF3E00", installCommand: "npm create svelte@latest my-app", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
-    { id: "sveltekit", name: "SvelteKit", category: "Web Framework", description: "The fastest way to build svelte apps", website: "https://kit.svelte.dev", color: "#FF3E00", installCommand: "npm create sveltekit@latest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
-    { id: "remix", name: "Remix", category: "Web Framework", description: "Full stack web framework focused on web standards", website: "https://remix.run", color: "#000000", installCommand: "npx create-remix@latest", icon: "https://avatars.githubusercontent.com/u/64235328?s=200&v=4" },
-    { id: "astro", name: "Astro", category: "Web Framework", description: "The web framework for content-driven websites", website: "https://astro.build", color: "#FF5D01", installCommand: "npm create astro@latest", icon: "https://astro.build/assets/press/astro-icon-light-gradient.svg" },
-    { id: "solid", name: "SolidJS", category: "Web Framework", description: "Simple and performant reactivity for building user interfaces", website: "https://solidjs.com", color: "#2C4F7C", installCommand: "npx degit solidjs/templates/js my-app", icon: "https://www.solidjs.com/img/logo/without-wordmark/logo.svg" },
-    { id: "qwik", name: "Qwik", category: "Web Framework", description: "The HTML-first framework", website: "https://qwik.builder.io", color: "#AC7EF4", installCommand: "npm create qwik@latest", icon: "https://qwik.builder.io/logos/qwik-logo.svg" },
+    if (hasError) {
+        return <FallbackIcon name={alt} size={width} />;
+    }
 
-    // Database
-    { id: "sqlite", name: "SQLite", category: "Database", description: "Self-contained, serverless, zero-configuration SQL database", website: "https://sqlite.org", color: "#003B57", installCommand: "npm install sqlite3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
-    { id: "postgresql", name: "PostgreSQL", category: "Database", description: "Advanced open source relational database", website: "https://postgresql.org", color: "#336791", installCommand: "npm install pg", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-    { id: "mongodb", name: "MongoDB", category: "Database", description: "Document-oriented NoSQL database", website: "https://mongodb.com", color: "#47A248", installCommand: "npm install mongodb", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-    { id: "mysql", name: "MySQL", category: "Database", description: "The world's most popular open source database", website: "https://mysql.com", color: "#4479A1", installCommand: "npm install mysql2", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { id: "redis", name: "Redis", category: "Database", description: "In-memory data structure store", website: "https://redis.io", color: "#DC382D", installCommand: "npm install redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
-    { id: "supabase", name: "Supabase", category: "Database", description: "Open source Firebase alternative", website: "https://supabase.com", color: "#3ECF8E", installCommand: "npm install @supabase/supabase-js", icon: "https://supabase.com/favicon/favicon-32x32.png" },
-    { id: "planetscale", name: "PlanetScale", category: "Database", description: "The MySQL-compatible serverless database platform", website: "https://planetscale.com", color: "#000000", installCommand: "npm install @planetscale/database", icon: "https://planetscale.com/favicon.ico" },
-    { id: "turso", name: "Turso", category: "Database", description: "SQLite for Production", website: "https://turso.tech", color: "#4FF8D2", installCommand: "npm install @libsql/client", icon: "https://turso.tech/favicon.ico" },
+    return (
+        <div className="relative" style={{ width: `${width}px`, height: `${width}px` }}>
+            {isLoading && (
+                <div className="absolute inset-0 bg-gray-700 animate-pulse rounded" />
+            )}
+            <Image
+                src={src}
+                alt={alt}
+                width={width}
+                height={height}
+                className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity`}
+                style={{ width: `${width}px`, height: "auto", maxHeight: `${width}px`, objectFit: "contain" }}
+                onError={() => setHasError(true)}
+                onLoad={() => setIsLoading(false)}
+                unoptimized={src.includes('.svg')}
+            />
+        </div>
+    );
+};
 
-    // Runtime
-    { id: "bun", name: "Bun", category: "Runtime", description: "Fast all-in-one JavaScript runtime", website: "https://bun.sh", color: "#FBF0DF", installCommand: "curl -fsSL https://bun.sh/install | bash", icon: "https://bun.sh/logo.svg" },
-    { id: "nodejs", name: "Node.js", category: "Runtime", description: "JavaScript runtime built on Chrome's V8 engine", website: "https://nodejs.org", color: "#339933", installCommand: "# Install from nodejs.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { id: "deno", name: "Deno", category: "Runtime", description: "A secure runtime for JavaScript and TypeScript", website: "https://deno.land", color: "#000000", installCommand: "curl -fsSL https://deno.land/install.sh | sh", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg" },
 
-    // Backend Framework
-    { id: "hono", name: "Hono", category: "Backend Framework", description: "Fast, lightweight web framework", website: "https://hono.dev", color: "#E36002", installCommand: "npm install hono", icon: "https://raw.githubusercontent.com/honojs/hono/main/docs/images/hono-title.png" },
-    { id: "express", name: "Express.js", category: "Backend Framework", description: "Fast, unopinionated, minimalist web framework for Node.js", website: "https://expressjs.com", color: "#000000", installCommand: "npm install express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-    { id: "fastify", name: "Fastify", category: "Backend Framework", description: "Fast and low overhead web framework for Node.js", website: "https://fastify.io", color: "#000000", installCommand: "npm install fastify", icon: "https://avatars.githubusercontent.com/u/24939410?s=200&v=4" },
-    { id: "nestjs", name: "NestJS", category: "Backend Framework", description: "A progressive Node.js framework for building efficient server-side applications", website: "https://nestjs.com", color: "#E0234E", installCommand: "npm install @nestjs/core", icon: "https://avatars.githubusercontent.com/u/28507035?s=200&v=4" },
-    { id: "koa", name: "Koa.js", category: "Backend Framework", description: "Expressive middleware for node.js using ES2017 async functions", website: "https://koajs.com", color: "#33333D", installCommand: "npm install koa", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { id: "trpc", name: "tRPC", category: "Backend Framework", description: "End-to-end typesafe APIs made easy", website: "https://trpc.io", color: "#398CCB", installCommand: "npm install @trpc/server", icon: "https://trpc.io/img/logo.svg" },
 
-    // CSS Framework
-    { id: "tailwind", name: "Tailwind CSS", category: "CSS Framework", description: "Utility-first CSS framework", website: "https://tailwindcss.com", color: "#06B6D4", installCommand: "npm install tailwindcss", icon: "https://avatars.githubusercontent.com/u/67109815?s=200&v=4" },
-    { id: "bootstrap", name: "Bootstrap", category: "CSS Framework", description: "The most popular HTML, CSS, and JS library", website: "https://getbootstrap.com", color: "#7952B3", installCommand: "npm install bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-    { id: "chakra", name: "Chakra UI", category: "CSS Framework", description: "Simple, modular and accessible component library", website: "https://chakra-ui.com", color: "#319795", installCommand: "npm install @chakra-ui/react", icon: "https://avatars.githubusercontent.com/u/54212428?s=200&v=4" },
-    { id: "mui", name: "Material-UI", category: "CSS Framework", description: "React components for faster and easier web development", website: "https://mui.com", color: "#007FFF", installCommand: "npm install @mui/material", icon: "https://mui.com/static/logo.png" },
-    { id: "antd", name: "Ant Design", category: "CSS Framework", description: "Enterprise-class UI design language and React UI library", website: "https://ant.design", color: "#1890FF", installCommand: "npm install antd", icon: "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" },
-    { id: "mantine", name: "Mantine", category: "CSS Framework", description: "Full-featured React components library", website: "https://mantine.dev", color: "#339AF0", installCommand: "npm install @mantine/core", icon: "https://mantine.dev/favicon.svg" },
-    { id: "shadcn", name: "shadcn/ui", category: "CSS Framework", description: "Beautifully designed components built with Radix UI and Tailwind CSS", website: "https://ui.shadcn.com", color: "#000000", installCommand: "npx shadcn-ui@latest init", icon: "https://ui.shadcn.com/favicon.ico" },
 
-    // Native Framework
-    { id: "reactnative", name: "React Native", category: "Native Framework", description: "Create native apps for Android and iOS using React", website: "https://reactnative.dev", color: "#61DAFB", installCommand: "npx react-native init", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { id: "flutter", name: "Flutter", category: "Native Framework", description: "Google's UI toolkit for building natively compiled applications", website: "https://flutter.dev", color: "#02569B", installCommand: "flutter create my_app", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
-    { id: "ionic", name: "Ionic", category: "Native Framework", description: "Cross-platform mobile app development", website: "https://ionicframework.com", color: "#3880FF", installCommand: "npm install -g @ionic/cli", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" },
-    { id: "expo", name: "Expo", category: "Native Framework", description: "Platform for making universal native apps with React", website: "https://expo.dev", color: "#000020", installCommand: "npm install -g @expo/cli", icon: "https://static.expo.dev/static/brand/square-228x228.png" },
-    { id: "tauri", name: "Tauri", category: "Native Framework", description: "Build smaller, faster, and more secure desktop applications", website: "https://tauri.app", color: "#FFC131", installCommand: "npm install @tauri-apps/cli", icon: "https://tauri.app/meta/favicon-32x32.png" },
-    { id: "electron", name: "Electron", category: "Native Framework", description: "Build cross-platform desktop apps with JavaScript, HTML, and CSS", website: "https://electronjs.org", color: "#47848F", installCommand: "npm install electron", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg" },
 
-    // ORM
-    { id: "prisma", name: "Prisma", category: "ORM", description: "Next-generation Node.js and TypeScript ORM", website: "https://prisma.io", color: "#2D3748", installCommand: "npm install prisma", icon: "https://avatars.githubusercontent.com/u/17219288?s=200&v=4" },
-    { id: "drizzle", name: "Drizzle ORM", category: "ORM", description: "TypeScript ORM that is production ready", website: "https://orm.drizzle.team", color: "#C5F74F", installCommand: "npm install drizzle-orm", icon: "https://orm.drizzle.team/favicon.ico" },
-    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript", website: "https://typeorm.io", color: "#E83524", installCommand: "npm install typeorm", icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4" },
-    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server", website: "https://sequelize.org", color: "#52B0E7", installCommand: "npm install sequelize", icon: "https://sequelize.org/img/logo.svg" },
-    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant mongodb object modeling for node.js", website: "https://mongoosejs.com", color: "#880000", installCommand: "npm install mongoose", icon: "https://mongoosejs.com/docs/images/mongoose5_62x30_transparent.png" },
 
-    // Monorepo
-    { id: "turborepo", name: "Turborepo", category: "Monorepo", description: "High-performance build system for JavaScript and TypeScript codebases", website: "https://turbo.build", color: "#EF4444", installCommand: "npm install turbo", icon: "https://avatars.githubusercontent.com/u/84177906?s=200&v=4" },
-    { id: "nx", name: "Nx", category: "Monorepo", description: "Smart, fast and extensible build system", website: "https://nx.dev", color: "#143055", installCommand: "npx create-nx-workspace", icon: "https://avatars.githubusercontent.com/u/23692104?s=200&v=4" },
-    { id: "lerna", name: "Lerna", category: "Monorepo", description: "A tool for managing JavaScript projects with multiple packages", website: "https://lerna.js.org", color: "#9333EA", installCommand: "npm install lerna", icon: "https://avatars.githubusercontent.com/u/19333396?s=200&v=4" },
-    { id: "rush", name: "Rush", category: "Monorepo", description: "Scalable monorepo manager for the web", website: "https://rushjs.io", color: "#087CFA", installCommand: "npm install -g @microsoft/rush", icon: "https://rushjs.io/images/rush-logo.svg" },
 
-    // Package Manager
-    { id: "npm", name: "npm", category: "Package Manager", description: "Node package manager", website: "https://npmjs.com", color: "#CB3837", installCommand: "# Built into Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" },
-    { id: "yarn", name: "Yarn", category: "Package Manager", description: "Fast, reliable, and secure dependency management", website: "https://yarnpkg.com", color: "#2C8EBB", installCommand: "npm install -g yarn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg" },
-    { id: "pnpm", name: "pnpm", category: "Package Manager", description: "Fast, disk space efficient package manager", website: "https://pnpm.io", color: "#F69220", installCommand: "npm install -g pnpm", icon: "https://pnpm.io/img/pnpm-no-name-with-frame.svg" },
-    { id: "bun-pm", name: "Bun (Package Manager)", category: "Package Manager", description: "Ultra-fast package manager", website: "https://bun.sh", color: "#FBF0DF", installCommand: "curl -fsSL https://bun.sh/install | bash", icon: "https://bun.sh/logo.svg" },
+// AI Service Functions
+const callAI = async (prompt: string): Promise<string> => {
+    try {
+        console.log('Making AI API call with prompt:', prompt.substring(0, 100) + '...');
 
-    // Testing
-    { id: "jest", name: "Jest", category: "Testing", description: "Delightful JavaScript testing framework", website: "https://jestjs.io", color: "#C21325", installCommand: "npm install jest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
-    { id: "vitest", name: "Vitest", category: "Testing", description: "A blazing fast unit test framework powered by Vite", website: "https://vitest.dev", color: "#6E9F18", installCommand: "npm install vitest", icon: "https://avatars.githubusercontent.com/u/95747107?s=200&v=4" },
-    { id: "cypress", name: "Cypress", category: "Testing", description: "Fast, easy and reliable testing for anything that runs in a browser", website: "https://cypress.io", color: "#17202C", installCommand: "npm install cypress", icon: "https://asset.brandfetch.io/idIq_kF0rb/idv3zwmSiY.jpeg" },
-    { id: "playwright", name: "Playwright", category: "Testing", description: "Fast and reliable end-to-end testing for modern web apps", website: "https://playwright.dev", color: "#2EAD33", installCommand: "npm install @playwright/test", icon: "https://playwright.dev/img/playwright-logo.svg" },
-    { id: "testing-library", name: "Testing Library", category: "Testing", description: "Simple and complete testing utilities", website: "https://testing-library.com", color: "#E33332", installCommand: "npm install @testing-library/react", icon: "https://testing-library.com/img/octopus-128x128.png" },
+        const requestBody = {
+            model: AI_CONFIG.model,
+            messages: [
+                {
+                    role: "system",
+                    content: "You are an expert software architect and tech stack consultant. When asked to generate a tech stack, respond ONLY with valid JSON in the exact format requested. Do not include any explanatory text before or after the JSON. Your response must be parseable by JSON.parse()."
+                },
+                {
+                    role: "user",
+                    content: prompt
+                }
+            ],
+            temperature: 0.7,
+            max_tokens: 1000
+        };
 
-    // Authentication
-    { id: "nextauth", name: "NextAuth.js", category: "Authentication", description: "Complete open source authentication solution for Next.js applications", website: "https://next-auth.js.org", color: "#EB5424", installCommand: "npm install next-auth", icon: "https://next-auth.js.org/img/logo/logo-sm.png" },
-    { id: "auth0", name: "Auth0", category: "Authentication", description: "Secure access for everyone", website: "https://auth0.com", color: "#EB5424", installCommand: "npm install @auth0/nextjs-auth0", icon: "https://cdn.auth0.com/website/bob/press/auth0-press-kit/auth0-logo-mark.svg" },
-    { id: "clerk", name: "Clerk", category: "Authentication", description: "More than authentication", website: "https://clerk.com", color: "#6C47FF", installCommand: "npm install @clerk/nextjs", icon: "https://clerk.com/favicon.ico" },
-    { id: "supabase-auth", name: "Supabase Auth", category: "Authentication", description: "User management and authentication", website: "https://supabase.com/auth", color: "#3ECF8E", installCommand: "npm install @supabase/auth-ui-react", icon: "https://supabase.com/favicon/favicon-32x32.png" },
-    { id: "firebase-auth", name: "Firebase Auth", category: "Authentication", description: "Simple, free multi-platform sign-in", website: "https://firebase.google.com/products/auth", color: "#FFCA28", installCommand: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
+        console.log('Request body:', JSON.stringify(requestBody, null, 2));
 
-    // State Management
-    { id: "zustand", name: "Zustand", category: "State Management", description: "Small, fast and scalable bearbones state-management solution", website: "https://zustand-demo.pmnd.rs", color: "#443E38", installCommand: "npm install zustand", icon: "https://raw.githubusercontent.com/pmndrs/zustand/main/bear.jpg" },
-    { id: "redux", name: "Redux Toolkit", category: "State Management", description: "The official, opinionated, batteries-included toolset for efficient Redux development", website: "https://redux-toolkit.js.org", color: "#764ABC", installCommand: "npm install @reduxjs/toolkit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-    { id: "jotai", name: "Jotai", category: "State Management", description: "Primitive and flexible state management for React", website: "https://jotai.org", color: "#000000", installCommand: "npm install jotai", icon: "https://jotai.org/favicon.svg" },
-    { id: "valtio", name: "Valtio", category: "State Management", description: "Makes proxy-state simple for React and Vanilla", website: "https://valtio.pmnd.rs", color: "#1E40AF", installCommand: "npm install valtio", icon: "https://valtio.pmnd.rs/favicon.ico" },
-    { id: "recoil", name: "Recoil", category: "State Management", description: "Experimental state management library for React apps", website: "https://recoiljs.org", color: "#3578E5", installCommand: "npm install recoil", icon: "https://recoiljs.org/img/favicon.png" },
+        const response = await fetch(`${AI_CONFIG.url}/chat/completions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${AI_CONFIG.apiKey}`
+            },
+            body: JSON.stringify(requestBody)
+        });
 
-    // Build Tools
-    { id: "vite", name: "Vite", category: "Build Tools", description: "Next generation frontend tooling", website: "https://vitejs.dev", color: "#646CFF", installCommand: "npm create vite@latest", icon: "https://vitejs.dev/logo.svg" },
-    { id: "webpack", name: "Webpack", category: "Build Tools", description: "Static module bundler for modern JavaScript applications", website: "https://webpack.js.org", color: "#8DD6F9", installCommand: "npm install webpack", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" },
-    { id: "rollup", name: "Rollup", category: "Build Tools", description: "Module bundler for JavaScript", website: "https://rollupjs.org", color: "#EC4A3F", installCommand: "npm install rollup", icon: "https://rollupjs.org/favicon.png" },
-    { id: "parcel", name: "Parcel", category: "Build Tools", description: "The zero configuration build tool for the web", website: "https://parceljs.org", color: "#E7A427", installCommand: "npm install parcel", icon: "https://parceljs.org/favicon.ico" },
-    { id: "esbuild", name: "esbuild", category: "Build Tools", description: "An extremely fast JavaScript bundler", website: "https://esbuild.github.io", color: "#FFCF00", installCommand: "npm install esbuild", icon: "https://esbuild.github.io/favicon.svg" },
+        console.log('Response status:', response.status);
+        console.log('Response headers:', Object.fromEntries(response.headers.entries()));
 
-    // Hosting
-    { id: "vercel", name: "Vercel", category: "Hosting", description: "Platform for frontend frameworks and static sites", website: "https://vercel.com", color: "#000000", installCommand: "npm install -g vercel", icon: "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" },
-    { id: "netlify", name: "Netlify", category: "Hosting", description: "All-in-one platform for automating modern web projects", website: "https://netlify.com", color: "#00C7B7", installCommand: "npm install -g netlify-cli", icon: "https://www.netlify.com/v3/img/components/logomark.png" },
-    { id: "railway", name: "Railway", category: "Hosting", description: "Deploy from GitHub with zero configuration", website: "https://railway.app", color: "#0B0D0E", installCommand: "npm install -g @railway/cli", icon: "https://railway.app/brand/logo-light.png" },
-    { id: "render", name: "Render", category: "Hosting", description: "Cloud platform for developers and teams", website: "https://render.com", color: "#46E3B7", installCommand: "# Deploy via Git", icon: "https://render.com/favicon.ico" },
-    { id: "fly", name: "Fly.io", category: "Hosting", description: "Deploy app servers close to your users", website: "https://fly.io", color: "#8B5CF6", installCommand: "npm install -g @fly/flyctl", icon: "https://fly.io/favicon.ico" },
-    { id: "cloudflare-pages", name: "Cloudflare Pages", category: "Hosting", description: "JAMstack platform for frontend developers", website: "https://pages.cloudflare.com", color: "#F38020", installCommand: "npm install -g wrangler", icon: "https://www.cloudflare.com/favicon.ico" },
-    { id: "aws", name: "AWS", category: "Hosting", description: "Amazon Web Services cloud platform", website: "https://aws.amazon.com", color: "#FF9900", installCommand: "npm install aws-cdk", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" },
-    { id: "digitalocean", name: "DigitalOcean", category: "Hosting", description: "Cloud infrastructure for developers", website: "https://digitalocean.com", color: "#0080FF", installCommand: "npm install -g doctl", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg" }
-];
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('API Error Response:', errorText);
+            throw new Error(`AI API error: ${response.status} - ${errorText}`);
+        }
 
-const categories = [
-    "Web Framework",
-    "Native Framework",
-    "Backend Framework",
-    "CSS Framework",
-    "Database",
-    "Runtime",
-    "ORM",
-    "Monorepo",
-    "Package Manager",
-    "Testing",
-    "Authentication",
-    "State Management",
-    "Build Tools",
-    "Hosting"
-];
+        const data = await response.json();
+        console.log('API Response data:', data);
+
+        const content = data.choices?.[0]?.message?.content || "";
+        console.log('Extracted content:', content);
+
+        if (!content) {
+            throw new Error('Empty response from AI API');
+        }
+
+        return content;
+    } catch (error) {
+        console.error('AI API Error:', error);
+        throw error;
+    }
+};
 
 export function TechStackBuilderContent() {
     const [selectedStack, setSelectedStack] = useState<TechStack>({});
     const [searchTerm, setSearchTerm] = useState("");
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(categories));
     const [projectName, setProjectName] = useState("my-tech-genie-app");
+    const [projectDescription, setProjectDescription] = useState("");
+    const [aiAnalysis, setAiAnalysis] = useState<AIAnalysis | null>(null);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
+    const [showAiPanel, setShowAiPanel] = useState(false);
     const { toast } = useToast();
     const searchParams = useSearchParams();
+    const commandTextareaRef = useRef<HTMLTextAreaElement>(null);
 
     // Load shared stack from URL on mount
     useEffect(() => {
@@ -193,6 +166,15 @@ export function TechStackBuilderContent() {
             }
         }
     }, [searchParams]);
+
+    // Auto-resize command textarea when command changes
+    useEffect(() => {
+        const textarea = commandTextareaRef.current;
+        if (textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = Math.max(40, textarea.scrollHeight) + 'px';
+        }
+    }, [selectedStack, projectName]); // Re-run when stack or project name changes
 
     const toggleTechnology = (tech: Technology) => {
         setSelectedStack(prev => {
@@ -250,9 +232,402 @@ export function TechStackBuilderContent() {
     const generateCommand = () => {
         const selectedTechs = Object.values(selectedStack).flat();
         if (selectedTechs.length === 0) return "";
-        const hasBun = selectedTechs.some(tech => tech.id === "bun");
-        const packageManager = hasBun ? "bun" : "npm";
-        return `${packageManager} create tech-genie@latest ${projectName}`;
+
+        // Determine package manager
+        const packageManagerTech = selectedTechs.find(tech => tech.category === "Package Manager");
+        const runtimeTech = selectedTechs.find(tech => tech.category === "Runtime");
+        let packageManager = "npm";
+
+        if (packageManagerTech) {
+            if (packageManagerTech.id === "bun-pm" || packageManagerTech.id === "bun") packageManager = "bun";
+            else if (packageManagerTech.id === "yarn") packageManager = "yarn";
+            else if (packageManagerTech.id === "pnpm") packageManager = "pnpm";
+        } else if (runtimeTech?.id === "bun") {
+            packageManager = "bun";
+        }
+
+        // Find primary framework for project creation
+        const webFramework = selectedTechs.find(tech => tech.category === "Web Framework");
+        const nativeFramework = selectedTechs.find(tech => tech.category === "Native Framework");
+        const backendFramework = selectedTechs.find(tech => tech.category === "Backend Framework");
+        const monorepo = selectedTechs.find(tech => tech.category === "Monorepo");
+
+        // Generate creation command based on primary framework
+        let createCommand = "";
+
+        // Handle monorepo first as it affects project structure
+        if (monorepo) {
+            switch (monorepo.id) {
+                case "turborepo":
+                    createCommand = `npx create-turbo@latest ${projectName}`;
+                    break;
+                case "nx":
+                    createCommand = `npx create-nx-workspace@latest ${projectName}`;
+                    break;
+                case "lerna":
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && npx lerna init`;
+                    break;
+                case "rush":
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && rush init`;
+                    break;
+                default:
+                    createCommand = `npx create-turbo@latest ${projectName}`;
+            }
+        } else if (webFramework) {
+            switch (webFramework.id) {
+                case "nextjs":
+                    // Use package manager for Next.js if specified
+                    if (packageManager === "bun") {
+                        createCommand = `bun create next-app ${projectName}`;
+                    } else if (packageManager === "yarn") {
+                        createCommand = `yarn create next-app ${projectName}`;
+                    } else if (packageManager === "pnpm") {
+                        createCommand = `pnpm create next-app ${projectName}`;
+                    } else {
+                        createCommand = `npx create-next-app@latest ${projectName}`;
+                    }
+                    break;
+                case "react":
+                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
+                    break;
+                case "tanstack-router":
+                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
+                    break;
+                case "vue":
+                    createCommand = `${packageManager} create vue@latest ${projectName}`;
+                    break;
+                case "nuxt":
+                    createCommand = `npx nuxi@latest init ${projectName}`;
+                    break;
+                case "angular":
+                    createCommand = `npx @angular/cli@latest new ${projectName} --routing --style=css`;
+                    break;
+                case "svelte":
+                    createCommand = `${packageManager} create svelte@latest ${projectName}`;
+                    break;
+                case "sveltekit":
+                    createCommand = `${packageManager} create sveltekit@latest ${projectName}`;
+                    break;
+                case "remix":
+                    createCommand = `npx create-remix@latest ${projectName}`;
+                    break;
+                case "astro":
+                    createCommand = `${packageManager} create astro@latest ${projectName}`;
+                    break;
+                case "solid":
+                    createCommand = `npx degit solidjs/templates/ts ${projectName}`;
+                    break;
+                case "qwik":
+                    createCommand = `${packageManager} create qwik@latest ${projectName}`;
+                    break;
+                default:
+                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
+            }
+        } else if (nativeFramework) {
+            switch (nativeFramework.id) {
+                case "reactnative":
+                    createCommand = `npx @react-native-community/cli@latest init ${projectName}`;
+                    break;
+                case "flutter":
+                    createCommand = `flutter create ${projectName}`;
+                    break;
+                case "expo":
+                    createCommand = `npx create-expo-app@latest ${projectName} --template`;
+                    break;
+                case "ionic":
+                    const ionicType = webFramework?.id === "vue" ? "vue" : webFramework?.id === "angular" ? "angular" : "react";
+                    createCommand = `ionic start ${projectName} tabs --type=${ionicType}`;
+                    break;
+                case "tauri":
+                    createCommand = `${packageManager} create tauri-app@latest ${projectName}`;
+                    break;
+                case "electron":
+                    createCommand = `${packageManager} create electron-app ${projectName}`;
+                    break;
+                default:
+                    createCommand = `npx create-expo-app@latest ${projectName}`;
+            }
+        } else if (backendFramework) {
+            switch (backendFramework.id) {
+                case "hono":
+                    createCommand = `${packageManager} create hono@latest ${projectName}`;
+                    break;
+                case "express":
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install express @types/express`;
+                    break;
+                case "fastify":
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install fastify`;
+                    break;
+                case "nestjs":
+                    createCommand = `npx @nestjs/cli@latest new ${projectName}`;
+                    break;
+                case "koa":
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install koa @types/koa`;
+                    break;
+                case "trpc":
+                    createCommand = `${packageManager} create t3-app@latest ${projectName}`;
+                    break;
+                default:
+                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y`;
+            }
+        } else {
+            // Default to a basic Node.js project
+            createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y`;
+        }
+
+        // Add additional setup commands for other technologies
+        const additionalCommands: string[] = [];
+
+        // TanStack Router specific setup
+        if (webFramework?.id === "tanstack-router") {
+            additionalCommands.push(`cd ${projectName} && ${packageManager} install @tanstack/react-router @tanstack/router-devtools`);
+        }
+
+        // CSS Framework setup
+        const cssFramework = selectedTechs.find(tech => tech.category === "CSS Framework");
+        if (cssFramework && (webFramework || nativeFramework)) {
+            switch (cssFramework.id) {
+                case "tailwind":
+                    if (webFramework?.id === "nextjs") {
+                        // Next.js has built-in Tailwind support
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install tailwindcss postcss autoprefixer && npx tailwindcss init -p`);
+                    } else {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p`);
+                    }
+                    break;
+                case "shadcn":
+                    additionalCommands.push(`cd ${projectName} && npx shadcn-ui@latest init`);
+                    break;
+                case "chakra":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @chakra-ui/react @emotion/react @emotion/styled framer-motion`);
+                    break;
+                case "mui":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @mui/material @emotion/react @emotion/styled @mui/icons-material`);
+                    break;
+                case "antd":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install antd`);
+                    break;
+                case "mantine":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @mantine/core @mantine/hooks @mantine/notifications`);
+                    break;
+                case "bootstrap":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install bootstrap`);
+                    break;
+            }
+        }
+
+        // Database setup
+        const database = selectedTechs.find(tech => tech.category === "Database");
+        if (database) {
+            switch (database.id) {
+                case "sqlite":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install sqlite3 @types/sqlite3`);
+                    break;
+                case "postgresql":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install pg @types/pg`);
+                    break;
+                case "mongodb":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mongodb @types/mongodb`);
+                    break;
+                case "mysql":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mysql2 @types/mysql2`);
+                    break;
+                case "redis":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install redis @types/redis`);
+                    break;
+                case "supabase":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @supabase/supabase-js`);
+                    break;
+                case "planetscale":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @planetscale/database`);
+                    break;
+                case "turso":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @libsql/client`);
+                    break;
+            }
+        }
+
+        // ORM setup
+        const orm = selectedTechs.find(tech => tech.category === "ORM");
+        if (orm) {
+            switch (orm.id) {
+                case "prisma":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install prisma @prisma/client && npx prisma init`);
+                    break;
+                case "drizzle":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install drizzle-orm drizzle-kit`);
+                    break;
+                case "typeorm":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install typeorm reflect-metadata @types/node`);
+                    break;
+                case "sequelize":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install sequelize @types/sequelize`);
+                    break;
+                case "mongoose":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mongoose @types/mongoose`);
+                    break;
+            }
+        }
+
+        // Authentication setup
+        const auth = selectedTechs.find(tech => tech.category === "Authentication");
+        if (auth && (webFramework || nativeFramework)) {
+            switch (auth.id) {
+                case "nextauth":
+                    if (webFramework?.id === "nextjs") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install next-auth`);
+                    }
+                    break;
+                case "clerk":
+                    if (webFramework?.id === "nextjs") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @clerk/nextjs`);
+                    } else if (webFramework?.id === "react") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @clerk/clerk-react`);
+                    }
+                    break;
+                case "auth0":
+                    if (webFramework?.id === "nextjs") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @auth0/nextjs-auth0`);
+                    } else if (webFramework?.id === "react") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @auth0/auth0-react`);
+                    }
+                    break;
+                case "supabase-auth":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @supabase/auth-ui-react @supabase/auth-ui-shared`);
+                    break;
+                case "firebase-auth":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install firebase`);
+                    break;
+            }
+        }
+
+        // State Management setup
+        const stateManagement = selectedTechs.find(tech => tech.category === "State Management");
+        if (stateManagement && (webFramework || nativeFramework)) {
+            switch (stateManagement.id) {
+                case "zustand":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install zustand`);
+                    break;
+                case "redux":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @reduxjs/toolkit react-redux`);
+                    break;
+                case "jotai":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install jotai`);
+                    break;
+                case "valtio":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install valtio`);
+                    break;
+                case "recoil":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install recoil`);
+                    break;
+            }
+        }
+
+        // Testing setup
+        const testing = selectedTechs.find(tech => tech.category === "Testing");
+        if (testing) {
+            switch (testing.id) {
+                case "jest":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev jest @types/jest ts-jest`);
+                    break;
+                case "vitest":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vitest @vitest/ui`);
+                    break;
+                case "cypress":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev cypress`);
+                    break;
+                case "playwright":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @playwright/test && npx playwright install`);
+                    break;
+                case "testing-library":
+                    if (webFramework?.id === "react" || webFramework?.id === "nextjs") {
+                        additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event`);
+                    }
+                    break;
+            }
+        }
+
+        // Build Tools setup (only if not already included in framework)
+        const buildTool = selectedTechs.find(tech => tech.category === "Build Tools");
+        if (buildTool && !webFramework) {
+            switch (buildTool.id) {
+                case "vite":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vite`);
+                    break;
+                case "webpack":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev webpack webpack-cli webpack-dev-server`);
+                    break;
+                case "rollup":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev rollup`);
+                    break;
+                case "parcel":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev parcel`);
+                    break;
+                case "esbuild":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev esbuild`);
+                    break;
+            }
+        }
+
+        // Hosting/Deployment setup
+        const hosting = selectedTechs.find(tech => tech.category === "Hosting");
+        if (hosting) {
+            switch (hosting.id) {
+                case "vercel":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vercel`);
+                    break;
+                case "netlify":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev netlify-cli`);
+                    break;
+                case "railway":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @railway/cli`);
+                    break;
+                case "fly":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @fly/flyctl`);
+                    break;
+                case "cloudflare-pages":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev wrangler`);
+                    break;
+                case "aws":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev aws-cdk-lib constructs`);
+                    break;
+            }
+        }
+
+        // Combine all commands
+        const allCommands = [createCommand, ...additionalCommands].filter(cmd => cmd.length > 0);
+        return allCommands.join(" && ");
+    };
+
+    const generateSmartCommand = async () => {
+        const basicCommand = generateCommand();
+        if (!basicCommand || !projectDescription.trim()) return basicCommand;
+
+        try {
+            const selectedTechs = Object.values(selectedStack).flat();
+            const techNames = selectedTechs.map(t => t.name).join(', ');
+
+            const prompt = `
+            Optimize this command sequence for a ${projectDescription} project:
+            
+            Current command: ${basicCommand}
+            Technologies: ${techNames}
+            
+            Please provide an optimized command that:
+            1. Adds any missing essential dependencies
+            2. Includes proper configuration steps
+            3. Sets up development environment
+            4. Adds useful scripts or configurations
+            
+            Return only the optimized command sequence, no explanations.
+            `;
+
+            const optimizedCommand = await callAI(prompt);
+            return optimizedCommand.trim() || basicCommand;
+        } catch (error) {
+            console.error('Smart command generation failed:', error);
+            return basicCommand;
+        }
     };
 
     const copyCommand = async () => {
@@ -300,6 +675,332 @@ export function TechStackBuilderContent() {
         toast({
             title: "Random stack generated!",
             description: `Selected ${randomTechs.length} technologies across ${Object.keys(newStack).length} categories.`,
+        });
+    };
+
+    // AI-Powered Functions
+    const analyzeStackWithAI = async () => {
+        if (!projectDescription.trim()) {
+            toast({
+                title: "Project description required",
+                description: "Please provide a project description for AI analysis.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        setIsAnalyzing(true);
+        try {
+            const selectedTechs = Object.values(selectedStack).flat();
+            const techNames = selectedTechs.map(t => t.name).join(', ');
+
+            const prompt = `
+            Analyze this tech stack for a project:
+            
+            Project Description: "${projectDescription}"
+            Current Stack: ${techNames || 'No technologies selected'}
+            
+            Please provide a JSON response with:
+            {
+                "recommendations": [
+                    {
+                        "technologyId": "string (must match existing tech IDs)",
+                        "reason": "string",
+                        "confidence": number (0-100)
+                    }
+                ],
+                "warnings": ["string array of potential issues"],
+                "suggestions": ["string array of improvements"],
+                "projectType": "string (e.g., 'E-commerce Platform', 'Social Media App')",
+                "complexity": "Simple|Moderate|Complex"
+            }
+            
+            Available technologies: ${technologyData.map(t => `${t.id}:${t.name}`).join(', ')}
+            `;
+
+            const response = await callAI(prompt);
+            const analysis = JSON.parse(response);
+
+            // Map recommendations to full technology objects
+            const recommendations: AIRecommendation[] = analysis.recommendations.map((rec: any) => {
+                const tech = technologyData.find(t => t.id === rec.technologyId);
+                return tech ? {
+                    technology: tech,
+                    reason: rec.reason,
+                    confidence: rec.confidence
+                } : null;
+            }).filter(Boolean);
+
+            setAiAnalysis({
+                recommendations,
+                warnings: analysis.warnings || [],
+                suggestions: analysis.suggestions || [],
+                projectType: analysis.projectType || 'Web Application',
+                complexity: analysis.complexity || 'Moderate'
+            });
+
+            setAiRecommendations(recommendations);
+            setShowAiPanel(true);
+
+            toast({
+                title: "AI Analysis Complete!",
+                description: `Found ${recommendations.length} recommendations for your project.`,
+            });
+        } catch (error) {
+            console.error('AI Analysis Error:', error);
+            toast({
+                title: "AI Analysis Failed",
+                description: "Unable to analyze your stack. Please try again.",
+                variant: "destructive",
+            });
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
+
+    // Fallback stack generation based on keywords
+    const generateFallbackStack = (description: string): TechStack => {
+        const desc = description.toLowerCase();
+        const stack: TechStack = {};
+
+        const addTech = (techId: string) => {
+            const tech = technologyData.find(t => t.id === techId);
+            if (tech) {
+                if (!stack[tech.category]) {
+                    stack[tech.category] = [];
+                }
+                stack[tech.category].push(tech);
+            }
+        };
+
+        // Framework selection based on keywords
+        if (desc.includes('vue') || desc.includes('nuxt')) {
+            addTech('vue');
+            addTech('nuxt');
+        } else if (desc.includes('angular')) {
+            addTech('angular');
+        } else if (desc.includes('svelte')) {
+            addTech('svelte');
+            addTech('sveltekit');
+        } else if (desc.includes('mobile') || desc.includes('app') || desc.includes('native')) {
+            addTech('reactnative');
+            addTech('expo');
+        } else if (desc.includes('desktop')) {
+            addTech('electron');
+        } else {
+            // Default to React/Next.js for web projects
+            addTech('react');
+            addTech('nextjs');
+        }
+
+        // Database selection
+        if (desc.includes('database') || desc.includes('data') || desc.includes('storage')) {
+            if (desc.includes('postgres') || desc.includes('postgresql')) {
+                addTech('postgresql');
+                addTech('prisma');
+            } else if (desc.includes('mongo')) {
+                addTech('mongodb');
+                addTech('mongoose');
+            } else if (desc.includes('simple') || desc.includes('small')) {
+                addTech('sqlite');
+                addTech('prisma');
+            } else {
+                addTech('supabase'); // Modern default
+            }
+        }
+
+        // Authentication
+        if (desc.includes('auth') || desc.includes('login') || desc.includes('user')) {
+            addTech('nextauth');
+        }
+
+        // State management for complex apps
+        if (desc.includes('state') || desc.includes('complex') || desc.includes('large')) {
+            addTech('zustand');
+        }
+
+        // Styling
+        addTech('tailwind');
+        if (desc.includes('component') || desc.includes('ui library')) {
+            addTech('shadcn');
+        }
+
+        // Testing
+        if (desc.includes('test') || desc.includes('quality')) {
+            addTech('vitest');
+        }
+
+        // Package manager
+        if (desc.includes('fast') || desc.includes('performance')) {
+            addTech('pnpm');
+        } else {
+            addTech('npm');
+        }
+
+        // Runtime
+        addTech('nodejs');
+
+        // Hosting
+        if (desc.includes('aws') || desc.includes('amazon')) {
+            addTech('aws');
+        } else {
+            addTech('vercel'); // Default for Next.js
+        }
+
+        return stack;
+    };
+
+    const generateAIStack = async () => {
+        if (!projectDescription.trim()) {
+            toast({
+                title: "Project description required",
+                description: "Please describe your project for AI recommendations.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        setIsAnalyzing(true);
+
+        // First, try the fallback approach since AI seems to be having issues
+        console.log('Generating fallback stack due to AI API issues...');
+        const fallbackStack = generateFallbackStack(projectDescription);
+
+        if (fallbackStack && Object.keys(fallbackStack).length > 0) {
+            setSelectedStack(fallbackStack);
+            toast({
+                title: "Tech Stack Generated!",
+                description: "Generated a curated tech stack based on your project description.",
+                variant: "default",
+            });
+            setIsAnalyzing(false);
+            return;
+        }
+
+        // If fallback fails, try AI as backup
+        try {
+            const prompt = `
+            Generate a complete tech stack for this project:
+            
+            Project Description: "${projectDescription}"
+            
+            IMPORTANT: Respond ONLY with valid JSON in this exact format:
+            {
+                "stack": ["array of technology IDs from the list below"],
+                "reasoning": "brief explanation of why these technologies work well together"
+            }
+            
+            Available technologies: ${technologyData.map(t => `${t.id}:${t.name} (${t.category})`).join(', ')}
+            
+            Rules:
+            - Choose 4-8 technologies that work well together
+            - Use only technology IDs from the available list above
+            - Ensure technologies complement each other
+            - Return ONLY the JSON object, no additional text
+            `;
+
+            const response = await callAI(prompt);
+            console.log('AI Response:', response);
+
+            if (!response || response.trim() === '') {
+                throw new Error('Empty AI response');
+            }
+
+            // Try to parse JSON response, with fallback handling
+            let result;
+            try {
+                result = JSON.parse(response);
+            } catch (parseError) {
+                console.warn('Failed to parse AI response as JSON:', response);
+                // Try to extract JSON from the response if it's wrapped in text
+                const jsonMatch = response.match(/\{[\s\S]*\}/);
+                if (jsonMatch) {
+                    try {
+                        result = JSON.parse(jsonMatch[0]);
+                        console.log('Extracted JSON:', result);
+                    } catch (secondParseError) {
+                        console.error('Second parse error:', secondParseError);
+                        throw new Error('AI response is not valid JSON');
+                    }
+                } else {
+                    throw new Error('No JSON found in AI response');
+                }
+            }
+
+            // Validate the result structure
+            if (!result || !Array.isArray(result.stack)) {
+                throw new Error('Invalid AI response structure');
+            }
+
+            const newStack: TechStack = {};
+            result.stack.forEach((techId: string) => {
+                const tech = technologyData.find(t => t.id === techId);
+                if (tech) {
+                    if (!newStack[tech.category]) {
+                        newStack[tech.category] = [];
+                    }
+                    newStack[tech.category].push(tech);
+                }
+            });
+
+            setSelectedStack(newStack);
+
+            toast({
+                title: "AI Stack Generated!",
+                description: result.reasoning || "AI has created a recommended tech stack for your project.",
+            });
+        } catch (error) {
+            console.error('AI Stack Generation Error:', error);
+
+            // Fallback: Generate a basic stack based on project description keywords
+            const fallbackStack = generateFallbackStack(projectDescription);
+            if (fallbackStack && Object.keys(fallbackStack).length > 0) {
+                setSelectedStack(fallbackStack);
+                toast({
+                    title: "Fallback Stack Generated",
+                    description: "AI service unavailable. Generated a basic stack based on your description.",
+                    variant: "default",
+                });
+            } else {
+                toast({
+                    title: "AI Generation Failed",
+                    description: "Unable to generate stack. Please try again or select technologies manually.",
+                    variant: "destructive",
+                });
+            }
+        } finally {
+            setIsAnalyzing(false);
+        }
+    };
+
+    const askAIQuestion = async (question: string) => {
+        try {
+            const selectedTechs = Object.values(selectedStack).flat();
+            const techNames = selectedTechs.map(t => t.name).join(', ');
+
+            const prompt = `
+            Answer this question about the tech stack:
+            
+            Question: "${question}"
+            Current Stack: ${techNames || 'No technologies selected'}
+            Project: "${projectDescription || 'No description provided'}"
+            
+            Provide a helpful, concise answer focusing on practical advice.
+            `;
+
+            const response = await callAI(prompt);
+            return response;
+        } catch (error) {
+            console.error('AI Question Error:', error);
+            throw error;
+        }
+    };
+
+    const applyAIRecommendation = (recommendation: AIRecommendation) => {
+        toggleTechnology(recommendation.technology);
+        toast({
+            title: "Recommendation Applied!",
+            description: `Added ${recommendation.technology.name} to your stack.`,
         });
     };
 
@@ -355,6 +1056,165 @@ export function TechStackBuilderContent() {
                         placeholder="my-tech-genie-app"
                     />
                 </div>
+
+                {/* AI-Powered Section */}
+                <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                    <div className="flex items-center gap-2 mb-3">
+                        <Sparkles className="w-4 h-4 text-purple-400" />
+                        <label className="text-sm text-gray-400 font-medium">AI Assistant</label>
+                    </div>
+
+                    <div className="space-y-3">
+                        <div>
+                            <Input
+                                value={projectDescription}
+                                onChange={(e) => setProjectDescription(e.target.value)}
+                                className="bg-[#0d1117] border-gray-700 text-white text-sm"
+                                placeholder="Describe your project (e.g., 'E-commerce platform with real-time chat')"
+                            />
+                        </div>
+
+                        <div className="grid grid-cols-1 gap-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={generateAIStack}
+                                disabled={isAnalyzing || !projectDescription.trim()}
+                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 text-xs"
+                            >
+                                {isAnalyzing ? (
+                                    <>
+                                        <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin mr-1" />
+                                        Generating...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Brain className="w-3 h-3 mr-1" />
+                                        Generate AI Stack
+                                    </>
+                                )}
+                            </Button>
+
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={analyzeStackWithAI}
+                                disabled={isAnalyzing || !projectDescription.trim()}
+                                className="bg-[#0d1117] border-purple-600 text-purple-400 hover:bg-purple-900/20 disabled:opacity-50 text-xs"
+                            >
+                                {isAnalyzing ? (
+                                    <>
+                                        <div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin mr-1" />
+                                        Analyzing...
+                                    </>
+                                ) : (
+                                    <>
+                                        <Zap className="w-3 h-3 mr-1" />
+                                        Analyze Current Stack
+                                    </>
+                                )}
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+
+                {/* AI Recommendations Panel */}
+                {showAiPanel && aiAnalysis && (
+                    <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <Brain className="w-4 h-4 text-purple-400" />
+                                <label className="text-sm text-gray-400 font-medium">AI Analysis</label>
+                            </div>
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                onClick={() => setShowAiPanel(false)}
+                                className="h-6 w-6 p-0 text-gray-400 hover:text-white"
+                            >
+                                <X className="w-3 h-3" />
+                            </Button>
+                        </div>
+
+                        <div className="space-y-3 max-h-64 overflow-y-auto">
+                            {/* Project Analysis */}
+                            <div className="bg-[#0d1117] rounded p-3">
+                                <div className="text-xs text-purple-400 font-medium mb-1">Project Type</div>
+                                <div className="text-xs text-white">{aiAnalysis.projectType}</div>
+                                <div className="text-xs text-gray-400 mt-1">
+                                    Complexity: <span className={`font-medium ${aiAnalysis.complexity === 'Simple' ? 'text-green-400' :
+                                        aiAnalysis.complexity === 'Moderate' ? 'text-yellow-400' : 'text-red-400'
+                                        }`}>{aiAnalysis.complexity}</span>
+                                </div>
+                            </div>
+
+                            {/* Recommendations */}
+                            {aiAnalysis.recommendations.length > 0 && (
+                                <div>
+                                    <div className="text-xs text-green-400 font-medium mb-2">Recommendations</div>
+                                    <div className="space-y-2">
+                                        {aiAnalysis.recommendations.slice(0, 3).map((rec, index) => (
+                                            <div key={index} className="bg-[#0d1117] rounded p-2">
+                                                <div className="flex items-center justify-between mb-1">
+                                                    <div className="flex items-center gap-2">
+                                                        <TechIcon
+                                                            src={rec.technology.icon}
+                                                            alt={rec.technology.name}
+                                                            width={12}
+                                                            height={12}
+                                                            className="rounded"
+                                                        />
+                                                        <span className="text-xs text-white font-medium">{rec.technology.name}</span>
+                                                    </div>
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="sm"
+                                                        onClick={() => applyAIRecommendation(rec)}
+                                                        className="h-5 w-5 p-0 text-green-400 hover:text-green-300"
+                                                    >
+                                                        <Plus className="w-3 h-3" />
+                                                    </Button>
+                                                </div>
+                                                <div className="text-xs text-gray-400">{rec.reason}</div>
+                                                <div className="text-xs text-purple-400 mt-1">
+                                                    Confidence: {rec.confidence}%
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Warnings */}
+                            {aiAnalysis.warnings.length > 0 && (
+                                <div>
+                                    <div className="text-xs text-yellow-400 font-medium mb-2">Warnings</div>
+                                    <div className="space-y-1">
+                                        {aiAnalysis.warnings.slice(0, 2).map((warning, index) => (
+                                            <div key={index} className="bg-yellow-900/20 border border-yellow-600/30 rounded p-2">
+                                                <div className="text-xs text-yellow-200">{warning}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Suggestions */}
+                            {aiAnalysis.suggestions.length > 0 && (
+                                <div>
+                                    <div className="text-xs text-blue-400 font-medium mb-2">Suggestions</div>
+                                    <div className="space-y-1">
+                                        {aiAnalysis.suggestions.slice(0, 2).map((suggestion, index) => (
+                                            <div key={index} className="bg-blue-900/20 border border-blue-600/30 rounded p-2">
+                                                <div className="text-xs text-blue-200">{suggestion}</div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="p-4 border-b border-gray-800 flex-shrink-0">
@@ -428,20 +1288,47 @@ export function TechStackBuilderContent() {
 
                 {/* Command Generator */}
                 <div className="p-4 border-b border-gray-800 flex-shrink-0">
-                    <label className="block text-sm text-gray-400 mb-2">Generated Command:</label>
+                    <div className="flex items-center justify-between mb-2">
+                        <label className="block text-sm text-gray-400">Generated Command:</label>
+                        <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={async () => {
+                                const smartCommand = await generateSmartCommand();
+                                if (smartCommand !== generateCommand()) {
+                                    toast({
+                                        title: "AI Enhanced Command!",
+                                        description: "Command optimized with AI suggestions.",
+                                    });
+                                }
+                            }}
+                            disabled={!generateCommand() || !projectDescription.trim()}
+                            className="h-6 text-xs text-purple-400 hover:text-purple-300 disabled:opacity-50"
+                        >
+                            <Sparkles className="w-3 h-3 mr-1" />
+                            AI Enhance
+                        </Button>
+                    </div>
                     <div className="flex gap-2">
-                        <Input
-                            value={generateCommand()}
-                            readOnly
-                            className="bg-[#0d1117] border-gray-700 text-white text-sm font-mono flex-1"
-                            placeholder="Select technologies to generate command..."
-                        />
+                        <div className="flex-1 relative">
+                            <textarea
+                                ref={commandTextareaRef}
+                                value={generateCommand()}
+                                readOnly
+                                className="w-full bg-[#0d1117] border border-gray-700 text-white text-sm font-mono rounded-md px-3 py-2 resize-none overflow-hidden transition-all duration-200"
+                                placeholder="Select technologies to generate command..."
+                                style={{
+                                    minHeight: '40px',
+                                    height: 'auto'
+                                }}
+                            />
+                        </div>
                         <Button
                             variant="outline"
                             size="sm"
                             onClick={copyCommand}
                             disabled={!generateCommand()}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50"
+                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50 self-start"
                         >
                             <Copy className="w-4 h-4" />
                         </Button>
@@ -452,6 +1339,18 @@ export function TechStackBuilderContent() {
                 <div className="p-4 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center justify-between mb-2">
                         <label className="text-sm text-gray-400">Selected Stack ({getTotalSelected()})</label>
+                        {getTotalSelected() > 0 && (
+                            <div className="flex items-center gap-1 text-xs">
+                                {aiAnalysis && (
+                                    <div className={`px-2 py-1 rounded text-xs font-medium ${aiAnalysis.complexity === 'Simple' ? 'bg-green-900/30 text-green-400' :
+                                        aiAnalysis.complexity === 'Moderate' ? 'bg-yellow-900/30 text-yellow-400' :
+                                            'bg-red-900/30 text-red-400'
+                                        }`}>
+                                        {aiAnalysis.complexity}
+                                    </div>
+                                )}
+                            </div>
+                        )}
                     </div>
                     <div className="h-32 overflow-y-auto">
                         <div className="space-y-1">
@@ -461,7 +1360,7 @@ export function TechStackBuilderContent() {
                                     {techs.map((tech) => (
                                         <div key={tech.id} className="flex items-center justify-between bg-[#0d1117] rounded px-2 py-1 mb-1">
                                             <div className="flex items-center gap-2">
-                                                <Image
+                                                <TechIcon
                                                     src={tech.icon}
                                                     alt={tech.name}
                                                     width={16}
@@ -545,8 +1444,22 @@ export function TechStackBuilderContent() {
                 <div className="p-6 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center justify-between mb-4">
                         <div>
-                            <h1 className="text-2xl font-bold text-white">Tech Genie Stack Builder</h1>
+                            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                                Tech Genie Stack Builder
+                                <Sparkles className="w-6 h-6 text-purple-400" />
+                            </h1>
                             <p className="text-gray-400">Build your perfect tech stack with AI-powered recommendations</p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setShowAiPanel(!showAiPanel)}
+                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700"
+                            >
+                                <MessageSquare className="w-4 h-4 mr-1" />
+                                AI Assistant
+                            </Button>
                         </div>
                     </div>
 
@@ -622,15 +1535,50 @@ export function TechStackBuilderContent() {
                                                                     <CardContent className="p-4">
                                                                         <div className="flex items-start justify-between mb-3">
                                                                             <div className="flex items-center gap-3">
-                                                                                <Image
+                                                                                <TechIcon
                                                                                     src={tech.icon}
                                                                                     alt={tech.name}
                                                                                     width={32}
                                                                                     height={32}
                                                                                     className="rounded"
                                                                                 />
-                                                                                <div>
-                                                                                    <h3 className="font-semibold text-white text-sm">{tech.name}</h3>
+                                                                                <div className="flex-1">
+                                                                                    <div className="flex items-center gap-2 mb-1">
+                                                                                        <h3 className="font-semibold text-white text-sm">{tech.name}</h3>
+                                                                                        {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
+                                                                                            <div className="flex items-center gap-1">
+                                                                                                <Sparkles className="w-3 h-3 text-purple-400" />
+                                                                                                <span className="text-xs text-purple-400 font-medium">AI Pick</span>
+                                                                                            </div>
+                                                                                        )}
+                                                                                    </div>
+                                                                                    {/* AI Compatibility Indicator */}
+                                                                                    {Object.values(selectedStack).flat().length > 0 && (
+                                                                                        <div className="flex items-center gap-1">
+                                                                                            {(() => {
+                                                                                                const selectedTechs = Object.values(selectedStack).flat();
+                                                                                                const hasCompatibleFramework = selectedTechs.some(selected => {
+                                                                                                    // Simple compatibility logic
+                                                                                                    if (tech.category === "CSS Framework" && selected.category === "Web Framework") return true;
+                                                                                                    if (tech.category === "Database" && (selected.category === "Backend Framework" || selected.category === "Web Framework")) return true;
+                                                                                                    if (tech.category === "ORM" && selected.category === "Database") return true;
+                                                                                                    if (tech.category === "Authentication" && selected.category === "Web Framework") return true;
+                                                                                                    if (tech.category === "State Management" && selected.category === "Web Framework") return true;
+                                                                                                    return false;
+                                                                                                });
+
+                                                                                                if (hasCompatibleFramework) {
+                                                                                                    return (
+                                                                                                        <>
+                                                                                                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
+                                                                                                            <span className="text-xs text-green-400">Compatible</span>
+                                                                                                        </>
+                                                                                                    );
+                                                                                                }
+                                                                                                return null;
+                                                                                            })()}
+                                                                                        </div>
+                                                                                    )}
                                                                                 </div>
                                                                             </div>
                                                                             {isSelected && (
@@ -643,9 +1591,29 @@ export function TechStackBuilderContent() {
                                                                                 </motion.div>
                                                                             )}
                                                                         </div>
-                                                                        <p className="text-gray-400 text-xs leading-relaxed">
+                                                                        <p className="text-gray-400 text-xs leading-relaxed mb-2">
                                                                             {tech.description}
                                                                         </p>
+
+                                                                        {/* AI Recommendation Reason */}
+                                                                        {(() => {
+                                                                            const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
+                                                                            if (recommendation) {
+                                                                                return (
+                                                                                    <div className="bg-purple-900/20 border border-purple-600/30 rounded p-2 mt-2">
+                                                                                        <div className="flex items-center gap-1 mb-1">
+                                                                                            <Brain className="w-3 h-3 text-purple-400" />
+                                                                                            <span className="text-xs text-purple-400 font-medium">AI Insight</span>
+                                                                                        </div>
+                                                                                        <p className="text-xs text-purple-200">{recommendation.reason}</p>
+                                                                                        <div className="text-xs text-purple-400 mt-1">
+                                                                                            Confidence: {recommendation.confidence}%
+                                                                                        </div>
+                                                                                    </div>
+                                                                                );
+                                                                            }
+                                                                            return null;
+                                                                        })()}
                                                                     </CardContent>
                                                                 </Card>
                                                             </motion.div>
