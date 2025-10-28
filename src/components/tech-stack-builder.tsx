@@ -620,6 +620,10 @@ export function TechStackBuilderContent() {
                 case "railway":
                     additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @railway/cli`);
                     break;
+                case "render":
+                    // Render doesn't require a CLI installation, deployment is via Git
+                    additionalCommands.push(`# Render: Deploy via Git by connecting your repository at https://render.com`);
+                    break;
                 case "fly":
                     additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @fly/flyctl`);
                     break;
@@ -628,6 +632,9 @@ export function TechStackBuilderContent() {
                     break;
                 case "aws":
                     additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev aws-cdk-lib constructs`);
+                    break;
+                case "digitalocean":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev doctl`);
                     break;
             }
         }
