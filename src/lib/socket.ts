@@ -1,10 +1,9 @@
 import { Server } from 'socket.io';
+import { logger } from './logger';
 
 export const setupSocket = (io: Server) => {
   io.on('connection', (socket) => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Client connected:', socket.id);
-    }
+    logger.debug('Client connected:', socket.id);
     
     // Handle messages
     socket.on('message', (msg: { text: string; senderId: string }) => {
@@ -18,9 +17,7 @@ export const setupSocket = (io: Server) => {
 
     // Handle disconnect
     socket.on('disconnect', () => {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('Client disconnected:', socket.id);
-      }
+      logger.debug('Client disconnected:', socket.id);
     });
 
     // Send welcome message

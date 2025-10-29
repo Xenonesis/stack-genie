@@ -1,5 +1,6 @@
 import { TechStack, Technology } from "@/types/tech-stack";
 import { callAI } from "./ai";
+import { logger } from "@/lib/logger";
 
 /**
  * Generates installation command based on selected tech stack
@@ -595,7 +596,7 @@ export const generateSmartCommand = async (
         const optimizedCommand = await callAI(prompt);
         return optimizedCommand.trim() || basicCommand;
     } catch (error) {
-        console.error('Smart command generation failed:', error);
+        logger.error('Smart command generation failed:', error);
         return basicCommand;
     }
 };

@@ -1,14 +1,21 @@
-import { Suspense } from "react";
-import { TechStackBuilderContent } from "@/components/tech-stack-builder";
+import { Suspense, lazy } from "react";
+
+// Lazy load the main component for better performance
+const TechStackBuilderContent = lazy(() => 
+  import("@/components/tech-stack-builder").then(mod => ({ 
+    default: mod.TechStackBuilderContent 
+  }))
+);
 
 function LoadingFallback() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto mb-4">
+        <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold mx-auto mb-4 animate-pulse">
           TG
         </div>
         <div className="text-lg font-semibold text-slate-600 dark:text-slate-400">Loading Tech Genie...</div>
+        <div className="mt-2 text-sm text-slate-500 dark:text-slate-500">Preparing your AI-powered stack builder</div>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import { MessageSquare, Send, Bot, User, Sparkles, Copy, ThumbsUp, ThumbsDown } 
 import { motion, AnimatePresence } from "framer-motion";
 import { Technology, TechStack } from "@/types/tech-stack";
 import { AI_CONFIG } from "@/config/ai";
+import { logger } from "@/lib/logger";
 
 interface ChatMessage {
     id: string;
@@ -110,7 +111,7 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
 
             setMessages(prev => [...prev, assistantMessage]);
         } catch (error) {
-            console.error('AI Chat Error:', error);
+            logger.error('AI Chat Error:', error);
             const errorMessage: ChatMessage = {
                 id: (Date.now() + 1).toString(),
                 role: 'assistant',

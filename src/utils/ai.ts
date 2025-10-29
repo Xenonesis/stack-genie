@@ -1,6 +1,7 @@
 import { AI_CONFIG, AI_PROVIDERS } from "@/config/ai";
 import { TechStack, Technology } from "@/types/tech-stack";
 import { technologyData } from "@/data/technologies";
+import { logger } from "@/lib/logger";
 
 export interface AIAnalysisResult {
     recommendations: Array<{
@@ -44,12 +45,12 @@ export const callAI = async (prompt: string, timeout: number = 30000): Promise<s
     for (const provider of providers) {
         // Skip providers without API keys (except fallback)
         if (!provider.apiKey && provider.type !== "fallback") {
-            console.log(`Skipping ${provider.name} - no API key available`);
+            logger.debug(`Skipping ${provider.name} - no API key available`);
             continue;
         }
 
         try {
-            console.log(`Trying AI provider: ${provider.name} (${provider.url})`);
+            logger.info(`Trying AI provider: ${provider.name}`);
             
             const controller = new AbortController();
             const timeoutId = setTimeout(() => controller.abort(), timeout);
@@ -92,7 +93,7 @@ export const callAI = async (prompt: string, timeout: number = 30000): Promise<s
                     throw new Error('No content in response');
                 }
 
-                console.log(`✅ Success with ${provider.name}`);
+                logger.info(`Success with ${provider.name}`);
                 return content.trim();
             } catch (error) {
                 clearTimeout(timeoutId);
@@ -100,13 +101,13 @@ export const callAI = async (prompt: string, timeout: number = 30000): Promise<s
             }
             
         } catch (error) {
-            console.log(`❌ Provider ${provider.name} failed:`, error);
+            logger.debug(`Provider ${provider.name} failed:`, error);
             continue;
         }
     }
 
     // All providers failed, throw error for fallback handling
-    console.log('❌ All AI providers failed, using fallback');
+    logger.warn('All AI providers failed, using fallback');
     throw new Error('ALL_PROVIDERS_FAILED');
 };
 

@@ -3,15 +3,22 @@ import { TechStack, Technology, AIAnalysis, AIRecommendation } from "@/types/tec
 import { technologyData } from "@/data/technologies";
 import { callAI, generateFallbackStack, parseAIResponse, sanitizeInput } from "@/utils/ai";
 import { useToast } from "./use-toast";
+import { logger } from "@/lib/logger";
 
 export const useTechStack = () => {
     const [selectedStack, setSelectedStack] = useState<TechStack>({});
-    const [projectName, setProjectName] = useState("my-tech-genie-app");
+    const [projectName, setProjectNameInternal] = useState("my-tech-genie-app");
     const [projectDescription, setProjectDescription] = useState("");
     const [aiAnalysis, setAiAnalysis] = useState<AIAnalysis | null>(null);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
     const { toast } = useToast();
+
+    // Wrapper to ensure project name is always lowercase with valid characters
+    const setProjectName = useCallback((name: string) => {
+        const validName = name.toLowerCase().replace(/[^a-z0-9-_]/g, '');
+        setProjectNameInternal(validName);
+    }, []);
 
     const toggleTechnology = useCallback((tech: Technology) => {
         setSelectedStack(prev => {
@@ -127,7 +134,7 @@ export const useTechStack = () => {
 
             return { analysis, recommendations };
         } catch (error) {
-            console.error('AI Analysis Error:', error);
+            logger.error('AI Analysis Error:', error);
             
             let errorTitle = "AI Analysis Failed";
             let errorDescription = "Unable to analyze your stack. Please try again.";
@@ -204,7 +211,7 @@ export const useTechStack = () => {
                 description: result.reasoning || `Generated a stack with ${Object.keys(newStack).length} categories.`,
             });
         } catch (error) {
-            console.error('AI Stack Generation Error:', error);
+            logger.error('AI Stack Generation Error:', error);
             
             // Fallback to keyword-based generation
             const fallbackStack = generateFallbackStack(sanitizedDescription);

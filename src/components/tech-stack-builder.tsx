@@ -16,6 +16,7 @@ import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tec
 import { generateCommand, generateSmartCommand } from "@/utils/commandGenerator";
 import { useTechStack } from "@/hooks/useTechStack";
 import { callAI } from "@/utils/ai";
+import { logger } from "@/lib/logger";
 
 // Fallback icon component
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
@@ -173,7 +174,7 @@ export function TechStackBuilderContent() {
 
                 loadStack(newStack);
             } catch (error) {
-                console.error('Failed to parse shared stack:', error);
+                logger.error('Failed to parse shared stack:', error);
             }
         }
     }, [searchParams, loadStack]);
@@ -240,7 +241,7 @@ export function TechStackBuilderContent() {
             const response = await callAI(prompt);
             return response;
         } catch (error) {
-            console.error('AI Question Error:', error);
+            logger.error('AI Question Error:', error);
             return "I'm having trouble connecting to the AI service right now. Please try again later.";
         }
     }, [selectedStack, projectDescription]);
@@ -355,10 +356,15 @@ export function TechStackBuilderContent() {
                     <label className="block text-xs sm:text-sm text-gray-400 mb-2">Project Name:</label>
                     <Input
                         value={projectName}
-                        onChange={(e) => setProjectName(e.target.value)}
+                        onChange={(e) => {
+                            // Convert to lowercase and remove invalid characters
+                            const value = e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, '');
+                            setProjectName(value);
+                        }}
                         className="bg-[#0d1117] border-gray-700 text-white text-sm"
                         placeholder="my-tech-genie-app"
                     />
+                    <p className="text-xs text-gray-500 mt-1">Only lowercase letters, numbers, hyphens, and underscores</p>
                 </div>
 
                 {/* Scrollable Content */}
