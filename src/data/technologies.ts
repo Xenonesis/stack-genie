@@ -128,7 +128,73 @@ export const technologyData: Technology[] = [
     { id: "firebase-auth", name: "Firebase Auth", category: "Authentication", description: "Simple, free multi-platform sign-in", website: "https://firebase.google.com/products/auth", color: "#FFCA28", npm: "npm install firebase", icon: "https://avatars.githubusercontent.com/u/1335026?s=200&v=4" },
     { id: "lucia", name: "Lucia", category: "Authentication", description: "Authentication library for TypeScript", website: "https://lucia-auth.com", color: "#5F57FF", icon: "https://avatars.githubusercontent.com/u/89729670?s=200&v=4", npm: "npm install lucia" },
     { id: "better-auth", name: "Better Auth", category: "Authentication", description: "The most comprehensive authentication framework", website: "https://better-auth.com", color: "#10B981", icon: "https://avatars.githubusercontent.com/u/180618636?s=200&v=4", npm: "npm install better-auth" },
-    { id: "passport", name: "Passport.js", category: "Authentication", description: "Authentication middleware for Node.js", website: "https://passportjs.org", color: "#34E27A", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", npm: "npm install passport" },
+    { id: "passport", name: "Passport.js", category: "Authentication", description: "Authentication middleware for Node.js", website: "https://passportjs.org", color: "#34E27A", npm: "npm install passport", icon: "https://avatars.githubusercontent.com/u/1160530?s=200&v=4" },
+
+    // Validation
+    { id: "zod", name: "Zod", category: "Validation", description: "TypeScript-first schema validation with static type inference", website: "https://zod.dev", color: "#3E67B1", npm: "npm install zod", icon: "https://zod.dev/logo.svg" },
+    { id: "yup", name: "Yup", category: "Validation", description: "Dead simple Object schema validation", website: "https://github.com/jquense/yup", color: "#FF6B6B", npm: "npm install yup", icon: "https://avatars.githubusercontent.com/u/1496508?s=200&v=4" },
+    { id: "joi", name: "Joi", category: "Validation", description: "The most powerful schema description language and data validator for JavaScript", website: "https://joi.dev", color: "#F7931E", npm: "npm install joi", icon: "https://joi.dev/img/joiLogo.svg" },
+    { id: "valibot", name: "Valibot", category: "Validation", description: "The modular and type safe schema library for validating structural data", website: "https://valibot.dev", color: "#8B5CF6", npm: "npm install valibot", icon: "https://valibot.dev/favicon.svg" },
+
+    // GraphQL/API
+    { id: "apollo-graphql", name: "Apollo GraphQL", category: "GraphQL/API", description: "Comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL", website: "https://apollographql.com", color: "#311C87", npm: "npm install @apollo/client graphql", icon: "https://avatars.githubusercontent.com/u/17189275?s=200&v=4" },
+    { id: "graphql-yoga", name: "GraphQL Yoga", category: "GraphQL/API", description: "Fully-featured GraphQL Server with focus on easy setup, performance & great developer experience", website: "https://the-guild.dev/graphql/yoga-server", color: "#E10098", npm: "npm install graphql-yoga graphql", icon: "https://avatars.githubusercontent.com/u/20284515?s=200&v=4" },
+    { id: "hasura", name: "Hasura", category: "GraphQL/API", description: "Instant GraphQL on all your data", website: "https://hasura.io", color: "#1EB4D4", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/25479918?s=200&v=4" },
+    { id: "pothos", name: "Pothos", category: "GraphQL/API", description: "Pothos GraphQL is library for creating GraphQL schemas in typescript using a strongly typed code first approach", website: "https://pothos-graphql.dev", color: "#FF6B35", npm: "npm install @pothos/core graphql", icon: "https://pothos-graphql.dev/assets/logo.svg" },
+    { id: "graphql-codegen", name: "GraphQL Code Generator", category: "GraphQL/API", description: "Generate code from your GraphQL schema and operations with a simple CLI", website: "https://the-guild.dev/graphql/codegen", color: "#E535AB", npm: "npm install -D @graphql-codegen/cli", icon: "https://avatars.githubusercontent.com/u/20284515?s=200&v=4" },
+
+    // Real-time/WebSocket
+    { id: "socketio", name: "Socket.io", category: "Real-time", description: "Bidirectional and low-latency communication for every platform", website: "https://socket.io", color: "#010101", npm: "npm install socket.io socket.io-client", icon: "https://socket.io/images/logo.svg" },
+    { id: "pusher", name: "Pusher", category: "Real-time", description: "Hosted APIs to build realtime features", website: "https://pusher.com", color: "#300D4F", npm: "npm install pusher pusher-js", icon: "https://avatars.githubusercontent.com/u/739550?s=200&v=4" },
+    { id: "ably", name: "Ably", category: "Real-time", description: "APIs to build, extend, and deliver powerful digital experiences in realtime", website: "https://ably.com", color: "#FF5416", npm: "npm install ably", icon: "https://avatars.githubusercontent.com/u/5665186?s=200&v=4" },
+    { id: "partykit", name: "PartyKit", category: "Real-time", description: "Everything's better with friends. Add a real-time, collaborative layer to your app, fast", website: "https://partykit.io", color: "#FF6B9D", npm: "npm install partykit", icon: "https://avatars.githubusercontent.com/u/98838967?s=200&v=4" },
+
+    // CMS (Content Management)
+    { id: "sanity", name: "Sanity", category: "CMS", description: "Platform for structured content that comes with an open-source editing environment", website: "https://sanity.io", color: "#F03E2F", npm: "npm install @sanity/client", icon: "https://avatars.githubusercontent.com/u/17177659?s=200&v=4" },
+    { id: "contentful", name: "Contentful", category: "CMS", description: "The composable content platform for business at scale", website: "https://contentful.com", color: "#2478CC", npm: "npm install contentful", icon: "https://avatars.githubusercontent.com/u/472182?s=200&v=4" },
+    { id: "strapi", name: "Strapi", category: "CMS", description: "The leading open-source headless CMS", website: "https://strapi.io", color: "#4945FF", npm: "npx create-strapi-app@latest", icon: "https://avatars.githubusercontent.com/u/19872173?s=200&v=4" },
+    { id: "payload", name: "Payload CMS", category: "CMS", description: "The best way to build a modern backend + admin UI. No black magic, all TypeScript", website: "https://payloadcms.com", color: "#000000", npm: "npx create-payload-app@latest", icon: "https://avatars.githubusercontent.com/u/62968818?s=200&v=4" },
+    { id: "keystatic", name: "Keystatic", category: "CMS", description: "The content management system for the component age", website: "https://keystatic.com", color: "#6366F1", npm: "npm install @keystatic/core", icon: "https://avatars.githubusercontent.com/u/84868432?s=200&v=4" },
+
+    // Search
+    { id: "algolia", name: "Algolia", category: "Search", description: "AI-powered search and discovery platform", website: "https://algolia.com", color: "#003DFF", npm: "npm install algoliasearch", icon: "https://avatars.githubusercontent.com/u/2034458?s=200&v=4" },
+    { id: "meilisearch", name: "Meilisearch", category: "Search", description: "A lightning-fast search engine that fits effortlessly into your apps, websites, and workflow", website: "https://meilisearch.com", color: "#FF5CAA", npm: "npm install meilisearch", icon: "https://avatars.githubusercontent.com/u/43250847?s=200&v=4" },
+    { id: "typesense", name: "Typesense", category: "Search", description: "Fast, typo-tolerant search engine for building delightful search experiences", website: "https://typesense.org", color: "#D23669", npm: "npm install typesense", icon: "https://avatars.githubusercontent.com/u/10323546?s=200&v=4" },
+    { id: "elasticsearch", name: "Elasticsearch", category: "Search", description: "Distributed, RESTful search and analytics engine", website: "https://elastic.co", color: "#005571", npm: "npm install @elastic/elasticsearch", icon: "https://avatars.githubusercontent.com/u/6764390?s=200&v=4" },
+
+    // Email
+    { id: "resend", name: "Resend", category: "Email", description: "The best API to reach humans instead of spam folders", website: "https://resend.com", color: "#000000", npm: "npm install resend", icon: "https://avatars.githubusercontent.com/u/96661497?s=200&v=4" },
+    { id: "sendgrid", name: "SendGrid", category: "Email", description: "Email delivery service", website: "https://sendgrid.com", color: "#1A82E2", npm: "npm install @sendgrid/mail", icon: "https://avatars.githubusercontent.com/u/181234?s=200&v=4" },
+    { id: "postmark", name: "Postmark", category: "Email", description: "Fast and reliable transactional email service", website: "https://postmarkapp.com", color: "#FFDD00", npm: "npm install postmark", icon: "https://avatars.githubusercontent.com/u/629503?s=200&v=4" },
+    { id: "react-email", name: "React Email", category: "Email", description: "Build and send emails using React", website: "https://react.email", color: "#000000", npm: "npm install @react-email/components", icon: "https://avatars.githubusercontent.com/u/109174925?s=200&v=4" },
+
+    // Analytics
+    { id: "posthog", name: "PostHog", category: "Analytics", description: "How engineers build successful products", website: "https://posthog.com", color: "#1D4AFF", npm: "npm install posthog-js", icon: "https://avatars.githubusercontent.com/u/53387734?s=200&v=4" },
+    { id: "plausible", name: "Plausible Analytics", category: "Analytics", description: "Simple and privacy-friendly alternative to Google Analytics", website: "https://plausible.io", color: "#5850EC", npm: "npm install plausible-tracker", icon: "https://avatars.githubusercontent.com/u/52078544?s=200&v=4" },
+    { id: "umami", name: "Umami", category: "Analytics", description: "Simple, fast, privacy-focused alternative to Google Analytics", website: "https://umami.is", color: "#FF6B35", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/65772953?s=200&v=4" },
+    { id: "google-analytics", name: "Google Analytics", category: "Analytics", description: "Web analytics service offered by Google", website: "https://analytics.google.com", color: "#E37400", npm: "npm install @vercel/analytics", icon: "https://avatars.githubusercontent.com/u/1342004?s=200&v=4" },
+
+    // Payment
+    { id: "stripe", name: "Stripe", category: "Payment", description: "Online payment processing for internet businesses", website: "https://stripe.com", color: "#635BFF", npm: "npm install stripe @stripe/stripe-js", icon: "https://avatars.githubusercontent.com/u/856813?s=200&v=4" },
+    { id: "paypal", name: "PayPal", category: "Payment", description: "Online payments system", website: "https://paypal.com", color: "#00457C", npm: "npm install @paypal/checkout-server-sdk", icon: "https://avatars.githubusercontent.com/u/476675?s=200&v=4" },
+    { id: "lemon-squeezy", name: "Lemon Squeezy", category: "Payment", description: "The all-in-one platform for running your SaaS business", website: "https://lemonsqueezy.com", color: "#FFD23F", npm: "npm install @lemonsqueezy/lemonsqueezy.js", icon: "https://avatars.githubusercontent.com/u/82379168?s=200&v=4" },
+
+    // Storage/CDN
+    { id: "cloudinary", name: "Cloudinary", category: "Storage", description: "Image and video management in the cloud", website: "https://cloudinary.com", color: "#3448C5", npm: "npm install cloudinary", icon: "https://avatars.githubusercontent.com/u/1460763?s=200&v=4" },
+    { id: "uploadthing", name: "UploadThing", category: "Storage", description: "File uploads for modern web apps", website: "https://uploadthing.com", color: "#F97316", npm: "npm install uploadthing", icon: "https://avatars.githubusercontent.com/u/106103625?s=200&v=4" },
+    { id: "aws-s3", name: "AWS S3", category: "Storage", description: "Object storage built to retrieve any amount of data from anywhere", website: "https://aws.amazon.com/s3", color: "#FF9900", npm: "npm install @aws-sdk/client-s3", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
+    { id: "vercel-blob", name: "Vercel Blob", category: "Storage", description: "Fast object storage for the frontend", website: "https://vercel.com/storage/blob", color: "#000000", npm: "npm install @vercel/blob", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
+
+
+    // Additional Build Tools
+    { id: "turbopack", name: "Turbopack", category: "Build Tools", description: "The Rust-powered successor to Webpack", website: "https://turbo.build/pack", color: "#0EA5E9", npm: "# Built into Next.js 13+", icon: "https://avatars.githubusercontent.com/u/84177906?s=200&v=4" },
+    { id: "rspack", name: "Rspack", category: "Build Tools", description: "A fast Rust-based web bundler", website: "https://rspack.dev", color: "#FF6B35", npm: "npm install @rspack/cli", icon: "https://avatars.githubusercontent.com/u/108205785?s=200&v=4" },
+    { id: "farm", name: "Farm", category: "Build Tools", description: "Extremely fast Vite-compatible web build tool written in Rust", website: "https://farmfe.org", color: "#00D8FF", npm: "npm create farm@latest", icon: "https://avatars.githubusercontent.com/u/108205785?s=200&v=4" },
+
+    // Additional Hosting
+    { id: "coolify", name: "Coolify", category: "Hosting", description: "An open-source & self-hostable Heroku / Netlify / Vercel alternative", website: "https://coolify.io", color: "#6366F1", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/83192107?s=200&v=4" },
+    { id: "dokku", name: "Dokku", category: "Hosting", description: "A docker-powered PaaS that helps you build and manage the lifecycle of applications", website: "https://dokku.com", color: "#3E4C96", npm: "# Deploy via Git push", icon: "https://avatars.githubusercontent.com/u/13455795?s=200&v=4" },
+    { id: "heroku", name: "Heroku", category: "Hosting", description: "Cloud platform as a service supporting several programming languages", website: "https://heroku.com", color: "#430098", npm: "npm install -g heroku", icon: "https://avatars.githubusercontent.com/u/23211?s=200&v=4" },
 
     // State Management
     { id: "zustand", name: "Zustand", category: "State Management", description: "Small, fast and scalable bearbones state-management solution", website: "https://zustand-demo.pmnd.rs", color: "#443E38", npm: "npm install zustand", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
@@ -156,64 +222,8 @@ export const technologyData: Technology[] = [
     { id: "cloudflare-pages", name: "Cloudflare Pages", category: "Hosting", description: "JAMstack platform for frontend developers", website: "https://pages.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
     { id: "aws", name: "AWS", category: "Hosting", description: "Amazon Web Services cloud platform", website: "https://aws.amazon.com", color: "#FF9900", npm: "npm install aws-cdk", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
     { id: "digitalocean", name: "DigitalOcean", category: "Hosting", description: "Cloud infrastructure for developers", website: "https://digitalocean.com", color: "#0080FF", npm: "npm install -g doctl", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg" },
-    { id: "coolify", name: "Coolify", category: "Hosting", description: "Self-hostable Heroku/Netlify alternative", website: "https://coolify.io", color: "#6366F1", icon: "https://avatars.githubusercontent.com/u/4432154?s=200&v=4", npm: "# Deploy via Docker" },
-    { id: "dokku", name: "Dokku", category: "Hosting", description: "Docker-powered PaaS", website: "https://dokku.com", color: "#3867D6", icon: "https://avatars.githubusercontent.com/u/13455795?s=200&v=4", npm: "# Deploy via Git push" },
-    { id: "heroku", name: "Heroku", category: "Hosting", description: "Cloud platform as a service", website: "https://heroku.com", color: "#430098", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/heroku/heroku-original.svg", npm: "npm install -g heroku" },
 
-    // API/GraphQL Tools
-    { id: "apollo-graphql", name: "Apollo GraphQL", category: "API/GraphQL Tools", description: "Complete GraphQL platform", website: "https://apollographql.com", color: "#311C87", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apollographql/apollographql-original.svg", npm: "npm install @apollo/client graphql" },
-    { id: "graphql-yoga", name: "GraphQL Yoga", category: "API/GraphQL Tools", description: "Fully-featured GraphQL server", website: "https://the-guild.dev/graphql/yoga-server", color: "#E10098", icon: "https://the-guild.dev/favicon.ico", npm: "npm install graphql-yoga graphql" },
-    { id: "hasura", name: "Hasura", category: "API/GraphQL Tools", description: "Instant GraphQL on databases", website: "https://hasura.io", color: "#1EB4D4", icon: "https://hasura.io/favicon.ico", npm: "# Deploy via Docker" },
-    { id: "pothos", name: "Pothos", category: "API/GraphQL Tools", description: "Code-first GraphQL schema builder", website: "https://pothos-graphql.dev", color: "#FF6B35", icon: "https://avatars.githubusercontent.com/u/25724306?s=200&v=4", npm: "npm install @pothos/core graphql" },
-    { id: "graphql-codegen", name: "GraphQL Code Generator", category: "API/GraphQL Tools", description: "Generate code from GraphQL schemas", website: "https://the-guild.dev/graphql/codegen", color: "#E10098", icon: "https://the-guild.dev/favicon.ico", npm: "npm install -D @graphql-codegen/cli" },
 
-    // Real-time/WebSocket
-    { id: "socketio", name: "Socket.io", category: "Real-time/WebSocket", description: "Real-time bidirectional communication", website: "https://socket.io", color: "#010101", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg", npm: "npm install socket.io socket.io-client" },
-    { id: "pusher", name: "Pusher", category: "Real-time/WebSocket", description: "Hosted real-time messaging service", website: "https://pusher.com", color: "#300D4F", icon: "https://avatars.githubusercontent.com/u/739550?s=200&v=4", npm: "npm install pusher pusher-js" },
-    { id: "ably", name: "Ably", category: "Real-time/WebSocket", description: "Real-time messaging platform", website: "https://ably.com", color: "#ED760A", icon: "https://ably.com/favicon.ico", npm: "npm install ably" },
-    { id: "partykit", name: "Partykit", category: "Real-time/WebSocket", description: "Real-time infrastructure for multiplayer apps", website: "https://partykit.io", color: "#FF6B9D", icon: "https://avatars.githubusercontent.com/u/98838967?s=200&v=4", npm: "npm install partykit" },
-
-    // CMS (Content Management)
-    { id: "sanity", name: "Sanity", category: "CMS (Content Management)", description: "Platform for structured content", website: "https://sanity.io", color: "#F03E2F", icon: "https://avatars.githubusercontent.com/u/17177659?s=200&v=4", npm: "npm install @sanity/client" },
-    { id: "contentful", name: "Contentful", category: "CMS (Content Management)", description: "Headless CMS and content platform", website: "https://contentful.com", color: "#2478CC", icon: "https://www.contentful.com/favicon.ico", npm: "npm install contentful" },
-    { id: "strapi", name: "Strapi", category: "CMS (Content Management)", description: "Open-source headless CMS", website: "https://strapi.io", color: "#2F2E8B", icon: "https://avatars.githubusercontent.com/u/19872173?s=200&v=4", npm: "npx create-strapi-app@latest" },
-    { id: "payload", name: "Payload CMS", category: "CMS (Content Management)", description: "TypeScript headless CMS", website: "https://payloadcms.com", color: "#000000", icon: "https://avatars.githubusercontent.com/u/62968818?s=200&v=4", npm: "npx create-payload-app@latest" },
-    { id: "keystatic", name: "Keystatic", category: "CMS (Content Management)", description: "Content management for the component age", website: "https://keystatic.com", color: "#6366F1", icon: "https://keystatic.com/favicon.ico", npm: "npm install @keystatic/core" },
-
-    // Search
-    { id: "algolia", name: "Algolia", category: "Search", description: "AI-powered search and discovery", website: "https://algolia.com", color: "#003DFF", icon: "https://www.algolia.com/favicon.ico", npm: "npm install algoliasearch" },
-    { id: "meilisearch", name: "Meilisearch", category: "Search", description: "Lightning-fast search engine", website: "https://meilisearch.com", color: "#FF5CAA", icon: "https://www.meilisearch.com/favicon.ico", npm: "npm install meilisearch" },
-    { id: "typesense", name: "Typesense", category: "Search", description: "Fast, typo-tolerant search engine", website: "https://typesense.org", color: "#D23669", icon: "https://avatars.githubusercontent.com/u/10323546?s=200&v=4", npm: "npm install typesense" },
-    { id: "elasticsearch", name: "ElasticSearch", category: "Search", description: "Distributed search and analytics engine", website: "https://elastic.co", color: "#005571", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elasticsearch/elasticsearch-original.svg", npm: "npm install @elastic/elasticsearch" },
-
-    // Validation
-    { id: "zod", name: "Zod", category: "Validation", description: "TypeScript-first schema validation", website: "https://zod.dev", color: "#3E67B1", icon: "https://avatars.githubusercontent.com/u/4998038?s=200&v=4", npm: "npm install zod" },
-    { id: "yup", name: "Yup", category: "Validation", description: "Schema validation library", website: "https://github.com/jquense/yup", color: "#FF6B35", icon: "https://avatars.githubusercontent.com/u/6662086?s=200&v=4", npm: "npm install yup" },
-    { id: "joi", name: "Joi", category: "Validation", description: "Data validator for JavaScript", website: "https://joi.dev", color: "#000000", icon: "https://avatars.githubusercontent.com/u/3774533?s=200&v=4", npm: "npm install joi" },
-    { id: "valibot", name: "Valibot", category: "Validation", description: "Schema library with bundle size focus", website: "https://valibot.dev", color: "#FF5CAA", icon: "https://valibot.dev/favicon.ico", npm: "npm install valibot" },
-
-    // Email
-    { id: "resend", name: "Resend", category: "Email", description: "Modern email API for developers", website: "https://resend.com", color: "#000000", icon: "https://avatars.githubusercontent.com/u/90738394?s=200&v=4", npm: "npm install resend" },
-    { id: "sendgrid", name: "SendGrid", category: "Email", description: "Email delivery service", website: "https://sendgrid.com", color: "#1A82E2", icon: "https://avatars.githubusercontent.com/u/181234?s=200&v=4", npm: "npm install @sendgrid/mail" },
-    { id: "postmark", name: "Postmark", category: "Email", description: "Fast and reliable transactional email", website: "https://postmarkapp.com", color: "#FFDD00", icon: "https://avatars.githubusercontent.com/u/629503?s=200&v=4", npm: "npm install postmark" },
-    { id: "react-email", name: "React Email", category: "Email", description: "Build and send emails using React", website: "https://react.email", color: "#000000", icon: "https://avatars.githubusercontent.com/u/102195965?s=200&v=4", npm: "npm install @react-email/components" },
-
-    // Analytics
-    { id: "posthog", name: "PostHog", category: "Analytics", description: "Product analytics platform", website: "https://posthog.com", color: "#1D4AFF", icon: "https://avatars.githubusercontent.com/u/53387734?s=200&v=4", npm: "npm install posthog-js" },
-    { id: "plausible", name: "Plausible", category: "Analytics", description: "Privacy-friendly analytics", website: "https://plausible.io", color: "#5850EC", icon: "https://plausible.io/favicon.ico", npm: "npm install plausible-tracker" },
-    { id: "umami", name: "Umami", category: "Analytics", description: "Simple, fast, privacy-focused analytics", website: "https://umami.is", color: "#FF6B35", icon: "https://umami.is/favicon.ico", npm: "# Deploy via Docker" },
-    { id: "google-analytics", name: "Google Analytics", category: "Analytics", description: "Web analytics service", website: "https://analytics.google.com", color: "#E37400", icon: "https://www.google.com/favicon.ico", npm: "npm install @vercel/analytics" },
-
-    // Payment
-    { id: "stripe", name: "Stripe", category: "Payment", description: "Payment processing platform", website: "https://stripe.com", color: "#635BFF", icon: "https://stripe.com/favicon.ico", npm: "npm install stripe @stripe/stripe-js" },
-    { id: "paypal", name: "PayPal", category: "Payment", description: "Online payment system", website: "https://paypal.com", color: "#003087", icon: "https://www.paypal.com/favicon.ico", npm: "npm install @paypal/checkout-server-sdk" },
-    { id: "lemon-squeezy", name: "Lemon Squeezy", category: "Payment", description: "Merchant of record platform", website: "https://lemonsqueezy.com", color: "#FFC233", icon: "https://lemonsqueezy.com/favicon.ico", npm: "npm install @lemonsqueezy/lemonsqueezy.js" },
-
-    // Storage/CDN
-    { id: "cloudinary", name: "Cloudinary", category: "Storage/CDN", description: "Media management and optimization", website: "https://cloudinary.com", color: "#3448C5", icon: "https://cloudinary.com/favicon.ico", npm: "npm install cloudinary" },
-    { id: "uploadthing", name: "UploadThing", category: "Storage/CDN", description: "File uploads for web apps", website: "https://uploadthing.com", color: "#F97316", icon: "https://uploadthing.com/favicon.ico", npm: "npm install uploadthing" },
-    { id: "aws-s3", name: "AWS S3", category: "Storage/CDN", description: "Object storage service", website: "https://aws.amazon.com/s3", color: "#FF9900", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4", npm: "npm install @aws-sdk/client-s3" },
-    { id: "vercel-blob", name: "Vercel Blob", category: "Storage/CDN", description: "Edge-compatible file storage", website: "https://vercel.com/storage/blob", color: "#000000", icon: "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png", npm: "npm install @vercel/blob" },
 
     // Languages
     { id: "typescript", name: "TypeScript", category: "Languages", description: "Typed superset of JavaScript", website: "https://typescriptlang.org", color: "#3178C6", npm: "npm install typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
@@ -287,15 +297,15 @@ export const categories = [
     "State Management",
     "Build Tools",
     "Hosting",
-    "API/GraphQL Tools",
-    "Real-time/WebSocket",
-    "CMS (Content Management)",
-    "Search",
     "Validation",
+    "GraphQL/API",
+    "Real-time",
+    "CMS",
+    "Search",
     "Email",
     "Analytics",
     "Payment",
-    "Storage/CDN",
+    "Storage",
     "Languages",
     "DevOps/Infrastructure",
     "Monitoring/Observability",

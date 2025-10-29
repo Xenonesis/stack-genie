@@ -171,9 +171,68 @@ export function TechStackBuilderContent() {
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
     const [showAiPanel, setShowAiPanel] = useState(false);
+    const [showPopularStacks, setShowPopularStacks] = useState(false);
     const { toast } = useToast();
     const searchParams = useSearchParams();
     const commandTextareaRef = useRef<HTMLTextAreaElement>(null);
+
+    // Popular stack templates
+    const popularStacks = [
+        {
+            name: "Modern Full-Stack",
+            description: "Next.js + TypeScript + Tailwind + Prisma + PostgreSQL",
+            techIds: ["nextjs", "typescript", "tailwind", "shadcn", "prisma", "postgresql", "nextauth", "zod", "stripe"]
+        },
+        {
+            name: "E-commerce Store",
+            description: "Next.js + Stripe + CMS + Analytics",
+            techIds: ["nextjs", "tailwind", "shadcn", "stripe", "sanity", "posthog", "zod", "nextauth", "vercel"]
+        },
+        {
+            name: "Real-time Chat App",
+            description: "React + Socket.io + MongoDB + Authentication",
+            techIds: ["react", "socketio", "mongodb", "mongoose", "nextauth", "tailwind", "zustand", "vite"]
+        },
+        {
+            name: "SaaS Starter",
+            description: "Next.js + Supabase + Stripe + Email + Analytics",
+            techIds: ["nextjs", "supabase", "stripe", "resend", "posthog", "tailwind", "shadcn", "zod", "lucia"]
+        },
+        {
+            name: "Content Site",
+            description: "Astro + CMS + Search + Analytics",
+            techIds: ["astro", "sanity", "algolia", "tailwind", "plausible", "cloudinary"]
+        },
+        {
+            name: "Mobile App",
+            description: "React Native + Expo + Supabase + Stripe",
+            techIds: ["reactnative", "expo", "supabase", "stripe", "zustand"]
+        }
+    ];
+
+    const loadPopularStack = (stackTemplate: typeof popularStacks[0]) => {
+        const newStack: TechStack = {};
+        
+        stackTemplate.techIds.forEach(techId => {
+            const tech = technologyData.find(t => t.id === techId);
+            if (tech) {
+                if (!newStack[tech.category]) {
+                    newStack[tech.category] = [];
+                }
+                newStack[tech.category].push(tech);
+            }
+        });
+
+        setSelectedStack(newStack);
+        setProjectName(stackTemplate.name.toLowerCase().replace(/\s+/g, '-'));
+        setProjectDescription(stackTemplate.description);
+        setShowPopularStacks(false);
+        
+        toast({
+            title: "Stack loaded!",
+            description: `${stackTemplate.name} template has been applied.`,
+        });
+    };
 
     // Load shared stack from URL on mount
     useEffect(() => {
@@ -607,6 +666,174 @@ export function TechStackBuilderContent() {
             }
         }
 
+        // Validation setup
+        const validation = selectedTechs.find(tech => tech.category === "Validation");
+        if (validation) {
+            switch (validation.id) {
+                case "zod":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install zod`);
+                    break;
+                case "yup":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install yup`);
+                    break;
+                case "joi":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install joi`);
+                    break;
+                case "valibot":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install valibot`);
+                    break;
+            }
+        }
+
+        // GraphQL/API setup
+        const graphql = selectedTechs.find(tech => tech.category === "GraphQL/API");
+        if (graphql) {
+            switch (graphql.id) {
+                case "apollo-graphql":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @apollo/client graphql`);
+                    break;
+                case "graphql-yoga":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install graphql-yoga graphql`);
+                    break;
+                case "pothos":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @pothos/core graphql`);
+                    break;
+                case "graphql-codegen":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install -D @graphql-codegen/cli`);
+                    break;
+            }
+        }
+
+        // Real-time setup
+        const realtime = selectedTechs.find(tech => tech.category === "Real-time");
+        if (realtime) {
+            switch (realtime.id) {
+                case "socketio":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install socket.io socket.io-client`);
+                    break;
+                case "pusher":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install pusher pusher-js`);
+                    break;
+                case "ably":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install ably`);
+                    break;
+                case "partykit":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install partykit`);
+                    break;
+            }
+        }
+
+        // CMS setup
+        const cms = selectedTechs.find(tech => tech.category === "CMS");
+        if (cms) {
+            switch (cms.id) {
+                case "sanity":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @sanity/client`);
+                    break;
+                case "contentful":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install contentful`);
+                    break;
+                case "strapi":
+                    additionalCommands.push(`# Strapi: Create separate CMS project with 'npx create-strapi-app@latest ${projectName}-cms'`);
+                    break;
+                case "payload":
+                    additionalCommands.push(`# Payload: Create separate CMS project with 'npx create-payload-app@latest ${projectName}-cms'`);
+                    break;
+                case "keystatic":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @keystatic/core`);
+                    break;
+            }
+        }
+
+        // Search setup
+        const search = selectedTechs.find(tech => tech.category === "Search");
+        if (search) {
+            switch (search.id) {
+                case "algolia":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install algoliasearch`);
+                    break;
+                case "meilisearch":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install meilisearch`);
+                    break;
+                case "typesense":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install typesense`);
+                    break;
+                case "elasticsearch":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @elastic/elasticsearch`);
+                    break;
+            }
+        }
+
+        // Email setup
+        const email = selectedTechs.find(tech => tech.category === "Email");
+        if (email) {
+            switch (email.id) {
+                case "resend":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install resend`);
+                    break;
+                case "sendgrid":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @sendgrid/mail`);
+                    break;
+                case "postmark":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install postmark`);
+                    break;
+                case "react-email":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @react-email/components`);
+                    break;
+            }
+        }
+
+        // Analytics setup
+        const analytics = selectedTechs.find(tech => tech.category === "Analytics");
+        if (analytics) {
+            switch (analytics.id) {
+                case "posthog":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install posthog-js`);
+                    break;
+                case "plausible":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install plausible-tracker`);
+                    break;
+                case "google-analytics":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @vercel/analytics`);
+                    break;
+            }
+        }
+
+        // Payment setup
+        const payment = selectedTechs.find(tech => tech.category === "Payment");
+        if (payment) {
+            switch (payment.id) {
+                case "stripe":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install stripe @stripe/stripe-js`);
+                    break;
+                case "paypal":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @paypal/checkout-server-sdk`);
+                    break;
+                case "lemon-squeezy":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @lemonsqueezy/lemonsqueezy.js`);
+                    break;
+            }
+        }
+
+        // Storage setup
+        const storage = selectedTechs.find(tech => tech.category === "Storage");
+        if (storage) {
+            switch (storage.id) {
+                case "cloudinary":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install cloudinary`);
+                    break;
+                case "uploadthing":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install uploadthing`);
+                    break;
+                case "aws-s3":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @aws-sdk/client-s3`);
+                    break;
+                case "vercel-blob":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @vercel/blob`);
+                    break;
+            }
+        }
+
         // Hosting/Deployment setup
         const hosting = selectedTechs.find(tech => tech.category === "Hosting");
         if (hosting) {
@@ -635,6 +862,15 @@ export function TechStackBuilderContent() {
                     break;
                 case "digitalocean":
                     additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev doctl`);
+                    break;
+                case "coolify":
+                    additionalCommands.push(`# Coolify: Deploy via Docker - visit https://coolify.io for setup instructions`);
+                    break;
+                case "dokku":
+                    additionalCommands.push(`# Dokku: Deploy via Git push - visit https://dokku.com for setup instructions`);
+                    break;
+                case "heroku":
+                    additionalCommands.push(`cd ${projectName} && ${packageManager} install -g heroku`);
                     break;
             }
         }
@@ -889,6 +1125,41 @@ export function TechStackBuilderContent() {
         // State management for complex apps
         if (desc.includes('state') || desc.includes('complex') || desc.includes('large')) {
             addTech('zustand');
+        }
+
+        // Validation for forms
+        if (desc.includes('form') || desc.includes('validation') || desc.includes('schema')) {
+            addTech('zod');
+        }
+
+        // Payment for e-commerce
+        if (desc.includes('payment') || desc.includes('ecommerce') || desc.includes('shop') || desc.includes('store')) {
+            addTech('stripe');
+        }
+
+        // Real-time for chat/collaboration
+        if (desc.includes('chat') || desc.includes('realtime') || desc.includes('live') || desc.includes('socket')) {
+            addTech('socketio');
+        }
+
+        // CMS for content-driven sites
+        if (desc.includes('cms') || desc.includes('content') || desc.includes('blog') || desc.includes('article')) {
+            addTech('sanity');
+        }
+
+        // Search for complex data
+        if (desc.includes('search') || desc.includes('filter') || desc.includes('find')) {
+            addTech('algolia');
+        }
+
+        // Email for notifications
+        if (desc.includes('email') || desc.includes('notification') || desc.includes('mail')) {
+            addTech('resend');
+        }
+
+        // Analytics for tracking
+        if (desc.includes('analytics') || desc.includes('tracking') || desc.includes('metrics')) {
+            addTech('posthog');
         }
 
         // Styling
@@ -1346,6 +1617,15 @@ export function TechStackBuilderContent() {
                         <Button
                             variant="outline"
                             size="sm"
+                            onClick={() => setShowPopularStacks(true)}
+                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                        >
+                            <Sparkles className="w-4 h-4 mr-1" />
+                            Templates
+                        </Button>
+                        <Button
+                            variant="outline"
+                            size="sm"
                             onClick={() => {
                                 if (getTotalSelected() === 0) return;
                                 const stackText = Object.entries(selectedStack)
@@ -1753,6 +2033,72 @@ export function TechStackBuilderContent() {
                     </div>
                 </div>
             </div>
+
+            {/* Popular Stacks Modal */}
+            {showPopularStacks && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+                    <div className="bg-[#0d1117] border border-gray-700 rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+                        <div className="p-6 border-b border-gray-700">
+                            <div className="flex items-center justify-between">
+                                <div>
+                                    <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                                        <Sparkles className="w-5 h-5 text-purple-400" />
+                                        Popular Stack Templates
+                                    </h2>
+                                    <p className="text-gray-400 text-sm mt-1">Choose from curated tech stacks for common use cases</p>
+                                </div>
+                                <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    onClick={() => setShowPopularStacks(false)}
+                                    className="text-gray-400 hover:text-white"
+                                >
+                                    <X className="w-5 h-5" />
+                                </Button>
+                            </div>
+                        </div>
+                        <div className="p-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {popularStacks.map((stack, index) => (
+                                    <Card
+                                        key={index}
+                                        className="bg-[#161b22] border-gray-700 hover:border-gray-600 cursor-pointer transition-all duration-200 hover:bg-[#1c2128]"
+                                        onClick={() => loadPopularStack(stack)}
+                                    >
+                                        <CardContent className="p-4">
+                                            <h3 className="font-semibold text-white mb-2">{stack.name}</h3>
+                                            <p className="text-gray-400 text-sm mb-3">{stack.description}</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                {stack.techIds.slice(0, 6).map(techId => {
+                                                    const tech = technologyData.find(t => t.id === techId);
+                                                    if (!tech) return null;
+                                                    return (
+                                                        <div key={techId} className="flex items-center gap-1 bg-gray-800 rounded px-2 py-1">
+                                                            <TechIcon
+                                                                src={tech.icon}
+                                                                alt={tech.name}
+                                                                width={16}
+                                                                height={16}
+                                                                className="rounded"
+                                                            />
+                                                            <span className="text-xs text-white">{tech.name}</span>
+                                                        </div>
+                                                    );
+                                                })}
+                                                {stack.techIds.length > 6 && (
+                                                    <div className="flex items-center justify-center bg-gray-800 rounded px-2 py-1">
+                                                        <span className="text-xs text-gray-400">+{stack.techIds.length - 6} more</span>
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
