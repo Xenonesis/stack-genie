@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -13,7 +13,9 @@ import Image from "next/image";
 import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare } from "lucide-react";
 import { technologyData, categories } from "@/data/technologies";
 import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tech-stack";
-import { AI_CONFIG, AI_PROVIDERS } from "@/config/ai";
+import { generateCommand, generateSmartCommand } from "@/utils/commandGenerator";
+import { useTechStack } from "@/hooks/useTechStack";
+import { callAI } from "@/utils/ai";
 
 // Fallback icon component
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
@@ -60,124 +62,39 @@ const TechIcon = ({ src, alt, width, height, className }: {
     );
 };
 
-
-
-
-
-
-
-// AI Service Functions
-const callAI = async (prompt: string): Promise<string> => {
-    // Try multiple AI providers in sequence
-    const providers = [
-        // Try configured provider first
-        {
-            name: "Primary AI Service",
-            url: AI_CONFIG.url,
-            apiKey: AI_CONFIG.apiKey,
-            model: AI_CONFIG.model,
-            maxTokens: AI_CONFIG.maxTokens,
-            type: "openai"
-        },
-        // Fallback providers from AI_PROVIDERS
-        ...AI_PROVIDERS.filter(p => p.url && p.url !== AI_CONFIG.url)
-    ];
-
-    for (const provider of providers) {
-        // Skip providers without API keys (except fallback)
-        if (!provider.apiKey && provider.type !== "fallback") {
-            console.log(`Skipping ${provider.name} - no API key available`);
-            continue;
-        }
-
-        try {
-            console.log(`Trying AI provider: ${provider.name} (${provider.url})`);
-            
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-
-            try {
-                const requestBody = {
-                    model: provider.model,
-                    messages: [
-                        {
-                            role: "system",
-                            content: "You are an expert software architect and tech stack consultant. When asked to generate a tech stack, respond ONLY with valid JSON in the exact format requested. Do not include any explanatory text before or after the JSON. Your response must be parseable by JSON.parse()."
-                        },
-                        {
-                            role: "user",
-                            content: prompt
-                        }
-                    ],
-                    temperature: 0.7,
-                    max_tokens: provider.maxTokens || 4096
-                };
-
-                const headers: HeadersInit = {
-                    'Content-Type': 'application/json'
-                };
-
-                // Add authorization header if API key exists
-                if (provider.apiKey && provider.apiKey.trim()) {
-                    headers['Authorization'] = `Bearer ${provider.apiKey}`;
-                }
-
-                const response = await fetch(`${provider.url}/chat/completions`, {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(requestBody),
-                    signal: controller.signal
-                });
-
-                clearTimeout(timeoutId);
-
-                console.log(`${provider.name} response status:`, response.status);
-
-                if (response.ok) {
-                    const data = await response.json();
-                    const content = data.choices?.[0]?.message?.content || data.content;
-                    if (content && content.trim()) {
-                        console.log(`✅ Successfully got response from ${provider.name}`);
-                        return content;
-                    }
-                } else {
-                    const errorText = await response.text();
-                    console.log(`❌ ${provider.name} failed with status ${response.status}:`, errorText);
-                }
-                
-            } catch (error) {
-                clearTimeout(timeoutId);
-                console.log(`❌ ${provider.name} request failed:`, error);
-            }
-            
-        } catch (error) {
-            console.log(`❌ Provider ${provider.name} failed:`, error);
-            continue;
-        }
-    }
-
-    // All providers failed, throw error for fallback handling
-    console.log('❌ All AI providers failed, using fallback');
-    throw new Error('ALL_PROVIDERS_FAILED');
-};
-
 export function TechStackBuilderContent() {
-    const [selectedStack, setSelectedStack] = useState<TechStack>({});
+    // Use custom hook for tech stack management
+    const techStackHook = useTechStack();
+    const {
+        selectedStack,
+        projectName,
+        projectDescription,
+        aiAnalysis,
+        isAnalyzing,
+        aiRecommendations,
+        setProjectName,
+        setProjectDescription,
+        toggleTechnology,
+        isTechnologySelected,
+        getTotalSelected,
+        clearStack,
+        loadStack,
+        analyzeStackWithAI,
+        generateAIStack,
+        applyAIRecommendation,
+    } = techStackHook;
+
+    // Local UI state
     const [searchTerm, setSearchTerm] = useState("");
     const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(categories));
-    const [projectName, setProjectName] = useState("my-tech-genie-app");
-    const [projectDescription, setProjectDescription] = useState("");
-    const [aiAnalysis, setAiAnalysis] = useState<AIAnalysis | null>(null);
-    const [isAnalyzing, setIsAnalyzing] = useState(false);
-    const [aiRecommendations, setAiRecommendations] = useState<AIRecommendation[]>([]);
     const [showAiPanel, setShowAiPanel] = useState(false);
     const [showPopularStacks, setShowPopularStacks] = useState(false);
     const { toast } = useToast();
     const searchParams = useSearchParams();
     const commandTextareaRef = useRef<HTMLTextAreaElement>(null);
 
-    // Popular stack templates
-    const popularStacks = [
+    // Memoized popular stack templates
+    const popularStacks = useMemo(() => [
         {
             name: "Modern Full-Stack",
             description: "Next.js + TypeScript + Tailwind + Prisma + PostgreSQL",
@@ -208,9 +125,9 @@ export function TechStackBuilderContent() {
             description: "React Native + Expo + Supabase + Stripe",
             techIds: ["reactnative", "expo", "supabase", "stripe", "zustand"]
         }
-    ];
+    ], []);
 
-    const loadPopularStack = (stackTemplate: typeof popularStacks[0]) => {
+    const loadPopularStack = useCallback((stackTemplate: typeof popularStacks[0]) => {
         const newStack: TechStack = {};
         
         stackTemplate.techIds.forEach(techId => {
@@ -223,16 +140,14 @@ export function TechStackBuilderContent() {
             }
         });
 
-        setSelectedStack(newStack);
-        setProjectName(stackTemplate.name.toLowerCase().replace(/\s+/g, '-'));
-        setProjectDescription(stackTemplate.description);
+        loadStack(newStack, stackTemplate.name.toLowerCase().replace(/\s+/g, '-'), stackTemplate.description);
         setShowPopularStacks(false);
         
         toast({
             title: "Stack loaded!",
             description: `${stackTemplate.name} template has been applied.`,
         });
-    };
+    }, [loadStack, toast]);
 
     // Load shared stack from URL on mount
     useEffect(() => {
@@ -256,12 +171,12 @@ export function TechStackBuilderContent() {
                     }
                 });
 
-                setSelectedStack(newStack);
+                loadStack(newStack);
             } catch (error) {
                 console.error('Failed to parse shared stack:', error);
             }
         }
-    }, [searchParams]);
+    }, [searchParams, loadStack]);
 
     // Auto-resize command textarea when command changes
     useEffect(() => {
@@ -272,40 +187,15 @@ export function TechStackBuilderContent() {
         }
     }, [selectedStack, projectName]); // Re-run when stack or project name changes
 
-    const toggleTechnology = (tech: Technology) => {
-        setSelectedStack(prev => {
-            const currentCategoryStack = prev[tech.category] || [];
-            const isSelected = currentCategoryStack.some(t => t.id === tech.id);
-
-            if (isSelected) {
-                const newCategoryStack = currentCategoryStack.filter(t => t.id !== tech.id);
-                if (newCategoryStack.length === 0) {
-                    const { [tech.category]: _, ...rest } = prev;
-                    return rest;
-                }
-                return { ...prev, [tech.category]: newCategoryStack };
-            } else {
-                return { ...prev, [tech.category]: [...currentCategoryStack, tech] };
-            }
-        });
-    };
-
-    const isTechnologySelected = (tech: Technology) => {
-        return selectedStack[tech.category]?.some(t => t.id === tech.id) || false;
-    };
-
-    const getTechnologiesByCategory = (category: string) => {
+    // Helper functions
+    const getTechnologiesByCategory = useCallback((category: string) => {
         return technologyData.filter(tech =>
             tech.category === category &&
             tech.name.toLowerCase().includes(searchTerm.toLowerCase())
         );
-    };
+    }, [searchTerm]);
 
-    const getTotalSelected = () => {
-        return Object.values(selectedStack).reduce((total, techs) => total + techs.length, 0);
-    };
-
-    const toggleCategory = (category: string) => {
+    const toggleCategory = useCallback((category: string) => {
         setExpandedCategories(prev => {
             const newSet = new Set(prev);
             if (newSet.has(category)) {
@@ -315,604 +205,10 @@ export function TechStackBuilderContent() {
             }
             return newSet;
         });
-    };
-
-    const clearStack = () => {
-        setSelectedStack({});
-        toast({
-            title: "Stack cleared!",
-            description: "All technologies have been removed from your stack.",
-        });
-    };
-
-    const generateCommand = () => {
-        const selectedTechs = Object.values(selectedStack).flat();
-        if (selectedTechs.length === 0) return "";
-
-        // Determine package manager
-        const packageManagerTech = selectedTechs.find(tech => tech.category === "Package Manager");
-        const runtimeTech = selectedTechs.find(tech => tech.category === "Runtime");
-        let packageManager = "npm";
-
-        if (packageManagerTech) {
-            if (packageManagerTech.id === "bun-pm" || packageManagerTech.id === "bun") packageManager = "bun";
-            else if (packageManagerTech.id === "yarn") packageManager = "yarn";
-            else if (packageManagerTech.id === "pnpm") packageManager = "pnpm";
-        } else if (runtimeTech?.id === "bun") {
-            packageManager = "bun";
-        }
-
-        // Find primary framework for project creation
-        const webFramework: Technology | undefined = selectedTechs.find(tech => tech.category === "Web Framework");
-        const nativeFramework = selectedTechs.find(tech => tech.category === "Native Framework");
-        const backendFramework = selectedTechs.find(tech => tech.category === "Backend Framework");
-        const monorepo = selectedTechs.find(tech => tech.category === "Monorepo");
-
-        // Generate creation command based on primary framework
-        let createCommand = "";
-
-        // Handle monorepo first as it affects project structure
-        if (monorepo) {
-            switch (monorepo.id) {
-                case "turborepo":
-                    createCommand = `npx create-turbo@latest ${projectName}`;
-                    break;
-                case "nx":
-                    createCommand = `npx create-nx-workspace@latest ${projectName}`;
-                    break;
-                case "lerna":
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && npx lerna init`;
-                    break;
-                case "rush":
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && rush init`;
-                    break;
-                default:
-                    createCommand = `npx create-turbo@latest ${projectName}`;
-            }
-        } else if (webFramework) {
-            switch (webFramework.id) {
-                case "nextjs":
-                    // Use package manager for Next.js if specified
-                    if (packageManager === "bun") {
-                        createCommand = `bun create next-app ${projectName}`;
-                    } else if (packageManager === "yarn") {
-                        createCommand = `yarn create next-app ${projectName}`;
-                    } else if (packageManager === "pnpm") {
-                        createCommand = `pnpm create next-app ${projectName}`;
-                    } else {
-                        createCommand = `npx create-next-app@latest ${projectName}`;
-                    }
-                    break;
-                case "react":
-                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
-                    break;
-                case "tanstack-router":
-                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
-                    break;
-                case "vue":
-                    createCommand = `${packageManager} create vue@latest ${projectName}`;
-                    break;
-                case "nuxt":
-                    createCommand = `npx nuxi@latest init ${projectName}`;
-                    break;
-                case "angular":
-                    createCommand = `npx @angular/cli@latest new ${projectName} --routing --style=css`;
-                    break;
-                case "svelte":
-                    createCommand = `${packageManager} create svelte@latest ${projectName}`;
-                    break;
-                case "sveltekit":
-                    createCommand = `${packageManager} create sveltekit@latest ${projectName}`;
-                    break;
-                case "remix":
-                    createCommand = `npx create-remix@latest ${projectName}`;
-                    break;
-                case "astro":
-                    createCommand = `${packageManager} create astro@latest ${projectName}`;
-                    break;
-                case "solid":
-                    createCommand = `npx degit solidjs/templates/ts ${projectName}`;
-                    break;
-                case "qwik":
-                    createCommand = `${packageManager} create qwik@latest ${projectName}`;
-                    break;
-                default:
-                    createCommand = `${packageManager} create vite@latest ${projectName} -- --template react-ts`;
-            }
-        } else if (nativeFramework) {
-            switch (nativeFramework.id) {
-                case "reactnative":
-                    createCommand = `npx @react-native-community/cli@latest init ${projectName}`;
-                    break;
-                case "flutter":
-                    createCommand = `flutter create ${projectName}`;
-                    break;
-                case "expo":
-                    createCommand = `npx create-expo-app@latest ${projectName} --template`;
-                    break;
-                case "ionic":
-                    const ionicType = ((webFramework as Technology | undefined)?.id === "vue") ? "vue" : 
-                                     ((webFramework as Technology | undefined)?.id === "angular") ? "angular" : "react";
-                    createCommand = `ionic start ${projectName} tabs --type=${ionicType}`;
-                    break;
-                case "tauri":
-                    createCommand = `${packageManager} create tauri-app@latest ${projectName}`;
-                    break;
-                case "electron":
-                    createCommand = `${packageManager} create electron-app ${projectName}`;
-                    break;
-                default:
-                    createCommand = `npx create-expo-app@latest ${projectName}`;
-            }
-        } else if (backendFramework) {
-            switch (backendFramework.id) {
-                case "hono":
-                    createCommand = `${packageManager} create hono@latest ${projectName}`;
-                    break;
-                case "express":
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install express @types/express`;
-                    break;
-                case "fastify":
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install fastify`;
-                    break;
-                case "nestjs":
-                    createCommand = `npx @nestjs/cli@latest new ${projectName}`;
-                    break;
-                case "koa":
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y && ${packageManager} install koa @types/koa`;
-                    break;
-                case "trpc":
-                    createCommand = `${packageManager} create t3-app@latest ${projectName}`;
-                    break;
-                default:
-                    createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y`;
-            }
-        } else {
-            // Default to a basic Node.js project
-            createCommand = `mkdir ${projectName} && cd ${projectName} && ${packageManager} init -y`;
-        }
-
-        // Add additional setup commands for other technologies
-        const additionalCommands: string[] = [];
-
-        // TanStack Router specific setup
-        if (webFramework?.id === "tanstack-router") {
-            additionalCommands.push(`cd ${projectName} && ${packageManager} install @tanstack/react-router @tanstack/router-devtools`);
-        }
-
-        // CSS Framework setup
-        const cssFramework = selectedTechs.find(tech => tech.category === "CSS Framework");
-        if (cssFramework && (webFramework || nativeFramework)) {
-            switch (cssFramework.id) {
-                case "tailwind":
-                    if (webFramework?.id === "nextjs") {
-                        // Next.js has built-in Tailwind support
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install tailwindcss postcss autoprefixer && npx tailwindcss init -p`);
-                    } else {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install -D tailwindcss postcss autoprefixer && npx tailwindcss init -p`);
-                    }
-                    break;
-                case "shadcn":
-                    additionalCommands.push(`cd ${projectName} && npx shadcn-ui@latest init`);
-                    break;
-                case "chakra":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @chakra-ui/react @emotion/react @emotion/styled framer-motion`);
-                    break;
-                case "mui":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @mui/material @emotion/react @emotion/styled @mui/icons-material`);
-                    break;
-                case "antd":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install antd`);
-                    break;
-                case "mantine":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @mantine/core @mantine/hooks @mantine/notifications`);
-                    break;
-                case "bootstrap":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install bootstrap`);
-                    break;
-            }
-        }
-
-        // Database setup
-        const database = selectedTechs.find(tech => tech.category === "Database");
-        if (database) {
-            switch (database.id) {
-                case "sqlite":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install sqlite3 @types/sqlite3`);
-                    break;
-                case "postgresql":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install pg @types/pg`);
-                    break;
-                case "mongodb":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mongodb @types/mongodb`);
-                    break;
-                case "mysql":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mysql2 @types/mysql2`);
-                    break;
-                case "redis":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install redis @types/redis`);
-                    break;
-                case "supabase":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @supabase/supabase-js`);
-                    break;
-                case "planetscale":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @planetscale/database`);
-                    break;
-                case "turso":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @libsql/client`);
-                    break;
-            }
-        }
-
-        // ORM setup
-        const orm = selectedTechs.find(tech => tech.category === "ORM");
-        if (orm) {
-            switch (orm.id) {
-                case "prisma":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install prisma @prisma/client && npx prisma init`);
-                    break;
-                case "drizzle":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install drizzle-orm drizzle-kit`);
-                    break;
-                case "typeorm":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install typeorm reflect-metadata @types/node`);
-                    break;
-                case "sequelize":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install sequelize @types/sequelize`);
-                    break;
-                case "mongoose":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install mongoose @types/mongoose`);
-                    break;
-            }
-        }
-
-        // Authentication setup
-        const auth = selectedTechs.find(tech => tech.category === "Authentication");
-        if (auth && (webFramework || nativeFramework)) {
-            switch (auth.id) {
-                case "nextauth":
-                    if (webFramework?.id === "nextjs") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install next-auth`);
-                    }
-                    break;
-                case "clerk":
-                    if (webFramework?.id === "nextjs") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @clerk/nextjs`);
-                    } else if (webFramework?.id === "react") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @clerk/clerk-react`);
-                    }
-                    break;
-                case "auth0":
-                    if (webFramework?.id === "nextjs") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @auth0/nextjs-auth0`);
-                    } else if (webFramework?.id === "react") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install @auth0/auth0-react`);
-                    }
-                    break;
-                case "supabase-auth":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @supabase/auth-ui-react @supabase/auth-ui-shared`);
-                    break;
-                case "firebase-auth":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install firebase`);
-                    break;
-            }
-        }
-
-        // State Management setup
-        const stateManagement = selectedTechs.find(tech => tech.category === "State Management");
-        if (stateManagement && (webFramework || nativeFramework)) {
-            switch (stateManagement.id) {
-                case "zustand":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install zustand`);
-                    break;
-                case "redux":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @reduxjs/toolkit react-redux`);
-                    break;
-                case "jotai":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install jotai`);
-                    break;
-                case "valtio":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install valtio`);
-                    break;
-                case "recoil":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install recoil`);
-                    break;
-            }
-        }
-
-        // Testing setup
-        const testing = selectedTechs.find(tech => tech.category === "Testing");
-        if (testing) {
-            switch (testing.id) {
-                case "jest":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev jest @types/jest ts-jest`);
-                    break;
-                case "vitest":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vitest @vitest/ui`);
-                    break;
-                case "cypress":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev cypress`);
-                    break;
-                case "playwright":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @playwright/test && npx playwright install`);
-                    break;
-                case "testing-library":
-                    if (webFramework?.id === "react" || webFramework?.id === "nextjs") {
-                        additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @testing-library/react @testing-library/jest-dom @testing-library/user-event`);
-                    }
-                    break;
-            }
-        }
-
-        // Build Tools setup (only if not already included in framework)
-        const buildTool = selectedTechs.find(tech => tech.category === "Build Tools");
-        if (buildTool && !webFramework) {
-            switch (buildTool.id) {
-                case "vite":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vite`);
-                    break;
-                case "webpack":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev webpack webpack-cli webpack-dev-server`);
-                    break;
-                case "rollup":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev rollup`);
-                    break;
-                case "parcel":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev parcel`);
-                    break;
-                case "esbuild":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev esbuild`);
-                    break;
-            }
-        }
-
-        // Validation setup
-        const validation = selectedTechs.find(tech => tech.category === "Validation");
-        if (validation) {
-            switch (validation.id) {
-                case "zod":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install zod`);
-                    break;
-                case "yup":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install yup`);
-                    break;
-                case "joi":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install joi`);
-                    break;
-                case "valibot":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install valibot`);
-                    break;
-            }
-        }
-
-        // GraphQL/API setup
-        const graphql = selectedTechs.find(tech => tech.category === "GraphQL/API");
-        if (graphql) {
-            switch (graphql.id) {
-                case "apollo-graphql":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @apollo/client graphql`);
-                    break;
-                case "graphql-yoga":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install graphql-yoga graphql`);
-                    break;
-                case "pothos":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @pothos/core graphql`);
-                    break;
-                case "graphql-codegen":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install -D @graphql-codegen/cli`);
-                    break;
-            }
-        }
-
-        // Real-time setup
-        const realtime = selectedTechs.find(tech => tech.category === "Real-time");
-        if (realtime) {
-            switch (realtime.id) {
-                case "socketio":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install socket.io socket.io-client`);
-                    break;
-                case "pusher":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install pusher pusher-js`);
-                    break;
-                case "ably":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install ably`);
-                    break;
-                case "partykit":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install partykit`);
-                    break;
-            }
-        }
-
-        // CMS setup
-        const cms = selectedTechs.find(tech => tech.category === "CMS");
-        if (cms) {
-            switch (cms.id) {
-                case "sanity":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @sanity/client`);
-                    break;
-                case "contentful":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install contentful`);
-                    break;
-                case "strapi":
-                    additionalCommands.push(`# Strapi: Create separate CMS project with 'npx create-strapi-app@latest ${projectName}-cms'`);
-                    break;
-                case "payload":
-                    additionalCommands.push(`# Payload: Create separate CMS project with 'npx create-payload-app@latest ${projectName}-cms'`);
-                    break;
-                case "keystatic":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @keystatic/core`);
-                    break;
-            }
-        }
-
-        // Search setup
-        const search = selectedTechs.find(tech => tech.category === "Search");
-        if (search) {
-            switch (search.id) {
-                case "algolia":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install algoliasearch`);
-                    break;
-                case "meilisearch":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install meilisearch`);
-                    break;
-                case "typesense":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install typesense`);
-                    break;
-                case "elasticsearch":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @elastic/elasticsearch`);
-                    break;
-            }
-        }
-
-        // Email setup
-        const email = selectedTechs.find(tech => tech.category === "Email");
-        if (email) {
-            switch (email.id) {
-                case "resend":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install resend`);
-                    break;
-                case "sendgrid":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @sendgrid/mail`);
-                    break;
-                case "postmark":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install postmark`);
-                    break;
-                case "react-email":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @react-email/components`);
-                    break;
-            }
-        }
-
-        // Analytics setup
-        const analytics = selectedTechs.find(tech => tech.category === "Analytics");
-        if (analytics) {
-            switch (analytics.id) {
-                case "posthog":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install posthog-js`);
-                    break;
-                case "plausible":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install plausible-tracker`);
-                    break;
-                case "google-analytics":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @vercel/analytics`);
-                    break;
-            }
-        }
-
-        // Payment setup
-        const payment = selectedTechs.find(tech => tech.category === "Payment");
-        if (payment) {
-            switch (payment.id) {
-                case "stripe":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install stripe @stripe/stripe-js`);
-                    break;
-                case "paypal":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @paypal/checkout-server-sdk`);
-                    break;
-                case "lemon-squeezy":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @lemonsqueezy/lemonsqueezy.js`);
-                    break;
-            }
-        }
-
-        // Storage setup
-        const storage = selectedTechs.find(tech => tech.category === "Storage");
-        if (storage) {
-            switch (storage.id) {
-                case "cloudinary":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install cloudinary`);
-                    break;
-                case "uploadthing":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install uploadthing`);
-                    break;
-                case "aws-s3":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @aws-sdk/client-s3`);
-                    break;
-                case "vercel-blob":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install @vercel/blob`);
-                    break;
-            }
-        }
-
-        // Hosting/Deployment setup
-        const hosting = selectedTechs.find(tech => tech.category === "Hosting");
-        if (hosting) {
-            switch (hosting.id) {
-                case "vercel":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev vercel`);
-                    break;
-                case "netlify":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev netlify-cli`);
-                    break;
-                case "railway":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @railway/cli`);
-                    break;
-                case "render":
-                    // Render doesn't require a CLI installation, deployment is via Git
-                    additionalCommands.push(`# Render: Deploy via Git by connecting your repository at https://render.com`);
-                    break;
-                case "fly":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev @fly/flyctl`);
-                    break;
-                case "cloudflare-pages":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev wrangler`);
-                    break;
-                case "aws":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev aws-cdk-lib constructs`);
-                    break;
-                case "digitalocean":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install --save-dev doctl`);
-                    break;
-                case "coolify":
-                    additionalCommands.push(`# Coolify: Deploy via Docker - visit https://coolify.io for setup instructions`);
-                    break;
-                case "dokku":
-                    additionalCommands.push(`# Dokku: Deploy via Git push - visit https://dokku.com for setup instructions`);
-                    break;
-                case "heroku":
-                    additionalCommands.push(`cd ${projectName} && ${packageManager} install -g heroku`);
-                    break;
-            }
-        }
-
-        // Combine all commands
-        const allCommands = [createCommand, ...additionalCommands].filter(cmd => cmd.length > 0);
-        return allCommands.join(" && ");
-    };
-
-    const generateSmartCommand = async () => {
-        const basicCommand = generateCommand();
-        if (!basicCommand || !projectDescription.trim()) return basicCommand;
-
-        try {
-            const selectedTechs = Object.values(selectedStack).flat();
-            const techNames = selectedTechs.map(t => t.name).join(', ');
-
-            const prompt = `
-            Optimize this command sequence for a ${projectDescription} project:
-            
-            Current command: ${basicCommand}
-            Technologies: ${techNames}
-            
-            Please provide an optimized command that:
-            1. Adds any missing essential dependencies
-            2. Includes proper configuration steps
-            3. Sets up development environment
-            4. Adds useful scripts or configurations
-            
-            Return only the optimized command sequence, no explanations.
-            `;
-
-            const optimizedCommand = await callAI(prompt);
-            return optimizedCommand.trim() || basicCommand;
-        } catch (error) {
-            console.error('Smart command generation failed:', error);
-            return basicCommand;
-        }
-    };
+    }, []);
 
     const copyCommand = async () => {
-        const command = generateCommand();
+        const command = generateCommand(selectedStack, projectName);
         try {
             await navigator.clipboard.writeText(command);
             toast({
@@ -928,7 +224,29 @@ export function TechStackBuilderContent() {
         }
     };
 
-    const generateRandomStack = () => {
+    // Helper: Ask AI questions about tech stack  
+    const askAIQuestion = useCallback(async (question: string) => {
+        try {
+            const prompt = `
+            Answer this question about tech stacks:
+            
+            Question: ${question}
+            Current Stack: ${Object.values(selectedStack).flat().map(t => t.name).join(', ') || 'No stack selected'}
+            Project: ${projectDescription || 'No description provided'}
+            
+            Provide a helpful, concise answer focusing on practical advice.
+            `;
+
+            const response = await callAI(prompt);
+            return response;
+        } catch (error) {
+            console.error('AI Question Error:', error);
+            return "I'm having trouble connecting to the AI service right now. Please try again later.";
+        }
+    }, [selectedStack, projectDescription]);
+
+    // Helper: Generate random tech stack
+    const generateRandomStack = useCallback(() => {
         const randomTechs: Technology[] = [];
         const techsByCategory = categories.reduce((acc, category) => {
             acc[category] = technologyData.filter(tech => tech.category === category);
@@ -952,432 +270,14 @@ export function TechStackBuilderContent() {
             newStack[tech.category].push(tech);
         });
 
-        setSelectedStack(newStack);
+        loadStack(newStack);
         toast({
             title: "Random stack generated!",
             description: `Selected ${randomTechs.length} technologies across ${Object.keys(newStack).length} categories.`,
         });
-    };
+    }, [loadStack, toast]);
 
-    // AI-Powered Functions
-    const analyzeStackWithAI = async () => {
-        if (!projectDescription.trim()) {
-            toast({
-                title: "Project description required",
-                description: "Please provide a project description for AI analysis.",
-                variant: "destructive",
-            });
-            return;
-        }
-
-        setIsAnalyzing(true);
-        try {
-            const selectedTechs = Object.values(selectedStack).flat();
-            const techNames = selectedTechs.map(t => t.name).join(', ');
-
-            const prompt = `
-            Analyze this tech stack for a project:
-            
-            Project Description: "${projectDescription}"
-            Current Stack: ${techNames || 'No technologies selected'}
-            
-            Please provide a JSON response with:
-            {
-                "recommendations": [
-                    {
-                        "technologyId": "string (must match existing tech IDs)",
-                        "reason": "string",
-                        "confidence": number (0-100)
-                    }
-                ],
-                "warnings": ["string array of potential issues"],
-                "suggestions": ["string array of improvements"],
-                "projectType": "string (e.g., 'E-commerce Platform', 'Social Media App')",
-                "complexity": "Simple|Moderate|Complex"
-            }
-            
-            Available technologies: ${technologyData.map(t => `${t.id}:${t.name}`).join(', ')}
-            `;
-
-            const response = await callAI(prompt);
-            const analysis = JSON.parse(response);
-
-            // Map recommendations to full technology objects
-            const recommendations: AIRecommendation[] = analysis.recommendations.map((rec: any) => {
-                const tech = technologyData.find(t => t.id === rec.technologyId);
-                return tech ? {
-                    technology: tech,
-                    reason: rec.reason,
-                    confidence: rec.confidence
-                } : null;
-            }).filter(Boolean);
-
-            setAiAnalysis({
-                recommendations,
-                warnings: analysis.warnings || [],
-                suggestions: analysis.suggestions || [],
-                projectType: analysis.projectType || 'Web Application',
-                complexity: analysis.complexity || 'Moderate'
-            });
-
-            setAiRecommendations(recommendations);
-            setShowAiPanel(true);
-
-            toast({
-                title: "AI Analysis Complete!",
-                description: `Found ${recommendations.length} recommendations for your project.`,
-            });
-        } catch (error) {
-            console.error('AI Analysis Error:', error);
-            
-            // Handle specific AI API errors
-            let errorTitle = "AI Analysis Failed";
-            let errorDescription = "Unable to analyze your stack. Please try again.";
-            
-            if (error instanceof Error) {
-                if (error.message === 'ALL_PROVIDERS_FAILED') {
-                    errorTitle = "AI Services Unavailable";
-                    errorDescription = "All AI providers failed to respond. Please try again later or check your API configuration.";
-                } else if (error.message === 'NO_API_KEY') {
-                    errorTitle = "AI Service Not Configured";
-                    errorDescription = "No API key is configured for AI analysis. Please configure an API key to use AI features.";
-                } else if (error.message === 'UNAUTHORIZED') {
-                    errorTitle = "AI Service Authentication Failed";
-                    errorDescription = "Cannot connect to AI service due to authentication issues. Please try again later.";
-                } else if (error.message === 'TIMEOUT') {
-                    errorTitle = "AI Analysis Timed Out";
-                    errorDescription = "The AI service took too long to respond. Please try again.";
-                } else if (error.message === 'RATE_LIMITED') {
-                    errorTitle = "AI Service Busy";
-                    errorDescription = "Too many requests to the AI service. Please wait a moment and try again.";
-                } else if (error.message === 'SERVER_ERROR') {
-                    errorTitle = "AI Service Error";
-                    errorDescription = "The AI service is experiencing issues. Please try again later.";
-                }
-            }
-            
-            toast({
-                title: errorTitle,
-                description: errorDescription,
-                variant: "destructive",
-            });
-        } finally {
-            setIsAnalyzing(false);
-        }
-    };
-
-    // Fallback stack generation based on keywords
-    const generateFallbackStack = (description: string): TechStack => {
-        const desc = description.toLowerCase();
-        const stack: TechStack = {};
-
-        const addTech = (techId: string) => {
-            const tech = technologyData.find(t => t.id === techId);
-            if (tech) {
-                if (!stack[tech.category]) {
-                    stack[tech.category] = [];
-                }
-                stack[tech.category].push(tech);
-            }
-        };
-
-        // Framework selection based on keywords
-        if (desc.includes('vue') || desc.includes('nuxt')) {
-            addTech('vue');
-            addTech('nuxt');
-        } else if (desc.includes('angular')) {
-            addTech('angular');
-        } else if (desc.includes('svelte')) {
-            addTech('svelte');
-            addTech('sveltekit');
-        } else if (desc.includes('mobile') || desc.includes('app') || desc.includes('native')) {
-            addTech('reactnative');
-            addTech('expo');
-        } else if (desc.includes('desktop')) {
-            addTech('electron');
-        } else {
-            // Default to React/Next.js for web projects
-            addTech('react');
-            addTech('nextjs');
-        }
-
-        // Database selection
-        if (desc.includes('database') || desc.includes('data') || desc.includes('storage')) {
-            if (desc.includes('postgres') || desc.includes('postgresql')) {
-                addTech('postgresql');
-                addTech('prisma');
-            } else if (desc.includes('mongo')) {
-                addTech('mongodb');
-                addTech('mongoose');
-            } else if (desc.includes('simple') || desc.includes('small')) {
-                addTech('sqlite');
-                addTech('prisma');
-            } else {
-                addTech('supabase'); // Modern default
-            }
-        }
-
-        // Authentication
-        if (desc.includes('auth') || desc.includes('login') || desc.includes('user')) {
-            addTech('nextauth');
-        }
-
-        // State management for complex apps
-        if (desc.includes('state') || desc.includes('complex') || desc.includes('large')) {
-            addTech('zustand');
-        }
-
-        // Validation for forms
-        if (desc.includes('form') || desc.includes('validation') || desc.includes('schema')) {
-            addTech('zod');
-        }
-
-        // Payment for e-commerce
-        if (desc.includes('payment') || desc.includes('ecommerce') || desc.includes('shop') || desc.includes('store')) {
-            addTech('stripe');
-        }
-
-        // Real-time for chat/collaboration
-        if (desc.includes('chat') || desc.includes('realtime') || desc.includes('live') || desc.includes('socket')) {
-            addTech('socketio');
-        }
-
-        // CMS for content-driven sites
-        if (desc.includes('cms') || desc.includes('content') || desc.includes('blog') || desc.includes('article')) {
-            addTech('sanity');
-        }
-
-        // Search for complex data
-        if (desc.includes('search') || desc.includes('filter') || desc.includes('find')) {
-            addTech('algolia');
-        }
-
-        // Email for notifications
-        if (desc.includes('email') || desc.includes('notification') || desc.includes('mail')) {
-            addTech('resend');
-        }
-
-        // Analytics for tracking
-        if (desc.includes('analytics') || desc.includes('tracking') || desc.includes('metrics')) {
-            addTech('posthog');
-        }
-
-        // Styling
-        addTech('tailwind');
-        if (desc.includes('component') || desc.includes('ui library')) {
-            addTech('shadcn');
-        }
-
-        // Testing
-        if (desc.includes('test') || desc.includes('quality')) {
-            addTech('vitest');
-        }
-
-        // Package manager
-        if (desc.includes('fast') || desc.includes('performance')) {
-            addTech('pnpm');
-        } else {
-            addTech('npm');
-        }
-
-        // Runtime
-        addTech('nodejs');
-
-        // Hosting
-        if (desc.includes('aws') || desc.includes('amazon')) {
-            addTech('aws');
-        } else {
-            addTech('vercel'); // Default for Next.js
-        }
-
-        return stack;
-    };
-
-    const generateAIStack = async () => {
-        if (!projectDescription.trim()) {
-            toast({
-                title: "Project description required",
-                description: "Please describe your project for AI recommendations.",
-                variant: "destructive",
-            });
-            return;
-        }
-
-        setIsAnalyzing(true);
-
-        // Try real AI first
-        try {
-            const prompt = `
-            Generate a complete tech stack for this project:
-            
-            Project Description: "${projectDescription}"
-            
-            IMPORTANT: Respond ONLY with valid JSON in this exact format:
-            {
-                "stack": ["array of technology IDs from the list below"],
-                "reasoning": "brief explanation of why these technologies work well together"
-            }
-            
-            Available technologies: ${technologyData.map(t => `${t.id}:${t.name} (${t.category})`).join(', ')}
-            
-            Rules:
-            - Choose 4-8 technologies that work well together
-            - Use only technology IDs from the available list above
-            - Ensure technologies complement each other
-            - Return ONLY the JSON object, no additional text
-            `;
-
-            const response = await callAI(prompt);
-            console.log('AI Response:', response);
-
-            if (!response || response.trim() === '') {
-                throw new Error('Empty AI response');
-            }
-
-            // Try to parse JSON response, with fallback handling
-            let result;
-            try {
-                result = JSON.parse(response);
-            } catch (parseError) {
-                console.warn('Failed to parse AI response as JSON:', response);
-                // Try to extract JSON from the response if it's wrapped in text
-                const jsonMatch = response.match(/\{[\s\S]*\}/);
-                if (jsonMatch) {
-                    try {
-                        result = JSON.parse(jsonMatch[0]);
-                        console.log('Extracted JSON:', result);
-                    } catch (secondParseError) {
-                        console.error('Second parse error:', secondParseError);
-                        throw new Error('AI response is not valid JSON');
-                    }
-                } else {
-                    throw new Error('No JSON found in AI response');
-                }
-            }
-
-            // Validate the result structure
-            if (!result || !Array.isArray(result.stack)) {
-                throw new Error('Invalid AI response structure');
-            }
-
-            const newStack: TechStack = {};
-            result.stack.forEach((techId: string) => {
-                const tech = technologyData.find(t => t.id === techId);
-                if (tech) {
-                    if (!newStack[tech.category]) {
-                        newStack[tech.category] = [];
-                    }
-                    newStack[tech.category].push(tech);
-                }
-            });
-
-            setSelectedStack(newStack);
-
-            toast({
-                title: "AI Stack Generated!",
-                description: result.reasoning || "AI has analyzed your project and created a personalized tech stack recommendation.",
-            });
-        } catch (error) {
-            console.error('AI Stack Generation Error:', error);
-
-            // Handle specific AI API errors with user-friendly messages
-            if (error instanceof Error) {
-                if (error.message === 'ALL_PROVIDERS_FAILED') {
-                    toast({
-                        title: "AI Services Unavailable",
-                        description: "All AI providers failed to respond. Using smart local recommendation instead.",
-                        variant: "default",
-                    });
-                } else if (error.message === 'NO_API_KEY') {
-                    toast({
-                        title: "AI Service Not Configured",
-                        description: "No API key is configured. Using local fallback recommendation instead.",
-                        variant: "default",
-                    });
-                } else if (error.message === 'UNAUTHORIZED') {
-                    toast({
-                        title: "AI Service Authentication Failed",
-                        description: "The AI service is currently unavailable due to authentication issues. Using fallback recommendation instead.",
-                        variant: "default",
-                    });
-                } else if (error.message === 'TIMEOUT') {
-                    toast({
-                        title: "AI Request Timed Out",
-                        description: "The AI service took too long to respond. Using fallback recommendation instead.",
-                        variant: "default",
-                    });
-                } else if (error.message === 'RATE_LIMITED') {
-                    toast({
-                        title: "AI Service Busy",
-                        description: "Too many requests to the AI service. Please try again in a moment or use the fallback.",
-                        variant: "default",
-                    });
-                } else if (error.message === 'SERVER_ERROR') {
-                    toast({
-                        title: "AI Service Error",
-                        description: "The AI service is experiencing issues. Using fallback recommendation instead.",
-                        variant: "default",
-                    });
-                }
-            }
-
-            // Fallback: Generate a basic stack based on project description keywords
-            const fallbackStack = generateFallbackStack(projectDescription);
-            if (fallbackStack && Object.keys(fallbackStack).length > 0) {
-                setSelectedStack(fallbackStack);
-                
-                // Only show fallback message if we haven't shown a specific error message
-                if (!(error instanceof Error && ['ALL_PROVIDERS_FAILED', 'NO_API_KEY', 'UNAUTHORIZED', 'TIMEOUT', 'RATE_LIMITED', 'SERVER_ERROR'].includes(error.message))) {
-                    toast({
-                        title: "Smart Fallback Stack Generated",
-                        description: "AI service unavailable. Generated an intelligent stack based on your description.",
-                        variant: "default",
-                    });
-                }
-            } else {
-                toast({
-                    title: "Unable to Generate Stack",
-                    description: "Both AI service and fallback failed. Please select technologies manually or try again later.",
-                    variant: "destructive",
-                });
-            }
-        } finally {
-            setIsAnalyzing(false);
-        }
-    };
-
-    const askAIQuestion = async (question: string) => {
-        try {
-            const selectedTechs = Object.values(selectedStack).flat();
-            const techNames = selectedTechs.map(t => t.name).join(', ');
-
-            const prompt = `
-            Answer this question about the tech stack:
-            
-            Question: "${question}"
-            Current Stack: ${techNames || 'No technologies selected'}
-            Project: "${projectDescription || 'No description provided'}"
-            
-            Provide a helpful, concise answer focusing on practical advice.
-            `;
-
-            const response = await callAI(prompt);
-            return response;
-        } catch (error) {
-            console.error('AI Question Error:', error);
-            throw error;
-        }
-    };
-
-    const applyAIRecommendation = (recommendation: AIRecommendation) => {
-        toggleTechnology(recommendation.technology);
-        toast({
-            title: "Recommendation Applied!",
-            description: `Added ${recommendation.technology.name} to your stack.`,
-        });
-    };
-
-    const applyPreset = (presetType: string) => {
+    const applyPreset = useCallback((presetType: string) => {
         let presetTechs: string[] = [];
         switch (presetType) {
             case 'default':
@@ -1408,12 +308,15 @@ export function TechStackBuilderContent() {
             }
         });
 
-        setSelectedStack(newStack);
+        loadStack(newStack);
         toast({
             title: "Preset applied!",
             description: `Applied ${presetType} preset with ${presetTechs.length} technologies.`,
         });
-    };
+    }, [loadStack, toast]);
+
+    // Generate command - memoized for performance
+    const command = useMemo(() => generateCommand(selectedStack, projectName), [selectedStack, projectName]);
 
     return (
         <div className="min-h-screen bg-[#0d1117] text-white flex flex-col lg:flex-row">
@@ -1724,15 +627,15 @@ export function TechStackBuilderContent() {
                             variant="ghost"
                             size="sm"
                             onClick={async () => {
-                                const smartCommand = await generateSmartCommand();
-                                if (smartCommand !== generateCommand()) {
+                                const smartCommand = await generateSmartCommand(selectedStack, projectName, projectDescription);
+                                if (smartCommand !== command) {
                                     toast({
                                         title: "AI Enhanced Command!",
                                         description: "Command optimized with AI suggestions.",
                                     });
                                 }
                             }}
-                            disabled={!generateCommand() || !projectDescription.trim()}
+                            disabled={!command || !projectDescription.trim()}
                             className="h-6 text-xs text-purple-400 hover:text-purple-300 disabled:opacity-50"
                         >
                             <Sparkles className="w-3 h-3 mr-1" />
@@ -1743,7 +646,7 @@ export function TechStackBuilderContent() {
                         <div className="flex-1 relative">
                             <textarea
                                 ref={commandTextareaRef}
-                                value={generateCommand()}
+                                value={command}
                                 readOnly
                                 className="w-full bg-[#0d1117] border border-gray-700 text-white text-sm font-mono rounded-md px-3 py-2 resize-none overflow-hidden transition-all duration-200"
                                 placeholder="Select technologies to generate command..."
@@ -1757,7 +660,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={copyCommand}
-                            disabled={!generateCommand()}
+                            disabled={!command}
                             className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50 self-start"
                         >
                             <Copy className="w-4 h-4" />
