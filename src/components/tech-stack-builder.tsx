@@ -1416,16 +1416,44 @@ export function TechStackBuilderContent() {
     };
 
     return (
-        <div className="min-h-screen bg-[#0d1117] text-white flex">
+        <div className="min-h-screen bg-[#0d1117] text-white flex flex-col lg:flex-row">
+            {/* Mobile Header - Show/Hide Sidebar Toggle */}
+            <div className="lg:hidden bg-[#161b22] border-b border-gray-800 p-4 flex items-center justify-between sticky top-0 z-30">
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                        TG
+                    </div>
+                    <h1 className="text-lg font-bold text-white">Tech Genie</h1>
+                </div>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                        const sidebar = document.getElementById('mobile-sidebar');
+                        if (sidebar) {
+                            sidebar.classList.toggle('hidden');
+                        }
+                    }}
+                    className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </Button>
+            </div>
+
             {/* Sidebar */}
-            <div className="w-80 bg-[#161b22] border-r border-gray-800 flex flex-col h-screen">
+            <div 
+                id="mobile-sidebar"
+                className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-[#161b22] border-r border-gray-800 flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
+            >
                 {/* Fixed Header - Project Name */}
-                <div className="p-4 border-b border-gray-800 flex-shrink-0">
-                    <label className="block text-sm text-gray-400 mb-2">Project Name:</label>
+                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
+                    <label className="block text-xs sm:text-sm text-gray-400 mb-2">Project Name:</label>
                     <Input
                         value={projectName}
                         onChange={(e) => setProjectName(e.target.value)}
-                        className="bg-[#0d1117] border-gray-700 text-white"
+                        className="bg-[#0d1117] border-gray-700 text-white text-sm"
                         placeholder="my-tech-genie-app"
                     />
                 </div>
@@ -1435,19 +1463,19 @@ export function TechStackBuilderContent() {
                     <div className="flex flex-col">
 
                 {/* AI-Powered Section */}
-                <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center gap-2 mb-3">
-                        <Sparkles className="w-4 h-4 text-purple-400" />
-                        <label className="text-sm text-gray-400 font-medium">AI Assistant</label>
+                        <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
+                        <label className="text-xs sm:text-sm text-gray-400 font-medium">AI Assistant</label>
                     </div>
 
-                    <div className="space-y-3">
+                    <div className="space-y-2 sm:space-y-3">
                         <div>
                             <Input
                                 value={projectDescription}
                                 onChange={(e) => setProjectDescription(e.target.value)}
-                                className="bg-[#0d1117] border-gray-700 text-white text-sm"
-                                placeholder="Describe your project (e.g., 'E-commerce platform with real-time chat')"
+                                className="bg-[#0d1117] border-gray-700 text-white text-xs sm:text-sm"
+                                placeholder="Describe your project..."
                             />
                         </div>
 
@@ -1497,11 +1525,11 @@ export function TechStackBuilderContent() {
 
                 {/* AI Recommendations Panel */}
                 {showAiPanel && aiAnalysis && (
-                    <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                    <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
                         <div className="flex items-center justify-between mb-3">
                             <div className="flex items-center gap-2">
-                                <Brain className="w-4 h-4 text-purple-400" />
-                                <label className="text-sm text-gray-400 font-medium">AI Analysis</label>
+                                <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
+                                <label className="text-xs sm:text-sm text-gray-400 font-medium">AI Analysis</label>
                             </div>
                             <Button
                                 variant="ghost"
@@ -1513,7 +1541,7 @@ export function TechStackBuilderContent() {
                             </Button>
                         </div>
 
-                        <div className="space-y-3 max-h-64 overflow-y-auto">
+                        <div className="space-y-2 sm:space-y-3 max-h-48 sm:max-h-64 overflow-y-auto">
                             {/* Project Analysis */}
                             <div className="bg-[#0d1117] rounded p-3">
                                 <div className="text-xs text-purple-400 font-medium mb-1">Project Type</div>
@@ -1594,7 +1622,7 @@ export function TechStackBuilderContent() {
                 )}
 
                 {/* Action Buttons */}
-                <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
                     <div className="grid grid-cols-2 gap-2">
                         <Button
                             variant="outline"
@@ -1689,9 +1717,9 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Command Generator */}
-                <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center justify-between mb-2">
-                        <label className="block text-sm text-gray-400">Generated Command:</label>
+                        <label className="block text-xs sm:text-sm text-gray-400">Generated Command:</label>
                         <Button
                             variant="ghost"
                             size="sm"
@@ -1738,9 +1766,9 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Selected Stack */}
-                <div className="p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
                     <div className="flex items-center justify-between mb-2">
-                        <label className="text-sm text-gray-400">Selected Stack ({getTotalSelected()})</label>
+                        <label className="text-xs sm:text-sm text-gray-400">Selected Stack ({getTotalSelected()})</label>
                         {getTotalSelected() > 0 && (
                             <div className="flex items-center gap-1 text-xs">
                                 {aiAnalysis && (
@@ -1793,8 +1821,8 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Quick Presets */}
-                <div className="p-4 flex-shrink-0">
-                    <label className="block text-sm text-gray-400 mb-2">Quick Presets:</label>
+                <div className="p-3 sm:p-4 flex-shrink-0">
+                    <label className="block text-xs sm:text-sm text-gray-400 mb-2">Quick Presets:</label>
                     <div className="space-y-1">
                         <Button
                             variant="outline"
@@ -1843,45 +1871,46 @@ export function TechStackBuilderContent() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col h-screen overflow-hidden">
+            <div className="flex-1 flex flex-col w-full lg:h-screen overflow-hidden">
                 {/* Header */}
-                <div className="p-6 border-b border-gray-800 flex-shrink-0">
-                    <div className="flex items-center justify-between mb-4">
-                        <div>
-                            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-                                Tech Genie Stack Builder
-                                <Sparkles className="w-6 h-6 text-purple-400" />
+                <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-800 flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+                        <div className="flex-1 min-w-0">
+                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-white flex items-center gap-2">
+                                <span className="truncate">Tech Genie Stack Builder</span>
+                                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400 flex-shrink-0" />
                             </h1>
-                            <p className="text-gray-400">Build your perfect tech stack with AI-powered recommendations</p>
+                            <p className="text-xs sm:text-sm text-gray-400 mt-1">Build your perfect tech stack with AI-powered recommendations</p>
                         </div>
                         <div className="flex items-center gap-2">
                             <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setShowAiPanel(!showAiPanel)}
-                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700"
+                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700 text-xs sm:text-sm"
                             >
-                                <MessageSquare className="w-4 h-4 mr-1" />
-                                AI Assistant
+                                <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                                <span className="hidden sm:inline">AI Assistant</span>
+                                <span className="sm:hidden">AI</span>
                             </Button>
                         </div>
                     </div>
 
                     {/* Search */}
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-3 h-3 sm:w-4 sm:h-4" />
                         <Input
                             placeholder="Search technologies..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10 bg-[#161b22] border-gray-700 text-white placeholder-gray-400"
+                            className="pl-8 sm:pl-10 bg-[#161b22] border-gray-700 text-white placeholder-gray-400 text-sm"
                         />
                     </div>
                 </div>
 
                 {/* Technology Grid */}
                 <div className="flex-1 overflow-y-auto">
-                    <div className="p-6">
+                    <div className="p-3 sm:p-4 lg:p-6">
                         <AnimatePresence>
                             {categories.map((category) => {
                                 const categoryTechs = getTechnologiesByCategory(category);
@@ -1918,7 +1947,7 @@ export function TechStackBuilderContent() {
                                                     initial={{ opacity: 0, height: 0 }}
                                                     animate={{ opacity: 1, height: "auto" }}
                                                     exit={{ opacity: 0, height: 0 }}
-                                                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+                                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4"
                                                 >
                                                     {categoryTechs.map((tech) => {
                                                         const isSelected = isTechnologySelected(tech);
@@ -1936,29 +1965,29 @@ export function TechStackBuilderContent() {
                                                                         }`}
                                                                     onClick={() => toggleTechnology(tech)}
                                                                 >
-                                                                    <CardContent className="p-4">
-                                                                        <div className="flex items-start justify-between mb-3">
-                                                                            <div className="flex items-center gap-3">
+                                                                    <CardContent className="p-3 sm:p-4">
+                                                                        <div className="flex items-start justify-between mb-2 sm:mb-3">
+                                                                            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                                                                                 <TechIcon
                                                                                     src={tech.icon}
                                                                                     alt={tech.name}
-                                                                                    width={32}
-                                                                                    height={32}
-                                                                                    className="rounded"
+                                                                                    width={28}
+                                                                                    height={28}
+                                                                                    className="rounded flex-shrink-0"
                                                                                 />
-                                                                                <div className="flex-1">
-                                                                                    <div className="flex items-center gap-2 mb-1">
-                                                                                        <h3 className="font-semibold text-white text-sm">{tech.name}</h3>
+                                                                                <div className="flex-1 min-w-0">
+                                                                                    <div className="flex items-center gap-1 sm:gap-2 mb-1 flex-wrap">
+                                                                                        <h3 className="font-semibold text-white text-xs sm:text-sm truncate">{tech.name}</h3>
                                                                                         {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
-                                                                                            <div className="flex items-center gap-1">
-                                                                                                <Sparkles className="w-3 h-3 text-purple-400" />
-                                                                                                <span className="text-xs text-purple-400 font-medium">AI Pick</span>
+                                                                                            <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
+                                                                                                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-purple-400" />
+                                                                                                <span className="text-[10px] sm:text-xs text-purple-400 font-medium">AI Pick</span>
                                                                                             </div>
                                                                                         )}
                                                                                     </div>
                                                                                     {/* AI Compatibility Indicator */}
                                                                                     {Object.values(selectedStack).flat().length > 0 && (
-                                                                                        <div className="flex items-center gap-1">
+                                                                                        <div className="flex items-center gap-0.5 sm:gap-1">
                                                                                             {(() => {
                                                                                                 const selectedTechs = Object.values(selectedStack).flat();
                                                                                                 const hasCompatibleFramework = selectedTechs.some(selected => {
@@ -1974,8 +2003,8 @@ export function TechStackBuilderContent() {
                                                                                                 if (hasCompatibleFramework) {
                                                                                                     return (
                                                                                                         <>
-                                                                                                            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
-                                                                                                            <span className="text-xs text-green-400">Compatible</span>
+                                                                                                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full flex-shrink-0"></div>
+                                                                                                            <span className="text-[10px] sm:text-xs text-green-400">Compatible</span>
                                                                                                         </>
                                                                                                     );
                                                                                                 }
@@ -1989,13 +2018,13 @@ export function TechStackBuilderContent() {
                                                                                 <motion.div
                                                                                     initial={{ scale: 0 }}
                                                                                     animate={{ scale: 1 }}
-                                                                                    className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center"
+                                                                                    className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
                                                                                 >
-                                                                                    <Plus className="w-3 h-3 text-white rotate-45" />
+                                                                                    <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white rotate-45" />
                                                                                 </motion.div>
                                                                             )}
                                                                         </div>
-                                                                        <p className="text-gray-400 text-xs leading-relaxed mb-2">
+                                                                        <p className="text-gray-400 text-[11px] sm:text-xs leading-relaxed mb-2 line-clamp-2">
                                                                             {tech.description}
                                                                         </p>
 
@@ -2004,13 +2033,13 @@ export function TechStackBuilderContent() {
                                                                             const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
                                                                             if (recommendation) {
                                                                                 return (
-                                                                                    <div className="bg-purple-900/20 border border-purple-600/30 rounded p-2 mt-2">
+                                                                                    <div className="bg-purple-900/20 border border-purple-600/30 rounded p-1.5 sm:p-2 mt-2">
                                                                                         <div className="flex items-center gap-1 mb-1">
-                                                                                            <Brain className="w-3 h-3 text-purple-400" />
-                                                                                            <span className="text-xs text-purple-400 font-medium">AI Insight</span>
+                                                                                            <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-purple-400" />
+                                                                                            <span className="text-[10px] sm:text-xs text-purple-400 font-medium">AI Insight</span>
                                                                                         </div>
-                                                                                        <p className="text-xs text-purple-200">{recommendation.reason}</p>
-                                                                                        <div className="text-xs text-purple-400 mt-1">
+                                                                                        <p className="text-[10px] sm:text-xs text-purple-200 line-clamp-2">{recommendation.reason}</p>
+                                                                                        <div className="text-[10px] sm:text-xs text-purple-400 mt-1">
                                                                                             Confidence: {recommendation.confidence}%
                                                                                         </div>
                                                                                     </div>
@@ -2036,52 +2065,52 @@ export function TechStackBuilderContent() {
 
             {/* Popular Stacks Modal */}
             {showPopularStacks && (
-                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-                    <div className="bg-[#0d1117] border border-gray-700 rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto">
-                        <div className="p-6 border-b border-gray-700">
-                            <div className="flex items-center justify-between">
-                                <div>
-                                    <h2 className="text-xl font-bold text-white flex items-center gap-2">
-                                        <Sparkles className="w-5 h-5 text-purple-400" />
-                                        Popular Stack Templates
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+                    <div className="bg-[#0d1117] border border-gray-700 rounded-lg max-w-4xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
+                        <div className="p-4 sm:p-6 border-b border-gray-700 sticky top-0 bg-[#0d1117] z-10">
+                            <div className="flex items-start sm:items-center justify-between gap-3">
+                                <div className="flex-1 min-w-0">
+                                    <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white flex items-center gap-2">
+                                        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
+                                        <span className="truncate">Popular Stack Templates</span>
                                     </h2>
-                                    <p className="text-gray-400 text-sm mt-1">Choose from curated tech stacks for common use cases</p>
+                                    <p className="text-gray-400 text-xs sm:text-sm mt-1">Choose from curated tech stacks for common use cases</p>
                                 </div>
                                 <Button
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => setShowPopularStacks(false)}
-                                    className="text-gray-400 hover:text-white"
+                                    className="text-gray-400 hover:text-white flex-shrink-0"
                                 >
-                                    <X className="w-5 h-5" />
+                                    <X className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </Button>
                             </div>
                         </div>
-                        <div className="p-6">
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="p-4 sm:p-6">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
                                 {popularStacks.map((stack, index) => (
                                     <Card
                                         key={index}
                                         className="bg-[#161b22] border-gray-700 hover:border-gray-600 cursor-pointer transition-all duration-200 hover:bg-[#1c2128]"
                                         onClick={() => loadPopularStack(stack)}
                                     >
-                                        <CardContent className="p-4">
-                                            <h3 className="font-semibold text-white mb-2">{stack.name}</h3>
-                                            <p className="text-gray-400 text-sm mb-3">{stack.description}</p>
-                                            <div className="flex flex-wrap gap-2">
+                                        <CardContent className="p-3 sm:p-4">
+                                            <h3 className="font-semibold text-white text-sm sm:text-base mb-2">{stack.name}</h3>
+                                            <p className="text-gray-400 text-xs sm:text-sm mb-3">{stack.description}</p>
+                                            <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                                 {stack.techIds.slice(0, 6).map(techId => {
                                                     const tech = technologyData.find(t => t.id === techId);
                                                     if (!tech) return null;
                                                     return (
-                                                        <div key={techId} className="flex items-center gap-1 bg-gray-800 rounded px-2 py-1">
+                                                        <div key={techId} className="flex items-center gap-1 bg-gray-800 rounded px-1.5 sm:px-2 py-1">
                                                             <TechIcon
                                                                 src={tech.icon}
                                                                 alt={tech.name}
-                                                                width={16}
-                                                                height={16}
+                                                                width={14}
+                                                                height={14}
                                                                 className="rounded"
                                                             />
-                                                            <span className="text-xs text-white">{tech.name}</span>
+                                                            <span className="text-xs text-white hidden sm:inline">{tech.name}</span>
                                                         </div>
                                                     );
                                                 })}
