@@ -27,7 +27,7 @@ const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
 
 // Custom Image component with error handling
 const TechIcon = ({ src, alt, width, height, className }: {
-    src: string;
+    src?: string;
     alt: string;
     width: number;
     height: number;
@@ -36,7 +36,7 @@ const TechIcon = ({ src, alt, width, height, className }: {
     const [hasError, setHasError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    if (hasError) {
+    if (!src || hasError) {
         return <FallbackIcon name={alt} size={width} />;
     }
 
@@ -54,7 +54,7 @@ const TechIcon = ({ src, alt, width, height, className }: {
                 style={{ width: `${width}px`, height: "auto", maxHeight: `${width}px`, objectFit: "contain" }}
                 onError={() => setHasError(true)}
                 onLoad={() => setIsLoading(false)}
-                unoptimized={src.includes('.svg')}
+                unoptimized={!!src && src.includes('.svg')}
             />
         </div>
     );
@@ -1264,7 +1264,7 @@ export function TechStackBuilderContent() {
                                                 <div className="flex items-center justify-between mb-1">
                                                     <div className="flex items-center gap-2">
                                                         <TechIcon
-                                                            src={rec.technology.icon}
+                                                            src={rec.technology.icon || ""}
                                                             alt={rec.technology.name}
                                                             width={12}
                                                             height={12}

@@ -4,9 +4,9 @@ export interface Technology {
     category: string;
     description: string;
     website?: string;
-    color: string;
-    installCommand?: string;
-    icon: string;
+    color?: string;
+    npm?: string;
+    icon?: string;
 }
 
 export interface TechStack {
