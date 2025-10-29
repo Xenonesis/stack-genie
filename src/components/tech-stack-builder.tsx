@@ -1828,7 +1828,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('default')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 text-xs"
+                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
                         >
                             Default Stack
                         </Button>
@@ -1836,7 +1836,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('convex-react')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 text-xs"
+                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
                         >
                             Convex + React
                         </Button>
@@ -1844,7 +1844,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('mobile')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 text-xs"
+                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
                         >
                             Mobile App
                         </Button>
@@ -1852,7 +1852,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('api-only')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 text-xs"
+                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
                         >
                             API Only
                         </Button>
@@ -1860,7 +1860,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('full-featured')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 text-xs"
+                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
                         >
                             Full Featured
                         </Button>
