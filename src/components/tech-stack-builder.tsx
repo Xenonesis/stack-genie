@@ -16,12 +16,13 @@ import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tec
 import { generateCommand, generateSmartCommand } from "@/utils/commandGenerator";
 import { useTechStack } from "@/hooks/useTechStack";
 import { callAI } from "@/utils/ai";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { logger } from "@/lib/logger";
 
 // Fallback icon component
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
     <div
-        className="bg-gray-600 rounded flex items-center justify-center text-white font-bold"
+        className="bg-gray-600 rounded-md shadow-sm border border-border/50 backdrop-blur-md flex items-center justify-center text-foreground font-bold"
         style={{ width: `${size}px`, height: `${size}px`, fontSize: `${size * 0.4}px` }}
     >
         {name.charAt(0).toUpperCase()}
@@ -46,7 +47,7 @@ const TechIcon = ({ src, alt, width, height, className }: {
     return (
         <div className="relative" style={{ width: `${width}px`, height: `${width}px` }}>
             {isLoading && (
-                <div className="absolute inset-0 bg-gray-700 animate-pulse rounded" />
+                <div className="absolute inset-0 bg-muted animate-pulse rounded" />
             )}
             <Image
                 src={src}
@@ -320,14 +321,14 @@ export function TechStackBuilderContent() {
     const command = useMemo(() => generateCommand(selectedStack, projectName), [selectedStack, projectName]);
 
     return (
-        <div className="min-h-screen bg-[#0d1117] text-white flex flex-col lg:flex-row">
+        <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row">
             {/* Mobile Header - Show/Hide Sidebar Toggle */}
-            <div className="lg:hidden bg-[#161b22] border-b border-gray-800 p-4 flex items-center justify-between sticky top-0 z-30">
+            <div className="lg:hidden bg-card border-b border-border p-4 flex items-center justify-between sticky top-0 z-30">
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center text-foreground font-bold text-sm">
                         TG
                     </div>
-                    <h1 className="text-lg font-bold text-white">Tech Genie</h1>
+                    <h1 className="text-lg font-bold text-foreground font-display tracking-tight">Tech Genie</h1>
                 </div>
                 <Button
                     variant="outline"
@@ -338,7 +339,7 @@ export function TechStackBuilderContent() {
                             sidebar.classList.toggle('hidden');
                         }
                     }}
-                    className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                    className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -349,11 +350,11 @@ export function TechStackBuilderContent() {
             {/* Sidebar */}
             <div 
                 id="mobile-sidebar"
-                className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-[#161b22] border-r border-gray-800 flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
+                className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card border-r border-border flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
             >
                 {/* Fixed Header - Project Name */}
-                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
-                    <label className="block text-xs sm:text-sm text-gray-400 mb-2">Project Name:</label>
+                <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+                    <label className="block text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground mb-2">Project Name:</label>
                     <Input
                         value={projectName}
                         onChange={(e) => {
@@ -361,10 +362,10 @@ export function TechStackBuilderContent() {
                             const value = e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, '');
                             setProjectName(value);
                         }}
-                        className="bg-[#0d1117] border-gray-700 text-white text-sm"
+                        className="bg-background border-border text-foreground text-sm"
                         placeholder="my-tech-genie-app"
                     />
-                    <p className="text-xs text-gray-500 mt-1">Only lowercase letters, numbers, hyphens, and underscores</p>
+                    <p className="text-[11px] font-medium tracking-wider text-muted-foreground mt-1">Only lowercase letters, numbers, hyphens, and underscores</p>
                 </div>
 
                 {/* Scrollable Content */}
@@ -372,10 +373,10 @@ export function TechStackBuilderContent() {
                     <div className="flex flex-col">
 
                 {/* AI-Powered Section */}
-                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
-                    <div className="flex items-center gap-2 mb-3">
-                        <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
-                        <label className="text-xs sm:text-sm text-gray-400 font-medium">AI Assistant</label>
+                <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+                    <div className="flex items-center gap-2 mb-4">
+                        <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                        <label className="text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground font-medium">AI Assistant</label>
                     </div>
 
                     <div className="space-y-2 sm:space-y-3">
@@ -383,7 +384,7 @@ export function TechStackBuilderContent() {
                             <Input
                                 value={projectDescription}
                                 onChange={(e) => setProjectDescription(e.target.value)}
-                                className="bg-[#0d1117] border-gray-700 text-white text-xs sm:text-sm"
+                                className="bg-background border-border text-foreground text-[11px] font-medium tracking-wider sm:text-sm"
                                 placeholder="Describe your project..."
                             />
                         </div>
@@ -394,7 +395,7 @@ export function TechStackBuilderContent() {
                                 size="sm"
                                 onClick={generateAIStack}
                                 disabled={isAnalyzing || !projectDescription.trim()}
-                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 text-xs"
+                                className="bg-gradient-to-r from-primary to-secondary border-0 text-foreground hover:from-primary/90 hover:to-secondary/90 disabled:opacity-50 text-[11px] font-medium tracking-wider"
                             >
                                 {isAnalyzing ? (
                                     <>
@@ -414,7 +415,7 @@ export function TechStackBuilderContent() {
                                 size="sm"
                                 onClick={analyzeStackWithAI}
                                 disabled={isAnalyzing || !projectDescription.trim()}
-                                className="bg-[#0d1117] border-purple-600 text-purple-400 hover:bg-purple-900/20 disabled:opacity-50 text-xs"
+                                className="bg-background border-purple-600 text-primary hover:bg-primary/20 disabled:opacity-50 text-[11px] font-medium tracking-wider"
                             >
                                 {isAnalyzing ? (
                                     <>
@@ -434,17 +435,17 @@ export function TechStackBuilderContent() {
 
                 {/* AI Recommendations Panel */}
                 {showAiPanel && aiAnalysis && (
-                    <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
-                        <div className="flex items-center justify-between mb-3">
+                    <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+                        <div className="flex items-center justify-between mb-4">
                             <div className="flex items-center gap-2">
-                                <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-purple-400" />
-                                <label className="text-xs sm:text-sm text-gray-400 font-medium">AI Analysis</label>
+                                <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                                <label className="text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground font-medium">AI Analysis</label>
                             </div>
                             <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setShowAiPanel(false)}
-                                className="h-6 w-6 p-0 text-gray-400 hover:text-white"
+                                className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground"
                             >
                                 <X className="w-3 h-3" />
                             </Button>
@@ -452,12 +453,12 @@ export function TechStackBuilderContent() {
 
                         <div className="space-y-2 sm:space-y-3 max-h-48 sm:max-h-64 overflow-y-auto">
                             {/* Project Analysis */}
-                            <div className="bg-[#0d1117] rounded p-3">
-                                <div className="text-xs text-purple-400 font-medium mb-1">Project Type</div>
-                                <div className="text-xs text-white">{aiAnalysis.projectType}</div>
-                                <div className="text-xs text-gray-400 mt-1">
-                                    Complexity: <span className={`font-medium ${aiAnalysis.complexity === 'Simple' ? 'text-green-400' :
-                                        aiAnalysis.complexity === 'Moderate' ? 'text-yellow-400' : 'text-red-400'
+                            <div className="bg-background rounded-md shadow-sm border border-border/50 backdrop-blur-md p-4">
+                                <div className="text-[11px] font-medium tracking-wider text-primary font-medium mb-1">Project Type</div>
+                                <div className="text-[11px] font-medium tracking-wider text-foreground">{aiAnalysis.projectType}</div>
+                                <div className="text-[11px] font-medium tracking-wider text-muted-foreground mt-1">
+                                    Complexity: <span className={`font-medium ${aiAnalysis.complexity === 'Simple' ? 'text-success' :
+                                        aiAnalysis.complexity === 'Moderate' ? 'text-warning' : 'text-destructive'
                                         }`}>{aiAnalysis.complexity}</span>
                                 </div>
                             </div>
@@ -465,10 +466,10 @@ export function TechStackBuilderContent() {
                             {/* Recommendations */}
                             {aiAnalysis.recommendations.length > 0 && (
                                 <div>
-                                    <div className="text-xs text-green-400 font-medium mb-2">Recommendations</div>
+                                    <div className="text-[11px] font-medium tracking-wider text-success font-medium mb-2">Recommendations</div>
                                     <div className="space-y-2">
                                         {aiAnalysis.recommendations.slice(0, 3).map((rec, index) => (
-                                            <div key={index} className="bg-[#0d1117] rounded p-2">
+                                            <div key={index} className="bg-background rounded-md shadow-sm border border-border/50 backdrop-blur-md p-2">
                                                 <div className="flex items-center justify-between mb-1">
                                                     <div className="flex items-center gap-2">
                                                         <TechIcon
@@ -478,19 +479,19 @@ export function TechStackBuilderContent() {
                                                             height={12}
                                                             className="rounded"
                                                         />
-                                                        <span className="text-xs text-white font-medium">{rec.technology.name}</span>
+                                                        <span className="text-[11px] font-medium tracking-wider text-foreground font-medium">{rec.technology.name}</span>
                                                     </div>
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => applyAIRecommendation(rec)}
-                                                        className="h-5 w-5 p-0 text-green-400 hover:text-green-300"
+                                                        className="h-5 w-5 p-0 text-success hover:text-green-300"
                                                     >
                                                         <Plus className="w-3 h-3" />
                                                     </Button>
                                                 </div>
-                                                <div className="text-xs text-gray-400">{rec.reason}</div>
-                                                <div className="text-xs text-purple-400 mt-1">
+                                                <div className="text-[11px] font-medium tracking-wider text-muted-foreground">{rec.reason}</div>
+                                                <div className="text-[11px] font-medium tracking-wider text-primary mt-1">
                                                     Confidence: {rec.confidence}%
                                                 </div>
                                             </div>
@@ -502,11 +503,11 @@ export function TechStackBuilderContent() {
                             {/* Warnings */}
                             {aiAnalysis.warnings.length > 0 && (
                                 <div>
-                                    <div className="text-xs text-yellow-400 font-medium mb-2">Warnings</div>
+                                    <div className="text-[11px] font-medium tracking-wider text-warning font-medium mb-2">Warnings</div>
                                     <div className="space-y-1">
                                         {aiAnalysis.warnings.slice(0, 2).map((warning, index) => (
-                                            <div key={index} className="bg-yellow-900/20 border border-yellow-600/30 rounded p-2">
-                                                <div className="text-xs text-yellow-200">{warning}</div>
+                                            <div key={index} className="bg-warning/20 border border-warning/30 rounded-md shadow-sm border border-border/50 backdrop-blur-md p-2">
+                                                <div className="text-[11px] font-medium tracking-wider text-warning-foreground">{warning}</div>
                                             </div>
                                         ))}
                                     </div>
@@ -516,11 +517,11 @@ export function TechStackBuilderContent() {
                             {/* Suggestions */}
                             {aiAnalysis.suggestions.length > 0 && (
                                 <div>
-                                    <div className="text-xs text-blue-400 font-medium mb-2">Suggestions</div>
+                                    <div className="text-[11px] font-medium tracking-wider text-primary font-medium mb-2">Suggestions</div>
                                     <div className="space-y-1">
                                         {aiAnalysis.suggestions.slice(0, 2).map((suggestion, index) => (
-                                            <div key={index} className="bg-blue-900/20 border border-blue-600/30 rounded p-2">
-                                                <div className="text-xs text-blue-200">{suggestion}</div>
+                                            <div key={index} className="bg-primary/20 border border-primary/30 rounded-md shadow-sm border border-border/50 backdrop-blur-md p-2">
+                                                <div className="text-[11px] font-medium tracking-wider text-primary-foreground">{suggestion}</div>
                                             </div>
                                         ))}
                                     </div>
@@ -531,13 +532,13 @@ export function TechStackBuilderContent() {
                 )}
 
                 {/* Action Buttons */}
-                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
                     <div className="grid grid-cols-2 gap-2">
                         <Button
                             variant="outline"
                             size="sm"
                             onClick={clearStack}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
                         >
                             <RotateCcw className="w-4 h-4 mr-1" />
                             Reset
@@ -546,7 +547,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={generateRandomStack}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
                         >
                             <Shuffle className="w-4 h-4 mr-1" />
                             Random
@@ -555,7 +556,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => setShowPopularStacks(true)}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
                         >
                             <Sparkles className="w-4 h-4 mr-1" />
                             Templates
@@ -578,7 +579,7 @@ export function TechStackBuilderContent() {
                                 });
                             }}
                             disabled={getTotalSelected() === 0}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50"
                         >
                             <Save className="w-4 h-4 mr-1" />
                             Save
@@ -617,7 +618,7 @@ export function TechStackBuilderContent() {
                                 }
                             }}
                             disabled={getTotalSelected() === 0}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50"
                         >
                             <Share className="w-4 h-4 mr-1" />
                             Share
@@ -626,9 +627,9 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Command Generator */}
-                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
                     <div className="flex items-center justify-between mb-2">
-                        <label className="block text-xs sm:text-sm text-gray-400">Generated Command:</label>
+                        <label className="block text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground">Generated Command:</label>
                         <Button
                             variant="ghost"
                             size="sm"
@@ -642,7 +643,7 @@ export function TechStackBuilderContent() {
                                 }
                             }}
                             disabled={!command || !projectDescription.trim()}
-                            className="h-6 text-xs text-purple-400 hover:text-purple-300 disabled:opacity-50"
+                            className="h-6 text-[11px] font-medium tracking-wider text-primary hover:text-primary-foreground disabled:opacity-50"
                         >
                             <Sparkles className="w-3 h-3 mr-1" />
                             AI Enhance
@@ -654,7 +655,7 @@ export function TechStackBuilderContent() {
                                 ref={commandTextareaRef}
                                 value={command}
                                 readOnly
-                                className="w-full bg-[#0d1117] border border-gray-700 text-white text-sm font-mono rounded-md px-3 py-2 resize-none overflow-hidden transition-all duration-200"
+                                className="w-full bg-background border border-border text-foreground text-sm font-mono tracking-tight rounded-md px-3 py-2 resize-none overflow-hidden transition-all duration-200"
                                 placeholder="Select technologies to generate command..."
                                 style={{
                                     minHeight: '40px',
@@ -667,7 +668,7 @@ export function TechStackBuilderContent() {
                             size="sm"
                             onClick={copyCommand}
                             disabled={!command}
-                            className="bg-[#0d1117] border-gray-700 text-white hover:bg-gray-800 disabled:opacity-50 self-start"
+                            className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50 self-start"
                         >
                             <Copy className="w-4 h-4" />
                         </Button>
@@ -675,15 +676,15 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Selected Stack */}
-                <div className="p-3 sm:p-4 border-b border-gray-800 flex-shrink-0">
+                <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
                     <div className="flex items-center justify-between mb-2">
-                        <label className="text-xs sm:text-sm text-gray-400">Selected Stack ({getTotalSelected()})</label>
+                        <label className="text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground">Selected Stack ({getTotalSelected()})</label>
                         {getTotalSelected() > 0 && (
-                            <div className="flex items-center gap-1 text-xs">
+                            <div className="flex items-center gap-1 text-[11px] font-medium tracking-wider">
                                 {aiAnalysis && (
-                                    <div className={`px-2 py-1 rounded text-xs font-medium ${aiAnalysis.complexity === 'Simple' ? 'bg-green-900/30 text-green-400' :
-                                        aiAnalysis.complexity === 'Moderate' ? 'bg-yellow-900/30 text-yellow-400' :
-                                            'bg-red-900/30 text-red-400'
+                                    <div className={`px-2 py-1 rounded-md shadow-sm border border-border/50 backdrop-blur-md text-[11px] font-medium tracking-wider font-medium ${aiAnalysis.complexity === 'Simple' ? 'bg-success/30 text-success' :
+                                        aiAnalysis.complexity === 'Moderate' ? 'bg-warning/20 text-warning' :
+                                            'bg-destructive/20 text-destructive'
                                         }`}>
                                         {aiAnalysis.complexity}
                                     </div>
@@ -695,9 +696,9 @@ export function TechStackBuilderContent() {
                         <div className="space-y-1">
                             {Object.entries(selectedStack).map(([category, techs]) => (
                                 <div key={category}>
-                                    <div className="text-xs text-gray-500 font-medium mb-1">{category}</div>
+                                    <div className="text-[11px] font-medium tracking-wider text-muted-foreground font-medium mb-1">{category}</div>
                                     {techs.map((tech) => (
-                                        <div key={tech.id} className="flex items-center justify-between bg-[#0d1117] rounded px-2 py-1 mb-1">
+                                        <div key={tech.id} className="flex items-center justify-between bg-background rounded-md shadow-sm border border-border/50 backdrop-blur-md px-2 py-1 mb-1">
                                             <div className="flex items-center gap-2">
                                                 <TechIcon
                                                     src={tech.icon}
@@ -706,13 +707,13 @@ export function TechStackBuilderContent() {
                                                     height={16}
                                                     className="rounded"
                                                 />
-                                                <span className="text-sm text-white">{tech.name}</span>
+                                                <span className="text-sm text-foreground">{tech.name}</span>
                                             </div>
                                             <Button
                                                 variant="ghost"
                                                 size="sm"
                                                 onClick={() => toggleTechnology(tech)}
-                                                className="h-6 w-6 p-0 text-gray-400 hover:text-white hover:bg-gray-800"
+                                                className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground hover:bg-accent text-accent-foreground"
                                             >
                                                 <X className="w-3 h-3" />
                                             </Button>
@@ -721,7 +722,7 @@ export function TechStackBuilderContent() {
                                 </div>
                             ))}
                             {getTotalSelected() === 0 && (
-                                <div className="text-sm text-gray-500 text-center py-4">
+                                <div className="text-sm text-muted-foreground text-center py-4">
                                     No technologies selected
                                 </div>
                             )}
@@ -730,14 +731,14 @@ export function TechStackBuilderContent() {
                 </div>
 
                 {/* Quick Presets */}
-                <div className="p-3 sm:p-4 flex-shrink-0">
-                    <label className="block text-xs sm:text-sm text-gray-400 mb-2">Quick Presets:</label>
+                <div className="p-4 sm:p-4 flex-shrink-0">
+                    <label className="block text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground mb-2">Quick Presets:</label>
                     <div className="space-y-1">
                         <Button
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('default')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
+                            className="w-full justify-start bg-background border-border !text-foreground hover:bg-accent text-accent-foreground hover:!text-foreground text-[11px] font-medium tracking-wider font-medium"
                         >
                             Default Stack
                         </Button>
@@ -745,7 +746,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('convex-react')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
+                            className="w-full justify-start bg-background border-border !text-foreground hover:bg-accent text-accent-foreground hover:!text-foreground text-[11px] font-medium tracking-wider font-medium"
                         >
                             Convex + React
                         </Button>
@@ -753,7 +754,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('mobile')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
+                            className="w-full justify-start bg-background border-border !text-foreground hover:bg-accent text-accent-foreground hover:!text-foreground text-[11px] font-medium tracking-wider font-medium"
                         >
                             Mobile App
                         </Button>
@@ -761,7 +762,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('api-only')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
+                            className="w-full justify-start bg-background border-border !text-foreground hover:bg-accent text-accent-foreground hover:!text-foreground text-[11px] font-medium tracking-wider font-medium"
                         >
                             API Only
                         </Button>
@@ -769,7 +770,7 @@ export function TechStackBuilderContent() {
                             variant="outline"
                             size="sm"
                             onClick={() => applyPreset('full-featured')}
-                            className="w-full justify-start bg-[#0d1117] border-gray-700 !text-white hover:bg-gray-800 hover:!text-white text-xs font-medium"
+                            className="w-full justify-start bg-background border-border !text-foreground hover:bg-accent text-accent-foreground hover:!text-foreground text-[11px] font-medium tracking-wider font-medium"
                         >
                             Full Featured
                         </Button>
@@ -782,21 +783,22 @@ export function TechStackBuilderContent() {
             {/* Main Content */}
             <div className="flex-1 flex flex-col w-full lg:h-screen overflow-hidden">
                 {/* Header */}
-                <div className="p-3 sm:p-4 lg:p-6 border-b border-gray-800 flex-shrink-0">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
+                <div className="p-4 sm:p-4 lg:p-6 border-b border-border flex-shrink-0">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-4 mb-4 sm:mb-4">
                         <div className="flex-1 min-w-0">
-                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-white flex items-center gap-2">
+                            <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground flex items-center gap-2 font-display tracking-tight">
                                 <span className="truncate">Tech Genie Stack Builder</span>
-                                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-purple-400 flex-shrink-0" />
+                                <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-primary flex-shrink-0" />
                             </h1>
-                            <p className="text-xs sm:text-sm text-gray-400 mt-1">Build your perfect tech stack with AI-powered recommendations</p>
+                            <p className="text-[11px] font-medium tracking-wider sm:text-sm text-muted-foreground mt-1">Build your perfect tech stack with AI-powered recommendations</p>
                         </div>
                         <div className="flex items-center gap-2">
+                            <ThemeToggle />
                             <Button
                                 variant="outline"
                                 size="sm"
                                 onClick={() => setShowAiPanel(!showAiPanel)}
-                                className="bg-gradient-to-r from-purple-600 to-blue-600 border-0 text-white hover:from-purple-700 hover:to-blue-700 text-xs sm:text-sm"
+                                className="bg-gradient-to-r from-primary to-secondary border-0 text-foreground hover:from-primary/90 hover:to-secondary/90 text-[11px] font-medium tracking-wider sm:text-sm"
                             >
                                 <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
                                 <span className="hidden sm:inline">AI Assistant</span>
@@ -807,19 +809,19 @@ export function TechStackBuilderContent() {
 
                     {/* Search */}
                     <div className="relative">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-3 h-3 sm:w-4 sm:h-4" />
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-3 h-3 sm:w-4 sm:h-4" />
                         <Input
                             placeholder="Search technologies..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-8 sm:pl-10 bg-[#161b22] border-gray-700 text-white placeholder-gray-400 text-sm"
+                            className="pl-8 sm:pl-10 bg-card border-border text-foreground placeholder-gray-400 text-sm"
                         />
                     </div>
                 </div>
 
                 {/* Technology Grid */}
                 <div className="flex-1 overflow-y-auto">
-                    <div className="p-3 sm:p-4 lg:p-6">
+                    <div className="p-4 sm:p-4 lg:p-6">
                         <AnimatePresence>
                             {categories.map((category) => {
                                 const categoryTechs = getTechnologiesByCategory(category);
@@ -838,13 +840,13 @@ export function TechStackBuilderContent() {
                                             onClick={() => toggleCategory(category)}
                                             className="flex items-center justify-between w-full mb-4 text-left"
                                         >
-                                            <h2 className="text-xl font-semibold text-white">{category}</h2>
+                                            <h2 className="text-xl font-semibold text-foreground font-display tracking-tight">{category}</h2>
                                             <div className="flex items-center gap-2">
-                                                <Badge variant="secondary" className="bg-gray-800 text-gray-300">
+                                                <Badge variant="secondary" className="bg-accent text-accent-foreground text-foreground">
                                                     {categoryTechs.length}
                                                 </Badge>
                                                 <ChevronDown
-                                                    className={`w-5 h-5 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''
+                                                    className={`w-5 h-5 text-muted-foreground transition-transform ${isExpanded ? 'rotate-180' : ''
                                                         }`}
                                                 />
                                             </div>
@@ -856,7 +858,7 @@ export function TechStackBuilderContent() {
                                                     initial={{ opacity: 0, height: 0 }}
                                                     animate={{ opacity: 1, height: "auto" }}
                                                     exit={{ opacity: 0, height: 0 }}
-                                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3 sm:gap-4"
+                                                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-4"
                                                 >
                                                     {categoryTechs.map((tech) => {
                                                         const isSelected = isTechnologySelected(tech);
@@ -869,28 +871,28 @@ export function TechStackBuilderContent() {
                                                             >
                                                                 <Card
                                                                     className={`cursor-pointer transition-all duration-200 ${isSelected
-                                                                        ? 'bg-blue-900/20 border-blue-500 ring-1 ring-blue-500/50'
-                                                                        : 'bg-[#161b22] border-gray-700 hover:border-gray-600 hover:bg-[#1c2128]'
+                                                                        ? 'bg-primary/20 border-blue-500 ring-1 ring-blue-500/50'
+                                                                        : 'bg-card border-border hover:border-input/50 hover:bg-accent text-accent-foreground'
                                                                         }`}
                                                                     onClick={() => toggleTechnology(tech)}
                                                                 >
-                                                                    <CardContent className="p-3 sm:p-4">
-                                                                        <div className="flex items-start justify-between mb-2 sm:mb-3">
-                                                                            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
+                                                                    <CardContent className="p-4 sm:p-4">
+                                                                        <div className="flex items-start justify-between mb-2 sm:mb-4">
+                                                                            <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
                                                                                 <TechIcon
                                                                                     src={tech.icon}
                                                                                     alt={tech.name}
                                                                                     width={28}
                                                                                     height={28}
-                                                                                    className="rounded flex-shrink-0"
+                                                                                    className="rounded-md shadow-sm border border-border/50 backdrop-blur-md flex-shrink-0"
                                                                                 />
                                                                                 <div className="flex-1 min-w-0">
                                                                                     <div className="flex items-center gap-1 sm:gap-2 mb-1 flex-wrap">
-                                                                                        <h3 className="font-semibold text-white text-xs sm:text-sm truncate">{tech.name}</h3>
+                                                                                        <h3 className="font-semibold text-foreground text-[11px] font-medium tracking-wider sm:text-sm truncate">{tech.name}</h3>
                                                                                         {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
                                                                                             <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
-                                                                                                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-purple-400" />
-                                                                                                <span className="text-[10px] sm:text-xs text-purple-400 font-medium">AI Pick</span>
+                                                                                                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                                                                                                <span className="text-[10px] sm:text-[11px] font-medium tracking-wider text-primary font-medium">AI Pick</span>
                                                                                             </div>
                                                                                         )}
                                                                                     </div>
@@ -913,7 +915,7 @@ export function TechStackBuilderContent() {
                                                                                                     return (
                                                                                                         <>
                                                                                                             <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                                                                                            <span className="text-[10px] sm:text-xs text-green-400">Compatible</span>
+                                                                                                            <span className="text-[10px] sm:text-[11px] font-medium tracking-wider text-success">Compatible</span>
                                                                                                         </>
                                                                                                     );
                                                                                                 }
@@ -929,11 +931,11 @@ export function TechStackBuilderContent() {
                                                                                     animate={{ scale: 1 }}
                                                                                     className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
                                                                                 >
-                                                                                    <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-white rotate-45" />
+                                                                                    <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-foreground rotate-45" />
                                                                                 </motion.div>
                                                                             )}
                                                                         </div>
-                                                                        <p className="text-gray-400 text-[11px] sm:text-xs leading-relaxed mb-2 line-clamp-2">
+                                                                        <p className="text-muted-foreground text-[11px] sm:text-[11px] font-medium tracking-wider leading-relaxed mb-2 line-clamp-2">
                                                                             {tech.description}
                                                                         </p>
 
@@ -942,13 +944,13 @@ export function TechStackBuilderContent() {
                                                                             const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
                                                                             if (recommendation) {
                                                                                 return (
-                                                                                    <div className="bg-purple-900/20 border border-purple-600/30 rounded p-1.5 sm:p-2 mt-2">
+                                                                                    <div className="bg-primary/20 border border-primary/30 rounded-md shadow-sm border border-border/50 backdrop-blur-md p-1.5 sm:p-2 mt-2">
                                                                                         <div className="flex items-center gap-1 mb-1">
-                                                                                            <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-purple-400" />
-                                                                                            <span className="text-[10px] sm:text-xs text-purple-400 font-medium">AI Insight</span>
+                                                                                            <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
+                                                                                            <span className="text-[10px] sm:text-[11px] font-medium tracking-wider text-primary font-medium">AI Insight</span>
                                                                                         </div>
-                                                                                        <p className="text-[10px] sm:text-xs text-purple-200 line-clamp-2">{recommendation.reason}</p>
-                                                                                        <div className="text-[10px] sm:text-xs text-purple-400 mt-1">
+                                                                                        <p className="text-[10px] sm:text-[11px] font-medium tracking-wider text-purple-200 line-clamp-2">{recommendation.reason}</p>
+                                                                                        <div className="text-[10px] sm:text-[11px] font-medium tracking-wider text-primary mt-1">
                                                                                             Confidence: {recommendation.confidence}%
                                                                                         </div>
                                                                                     </div>
@@ -975,43 +977,43 @@ export function TechStackBuilderContent() {
             {/* Popular Stacks Modal */}
             {showPopularStacks && (
                 <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
-                    <div className="bg-[#0d1117] border border-gray-700 rounded-lg max-w-4xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
-                        <div className="p-4 sm:p-6 border-b border-gray-700 sticky top-0 bg-[#0d1117] z-10">
-                            <div className="flex items-start sm:items-center justify-between gap-3">
+                    <div className="bg-background border border-border rounded-lg max-w-4xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
+                        <div className="p-4 sm:p-6 border-b border-border sticky top-0 bg-background z-10">
+                            <div className="flex items-start sm:items-center justify-between gap-4">
                                 <div className="flex-1 min-w-0">
-                                    <h2 className="text-base sm:text-lg lg:text-xl font-bold text-white flex items-center gap-2">
-                                        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-purple-400 flex-shrink-0" />
+                                    <h2 className="text-base sm:text-lg lg:text-xl font-bold text-foreground flex items-center gap-2 font-display tracking-tight">
+                                        <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
                                         <span className="truncate">Popular Stack Templates</span>
                                     </h2>
-                                    <p className="text-gray-400 text-xs sm:text-sm mt-1">Choose from curated tech stacks for common use cases</p>
+                                    <p className="text-muted-foreground text-[11px] font-medium tracking-wider sm:text-sm mt-1">Choose from curated tech stacks for common use cases</p>
                                 </div>
                                 <Button
                                     variant="ghost"
                                     size="sm"
                                     onClick={() => setShowPopularStacks(false)}
-                                    className="text-gray-400 hover:text-white flex-shrink-0"
+                                    className="text-muted-foreground hover:text-foreground flex-shrink-0"
                                 >
                                     <X className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </Button>
                             </div>
                         </div>
                         <div className="p-4 sm:p-6">
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 sm:gap-4">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4">
                                 {popularStacks.map((stack, index) => (
                                     <Card
                                         key={index}
-                                        className="bg-[#161b22] border-gray-700 hover:border-gray-600 cursor-pointer transition-all duration-200 hover:bg-[#1c2128]"
+                                        className="bg-card border-border hover:border-input/50 cursor-pointer transition-all duration-200 hover:bg-accent text-accent-foreground"
                                         onClick={() => loadPopularStack(stack)}
                                     >
-                                        <CardContent className="p-3 sm:p-4">
-                                            <h3 className="font-semibold text-white text-sm sm:text-base mb-2">{stack.name}</h3>
-                                            <p className="text-gray-400 text-xs sm:text-sm mb-3">{stack.description}</p>
+                                        <CardContent className="p-4 sm:p-4">
+                                            <h3 className="font-semibold text-foreground text-sm sm:text-base mb-2">{stack.name}</h3>
+                                            <p className="text-muted-foreground text-[11px] font-medium tracking-wider sm:text-sm mb-4">{stack.description}</p>
                                             <div className="flex flex-wrap gap-1.5 sm:gap-2">
                                                 {stack.techIds.slice(0, 6).map(techId => {
                                                     const tech = technologyData.find(t => t.id === techId);
                                                     if (!tech) return null;
                                                     return (
-                                                        <div key={techId} className="flex items-center gap-1 bg-gray-800 rounded px-1.5 sm:px-2 py-1">
+                                                        <div key={techId} className="flex items-center gap-1 bg-accent text-accent-foreground rounded-md shadow-sm border border-border/50 backdrop-blur-md px-1.5 sm:px-2 py-1">
                                                             <TechIcon
                                                                 src={tech.icon}
                                                                 alt={tech.name}
@@ -1019,13 +1021,13 @@ export function TechStackBuilderContent() {
                                                                 height={14}
                                                                 className="rounded"
                                                             />
-                                                            <span className="text-xs text-white hidden sm:inline">{tech.name}</span>
+                                                            <span className="text-[11px] font-medium tracking-wider text-foreground hidden sm:inline">{tech.name}</span>
                                                         </div>
                                                     );
                                                 })}
                                                 {stack.techIds.length > 6 && (
-                                                    <div className="flex items-center justify-center bg-gray-800 rounded px-2 py-1">
-                                                        <span className="text-xs text-gray-400">+{stack.techIds.length - 6} more</span>
+                                                    <div className="flex items-center justify-center bg-accent text-accent-foreground rounded-md shadow-sm border border-border/50 backdrop-blur-md px-2 py-1">
+                                                        <span className="text-[11px] font-medium tracking-wider text-muted-foreground">+{stack.techIds.length - 6} more</span>
                                                     </div>
                                                 )}
                                             </div>
