@@ -753,7 +753,7 @@ export function TechStackBuilderContent() {
  return (
  <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row">
  {/* Mobile Header - Show/Hide Sidebar Toggle */}
- <div className="lg:hidden bg-card border-b border-border p-4 flex items-center justify-between sticky top-0 z-30">
+ <div className="lg:hidden bg-card/90 backdrop-blur-md border-b border-border/80 shadow-sm p-4 flex items-center justify-between sticky top-0 z-30">
  <div className="flex items-center gap-2">
  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-foreground font-bold text-sm">
  TG
@@ -769,7 +769,7 @@ export function TechStackBuilderContent() {
  sidebar.classList.toggle('hidden');
  }
  }}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
  >
  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -780,7 +780,7 @@ export function TechStackBuilderContent() {
  {/* Sidebar */}
  <div 
  id="mobile-sidebar"
- className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card border-r border-border flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
+ className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card/95 backdrop-blur-sm border-r border-border/80 flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
  >
  {/* Fixed Header - Project Name */}
  <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
@@ -845,11 +845,11 @@ export function TechStackBuilderContent() {
  size="sm"
  onClick={analyzeStackWithAI}
  disabled={isAnalyzing || !projectDescription.trim()}
- className="bg-background border-purple-600 text-primary hover:bg-primary/20 disabled:opacity-50 text-xs font-medium tracking-wider"
+ className="bg-background border-primary/40 text-primary hover:bg-primary/15 disabled:opacity-50 text-xs font-medium tracking-wider"
  >
  {isAnalyzing ? (
  <>
- <div className="w-3 h-3 border border-purple-400 border-t-transparent rounded-full animate-spin mr-1" />
+ <div className="w-3 h-3 border border-primary/60 border-t-transparent rounded-full animate-spin mr-1" />
  Analyzing...
  </>
  ) : (
@@ -915,7 +915,7 @@ export function TechStackBuilderContent() {
  variant="ghost"
  size="sm"
  onClick={() => applyAIRecommendation(rec)}
- className="h-5 w-5 p-0 text-success hover:text-green-300"
+ className="h-5 w-5 p-0 text-success hover:text-success"
  >
  <Plus className="w-3 h-3" />
  </Button>
@@ -936,8 +936,8 @@ export function TechStackBuilderContent() {
  <div className="text-xs font-medium tracking-wider text-warning font-medium mb-2">Warnings</div>
  <div className="space-y-1">
  {aiAnalysis.warnings.slice(0, 2).map((warning, index) => (
- <div key={index} className="bg-warning/20 border border-warning/30 rounded-md border border-border shadow-xs p-2">
- <div className="text-xs font-medium tracking-wider text-warning-foreground">{warning}</div>
+ <div key={index} className="bg-warning/15 border border-warning/40 rounded-md shadow-xs p-2">
+ <div className="text-xs font-medium tracking-wider text-foreground">{warning}</div>
  </div>
  ))}
  </div>
@@ -950,8 +950,8 @@ export function TechStackBuilderContent() {
  <div className="text-xs font-medium tracking-wider text-primary font-medium mb-2">Suggestions</div>
  <div className="space-y-1">
  {aiAnalysis.suggestions.slice(0, 2).map((suggestion, index) => (
- <div key={index} className="bg-primary/20 border border-primary/30 rounded-md border border-border shadow-xs p-2">
- <div className="text-xs font-medium tracking-wider text-primary-foreground">{suggestion}</div>
+ <div key={index} className="bg-primary/15 border border-primary/40 rounded-md shadow-xs p-2">
+ <div className="text-xs font-medium tracking-wider text-foreground">{suggestion}</div>
  </div>
  ))}
  </div>
@@ -968,7 +968,7 @@ export function TechStackBuilderContent() {
  variant="outline"
  size="sm"
  onClick={clearStack}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
  >
  <RotateCcw className="w-4 h-4 mr-1" />
  Reset
@@ -977,7 +977,7 @@ export function TechStackBuilderContent() {
  variant="outline"
  size="sm"
  onClick={generateRandomStack}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
  >
  <Shuffle className="w-4 h-4 mr-1" />
  Random
@@ -986,7 +986,7 @@ export function TechStackBuilderContent() {
  variant="outline"
  size="sm"
  onClick={() => setShowPopularStacks(true)}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
  >
  <Sparkles className="w-4 h-4 mr-1" />
  Templates
@@ -1009,7 +1009,7 @@ export function TechStackBuilderContent() {
  });
  }}
  disabled={getTotalSelected() === 0}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
  >
  <Save className="w-4 h-4 mr-1" />
  Save
@@ -1048,7 +1048,7 @@ export function TechStackBuilderContent() {
  }
  }}
  disabled={getTotalSelected() === 0}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
  >
  <Share className="w-4 h-4 mr-1" />
  Share
@@ -1390,12 +1390,12 @@ export function TechStackBuilderContent() {
  const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
  if (recommendation) {
  return (
- <div className="bg-primary/20 border border-primary/30 rounded-md border border-border shadow-xs p-1.5 sm:p-2 mt-2">
+ <div className="bg-primary/15 border border-primary/35 rounded-md shadow-xs p-1.5 sm:p-2 mt-2">
  <div className="flex items-center gap-1 mb-1">
  <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
  <span className="text-[10px] sm:text-xs font-medium tracking-wider text-primary font-medium">AI Insight</span>
  </div>
- <p className="text-[10px] sm:text-xs font-medium tracking-wider text-purple-200 line-clamp-2">{recommendation.reason}</p>
+ <p className="text-[10px] sm:text-xs font-medium tracking-wider text-foreground/85 line-clamp-2">{recommendation.reason}</p>
  <div className="text-[10px] sm:text-xs font-medium tracking-wider text-primary mt-1">
  Confidence: {recommendation.confidence}%
  </div>
@@ -1422,7 +1422,7 @@ export function TechStackBuilderContent() {
 
  {/* Popular Stacks Modal */}
  {showPopularStacks && (
- <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-2 sm:p-4">
+ <div className="fixed inset-0 bg-black/65 backdrop-blur-sm flex items-center justify-center z-50 p-2 sm:p-4">
  <div className="bg-background border border-border rounded-lg max-w-4xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
  <div className="p-4 sm:p-6 border-b border-border sticky top-0 bg-background z-10">
  <div className="flex items-start sm:items-center justify-between gap-4">
@@ -1438,7 +1438,7 @@ export function TechStackBuilderContent() {
  variant="outline"
  size="sm"
  onClick={generateTemplateStack}
- className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
  >
  <Shuffle className="w-4 h-4 mr-1" />
  Generate
@@ -1465,7 +1465,7 @@ export function TechStackBuilderContent() {
  <select
  value={templateUseCaseFilter}
  onChange={(e) => setTemplateUseCaseFilter(e.target.value)}
- className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
  >
  {templateUseCases.map((useCase) => (
  <option key={useCase} value={useCase}>{useCase}</option>
@@ -1474,7 +1474,7 @@ export function TechStackBuilderContent() {
  <select
  value={templateInfraFilter}
  onChange={(e) => setTemplateInfraFilter(e.target.value)}
- className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
  >
  {['All', 'Minimal', 'Standard', 'Production'].map((infra) => (
  <option key={infra} value={infra}>{infra}</option>
@@ -1483,7 +1483,7 @@ export function TechStackBuilderContent() {
  <select
  value={templateAiFilter}
  onChange={(e) => setTemplateAiFilter(e.target.value)}
- className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
  >
  {['All', 'AI Ready', 'Non-AI'].map((ai) => (
  <option key={ai} value={ai}>{ai}</option>

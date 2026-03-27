@@ -99,20 +99,20 @@
 
 .dark {
   /* Anthropic Dark Canvas */
-  --background: 240 4% 10%; /* #18181A */
+  --background: 230 18% 8%; /* richer deep slate */
   --foreground: 0 0% 98%;
 
-  --card: 240 5% 14%; /* #242427 */
+  --card: 230 15% 12%;
   --card-foreground: 0 0% 98%;
   
-  --popover: 240 5% 14%;
+  --popover: 230 15% 12%;
   --popover-foreground: 0 0% 98%;
   
   /* Corporate Tokens */
   --primary: 217 91% 60%; 
   --primary-foreground: 0 0% 100%;
   
-  --secondary: 240 5% 20%; /* Anthropic style dark button */
+  --secondary: 230 13% 18%;
   --secondary-foreground: 0 0% 98%;
   
   --success: 142 70% 45%; 
@@ -124,14 +124,14 @@
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
   
-  --muted: 240 5% 20%;
-  --muted-foreground: 240 5% 65%; /* Gray 400 equivalent */
+  --muted: 230 12% 17%;
+  --muted-foreground: 230 10% 72%;
   
-  --accent: 240 5% 20%; 
+  --accent: 230 13% 18%;
   --accent-foreground: 0 0% 98%;
   
-  --border: 240 4% 22%; /* Flat crisp borders */
-  --input: 240 4% 22%;
+  --border: 230 12% 24%;
+  --input: 230 12% 24%;
   --ring: 217 91% 60%;
   
   --chart-1: 217 91% 60%;
@@ -140,13 +140,13 @@
   --chart-4: 38 92% 50%;
   --chart-5: 0 72% 51%;
   
-  --sidebar: 240 4% 10%;
+  --sidebar: 230 18% 8%;
   --sidebar-foreground: 0 0% 98%;
   --sidebar-primary: 217 91% 60%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 5% 20%;
+  --sidebar-accent: 230 13% 18%;
   --sidebar-accent-foreground: 0 0% 98%;
-  --sidebar-border: 240 4% 22%;
+  --sidebar-border: 230 12% 24%;
   --sidebar-ring: 217 91% 60%;
 }
 
@@ -157,6 +157,38 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.75);
+  }
+}
+
+body::selection {
+  background: hsl(var(--primary) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+.app-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.app-shell::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(1000px 600px at 80% -15%, hsl(var(--primary) / 0.12), transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, hsl(var(--chart-2) / 0.08), transparent 55%);
+}
+
+.dark .app-shell::before {
+  background:
+    radial-gradient(900px 560px at 85% -10%, hsl(var(--primary) / 0.2), transparent 62%),
+    radial-gradient(720px 420px at -5% 105%, hsl(var(--chart-2) / 0.12), transparent 58%);
 }
 
 /* Custom animations */
