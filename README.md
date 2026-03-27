@@ -191,6 +191,35 @@ A carefully curated set of modern technologies for building production-ready app
 
 ## 🎨 Features & Components
 
+### 🧠 Research-Backed Stack Presets
+
+Tech Genie now includes an expanded, curated stack template library based on current ecosystem trends (SaaS, AI, API platforms, enterprise apps, mobile, content, realtime, and developer tooling).
+
+- **Curated templates**: High-quality presets with practical combinations
+- **Template filters**: Search by name/description and filter by:
+  - Use case (SaaS, AI, API, Enterprise, Realtime, Content, Mobile, DevTools, E-commerce)
+  - Infrastructure profile (Minimal, Standard, Production)
+  - AI readiness (AI Ready / Non-AI)
+- **Generate mode**: Blends templates into a larger stack while preserving compatibility rules
+- **Validation badges**: Shows whether each template is fully requirement-complete
+
+#### Compatibility Rules
+
+Generated stacks enforce minimum category coverage by use case using flexible category groups (for example: SaaS requires database, app layer, and deployment layer where app layer can be either web or backend). If a requirement group is missing, Tech Genie auto-fills it from matching curated templates first, then safe catalog fallbacks.
+
+This prevents invalid combinations and keeps generated stacks practical for real projects.
+
+You can validate template compatibility locally with:
+
+```bash
+npm run test:templates
+```
+
+Template compatibility is also enforced automatically in:
+
+- `build:production` (runs before production verification/build)
+- GitHub Actions CI on push and pull requests (`.github/workflows/ci.yml`)
+
 ### 🧩 UI Components (shadcn/ui)
 - **Layout**: Card, Separator, Aspect Ratio, Resizable Panels
 - **Forms**: Input, Textarea, Select, Checkbox, Radio Group, Switch

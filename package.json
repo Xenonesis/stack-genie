@@ -13,7 +13,8 @@
     "db:migrate": "prisma migrate deploy",
     "postinstall": "prisma generate",
     "verify:production": "node scripts/verify-production.js",
-    "build:production": "npm run verify:production && npm run build"
+    "build:production": "npm run test:templates && npm run verify:production && npm run build",
+    "test:templates": "tsx tests/template-compatibility.ts"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",

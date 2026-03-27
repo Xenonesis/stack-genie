@@ -65,6 +65,16 @@ const TechIcon = ({ src, alt, width, height, className }: {
 };
 
 export function TechStackBuilderContent() {
+ type StackTemplate = {
+ id: string;
+ name: string;
+ description: string;
+ useCase: string;
+ infra: "Minimal" | "Standard" | "Production";
+ aiReady: boolean;
+ techIds: string[];
+ };
+
  // Use custom hook for tech stack management
  const techStackHook = useTechStack();
  const {
@@ -91,48 +101,435 @@ export function TechStackBuilderContent() {
  const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set(categories));
  const [showAiPanel, setShowAiPanel] = useState(false);
  const [showPopularStacks, setShowPopularStacks] = useState(false);
+ const [templateSearchTerm, setTemplateSearchTerm] = useState("");
+ const [templateUseCaseFilter, setTemplateUseCaseFilter] = useState("All");
+ const [templateInfraFilter, setTemplateInfraFilter] = useState("All");
+ const [templateAiFilter, setTemplateAiFilter] = useState("All");
  const { toast } = useToast();
  const searchParams = useSearchParams();
  const commandTextareaRef = useRef<HTMLTextAreaElement>(null);
 
  // Memoized popular stack templates
- const popularStacks = useMemo(() => [
+ const popularStacks = useMemo<StackTemplate[]>(() => [
  {
+ id: "modern-full-stack",
  name: "Modern Full-Stack",
  description: "Next.js + TypeScript + Tailwind + Prisma + PostgreSQL",
- techIds: ["nextjs", "typescript", "tailwind", "shadcn", "prisma", "postgresql", "nextauth", "zod", "stripe"]
+ useCase: "SaaS",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["nextjs", "typescript", "tailwind", "shadcn", "prisma", "postgresql", "nextauth", "zod", "stripe", "vercel"]
  },
  {
+ id: "ecommerce-store",
  name: "E-commerce Store",
  description: "Next.js + Stripe + CMS + Analytics",
+ useCase: "E-commerce",
+ infra: "Standard",
+ aiReady: false,
  techIds: ["nextjs", "tailwind", "shadcn", "stripe", "sanity", "posthog", "zod", "nextauth", "vercel"]
  },
  {
+ id: "realtime-chat-app",
  name: "Real-time Chat App",
  description: "React + Socket.io + MongoDB + Authentication",
+ useCase: "Realtime",
+ infra: "Standard",
+ aiReady: true,
  techIds: ["react", "socketio", "mongodb", "mongoose", "nextauth", "tailwind", "zustand", "vite"]
  },
  {
+ id: "saas-starter",
  name: "SaaS Starter",
  description: "Next.js + Supabase + Stripe + Email + Analytics",
- techIds: ["nextjs", "supabase", "stripe", "resend", "posthog", "tailwind", "shadcn", "zod", "lucia"]
+ useCase: "SaaS",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["nextjs", "supabase", "stripe", "resend", "posthog", "tailwind", "shadcn", "zod", "lucia", "vercel"]
  },
  {
+ id: "content-site",
  name: "Content Site",
  description: "Astro + CMS + Search + Analytics",
+ useCase: "Content",
+ infra: "Minimal",
+ aiReady: false,
  techIds: ["astro", "sanity", "algolia", "tailwind", "plausible", "cloudinary"]
  },
  {
+ id: "mobile-app",
  name: "Mobile App",
  description: "React Native + Expo + Supabase + Stripe",
+ useCase: "Mobile",
+ infra: "Standard",
+ aiReady: true,
  techIds: ["reactnative", "expo", "supabase", "stripe", "zustand"]
+ },
+ {
+ id: "ai-saas-copilot",
+ name: "AI SaaS Copilot",
+ description: "Next.js + FastAPI + PostgreSQL + Redis + vector-ready infra",
+ useCase: "AI",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "tailwind", "shadcn", "fastify", "postgresql", "redis", "docker", "kubernetes", "sentry", "aws"]
+ },
+ {
+ id: "api-platform-typesafe",
+ name: "Type-Safe API Platform",
+ description: "Hono + tRPC + Zod + PostgreSQL + Drizzle",
+ useCase: "API",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["hono", "trpc", "zod", "postgresql", "drizzle", "bun", "docker", "github-actions", "swagger"]
+ },
+ {
+ id: "nextjs-enterprise-saas",
+ name: "Enterprise SaaS",
+ description: "Next.js + Clerk + Stripe + Postgres + observability",
+ useCase: "Enterprise",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "typescript", "tailwind", "clerk", "stripe", "postgresql", "prisma", "sentry", "datadog", "vercel"]
+ },
+ {
+ id: "realtime-collaboration-suite",
+ name: "Realtime Collaboration",
+ description: "React + PartyKit + Postgres + Redis + edge deploy",
+ useCase: "Realtime",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["react", "partykit", "postgresql", "redis", "tailwind", "zustand", "cloudflare-pages", "docker"]
+ },
+ {
+ id: "ai-rag-dashboard",
+ name: "AI RAG Dashboard",
+ description: "Next.js + Fastify + Postgres + Elasticsearch + monitoring",
+ useCase: "AI",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "typescript", "tailwind", "fastify", "postgresql", "elasticsearch", "docker", "prometheus", "grafana", "aws"]
+ },
+ {
+ id: "lean-startup-stack",
+ name: "Lean Startup",
+ description: "Vite + React + Supabase + Resend + Vercel",
+ useCase: "SaaS",
+ infra: "Minimal",
+ aiReady: true,
+ techIds: ["vite", "react", "tailwind", "supabase", "supabase-auth", "resend", "posthog", "vercel"]
+ },
+ {
+ id: "microservice-core-platform",
+ name: "Microservice Core",
+ description: "NestJS + Kafka + PostgreSQL + Redis + K8s",
+ useCase: "Enterprise",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nestjs", "postgresql", "redis", "apache-kafka", "docker", "kubernetes", "terraform", "prometheus", "grafana"]
+ },
+ {
+ id: "content-commerce-hybrid",
+ name: "Content + Commerce",
+ description: "Next.js + Payload + Stripe + Search + CDN",
+ useCase: "E-commerce",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["nextjs", "tailwind", "payload", "stripe", "typesense", "cloudinary", "posthog", "vercel"]
+ },
+ {
+ id: "developer-tooling-webapp",
+ name: "Developer Tooling",
+ description: "React + Hono + Turborepo + Docker + CI",
+ useCase: "DevTools",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["react", "hono", "typescript", "turborepo", "pnpm", "postgresql", "drizzle", "docker", "github-actions"]
+ },
+ {
+ id: "python-api-starter",
+ name: "Python API Starter",
+ description: "FastAPI style stack with Postgres and Redis",
+ useCase: "API",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["python", "flask", "postgresql", "redis", "docker", "github-actions", "swagger"]
+ },
+ {
+ id: "nextjs-supabase-billing",
+ name: "Supabase Billing SaaS",
+ description: "Next.js + Supabase + Stripe + PostHog + Resend",
+ useCase: "SaaS",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["nextjs", "tailwind", "shadcn", "supabase", "supabase-auth", "stripe", "posthog", "resend", "vercel"]
+ },
+ {
+ id: "cms-editorial-platform",
+ name: "Editorial Platform",
+ description: "Astro + Sanity + Algolia + Plausible + CDN",
+ useCase: "Content",
+ infra: "Standard",
+ aiReady: false,
+ techIds: ["astro", "sanity", "algolia", "plausible", "cloudinary", "netlify"]
+ },
+ {
+ id: "b2b-admin-suite",
+ name: "B2B Admin Suite",
+ description: "Next.js + Clerk + Postgres + Sentry + Datadog",
+ useCase: "SaaS",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "typescript", "tailwind", "clerk", "postgresql", "prisma", "sentry", "datadog", "aws"]
+ },
+ {
+ id: "realtime-support-platform",
+ name: "Realtime Support Platform",
+ description: "React + Ably + Hono + Redis + analytics",
+ useCase: "Realtime",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["react", "ably", "hono", "redis", "postgresql", "tailwind", "posthog", "docker", "render"]
+ },
+ {
+ id: "graphql-enterprise-stack",
+ name: "GraphQL Enterprise",
+ description: "Apollo + Yoga + Postgres + Redis + observability",
+ useCase: "API",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["react", "apollo-graphql", "graphql-yoga", "graphql-codegen", "postgresql", "redis", "docker", "sentry", "aws"]
+ },
+ {
+ id: "edge-api-performance",
+ name: "Edge API Performance",
+ description: "Hono + Bun + Turso + Cloudflare + Zod",
+ useCase: "API",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["hono", "bun", "turso", "zod", "cloudflare-pages", "github-actions"]
+ },
+ {
+ id: "full-mobile-platform",
+ name: "Full Mobile Platform",
+ description: "React Native + Expo + Node + Stripe + analytics",
+ useCase: "Mobile",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["reactnative", "expo", "nodejs", "postgresql", "stripe", "posthog", "sentry", "aws"]
+ },
+ {
+ id: "modular-monorepo-stack",
+ name: "Modular Monorepo",
+ description: "Turborepo + Next.js + React Native + shared core",
+ useCase: "DevTools",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["turborepo", "nextjs", "reactnative", "typescript", "pnpm", "postgresql", "drizzle", "docker", "github-actions"]
+ },
+ {
+ id: "event-driven-saas",
+ name: "Event-Driven SaaS",
+ description: "NestJS + Bull + Redis + Postgres + observability",
+ useCase: "SaaS",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nestjs", "bull", "redis", "postgresql", "typeorm", "docker", "kubernetes", "prometheus", "grafana"]
+ },
+ {
+ id: "search-heavy-platform",
+ name: "Search-Heavy Platform",
+ description: "Next.js + Meilisearch + PostgreSQL + Cloud storage",
+ useCase: "Content",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "tailwind", "meilisearch", "postgresql", "uploadthing", "sentry", "render"]
+ },
+ {
+ id: "serverless-data-product",
+ name: "Serverless Data Product",
+ description: "Next.js + Neon + Drizzle + Vercel Blob + analytics",
+ useCase: "SaaS",
+ infra: "Standard",
+ aiReady: true,
+ techIds: ["nextjs", "neon", "drizzle", "vercel-blob", "posthog", "tailwind", "vercel"]
+ },
+ {
+ id: "payments-api-core",
+ name: "Payments API Core",
+ description: "Express + PostgreSQL + Stripe + auth + monitoring",
+ useCase: "API",
+ infra: "Production",
+ aiReady: false,
+ techIds: ["express", "postgresql", "stripe", "passport", "zod", "docker", "sentry", "aws"]
+ },
+ {
+ id: "enterprise-java-platform",
+ name: "Enterprise Java Platform",
+ description: "Spring Boot + PostgreSQL + Kafka + Kubernetes",
+ useCase: "Enterprise",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["java", "spring", "postgresql", "apache-kafka", "docker", "kubernetes", "prometheus", "grafana", "aws"]
+ },
+ {
+ id: "docs-and-api-hub",
+ name: "Docs + API Hub",
+ description: "Astro + Express + OpenAPI + search + analytics",
+ useCase: "DevTools",
+ infra: "Standard",
+ aiReady: false,
+ techIds: ["astro", "express", "swagger", "algolia", "plausible", "netlify"]
+ },
+ {
+ id: "ai-agent-backend-core",
+ name: "AI Agent Backend Core",
+ description: "Fastify + PostgreSQL + Redis + queue + observability",
+ useCase: "AI",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["fastify", "postgresql", "redis", "rabbitmq", "docker", "kubernetes", "sentry", "datadog", "aws"]
+ },
+ {
+ id: "frontend-performance-stack",
+ name: "Frontend Performance Stack",
+ description: "Vite + React + Zustand + TanStack Router + tests",
+ useCase: "DevTools",
+ infra: "Minimal",
+ aiReady: true,
+ techIds: ["vite", "react", "tanstack-router", "zustand", "tailwind", "vitest", "playwright", "cloudflare-pages"]
+ },
+ {
+ id: "security-first-platform",
+ name: "Security-First Platform",
+ description: "Next.js + Better Auth + PostgreSQL + Sentry + CI",
+ useCase: "Enterprise",
+ infra: "Production",
+ aiReady: true,
+ techIds: ["nextjs", "better-auth", "postgresql", "prisma", "sentry", "github-actions", "docker", "aws"]
  }
  ], []);
 
- const loadPopularStack = useCallback((stackTemplate: typeof popularStacks[0]) => {
+ const templateUseCases = useMemo(
+ () => ["All", ...new Set(popularStacks.map((stack) => stack.useCase))],
+ [popularStacks]
+ );
+
+ const filteredPopularStacks = useMemo(() => {
+ return popularStacks.filter((stack) => {
+ const matchesSearch =
+ stack.name.toLowerCase().includes(templateSearchTerm.toLowerCase()) ||
+ stack.description.toLowerCase().includes(templateSearchTerm.toLowerCase());
+ const matchesUseCase = templateUseCaseFilter === "All" || stack.useCase === templateUseCaseFilter;
+ const matchesInfra = templateInfraFilter === "All" || stack.infra === templateInfraFilter;
+ const matchesAi =
+ templateAiFilter === "All" ||
+ (templateAiFilter === "AI Ready" && stack.aiReady) ||
+ (templateAiFilter === "Non-AI" && !stack.aiReady);
+ return matchesSearch && matchesUseCase && matchesInfra && matchesAi;
+ });
+ }, [popularStacks, templateSearchTerm, templateUseCaseFilter, templateInfraFilter, templateAiFilter]);
+
+ const technologiesById = useMemo(
+ () => new Map(technologyData.map((tech) => [tech.id, tech])),
+ []
+ );
+
+ const useCaseRequirementGroups = useMemo<Record<string, string[][]>>(() => ({
+ SaaS: [["Database"], ["Web Framework", "Backend Framework"], ["Hosting", "DevOps/Infrastructure"]],
+ AI: [["Database"], ["Backend Framework", "Web Framework"], ["Hosting", "DevOps/Infrastructure"]],
+ API: [["Database"], ["Backend Framework", "GraphQL/API", "API Documentation"]],
+ Enterprise: [["Database"], ["Monitoring/Observability"], ["Hosting", "DevOps/Infrastructure"]],
+ Realtime: [["Database"], ["Real-time", "Message Queues/Event Streaming"]],
+ Content: [["Web Framework"], ["CMS", "Search"]],
+ Mobile: [["Native Framework", "Web Framework"], ["Database"]],
+ "E-commerce": [["Web Framework"], ["Payment"], ["Database", "CMS"]],
+ DevTools: [["Web Framework", "Build Tools", "Backend Framework"], ["DevOps/Infrastructure", "Testing", "Hosting"]],
+ }), []);
+
+ const getCategoriesForTechIds = useCallback((techIds: string[]) => {
+ const categoriesSet = new Set<string>();
+ techIds.forEach((id) => {
+ const tech = technologiesById.get(id);
+ if (tech) {
+ categoriesSet.add(tech.category);
+ }
+ });
+ return categoriesSet;
+ }, [technologiesById]);
+
+ const getMissingRequirementGroups = useCallback((techIds: string[], useCase: string) => {
+ const requirements = useCaseRequirementGroups[useCase] || [];
+ const categoriesSet = getCategoriesForTechIds(techIds);
+ return requirements.filter((requiredGroup) => !requiredGroup.some((category) => categoriesSet.has(category)));
+ }, [getCategoriesForTechIds, useCaseRequirementGroups]);
+
+ const formatRequirementGroup = useCallback((requirementGroup: string[]) => requirementGroup.join(" / "), []);
+
+ const templateIssuesById = useMemo(() => {
+ return new Map(
+ popularStacks.map((stack) => {
+ const missingIds = stack.techIds.filter((id) => !technologiesById.has(id));
+ const missingRequirementGroups = getMissingRequirementGroups(stack.techIds, stack.useCase);
+ const missingRequirements = missingRequirementGroups.map(formatRequirementGroup);
+ return [stack.id, { missingIds, missingRequirements }];
+ })
+ );
+ }, [popularStacks, technologiesById, getMissingRequirementGroups, formatRequirementGroup]);
+
+ const invalidTemplateCount = useMemo(() => {
+ let count = 0;
+ templateIssuesById.forEach((issues) => {
+ if (issues.missingIds.length > 0 || issues.missingRequirements.length > 0) {
+ count += 1;
+ }
+ });
+ return count;
+ }, [templateIssuesById]);
+
+ const generateCompatibleTechIds = useCallback((primary: StackTemplate, secondary: StackTemplate) => {
+ const mergedIds: string[] = [];
+ const seen = new Set<string>();
+
+ const addTechId = (techId: string) => {
+ if (!seen.has(techId) && technologiesById.has(techId)) {
+ seen.add(techId);
+ mergedIds.push(techId);
+ }
+ };
+
+ primary.techIds.forEach(addTechId);
+ secondary.techIds.forEach(addTechId);
+
+ const missingRequirementGroups = getMissingRequirementGroups(mergedIds, primary.useCase);
+
+ missingRequirementGroups.forEach((requiredGroup) => {
+ const candidateFromTemplates = popularStacks
+ .filter((stack) => stack.useCase === primary.useCase || stack.useCase === secondary.useCase)
+ .flatMap((stack) => stack.techIds)
+ .find((techId) => {
+ const category = technologiesById.get(techId)?.category;
+ return category ? requiredGroup.includes(category) : false;
+ });
+
+ if (candidateFromTemplates) {
+ addTechId(candidateFromTemplates);
+ return;
+ }
+
+ const fallback = technologyData.find((tech) => requiredGroup.includes(tech.category));
+ if (fallback) {
+ addTechId(fallback.id);
+ }
+ });
+
+ return mergedIds.slice(0, 12);
+ }, [getMissingRequirementGroups, popularStacks, technologiesById]);
+
+ const mapTechIdsToStack = useCallback((techIds: string[]) => {
  const newStack: TechStack = {};
  
- stackTemplate.techIds.forEach(techId => {
+ techIds.forEach(techId => {
  const tech = technologyData.find(t => t.id === techId);
  if (tech) {
  if (!newStack[tech.category]) {
@@ -142,14 +539,50 @@ export function TechStackBuilderContent() {
  }
  });
 
+ return newStack;
+ }, []);
+
+ const loadPopularStack = useCallback((stackTemplate: StackTemplate) => {
+ const newStack = mapTechIdsToStack(stackTemplate.techIds);
+ const stackIssues = templateIssuesById.get(stackTemplate.id);
+
  loadStack(newStack, stackTemplate.name.toLowerCase().replace(/\s+/g, '-'), stackTemplate.description);
  setShowPopularStacks(false);
  
  toast({
  title: "Stack loaded!",
- description: `${stackTemplate.name} template has been applied.`,
+ description: stackIssues && stackIssues.missingRequirements.length > 0
+ ? `${stackTemplate.name} loaded. Missing recommended categories: ${stackIssues.missingRequirements.join(', ')}.`
+ : `${stackTemplate.name} template has been applied.`,
  });
- }, [loadStack, toast]);
+ }, [loadStack, mapTechIdsToStack, templateIssuesById, toast]);
+
+ const generateTemplateStack = useCallback(() => {
+ const candidateStacks = filteredPopularStacks.length > 0 ? filteredPopularStacks : popularStacks;
+ if (candidateStacks.length === 0) {
+ toast({
+ title: "No matching templates",
+ description: "Adjust filters to generate a stack.",
+ });
+ return;
+ }
+
+ const primary = candidateStacks[Math.floor(Math.random() * candidateStacks.length)];
+ const secondary = candidateStacks[Math.floor(Math.random() * candidateStacks.length)];
+ const mergedTechIds = generateCompatibleTechIds(primary, secondary);
+ const generatedStack = mapTechIdsToStack(mergedTechIds);
+ const unresolvedRequirementGroups = getMissingRequirementGroups(mergedTechIds, primary.useCase);
+ const unresolvedRequirements = unresolvedRequirementGroups.map(formatRequirementGroup);
+
+ loadStack(generatedStack, `${primary.name.toLowerCase().replace(/\s+/g, '-')}-blend`, `${primary.description} + ${secondary.description}`);
+ setShowPopularStacks(false);
+ toast({
+ title: "Generated stack ready!",
+ description: unresolvedRequirements.length > 0
+ ? `Created a stack blend from ${primary.name} and ${secondary.name}. Remaining optional gaps: ${unresolvedRequirements.join(', ')}.`
+ : `Created a stack blend from ${primary.name} and ${secondary.name} with required categories covered.`,
+ });
+ }, [filteredPopularStacks, formatRequirementGroup, generateCompatibleTechIds, getMissingRequirementGroups, loadStack, mapTechIdsToStack, popularStacks, toast]);
 
  // Load shared stack from URL on mount
  useEffect(() => {
@@ -297,25 +730,22 @@ export function TechStackBuilderContent() {
  case 'full-featured':
  presetTechs = ['react', 'reactnative', 'turborepo', 'postgresql', 'tailwind'];
  break;
+ case 'saas-pro':
+ presetTechs = ['nextjs', 'typescript', 'tailwind', 'shadcn', 'postgresql', 'prisma', 'clerk', 'stripe', 'posthog', 'resend', 'vercel'];
+ break;
+ case 'ai-product':
+ presetTechs = ['nextjs', 'typescript', 'tailwind', 'fastify', 'postgresql', 'redis', 'docker', 'sentry', 'aws'];
+ break;
  }
 
- const newStack: TechStack = {};
- presetTechs.forEach(techId => {
- const tech = technologyData.find(t => t.id === techId);
- if (tech) {
- if (!newStack[tech.category]) {
- newStack[tech.category] = [];
- }
- newStack[tech.category].push(tech);
- }
- });
+ const newStack = mapTechIdsToStack(presetTechs);
 
  loadStack(newStack);
  toast({
  title: "Preset applied!",
  description: `Applied ${presetType} preset with ${presetTechs.length} technologies.`,
  });
- }, [loadStack, toast]);
+ }, [loadStack, mapTechIdsToStack, toast]);
 
  // Generate command - memoized for performance
  const command = useMemo(() => generateCommand(selectedStack, projectName), [selectedStack, projectName]);
@@ -774,6 +1204,22 @@ export function TechStackBuilderContent() {
  >
  Full Featured
  </Button>
+ <Button
+ variant="outline"
+ size="sm"
+ onClick={() => applyPreset('saas-pro')}
+ className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+ >
+ SaaS Pro
+ </Button>
+ <Button
+ variant="outline"
+ size="sm"
+ onClick={() => applyPreset('ai-product')}
+ className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+ >
+ AI Product
+ </Button>
  </div>
  </div>
  </div>
@@ -987,6 +1433,16 @@ export function TechStackBuilderContent() {
  </h2>
  <p className="text-muted-foreground text-xs font-medium tracking-wider sm:text-sm mt-1">Choose from curated tech stacks for common use cases</p>
  </div>
+ <div className="flex items-center gap-2">
+ <Button
+ variant="outline"
+ size="sm"
+ onClick={generateTemplateStack}
+ className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground"
+ >
+ <Shuffle className="w-4 h-4 mr-1" />
+ Generate
+ </Button>
  <Button
  variant="ghost"
  size="sm"
@@ -997,16 +1453,76 @@ export function TechStackBuilderContent() {
  </Button>
  </div>
  </div>
+ </div>
  <div className="p-4 sm:p-6">
+ <div className="grid grid-cols-1 lg:grid-cols-4 gap-2 mb-4">
+ <Input
+ placeholder="Search templates..."
+ value={templateSearchTerm}
+ onChange={(e) => setTemplateSearchTerm(e.target.value)}
+ className="bg-card border-border text-foreground"
+ />
+ <select
+ value={templateUseCaseFilter}
+ onChange={(e) => setTemplateUseCaseFilter(e.target.value)}
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ >
+ {templateUseCases.map((useCase) => (
+ <option key={useCase} value={useCase}>{useCase}</option>
+ ))}
+ </select>
+ <select
+ value={templateInfraFilter}
+ onChange={(e) => setTemplateInfraFilter(e.target.value)}
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ >
+ {['All', 'Minimal', 'Standard', 'Production'].map((infra) => (
+ <option key={infra} value={infra}>{infra}</option>
+ ))}
+ </select>
+ <select
+ value={templateAiFilter}
+ onChange={(e) => setTemplateAiFilter(e.target.value)}
+ className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground"
+ >
+ {['All', 'AI Ready', 'Non-AI'].map((ai) => (
+ <option key={ai} value={ai}>{ai}</option>
+ ))}
+ </select>
+ </div>
+ <div className="flex items-center justify-between mb-4 text-xs text-muted-foreground">
+ <span>{filteredPopularStacks.length} templates</span>
+ <span>Research-backed for SaaS, B2B, AI, and realtime products</span>
+ </div>
+ {invalidTemplateCount > 0 && (
+ <div className="mb-4 rounded-md border border-warning/40 bg-warning/10 px-3 py-2 text-xs text-warning">
+ {invalidTemplateCount} template{invalidTemplateCount > 1 ? 's' : ''} have recommendation gaps. They still load, but generation prioritizes requirement-complete combinations.
+ </div>
+ )}
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-4">
- {popularStacks.map((stack, index) => (
+ {filteredPopularStacks.map((stack) => (
  <Card
- key={index}
+ key={stack.id}
  className="bg-card border-border hover:border-input/50 cursor-pointer transition-all duration-200 hover:bg-accent text-accent-foreground"
  onClick={() => loadPopularStack(stack)}
  >
  <CardContent className="p-4 sm:p-4">
- <h3 className="font-semibold text-foreground text-sm sm:text-base mb-2">{stack.name}</h3>
+ <div className="flex items-center justify-between gap-2 mb-2">
+ <h3 className="font-semibold text-foreground text-sm sm:text-base">{stack.name}</h3>
+ <div className="flex items-center gap-1">
+ <Badge variant="secondary" className="text-[10px]">{stack.useCase}</Badge>
+ <Badge variant="secondary" className="text-[10px]">{stack.infra}</Badge>
+ {stack.aiReady && <Badge variant="secondary" className="text-[10px]">AI Ready</Badge>}
+ {(() => {
+ const issues = templateIssuesById.get(stack.id);
+ if (!issues) return null;
+ if (issues.missingIds.length === 0 && issues.missingRequirements.length === 0) {
+ return <Badge variant="secondary" className="text-[10px]">Validated</Badge>;
+ }
+ return <Badge variant="secondary" className="text-[10px]">Needs review</Badge>;
+ })()}
+ </div>
+ </div>
  <p className="text-muted-foreground text-xs font-medium tracking-wider sm:text-sm mb-4">{stack.description}</p>
  <div className="flex flex-wrap gap-1.5 sm:gap-2">
  {stack.techIds.slice(0, 6).map(techId => {
