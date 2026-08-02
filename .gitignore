@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# windows reserved device workaround
+/nul
+
 # debug
 npm-debug.log*
 yarn-debug.log*
