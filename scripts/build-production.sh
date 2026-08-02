@@ -28,19 +28,19 @@ rm -rf dist
 
 # Install dependencies
 echo "📦 Installing dependencies..."
-npm ci --only=production
+pnpm install --frozen-lockfile
 
 # Generate Prisma client
 echo "🗄️ Generating Prisma client..."
-npm run db:generate
+pnpm run db:generate
 
 # Run linting
 echo "🔍 Running linter..."
-npm run lint
+pnpm run lint
 
 # Build the application
 echo "🏗️ Building application..."
-npm run build
+pnpm run build
 
 # Check if build was successful
 if [ -d ".next" ]; then

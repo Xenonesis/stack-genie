@@ -20,7 +20,7 @@ if exist dist rmdir /s /q dist
 
 :: Install dependencies
 echo 📦 Installing dependencies...
-call npm ci --only=production
+call pnpm install --frozen-lockfile
 if %errorlevel% neq 0 (
     echo ❌ Failed to install dependencies
     exit /b 1
@@ -28,7 +28,7 @@ if %errorlevel% neq 0 (
 
 :: Generate Prisma client
 echo 🗄️ Generating Prisma client...
-call npm run db:generate
+call pnpm run db:generate
 if %errorlevel% neq 0 (
     echo ❌ Failed to generate Prisma client
     exit /b 1
@@ -36,14 +36,14 @@ if %errorlevel% neq 0 (
 
 :: Run linting
 echo 🔍 Running linter...
-call npm run lint
+call pnpm run lint
 if %errorlevel% neq 0 (
     echo ⚠️ Linting issues found, but continuing...
 )
 
 :: Build the application
 echo 🏗️ Building application...
-call npm run build
+call pnpm run build
 if %errorlevel% neq 0 (
     echo ❌ Build failed!
     exit /b 1
