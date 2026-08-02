@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import Image from "next/image";
 import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare } from "lucide-react";
 import { technologyData, categories } from "@/data/technologies";
 import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tech-stack";
@@ -49,16 +48,13 @@ const TechIcon = ({ src, alt, width, height, className }: {
  {isLoading && (
  <div className="absolute inset-0 bg-muted animate-pulse rounded" />
  )}
- <Image
+ <img
  src={src}
  alt={alt}
- width={width}
- height={height}
  className={`${className} ${isLoading ? 'opacity-0' : 'opacity-100'} transition-opacity`}
  style={{ width: `${width}px`, height: "auto", maxHeight: `${width}px`, objectFit: "contain" }}
  onError={() => setHasError(true)}
  onLoad={() => setIsLoading(false)}
- unoptimized={!!src && src.includes('.svg')}
  />
  </div>
  );
