@@ -31,18 +31,18 @@ export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon
   );
 
   const layers = [
-    { title: "Client & UI Layer", icon: Cpu, items: frontendLayer, color: "from-blue-500/20 to-cyan-500/20", borderColor: "border-blue-500/30", badgeColor: "text-blue-400" },
-    { title: "API & Business Logic", icon: Server, items: backendLayer, color: "from-indigo-500/20 to-purple-500/20", borderColor: "border-indigo-500/30", badgeColor: "text-indigo-400" },
-    { title: "Data & Storage Layer", icon: Database, items: databaseLayer, color: "from-emerald-500/20 to-teal-500/20", borderColor: "border-emerald-500/30", badgeColor: "text-emerald-400" },
-    { title: "Cloud & Infrastructure", icon: Activity, items: devopsLayer, color: "from-amber-500/20 to-orange-500/20", borderColor: "border-amber-500/30", badgeColor: "text-amber-400" },
+    { title: "Client & UI Layer", icon: Cpu, items: frontendLayer },
+    { title: "API & Business Logic", icon: Server, items: backendLayer },
+    { title: "Data & Storage Layer", icon: Database, items: databaseLayer },
+    { title: "Cloud & Infrastructure", icon: Activity, items: devopsLayer },
   ];
 
   if (allTechs.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center p-12 bg-card/40 rounded-2xl border border-dashed border-border/40 text-center">
-        <Layers className="w-12 h-12 text-muted-foreground/40 mb-4 animate-pulse" />
-        <h3 className="text-base font-semibold text-foreground">No Architecture Connected</h3>
-        <p className="text-xs text-muted-foreground mt-1 max-w-sm">
+      <div className="flex flex-col items-center justify-center p-12 bg-[#0c0c0c] rounded-lg border border-dashed border-[#212121] text-center">
+        <Layers className="w-10 h-10 text-[#6f6759] mb-4" />
+        <h3 className="text-sm font-normal uppercase tracking-wider text-[#f3f3f3]">No Architecture Connected</h3>
+        <p className="text-xs text-[#9c9c9c] mt-1 max-w-sm">
           Select technologies from the grid to visually map your application's architecture layers.
         </p>
       </div>
@@ -51,19 +51,19 @@ export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between bg-card/60 backdrop-blur-md p-4 rounded-xl border border-border/40 shadow-xs">
+      <div className="flex items-center justify-between bg-[#080808] p-4 rounded-lg border border-[#212121]">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-            <Layers className="w-5 h-5" />
+          <div className="w-8 h-8 rounded-md bg-[#101010] border border-[#212121] flex items-center justify-center text-[#6f6759]">
+            <Layers className="w-4 h-4" />
           </div>
           <div>
-            <h3 className="text-sm font-bold text-foreground tracking-tight">System Topology Map</h3>
-            <p className="text-xs text-muted-foreground">Real-time data flow visualization of your selected stack</p>
+            <h3 className="text-xs font-normal uppercase tracking-wider text-[#f3f3f3]">System Topology Map</h3>
+            <p className="text-[11px] text-[#9c9c9c]">Real-time data flow visualization of your selected stack</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            <ShieldCheck className="w-3 h-3" /> Validated Topology
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] text-[10px] font-mono tracking-widest uppercase bg-[#1a1a1a] text-[#98ff38] border border-[#212121]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#98ff38]" /> Validated Topology
           </span>
         </div>
       </div>
@@ -74,16 +74,16 @@ export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon
           return (
             <motion.div
               key={layer.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className={`relative bg-gradient-to-r ${layer.color} bg-card/80 backdrop-blur-md rounded-2xl border ${layer.borderColor} p-5 shadow-lg overflow-hidden`}
+              transition={{ delay: index * 0.08 }}
+              className="relative bg-[#0c0c0c] rounded-lg border border-[#212121] p-5 overflow-hidden"
             >
-              <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#212121]">
                 <div className="flex items-center gap-2.5">
-                  <Icon className={`w-4 h-4 ${layer.badgeColor}`} />
-                  <h4 className="text-xs font-bold uppercase tracking-widest text-foreground">{layer.title}</h4>
-                  <span className="text-[10px] font-semibold text-muted-foreground px-2 py-0.5 rounded-md bg-accent/60">
+                  <Icon className="w-4 h-4 text-[#6f6759]" />
+                  <h4 className="text-xs font-normal uppercase tracking-widest text-[#f3f3f3]">{layer.title}</h4>
+                  <span className="text-[10px] font-mono text-[#9c9c9c] px-2 py-0.5 rounded-[4px] bg-[#121212] border border-[#212121]">
                     {layer.items.length} {layer.items.length === 1 ? "component" : "components"}
                   </span>
                 </div>
@@ -94,25 +94,25 @@ export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon
                   {layer.items.map((tech) => (
                     <div
                       key={tech.id}
-                      className="flex items-center gap-3 bg-background/80 backdrop-blur-sm rounded-xl p-3 border border-border/50 shadow-xs hover:border-primary/40 transition-all hover:scale-[1.02]"
+                      className="flex items-center gap-3 bg-[#101010] rounded-md p-3 border border-[#212121] hover:border-[#474747] transition-colors"
                     >
-                      <TechIcon src={tech.icon} alt={tech.name} width={20} height={20} className="rounded-md shrink-0" />
+                      <TechIcon src={tech.icon} alt={tech.name} width={20} height={20} className="rounded-sm shrink-0" />
                       <div className="min-w-0">
-                        <div className="text-xs font-semibold text-foreground truncate">{tech.name}</div>
-                        <div className="text-[10px] text-muted-foreground truncate">{tech.category}</div>
+                        <div className="text-xs font-normal text-[#f3f3f3] truncate">{tech.name}</div>
+                        <div className="text-[10px] font-mono text-[#9c9c9c] truncate">{tech.category}</div>
                       </div>
                     </div>
                   ))}
                 </div>
               ) : (
-                <div className="text-xs text-muted-foreground/60 italic py-2">
+                <div className="text-xs font-mono text-[#9c9c9c] italic py-2">
                   No technologies selected for this layer yet.
                 </div>
               )}
 
               {index < layers.length - 1 && (
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10 w-6 h-6 rounded-full bg-background border border-border flex items-center justify-center shadow-md">
-                  <ArrowDownRight className="w-3 h-3 text-muted-foreground animate-bounce" />
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 z-10 w-6 h-6 rounded-full bg-[#101010] border border-[#212121] flex items-center justify-center">
+                  <ArrowDownRight className="w-3 h-3 text-[#6f6759]" />
                 </div>
               )}
             </motion.div>

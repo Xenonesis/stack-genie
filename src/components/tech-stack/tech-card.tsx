@@ -23,71 +23,75 @@ export function TechCard({
 }: TechCardProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.9 }}
-      whileHover={{ scale: 1.02, y: -2 }}
-      whileTap={{ scale: 0.98 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -10 }}
+      whileHover={{ y: -2 }}
+      whileTap={{ scale: 0.99 }}
       onClick={() => toggleTechnology(tech)}
-      className={`group cursor-pointer h-full relative overflow-hidden rounded-xl transition-all duration-300 ${
+      className={`group cursor-pointer h-full relative overflow-hidden rounded-lg transition-colors duration-200 border ${
         isSelected
-          ? 'bg-primary/10 border border-primary/50 shadow-[0_0_15px_rgba(var(--primary),0.2)]'
-          : 'bg-card border border-border/50 hover:border-border hover:shadow-md'
+          ? 'bg-[#181818] border-white/80'
+          : 'bg-[#0c0c0c] border-[#212121] hover:border-[#474747]'
       }`}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-      
       <Card className="h-full bg-transparent border-0 shadow-none relative z-10">
-        <CardContent className="p-4 sm:p-5 flex flex-col h-full">
-          <div className="flex items-start justify-between mb-3 sm:mb-4">
-            <div className="flex items-center gap-3">
-              <div className={`p-2 rounded-lg bg-background border border-border/50 transition-colors ${isSelected ? 'border-primary/30 shadow-sm' : ''}`}>
-                <TechIcon
-                  src={tech.icon}
-                  alt={tech.name}
-                  width={32}
-                  height={32}
-                  className="rounded-md"
-                />
+        <CardContent className="p-5 flex flex-col h-full justify-between">
+          <div>
+            <div className="flex items-start justify-between mb-4">
+              <div className="flex items-center gap-3">
+                <div className={`p-2 rounded-md bg-[#101010] border transition-colors ${
+                  isSelected ? 'border-white/40' : 'border-[#212121]'
+                }`}>
+                  <TechIcon
+                    src={tech.icon}
+                    alt={tech.name}
+                    width={28}
+                    height={28}
+                    className="rounded-sm"
+                  />
+                </div>
+                <div>
+                  <h3 className="font-normal text-[#f3f3f3] text-sm uppercase tracking-tight font-sans">
+                    {tech.name}
+                  </h3>
+                  {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
+                    <div className="flex items-center gap-1 mt-0.5">
+                      <Sparkles className="w-3 h-3 text-[#6f6759]" />
+                      <span className="text-[10px] font-mono uppercase tracking-wider text-[#9c9c9c]">AI Pick</span>
+                    </div>
+                  )}
+                </div>
               </div>
-              <div>
-                <h3 className="font-semibold text-foreground text-sm sm:text-base tracking-tight">{tech.name}</h3>
-                {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
-                  <div className="flex items-center gap-1 mt-0.5">
-                    <Sparkles className="w-3 h-3 text-primary" />
-                    <span className="text-[10px] font-medium text-primary">AI Pick</span>
-                  </div>
-                )}
-              </div>
+              {isSelected && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="px-2 py-0.5 bg-white text-[#101010] rounded-full text-[10px] font-mono font-medium uppercase tracking-widest"
+                >
+                  Active
+                </motion.div>
+              )}
             </div>
-            {isSelected && (
-              <motion.div
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
-              >
-                <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-foreground rotate-45" />
-              </motion.div>
-            )}
-          </div>
 
-          <p className="text-muted-foreground text-xs sm:text-xs font-medium tracking-wider leading-relaxed mb-2 line-clamp-2">
-            {tech.description}
-          </p>
+            <p className="text-[#9c9c9c] text-xs font-normal leading-relaxed mb-3 line-clamp-2">
+              {tech.description}
+            </p>
+          </div>
 
           {/* AI Recommendation Reason */}
           {(() => {
             const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
             if (recommendation) {
               return (
-                <div className="bg-primary/15 border border-primary/35 rounded-md shadow-xs p-1.5 sm:p-2 mt-2">
-                  <div className="flex items-center gap-1 mb-1">
-                    <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
-                    <span className="text-[10px] sm:text-xs font-medium tracking-wider text-primary font-medium">AI Insight</span>
+                <div className="bg-[#121212] border border-[#212121] rounded-md p-2.5 mt-2">
+                  <div className="flex items-center gap-1.5 mb-1">
+                    <Brain className="w-3 h-3 text-[#6f6759]" />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#f3f3f3]">AI Rationale</span>
                   </div>
-                  <p className="text-[10px] sm:text-xs font-medium tracking-wider text-foreground/85 line-clamp-2">{recommendation.reason}</p>
-                  <div className="text-[10px] sm:text-xs font-medium tracking-wider text-primary mt-1">
-                    Confidence: {recommendation.confidence}%
+                  <p className="text-[11px] text-[#9c9c9c] leading-normal line-clamp-2">{recommendation.reason}</p>
+                  <div className="text-[10px] font-mono text-[#6f6759] mt-1">
+                    Confidence {recommendation.confidence}%
                   </div>
                 </div>
               );

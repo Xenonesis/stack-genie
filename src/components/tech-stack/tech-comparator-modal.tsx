@@ -29,33 +29,33 @@ export function TechComparatorModal({ isOpen, onClose, allTechnologies, techIcon
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl bg-zinc-950 dark:bg-zinc-950 bg-white border-zinc-800 text-foreground p-6 rounded-2xl shadow-2xl opacity-100">
+      <DialogContent className="max-w-4xl bg-[#080808] border border-[#212121] text-[#f3f3f3] p-6 rounded-lg shadow-none">
         <DialogHeader className="mb-4">
           <div className="flex items-center gap-2">
-            <Scale className="w-5 h-5 text-primary" />
-            <DialogTitle className="text-lg font-bold">Tech Comparator</DialogTitle>
+            <Scale className="w-4 h-4 text-[#6f6759]" />
+            <DialogTitle className="text-base font-normal uppercase tracking-tight text-[#f3f3f3]">Tech Comparator</DialogTitle>
           </div>
-          <DialogDescription className="text-xs text-muted-foreground">
+          <DialogDescription className="text-xs font-mono text-[#9c9c9c]">
             Select up to 3 technologies to compare features, ecosystem, and suitability side-by-side.
           </DialogDescription>
         </DialogHeader>
 
         {/* Selection bar */}
         <div className="mb-6 space-y-2">
-          <label className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">
+          <label className="text-[11px] font-mono uppercase tracking-widest text-[#9c9c9c]">
             Select Technologies ({selectedTechIds.length}/3)
           </label>
-          <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-2 bg-accent/30 rounded-xl border border-border/30">
+          <div className="flex flex-wrap gap-2 max-h-32 overflow-y-auto p-3 bg-[#101010] rounded-md border border-[#212121]">
             {allTechnologies.slice(0, 24).map((tech) => {
               const isSelected = selectedTechIds.includes(tech.id);
               return (
                 <button
                   key={tech.id}
                   onClick={() => toggleSelectTech(tech.id)}
-                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
+                  className={`flex items-center gap-2 px-3 py-1 rounded-[4px] text-xs font-mono transition-all ${
                     isSelected
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "bg-background/80 hover:bg-accent text-foreground border border-border/40"
+                      ? "bg-[#ffffff] text-[#101010]"
+                      : "bg-[#121212] hover:bg-[#1f1f1f] text-[#9c9c9c] border border-[#212121]"
                   }`}
                 >
                   <TechIcon src={tech.icon} alt={tech.name} width={14} height={14} className="rounded-sm" />
@@ -70,31 +70,31 @@ export function TechComparatorModal({ isOpen, onClose, allTechnologies, techIcon
         {comparedTechs.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {comparedTechs.map((tech) => (
-              <div key={tech.id} className="bg-accent/40 rounded-xl p-4 border border-border/40 space-y-3 flex flex-col justify-between">
+              <div key={tech.id} className="bg-[#101010] rounded-md p-4 border border-[#212121] space-y-3 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <TechIcon src={tech.icon} alt={tech.name} width={28} height={28} className="rounded-md" />
+                  <div className="flex items-center gap-3 mb-3 pb-2 border-b border-[#212121]">
+                    <TechIcon src={tech.icon} alt={tech.name} width={28} height={28} className="rounded-sm" />
                     <div>
-                      <h4 className="text-sm font-bold text-foreground">{tech.name}</h4>
-                      <span className="text-[10px] font-semibold text-primary uppercase tracking-wider">{tech.category}</span>
+                      <h4 className="text-xs font-normal uppercase text-[#f3f3f3]">{tech.name}</h4>
+                      <span className="text-[10px] font-mono text-[#6f6759] uppercase tracking-wider">{tech.category}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{tech.description}</p>
+                  <p className="text-xs text-[#9c9c9c] leading-relaxed">{tech.description}</p>
                 </div>
 
-                <div className="pt-3 border-t border-border/30 space-y-2 text-xs">
-                  <div className="flex justify-between items-center text-muted-foreground">
+                <div className="pt-3 border-t border-[#212121] space-y-2 text-xs font-mono">
+                  <div className="flex justify-between items-center text-[#9c9c9c]">
                     <span>NPM Package:</span>
-                    <span className="font-mono text-foreground">{tech.npm || "N/A"}</span>
+                    <span className="text-[#f3f3f3]">{tech.npm || "N/A"}</span>
                   </div>
                   {tech.website && (
                     <a
                       href={tech.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-primary hover:underline text-xs font-semibold"
+                      className="inline-flex items-center gap-1 text-[#f3f3f3] hover:underline text-xs font-mono"
                     >
-                      Official Site <ExternalLink className="w-3 h-3" />
+                      Official Site <ExternalLink className="w-3 h-3 text-[#6f6759]" />
                     </a>
                   )}
                 </div>
@@ -102,8 +102,8 @@ export function TechComparatorModal({ isOpen, onClose, allTechnologies, techIcon
             ))}
           </div>
         ) : (
-          <div className="text-center py-8 text-xs text-muted-foreground">
-            Select technologies above to start comparing.
+          <div className="text-center py-8 text-xs font-mono text-[#9c9c9c] border border-dashed border-[#212121] rounded-md">
+            Click on technologies above to start side-by-side comparison
           </div>
         )}
       </DialogContent>

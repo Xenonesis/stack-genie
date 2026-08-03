@@ -45,78 +45,39 @@
 }
 
 :root {
-  --radius: 0.75rem;
-  /* Light Theme (Clean & Professional) */
-  --background: 0 0% 100%;
-  --foreground: 240 10% 3.9%;
+  --radius: 0.25rem;
   
-  --card: 0 0% 100%;
-  --card-foreground: 240 10% 3.9%;
-  
-  --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 3.9%;
-  
-  /* Primary: Vibrant Blue/Indigo */
-  --primary: 239 84% 67%;
-  --primary-foreground: 0 0% 98%;
-  
-  --secondary: 240 4.8% 95.9%;
-  --secondary-foreground: 240 5.9% 10%;
-  
-  --success: 142 76% 36%;
-  --success-foreground: 0 0% 100%;
-  
-  --warning: 38 92% 50%;
-  --warning-foreground: 0 0% 100%;
-  
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 0 0% 98%;
-  
-  --muted: 240 4.8% 95.9%;
-  --muted-foreground: 240 3.8% 46.1%;
-  
-  --accent: 240 4.8% 95.9%;
-  --accent-foreground: 240 5.9% 10%;
-  
-  --border: 240 5.9% 90%;
-  --input: 240 5.9% 90%;
-  --ring: 239 84% 67%;
-  
-  --chart-1: 239 84% 67%;
-  --chart-2: 258 90% 66%;
-  --chart-3: 142 76% 36%;
-  --chart-4: 38 92% 50%;
-  --chart-5: 0 84.2% 60.2%;
-  
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 240 5.3% 26.1%;
-  --sidebar-primary: 239 84% 67%;
-  --sidebar-primary-foreground: 0 0% 98%;
-  --sidebar-accent: 240 4.8% 95.9%;
-  --sidebar-accent-foreground: 240 5.9% 10%;
-  --sidebar-border: 220 13% 91%;
-  --sidebar-ring: 239 84% 67%;
-}
+  /* Hyperstudio Design System Tokens */
+  --obsidian: #101010;
+  --carbon: #080808;
+  --chalk: #f3f3f3;
+  --smoke: #9c9c9c;
+  --ash: #c1c1c1;
+  --graphite: #212121;
+  --iron: #474747;
+  --signal-white: #ffffff;
+  --compass-gold: #6f6759;
+  --card-slate: #3b3d45;
+  --pulse-green: #98ff38;
 
-.dark {
-  /* Premium Dark Theme (Zinc/Slate) */
-  --background: 240 10% 3.9%; /* #09090b */
-  --foreground: 0 0% 98%;
-
-  --card: 240 5.9% 10%; /* #18181b */
-  --card-foreground: 0 0% 98%;
+  /* Theme color mapping (Default Obsidian Dark Canvas) */
+  --background: 0 0% 6.3%; /* #101010 obsidian */
+  --foreground: 0 0% 95.3%; /* #f3f3f3 chalk */
   
-  --popover: 240 10% 3.9%;
-  --popover-foreground: 0 0% 98%;
+  --card: 0 0% 3.1%; /* #080808 carbon */
+  --card-foreground: 0 0% 95.3%;
   
-  --primary: 239 84% 67%; /* Vibrant indigo for dark mode */
-  --primary-foreground: 0 0% 100%;
+  --popover: 0 0% 3.1%;
+  --popover-foreground: 0 0% 95.3%;
   
-  --secondary: 240 3.7% 15.9%;
-  --secondary-foreground: 0 0% 98%;
+  --primary: 0 0% 100%; /* #ffffff signal white */
+  --primary-foreground: 0 0% 6.3%; /* #101010 obsidian */
   
-  --success: 142 70% 45%; 
-  --success-foreground: 0 0% 100%;
+  --secondary: 0 0% 12.9%; /* #212121 graphite */
+  --secondary-foreground: 0 0% 95.3%;
+  
+  --success: 90 100% 61%; /* #98ff38 pulse green */
+  --success-foreground: 0 0% 6.3%;
   
   --warning: 38 92% 50%;
   --warning-foreground: 0 0% 10%;
@@ -124,30 +85,75 @@
   --destructive: 0 62.8% 30.6%;
   --destructive-foreground: 0 0% 98%;
   
-  --muted: 240 3.7% 15.9%;
-  --muted-foreground: 240 5% 64.9%;
+  --muted: 0 0% 12.9%; /* #212121 graphite */
+  --muted-foreground: 0 0% 61.2%; /* #9c9c9c smoke */
   
-  --accent: 240 3.7% 15.9%;
-  --accent-foreground: 0 0% 98%;
+  --accent: 0 0% 12.9%;
+  --accent-foreground: 0 0% 95.3%;
   
-  --border: 240 3.7% 15.9%;
-  --input: 240 3.7% 15.9%;
-  --ring: 239 84% 67%;
+  --border: 0 0% 12.9%; /* #212121 graphite hairline border */
+  --input: 0 0% 12.9%;
+  --ring: 38 11% 39%; /* #6f6759 compass gold */
   
-  --chart-1: 239 84% 67%;
-  --chart-2: 258 90% 66%;
-  --chart-3: 142 70% 45%;
+  --chart-1: 38 11% 39%;
+  --chart-2: 0 0% 61.2%;
+  --chart-3: 90 100% 61%;
   --chart-4: 38 92% 50%;
   --chart-5: 0 62.8% 30.6%;
   
-  --sidebar: 240 10% 3.9%;
-  --sidebar-foreground: 240 4.8% 95.9%;
-  --sidebar-primary: 239 84% 67%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 3.7% 15.9%;
-  --sidebar-accent-foreground: 240 4.8% 95.9%;
-  --sidebar-border: 240 3.7% 15.9%;
-  --sidebar-ring: 239 84% 67%;
+  --sidebar: 0 0% 3.1%;
+  --sidebar-foreground: 0 0% 95.3%;
+  --sidebar-primary: 0 0% 100%;
+  --sidebar-primary-foreground: 0 0% 6.3%;
+  --sidebar-accent: 0 0% 12.9%;
+  --sidebar-accent-foreground: 0 0% 95.3%;
+  --sidebar-border: 0 0% 12.9%;
+  --sidebar-ring: 38 11% 39%;
+}
+
+.dark {
+  --background: 0 0% 6.3%;
+  --foreground: 0 0% 95.3%;
+
+  --card: 0 0% 3.1%;
+  --card-foreground: 0 0% 95.3%;
+  
+  --popover: 0 0% 3.1%;
+  --popover-foreground: 0 0% 95.3%;
+  
+  --primary: 0 0% 100%;
+  --primary-foreground: 0 0% 6.3%;
+  
+  --secondary: 0 0% 12.9%;
+  --secondary-foreground: 0 0% 95.3%;
+  
+  --success: 90 100% 61%;
+  --success-foreground: 0 0% 6.3%;
+  
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 10%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --muted: 0 0% 12.9%;
+  --muted-foreground: 0 0% 61.2%;
+  
+  --accent: 0 0% 12.9%;
+  --accent-foreground: 0 0% 95.3%;
+  
+  --border: 0 0% 12.9%;
+  --input: 0 0% 12.9%;
+  --ring: 38 11% 39%;
+  
+  --sidebar: 0 0% 3.1%;
+  --sidebar-foreground: 0 0% 95.3%;
+  --sidebar-primary: 0 0% 100%;
+  --sidebar-primary-foreground: 0 0% 6.3%;
+  --sidebar-accent: 0 0% 12.9%;
+  --sidebar-accent-foreground: 0 0% 95.3%;
+  --sidebar-border: 0 0% 12.9%;
+  --sidebar-ring: 38 11% 39%;
 }
 
 @layer base {
@@ -156,22 +162,26 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-color: var(--obsidian);
+    color: var(--chalk);
+    font-weight: 400;
   }
 
   *:focus-visible {
     outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--ring) / 0.75);
+    box-shadow: 0 0 0 1px #6f6759;
   }
 }
 
 body::selection {
-  background: hsl(var(--primary) / 0.3);
-  color: hsl(var(--foreground));
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 
 .app-shell {
   position: relative;
   isolation: isolate;
+  background-color: var(--obsidian);
 }
 
 .app-shell::before {
@@ -180,15 +190,11 @@ body::selection {
   inset: 0;
   pointer-events: none;
   z-index: -1;
-  background:
-    radial-gradient(1000px 600px at 80% -15%, hsl(var(--primary) / 0.12), transparent 60%),
-    radial-gradient(900px 500px at -10% 110%, hsl(var(--chart-2) / 0.08), transparent 55%);
+  background: #101010;
 }
 
 .dark .app-shell::before {
-  background:
-    radial-gradient(900px 560px at 85% -10%, hsl(var(--primary) / 0.2), transparent 62%),
-    radial-gradient(720px 420px at -5% 105%, hsl(var(--chart-2) / 0.12), transparent 58%);
+  background: #101010;
 }
 
 /* Custom animations */
