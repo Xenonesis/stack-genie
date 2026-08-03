@@ -23,19 +23,20 @@ const useCaseRequirementGroups: Record<string, string[][]> = {
 
 function extractPopularStacksBlock(fileContent: string): string {
   const startMarker = "const popularStacks = useMemo<StackTemplate[]>(() => [";
-  const endMarker = "], []);";
+  const endMarkerRegex = /\],\s*\[\]\);/;
 
   const startIndex = fileContent.indexOf(startMarker);
   if (startIndex === -1) {
     throw new Error("Could not find popularStacks definition start marker.");
   }
 
-  const endIndex = fileContent.indexOf(endMarker, startIndex);
-  if (endIndex === -1) {
+  const endMatch = fileContent.slice(startIndex).match(endMarkerRegex);
+  if (!endMatch) {
     throw new Error("Could not find popularStacks definition end marker.");
   }
 
-  return fileContent.slice(startIndex, endIndex + endMarker.length);
+  const endIndex = startIndex + endMatch.index! + endMatch[0].length;
+  return fileContent.slice(startIndex, endIndex);
 }
 
 function parseTemplates(stacksBlock: string): ParsedTemplate[] {

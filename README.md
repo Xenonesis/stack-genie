@@ -193,15 +193,28 @@ A carefully curated set of modern technologies for building production-ready app
 
 ### 🧠 Research-Backed Stack Presets
 
-Tech Genie now includes an expanded, curated stack template library based on current ecosystem trends (SaaS, AI, API platforms, enterprise apps, mobile, content, realtime, and developer tooling).
+Tech Genie now includes an expanded, curated stack template library based on current ecosystem trends (SaaS, AI, API platforms, enterprise apps, mobile, content, realtime, developer tooling, edge, desktop, feature flags, and background jobs).
 
-- **Curated templates**: High-quality presets with practical combinations
+- **Curated templates**: High-quality presets with practical combinations (43 templates and growing)
 - **Template filters**: Search by name/description and filter by:
   - Use case (SaaS, AI, API, Enterprise, Realtime, Content, Mobile, DevTools, E-commerce)
   - Infrastructure profile (Minimal, Standard, Production)
   - AI readiness (AI Ready / Non-AI)
 - **Generate mode**: Blends templates into a larger stack while preserving compatibility rules
 - **Validation badges**: Shows whether each template is fully requirement-complete
+
+#### Recently Added Stack Presets
+
+- **AI RAG Stack** — Vercel AI SDK + LangChain + Postgres (pgvector) + OpenAI + Pinecone
+- **Edge-First Stack** — Hono + Cloudflare Workers + R2 + Turso
+- **Realtime CRDT Collab** — Next.js + Yjs + Liveblocks + Postgres + Redis
+- **Serverless BaaS** — Next.js + Supabase + Edge functions + Vercel
+- **Analytics Warehouse** — ClickHouse + Kafka + Redis + Grafana
+- **Native Desktop** — Tauri + Svelte + Rust + SQLite
+- **Micro-SaaS Indie** — Next.js + Stripe + Lemon Squeezy + PostHog
+- **DevOps Platform** — Kubernetes + Terraform + Prometheus + Grafana
+- **Feature-Flag SaaS** — Next.js + LaunchDarkly + Stripe + PostHog
+- **Background Jobs Platform** — Next.js + Inngest + Postgres + Redis
 
 #### Compatibility Rules
 
