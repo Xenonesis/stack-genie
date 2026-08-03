@@ -17,6 +17,10 @@ export const technologyData: Technology[] = [
     { id: "fresh", name: "Fresh", category: "Web Framework", description: "The next-gen web framework for Deno", website: "https://fresh.deno.dev", color: "#00D2FF", npm: "deno run -A -r https://fresh.deno.dev", icon: "https://avatars.githubusercontent.com/u/86735756?s=200&v=4" },
     { id: "lit", name: "Lit", category: "Web Framework", description: "Simple. Fast. Web Components.", website: "https://lit.dev", color: "#324FFF", npm: "npm install lit", icon: "https://avatars.githubusercontent.com/u/18489846?s=200&v=4" },
     { id: "preact", name: "Preact", category: "Web Framework", description: "Fast 3kB React alternative", website: "https://preactjs.com", color: "#673AB8", npm: "npm install preact", icon: "https://avatars.githubusercontent.com/u/26872990?s=200&v=4" },
+    { id: "react-router", name: "React Router", category: "Web Framework", description: "Declarative routing for React", website: "https://reactrouter.com", color: "#CA4245", npm: "npm install react-router-dom", icon: "https://avatars.githubusercontent.com/u/12504344?s=200&v=4" },
+    { id: "tanstack-start", name: "TanStack Start", category: "Web Framework", description: "Full-stack React framework powered by TanStack Router", website: "https://tanstack.com/start", color: "#FD4F00", npm: "npm create @tanstack/start@latest", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4" },
+    { id: "redwoodjs", name: "RedwoodJS", category: "Web Framework", description: "Full-stack JS framework for the JAMstack", website: "https://redwoodjs.com", color: "#BF4722", npm: "yarn create redwood-app", icon: "https://avatars.githubusercontent.com/u/45009844?s=200&v=4" },
+    { id: "analog", name: "Analog", category: "Web Framework", description: "Full-stack meta-framework for Angular", website: "https://analogjs.org", color: "#DD0031", npm: "npm create analog@latest", icon: "https://avatars.githubusercontent.com/u/107374264?s=200&v=4" },
 
     // Database
     { id: "sqlite", name: "SQLite", category: "Database", description: "Self-contained, serverless, zero-configuration SQL database", website: "https://sqlite.org", color: "#003B57", npm: "npm install sqlite3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
@@ -35,6 +39,10 @@ export const technologyData: Technology[] = [
     { id: "cassandra", name: "Apache Cassandra", category: "Database", description: "Distributed NoSQL database", website: "https://cassandra.apache.org", color: "#1287B1", npm: "npm install cassandra-driver", icon: "https://avatars.githubusercontent.com/u/47359?s=200&v=4" },
     { id: "influxdb", name: "InfluxDB", category: "Database", description: "Time series database", website: "https://influxdata.com", color: "#22ADF6", npm: "npm install @influxdata/influxdb-client", icon: "https://avatars.githubusercontent.com/u/5713248?s=200&v=4" },
     { id: "neo4j", name: "Neo4j", category: "Database", description: "Graph database", website: "https://neo4j.com", color: "#008CC1", npm: "npm install neo4j-driver", icon: "https://avatars.githubusercontent.com/u/201120?s=200&v=4" },
+    { id: "clickhouse", name: "ClickHouse", category: "Database", description: "Open-source columnar database for analytics", website: "https://clickhouse.com", color: "#FFCC01", npm: "npm install @clickhouse/client", icon: "https://avatars.githubusercontent.com/u/54801242?s=200&v=4" },
+    { id: "tidb", name: "TiDB", category: "Database", description: "Distributed SQL database with MySQL compatibility", website: "https://tidbcloud.com", color: "#E6006D", npm: "npm install mysql2", icon: "https://avatars.githubusercontent.com/u/41984085?s=200&v=4" },
+    { id: "mariadb", name: "MariaDB", category: "Database", description: "Open-source relational database, MySQL drop-in replacement", website: "https://mariadb.org", color: "#003545", npm: "npm install mariadb", icon: "https://avatars.githubusercontent.com/u/111519?s=200&v=4" },
+    { id: "surrealdb", name: "SurrealDB", category: "Database", description: "Multi-model database for modern applications", website: "https://surrealdb.com", color: "#FF00A0", npm: "npm install surrealdb.js", icon: "https://avatars.githubusercontent.com/u/10026800?s=200&v=4" },
 
     // Runtime
     { id: "bun", name: "Bun", category: "Runtime", description: "Fast all-in-one JavaScript runtime", website: "https://bun.sh", color: "#FBF0DF", npm: "curl -fsSL https://bun.sh/install | bash", icon: "https://avatars.githubusercontent.com/u/99155232?s=200&v=4" },
@@ -57,6 +65,10 @@ export const technologyData: Technology[] = [
     { id: "rails", name: "Ruby on Rails", category: "Backend Framework", description: "Ruby web application framework", website: "https://rubyonrails.org", color: "#CC0000", npm: "gem install rails", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" },
     { id: "gin", name: "Gin", category: "Backend Framework", description: "Go web framework", website: "https://gin-gonic.com", color: "#00ADD8", npm: "go get github.com/gin-gonic/gin", icon: "https://avatars.githubusercontent.com/u/7894478?s=200&v=4" },
     { id: "fiber", name: "Fiber", category: "Backend Framework", description: "Express inspired Go web framework", website: "https://gofiber.io", color: "#00ADD8", npm: "go get github.com/gofiber/fiber/v2", icon: "https://avatars.githubusercontent.com/u/59947262?s=200&v=4" },
+    { id: "fastapi", name: "FastAPI", category: "Backend Framework", description: "Modern Python web framework for building APIs", website: "https://fastapi.tiangolo.com", color: "#009688", npm: "pip install fastapi", icon: "https://avatars.githubusercontent.com/u/15635592?s=200&v=4" },
+    { id: "aspnet-core", name: "ASP.NET Core", category: "Backend Framework", description: "Cross-platform .NET web framework", website: "https://dotnet.microsoft.com/apps/aspnet", color: "#512BD4", npm: "dotnet new webapi", icon: "https://avatars.githubusercontent.com/u/9141961?s=200&v=4" },
+    { id: "phoenix", name: "Phoenix", category: "Backend Framework", description: "Productive web framework for Elixir", website: "https://phoenixframework.org", color: "#FD4F00", npm: "mix archive.install hex phx_new", icon: "https://avatars.githubusercontent.com/u/164?s=200&v=4" },
+    { id: "axum", name: "Axum", category: "Backend Framework", description: "Ergonomic Rust web framework", website: "https://github.com/tokio-rs/axum", color: "#000000", npm: "cargo add axum", icon: "https://avatars.githubusercontent.com/u/14062570?s=200&v=4" },
 
     // CSS Framework
     { id: "tailwind", name: "Tailwind CSS", category: "CSS Framework", description: "Utility-first CSS framework", website: "https://tailwindcss.com", color: "#06B6D4", npm: "npm install tailwindcss", icon: "https://avatars.githubusercontent.com/u/67109815?s=200&v=4" },
@@ -119,6 +131,10 @@ export const technologyData: Technology[] = [
     { id: "mocha", name: "Mocha", category: "Testing", description: "JavaScript test framework", website: "https://mochajs.org", color: "#8D6748", npm: "npm install mocha", icon: "https://avatars.githubusercontent.com/u/8770005?s=200&v=4" },
     { id: "ava", name: "AVA", category: "Testing", description: "Node.js test runner", website: "https://github.com/avajs/ava", color: "#663399", npm: "npm install ava", icon: "https://avatars.githubusercontent.com/u/8527916?s=200&v=4" },
     { id: "webdriverio", name: "WebdriverIO", category: "Testing", description: "Browser and mobile automation test framework", website: "https://webdriver.io", color: "#EA5906", npm: "npm install @wdio/cli", icon: "https://avatars.githubusercontent.com/u/6512473?s=200&v=4" },
+    { id: "k6", name: "k6", category: "Testing", description: "Developer-first load testing tool", website: "https://k6.io", color: "#7D64FF", npm: "npm install -g k6", icon: "https://avatars.githubusercontent.com/u/17356833?s=200&v=4" },
+    { id: "testcontainers", name: "Testcontainers", category: "Testing", description: "Throwaway Docker containers for testing", website: "https://testcontainers.com", color: "#0F2B4D", npm: "npm install -D @testcontainers/postgresql", icon: "https://avatars.githubusercontent.com/u/15209772?s=200&v=4" },
+    { id: "pact", name: "Pact", category: "Testing", description: "Contract testing framework", website: "https://pact.io", color: "#FFA000", npm: "npm install -D @pact-foundation/pact", icon: "https://avatars.githubusercontent.com/u/2013204?s=200&v=4" },
+    { id: "faker", name: "Faker", category: "Testing", description: "Generate massive amounts of fake data", website: "https://fakerjs.dev", color: "#0F9D58", npm: "npm install -D @faker-js/faker", icon: "https://avatars.githubusercontent.com/u/29155814?s=200&v=4" },
 
     // Authentication
     { id: "nextauth", name: "NextAuth.js", category: "Authentication", description: "Complete open source authentication solution for Next.js applications", website: "https://next-auth.js.org", color: "#EB5424", npm: "npm install next-auth", icon: "https://avatars.githubusercontent.com/u/67470890?s=200&v=4" },
@@ -129,6 +145,9 @@ export const technologyData: Technology[] = [
     { id: "lucia", name: "Lucia", category: "Authentication", description: "Authentication library for TypeScript", website: "https://lucia-auth.com", color: "#5F57FF", icon: "https://avatars.githubusercontent.com/u/89729670?s=200&v=4", npm: "npm install lucia" },
     { id: "better-auth", name: "Better Auth", category: "Authentication", description: "The most comprehensive authentication framework", website: "https://better-auth.com", color: "#10B981", icon: "https://avatars.githubusercontent.com/u/180618636?s=200&v=4", npm: "npm install better-auth" },
     { id: "passport", name: "Passport.js", category: "Authentication", description: "Authentication middleware for Node.js", website: "https://passportjs.org", color: "#34E27A", npm: "npm install passport", icon: "https://avatars.githubusercontent.com/u/1160530?s=200&v=4" },
+    { id: "kinde", name: "Kinde", category: "Authentication", description: "Modern authentication for apps", website: "https://kinde.com", color: "#FFC700", npm: "npm install @kinde-oss/kinde-auth-nextjs", icon: "https://avatars.githubusercontent.com/u/101196420?s=200&v=4" },
+    { id: "workos", name: "WorkOS", category: "Authentication", description: "Enterprise-grade auth for developers", website: "https://workos.com", color: "#6366F1", npm: "npm install @workos-inc/node", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "keycloak", name: "Keycloak", category: "Authentication", description: "Open-source identity and access management", website: "https://keycloak.org", color: "#008AAA", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10639145?s=200&v=4" },
 
     // Validation
     { id: "zod", name: "Zod", category: "Validation", description: "TypeScript-first schema validation with static type inference", website: "https://zod.dev", color: "#3E67B1", npm: "npm install zod", icon: "https://zod.dev/logo.svg" },
@@ -148,6 +167,9 @@ export const technologyData: Technology[] = [
     { id: "pusher", name: "Pusher", category: "Real-time", description: "Hosted APIs to build realtime features", website: "https://pusher.com", color: "#300D4F", npm: "npm install pusher pusher-js", icon: "https://avatars.githubusercontent.com/u/739550?s=200&v=4" },
     { id: "ably", name: "Ably", category: "Real-time", description: "APIs to build, extend, and deliver powerful digital experiences in realtime", website: "https://ably.com", color: "#FF5416", npm: "npm install ably", icon: "https://avatars.githubusercontent.com/u/5665186?s=200&v=4" },
     { id: "partykit", name: "PartyKit", category: "Real-time", description: "Everything's better with friends. Add a real-time, collaborative layer to your app, fast", website: "https://partykit.io", color: "#FF6B9D", npm: "npm install partykit", icon: "https://avatars.githubusercontent.com/u/98838967?s=200&v=4" },
+    { id: "liveblocks", name: "Liveblocks", category: "Real-time", description: "Real-time collaboration infrastructure", website: "https://liveblocks.io", color: "#F00000", npm: "npm install @liveblocks/client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "livekit", name: "LiveKit", category: "Real-time", description: "Open-source WebRTC infrastructure", website: "https://livekit.io", color: "#00A3FF", npm: "npm install livekit-client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "yjs", name: "Yjs", category: "Real-time", description: "CRDT framework for collaborative applications", website: "https://yjs.dev", color: "#000000", npm: "npm install yjs", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // CMS (Content Management)
     { id: "sanity", name: "Sanity", category: "CMS", description: "Platform for structured content that comes with an open-source editing environment", website: "https://sanity.io", color: "#F03E2F", npm: "npm install @sanity/client", icon: "https://avatars.githubusercontent.com/u/17177659?s=200&v=4" },
@@ -173,17 +195,23 @@ export const technologyData: Technology[] = [
     { id: "plausible", name: "Plausible Analytics", category: "Analytics", description: "Simple and privacy-friendly alternative to Google Analytics", website: "https://plausible.io", color: "#5850EC", npm: "npm install plausible-tracker", icon: "https://avatars.githubusercontent.com/u/52078544?s=200&v=4" },
     { id: "umami", name: "Umami", category: "Analytics", description: "Simple, fast, privacy-focused alternative to Google Analytics", website: "https://umami.is", color: "#FF6B35", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/65772953?s=200&v=4" },
     { id: "google-analytics", name: "Google Analytics", category: "Analytics", description: "Web analytics service offered by Google", website: "https://analytics.google.com", color: "#E37400", npm: "npm install @vercel/analytics", icon: "https://avatars.githubusercontent.com/u/1342004?s=200&v=4" },
+    { id: "mixpanel", name: "Mixpanel", category: "Analytics", description: "Product analytics for modern teams", website: "https://mixpanel.com", color: "#7856FF", npm: "npm install mixpanel-browser", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "amplitude", name: "Amplitude", category: "Analytics", description: "Product analytics platform", website: "https://amplitude.com", color: "#1D4ED8", npm: "npm install @amplitude/analytics-browser", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "segment", name: "Segment", category: "Analytics", description: "Customer data platform", website: "https://segment.com", color: "#00B295", npm: "npm install @segment/analytics-next", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Payment
     { id: "stripe", name: "Stripe", category: "Payment", description: "Online payment processing for internet businesses", website: "https://stripe.com", color: "#635BFF", npm: "npm install stripe @stripe/stripe-js", icon: "https://avatars.githubusercontent.com/u/856813?s=200&v=4" },
     { id: "paypal", name: "PayPal", category: "Payment", description: "Online payments system", website: "https://paypal.com", color: "#00457C", npm: "npm install @paypal/checkout-server-sdk", icon: "https://avatars.githubusercontent.com/u/476675?s=200&v=4" },
     { id: "lemon-squeezy", name: "Lemon Squeezy", category: "Payment", description: "The all-in-one platform for running your SaaS business", website: "https://lemonsqueezy.com", color: "#FFD23F", npm: "npm install @lemonsqueezy/lemonsqueezy.js", icon: "https://avatars.githubusercontent.com/u/82379168?s=200&v=4" },
+    { id: "paddle", name: "Paddle", category: "Payment", description: "Merchant of record for SaaS businesses", website: "https://paddle.com", color: "#FFD23F", npm: "npm install @paddle/paddle-js", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Storage/CDN
     { id: "cloudinary", name: "Cloudinary", category: "Storage", description: "Image and video management in the cloud", website: "https://cloudinary.com", color: "#3448C5", npm: "npm install cloudinary", icon: "https://avatars.githubusercontent.com/u/1460763?s=200&v=4" },
     { id: "uploadthing", name: "UploadThing", category: "Storage", description: "File uploads for modern web apps", website: "https://uploadthing.com", color: "#F97316", npm: "npm install uploadthing", icon: "https://avatars.githubusercontent.com/u/106103625?s=200&v=4" },
     { id: "aws-s3", name: "AWS S3", category: "Storage", description: "Object storage built to retrieve any amount of data from anywhere", website: "https://aws.amazon.com/s3", color: "#FF9900", npm: "npm install @aws-sdk/client-s3", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
     { id: "vercel-blob", name: "Vercel Blob", category: "Storage", description: "Fast object storage for the frontend", website: "https://vercel.com/storage/blob", color: "#000000", npm: "npm install @vercel/blob", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
+    { id: "cloudflare-r2", name: "Cloudflare R2", category: "Storage", description: "S3-compatible object storage with zero egress fees", website: "https://cloudflare.com/r2", color: "#F38020", npm: "npm install @aws-sdk/client-s3", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
+    { id: "backblaze-b2", name: "Backblaze B2", category: "Storage", description: "Affordable cloud object storage", website: "https://backblaze.com/b2", color: "#E31F24", npm: "npm install b2sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
 
     // Additional Build Tools
@@ -279,7 +307,47 @@ export const technologyData: Technology[] = [
     { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7B93E", npm: "npm install prettier", icon: "https://avatars.githubusercontent.com/u/25822731?s=200&v=4" },
     { id: "husky", name: "Husky", category: "Code Quality/Linting", description: "Git hooks made easy", website: "https://typicode.github.io/husky", color: "#42B883", npm: "npm install husky", icon: "https://avatars.githubusercontent.com/u/5502029?s=200&v=4" },
     { id: "lint-staged", name: "lint-staged", category: "Code Quality/Linting", description: "Run linters on git staged files", website: "https://github.com/okonet/lint-staged", color: "#000000", npm: "npm install lint-staged", icon: "https://avatars.githubusercontent.com/u/1282980?s=200&v=4" },
-    { id: "sonarqube", name: "SonarQube", category: "Code Quality/Linting", description: "Code quality and security analysis", website: "https://sonarqube.org", color: "#4E9BCD", npm: "# Install SonarQube server", icon: "https://avatars.githubusercontent.com/u/2607971?s=200&v=4" }
+    { id: "sonarqube", name: "SonarQube", category: "Code Quality/Linting", description: "Code quality and security analysis", website: "https://sonarqube.org", color: "#4E9BCD", npm: "# Install SonarQube server", icon: "https://avatars.githubusercontent.com/u/2607971?s=200&v=4" },
+
+    // AI / LLM Tooling
+    { id: "vercel-ai-sdk", name: "Vercel AI SDK", category: "AI/LLM", description: "TypeScript toolkit for building AI applications", website: "https://ai-sdk.dev", color: "#000000", npm: "npm install ai", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
+    { id: "langchain", name: "LangChain", category: "AI/LLM", description: "Framework for developing LLM-powered applications", website: "https://langchain.com", color: "#1C3C3C", npm: "npm install langchain", icon: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+    { id: "llamaindex", name: "LlamaIndex", category: "AI/LLM", description: "Data framework for LLM applications", website: "https://llamaindex.ai", color: "#FF6F00", npm: "npm install llamaindex", icon: "https://avatars.githubusercontent.com/u/108554348?s=200&v=4" },
+    { id: "openai", name: "OpenAI", category: "AI/LLM", description: "AI models and APIs for building intelligent applications", website: "https://openai.com", color: "#412991", npm: "npm install openai", icon: "https://avatars.githubusercontent.com/u/14957082?s=200&v=4" },
+    { id: "anthropic", name: "Anthropic", category: "AI/LLM", description: "Claude AI models and API", website: "https://anthropic.com", color: "#D97757", npm: "npm install @anthropic-ai/sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "AI model hub and inference API", website: "https://huggingface.co", color: "#FFD21E", npm: "npm install @huggingface/inference", icon: "https://avatars.githubusercontent.com/u/25720743?s=200&v=4" },
+    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.com", color: "#000000", npm: "curl -fsSL https://ollama.com/install.sh | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "pgvector", name: "pgvector", category: "AI/LLM", description: "Open-source vector similarity search for Postgres", website: "https://github.com/pgvector/pgvector", color: "#336791", npm: "# Postgres extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Vector Databases
+    { id: "pinecone", name: "Pinecone", category: "Vector Database", description: "Vector database for AI applications", website: "https://pinecone.io", color: "#00C853", npm: "npm install @pinecone-database/pinecone", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "weaviate", name: "Weaviate", category: "Vector Database", description: "Open-source vector database", website: "https://weaviate.io", color: "#5A67D8", npm: "npm install weaviate-ts-client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "qdrant", name: "Qdrant", category: "Vector Database", description: "Vector search engine", website: "https://qdrant.tech", color: "#FF3D00", npm: "npm install @qdrant/js-client-rest", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "chroma", name: "Chroma", category: "Vector Database", description: "AI-native open-source embedding database", website: "https://trychroma.com", color: "#7C3AED", npm: "npm install chromadb", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "milvus", name: "Milvus", category: "Vector Database", description: "Vector database for scalable similarity search", website: "https://milvus.io", color: "#00A1EA", npm: "npm install @zilliz/milvus2-sdk-node", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Edge / Serverless Compute
+    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless execution at the edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
+    { id: "deno-deploy", name: "Deno Deploy", category: "Edge/Serverless", description: "Global edge runtime for JavaScript and TypeScript", website: "https://deno.com/deploy", color: "#000000", npm: "npm install -g deployctl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "aws-lambda", name: "AWS Lambda", category: "Edge/Serverless", description: "Serverless compute service", website: "https://aws.amazon.com/lambda", color: "#FF9900", npm: "npm install @aws-sdk/client-lambda", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
+    { id: "vercel-edge", name: "Vercel Edge", category: "Edge/Serverless", description: "Edge functions on Vercel", website: "https://vercel.com/docs/edge-network", color: "#000000", npm: "# Built into Vercel", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
+
+    // Feature Flags
+    { id: "launchdarkly", name: "LaunchDarkly", category: "Feature Flags", description: "Feature management platform", website: "https://launchdarkly.com", color: "#00A3FF", npm: "npm install launchdarkly-node-server-sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Open-source feature flag and remote config service", website: "https://flagsmith.com", color: "#FF6B35", npm: "npm install flagsmith", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "unleash", name: "Unleash", category: "Feature Flags", description: "Open-source feature management", website: "https://getunleash.io", color: "#E11D48", npm: "npm install unleash-client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "growthbook", name: "GrowthBook", category: "Feature Flags", description: "Open-source feature flags and A/B testing", website: "https://growthbook.io", color: "#7C3AED", npm: "npm install @growthbook/growthbook", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Background Jobs / Queues
+    { id: "inngest", name: "Inngest", category: "Background Jobs", description: "Serverless background jobs and workflows", website: "https://inngest.com", color: "#7C3AED", npm: "npm install inngest", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "trigger-dev", name: "Trigger.dev", category: "Background Jobs", description: "Background jobs for TypeScript", website: "https://trigger.dev", color: "#FF4D00", npm: "npm install @trigger.dev/sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "temporal", name: "Temporal", category: "Background Jobs", description: "Durable execution platform", website: "https://temporal.io", color: "#000000", npm: "npm install @temporalio/client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Dev Containers / Environments
+    { id: "dev-container", name: "Dev Container", category: "Dev Environments", description: "Development containers specification", website: "https://containers.dev", color: "#2496ED", npm: "# VS Code extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "devpod", name: "DevPod", category: "Dev Environments", description: "Client-only, open-source dev environment tool", website: "https://devpod.sh", color: "#7C3AED", npm: "curl -fsSL https://devpod.sh/install.sh | bash", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "codespaces", name: "GitHub Codespaces", category: "Dev Environments", description: "Cloud development environments", website: "https://github.com/features/codespaces", color: "#2088FF", npm: "# GitHub feature", icon: "https://avatars.githubusercontent.com/u/44036562?s=200&v=4" },
+    { id: "nix", name: "Nix", category: "Dev Environments", description: "Reproducible builds and dev environments", website: "https://nixos.org", color: "#5277C3", npm: "curl -L https://nixos.org/nix/install | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" }
 ];
 
 export const categories = [
@@ -312,5 +380,11 @@ export const categories = [
     "Message Queues/Event Streaming",
     "API Documentation",
     "Version Control",
-    "Code Quality/Linting"
+    "Code Quality/Linting",
+    "AI/LLM",
+    "Vector Database",
+    "Edge/Serverless",
+    "Feature Flags",
+    "Background Jobs",
+    "Dev Environments"
 ];

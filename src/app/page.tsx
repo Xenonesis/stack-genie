@@ -11,8 +11,8 @@ function LoadingFallback() {
   return (
     <div className="app-shell min-h-screen bg-background flex flex-col items-center justify-center">
       <div className="text-center font-sans tracking-tight">
-        <div className="w-10 h-10 bg-primary/10 rounded-xl border border-primary/20 flex items-center justify-center text-primary font-bold mx-auto mb-6 animate-pulse shadow-sm">
-          TG
+        <div className="w-12 h-12 bg-primary/10 rounded-2xl border border-primary/20 flex items-center justify-center mx-auto mb-6 shadow-sm p-2">
+          <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain animate-pulse" />
         </div>
         <div className="text-[14px] font-semibold text-foreground">Loading Tech Genie...</div>
         <div className="mt-2 text-xs text-muted-foreground">Preparing your AI-powered stack builder</div>
