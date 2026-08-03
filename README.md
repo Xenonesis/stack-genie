@@ -195,7 +195,7 @@ A carefully curated set of modern technologies for building production-ready app
 
 Tech Genie now includes an expanded, curated stack template library based on current ecosystem trends (SaaS, AI, API platforms, enterprise apps, mobile, content, realtime, developer tooling, edge, desktop, feature flags, and background jobs).
 
-- **Curated templates**: High-quality presets with practical combinations (43 templates and growing)
+- **Curated templates**: High-quality presets with practical combinations (63 templates and growing)
 - **Template filters**: Search by name/description and filter by:
   - Use case (SaaS, AI, API, Enterprise, Realtime, Content, Mobile, DevTools, E-commerce)
   - Infrastructure profile (Minimal, Standard, Production)
@@ -215,6 +215,26 @@ Tech Genie now includes an expanded, curated stack template library based on cur
 - **DevOps Platform** — Kubernetes + Terraform + Prometheus + Grafana
 - **Feature-Flag SaaS** — Next.js + LaunchDarkly + Stripe + PostHog
 - **Background Jobs Platform** — Next.js + Inngest + Postgres + Redis
+- **Web3 DApp Stack** — Next.js + Wagmi + Viem + Solidity + IPFS
+- **Data Warehouse Stack** — ClickHouse + dbt + Airflow + Metabase + Kafka
+- **API Gateway Stack** — Kong + Traefik + Envoy + Postgres + monitoring
+- **Security-Hardened Stack** — Next.js + Snyk + Vault + Trivy + Sentry
+- **Docs Platform Stack** — Docusaurus + VitePress + Algolia + analytics
+- **BaaS Stack** — Next.js + Appwrite + PocketBase + Directus
+- **Workflow Automation Stack** — Next.js + n8n + Windmill + Postgres + Redis
+- **Data Visualization Stack** — React + D3 + ECharts + Chart.js + Recharts
+- **Video Streaming Stack** — Next.js + Mux + Cloudflare Stream + Twilio
+- **MLOps Stack** — Python + MLflow + Ray + Weights & Biases + Postgres
+- **AI Agent Stack** — Next.js + LangGraph + CrewAI + OpenAI + Postgres
+- **3D Web Stack** — React + Three.js + React Three Fiber + WebSockets
+- **Maps & Geo Stack** — Next.js + Mapbox + Leaflet + Postgres + Redis
+- **Push Notification Stack** — Next.js + OneSignal + Firebase Messaging + Postgres
+- **Voice AI Stack** — Next.js + Whisper + ElevenLabs + OpenAI + Postgres
+- **Performance Stack** — Next.js + Lighthouse + Web Vitals + BundlePhobia
+- **Accessibility Stack** — Next.js + axe-core + Pa11y + Playwright + CI
+- **i18n Stack** — Next.js + next-intl + i18next + Postgres + analytics
+- **Observability Stack** — Next.js + OpenTelemetry + Prometheus + Grafana + Loki
+- **IoT Stack** — Node.js + MQTT + ESP32 + InfluxDB + Grafana
 
 #### Compatibility Rules
 

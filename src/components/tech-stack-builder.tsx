@@ -515,6 +515,186 @@ export function TechStackBuilderContent() {
       infra: "Production",
       aiReady: true,
       techIds: ["nextjs", "inngest", "postgresql", "redis", "tailwind", "sentry", "docker", "vercel"]
+    },
+    {
+      id: "web3-dapp-stack",
+      name: "Web3 DApp Stack",
+      description: "Next.js + Wagmi + Viem + Solidity + IPFS",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "wagmi", "viem", "solidity", "hardhat", "ipfs", "tailwind", "postgresql", "vercel"]
+    },
+    {
+      id: "data-warehouse-stack",
+      name: "Data Warehouse Stack",
+      description: "ClickHouse + dbt + Airflow + Metabase + Kafka",
+      useCase: "Enterprise",
+      infra: "Production",
+      aiReady: false,
+      techIds: ["clickhouse", "dbt", "airflow", "metabase", "apache-kafka", "docker", "kubernetes", "aws", "grafana"]
+    },
+    {
+      id: "api-gateway-stack",
+      name: "API Gateway Stack",
+      description: "Kong + Traefik + Envoy + Postgres + monitoring",
+      useCase: "API",
+      infra: "Production",
+      aiReady: false,
+      techIds: ["kong", "traefik", "envoy", "nginx", "express", "postgresql", "docker", "kubernetes", "prometheus", "grafana"]
+    },
+    {
+      id: "security-hardened-stack",
+      name: "Security-Hardened Stack",
+      description: "Next.js + Snyk + Vault + Trivy + Sentry",
+      useCase: "Enterprise",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["nextjs", "snyk", "trivy", "vault", "sentry", "github-actions", "docker", "aws", "postgresql"]
+    },
+    {
+      id: "docs-platform-stack",
+      name: "Docs Platform Stack",
+      description: "Docusaurus + VitePress + Algolia + analytics",
+      useCase: "Content",
+      infra: "Minimal",
+      aiReady: false,
+      techIds: ["docusaurus", "vitepress", "astro", "algolia", "plausible", "netlify"]
+    },
+    {
+      id: "baas-stack",
+      name: "BaaS Stack",
+      description: "Next.js + Appwrite + PocketBase + Directus",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "appwrite", "pocketbase", "directus", "tailwind", "shadcn", "sqlite", "vercel"]
+    },
+    {
+      id: "workflow-automation-stack",
+      name: "Workflow Automation Stack",
+      description: "Next.js + n8n + Windmill + Postgres + Redis",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "n8n", "windmill", "postgresql", "redis", "docker", "vercel"]
+    },
+    {
+      id: "data-viz-stack",
+      name: "Data Visualization Stack",
+      description: "React + D3 + ECharts + Chart.js + Recharts",
+      useCase: "DevTools",
+      infra: "Minimal",
+      aiReady: true,
+      techIds: ["react", "d3", "echarts", "chartjs", "recharts", "vite", "tailwind", "vitest", "github-actions"]
+    },
+    {
+      id: "video-streaming-stack",
+      name: "Video Streaming Stack",
+      description: "Next.js + Mux + Cloudflare Stream + Twilio",
+      useCase: "Content",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["nextjs", "mux", "cloudflare-stream", "twilio", "postgresql", "sanity", "tailwind", "vercel"]
+    },
+    {
+      id: "mlops-stack",
+      name: "MLOps Stack",
+      description: "Python + MLflow + Ray + Weights & Biases + Postgres",
+      useCase: "AI",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["python", "mlflow", "ray", "weights-biases", "fastapi", "postgresql", "docker", "kubernetes", "aws"]
+    },
+    {
+      id: "ai-agent-stack",
+      name: "AI Agent Stack",
+      description: "Next.js + LangGraph + CrewAI + OpenAI + Postgres",
+      useCase: "AI",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["nextjs", "langgraph", "crewai", "openai", "postgresql", "redis", "docker", "vercel"]
+    },
+    {
+      id: "3d-web-stack",
+      name: "3D Web Stack",
+      description: "React + Three.js + React Three Fiber + WebSockets",
+      useCase: "DevTools",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["react", "threejs", "react-three-fiber", "babylonjs", "socketio", "vite", "tailwind", "vitest", "github-actions"]
+    },
+    {
+      id: "maps-geo-stack",
+      name: "Maps & Geo Stack",
+      description: "Next.js + Mapbox + Leaflet + Postgres + Redis",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "mapbox", "leaflet", "maplibre", "postgresql", "redis", "tailwind", "vercel"]
+    },
+    {
+      id: "push-notification-stack",
+      name: "Push Notification Stack",
+      description: "Next.js + OneSignal + Firebase Messaging + Postgres",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "onesignal", "firebase-messaging", "postgresql", "tailwind", "vercel"]
+    },
+    {
+      id: "voice-ai-stack",
+      name: "Voice AI Stack",
+      description: "Next.js + Whisper + ElevenLabs + OpenAI + Postgres",
+      useCase: "AI",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["nextjs", "whisper", "elevenlabs", "openai", "postgresql", "docker", "vercel"]
+    },
+    {
+      id: "performance-stack",
+      name: "Performance Stack",
+      description: "Next.js + Lighthouse + Web Vitals + BundlePhobia",
+      useCase: "DevTools",
+      infra: "Minimal",
+      aiReady: true,
+      techIds: ["nextjs", "lighthouse", "web-vitals", "bundlephobia", "tailwind", "vercel"]
+    },
+    {
+      id: "accessibility-stack",
+      name: "Accessibility Stack",
+      description: "Next.js + axe-core + Pa11y + Playwright + CI",
+      useCase: "DevTools",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "axe-core", "pa11y", "playwright", "github-actions", "vercel"]
+    },
+    {
+      id: "i18n-stack",
+      name: "i18n Stack",
+      description: "Next.js + next-intl + i18next + Postgres + analytics",
+      useCase: "SaaS",
+      infra: "Standard",
+      aiReady: true,
+      techIds: ["nextjs", "next-intl", "i18next", "react-i18next", "postgresql", "tailwind", "vercel"]
+    },
+    {
+      id: "observability-stack",
+      name: "Observability Stack",
+      description: "Next.js + OpenTelemetry + Prometheus + Grafana + Loki",
+      useCase: "Enterprise",
+      infra: "Production",
+      aiReady: true,
+      techIds: ["nextjs", "opentelemetry", "prometheus", "grafana", "grafana-loki", "postgresql", "docker", "kubernetes", "aws"]
+    },
+    {
+      id: "iot-stack",
+      name: "IoT Stack",
+      description: "Node.js + MQTT + ESP32 + InfluxDB + Grafana",
+      useCase: "Enterprise",
+      infra: "Production",
+      aiReady: false,
+      techIds: ["nodejs", "mqtt", "esp32", "arduino", "influxdb", "grafana", "docker", "aws"]
     }
   ],
     []);

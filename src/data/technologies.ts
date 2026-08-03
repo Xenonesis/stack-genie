@@ -347,7 +347,130 @@ export const technologyData: Technology[] = [
     { id: "dev-container", name: "Dev Container", category: "Dev Environments", description: "Development containers specification", website: "https://containers.dev", color: "#2496ED", npm: "# VS Code extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "devpod", name: "DevPod", category: "Dev Environments", description: "Client-only, open-source dev environment tool", website: "https://devpod.sh", color: "#7C3AED", npm: "curl -fsSL https://devpod.sh/install.sh | bash", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "codespaces", name: "GitHub Codespaces", category: "Dev Environments", description: "Cloud development environments", website: "https://github.com/features/codespaces", color: "#2088FF", npm: "# GitHub feature", icon: "https://avatars.githubusercontent.com/u/44036562?s=200&v=4" },
-    { id: "nix", name: "Nix", category: "Dev Environments", description: "Reproducible builds and dev environments", website: "https://nixos.org", color: "#5277C3", npm: "curl -L https://nixos.org/nix/install | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" }
+    { id: "nix", name: "Nix", category: "Dev Environments", description: "Reproducible builds and dev environments", website: "https://nixos.org", color: "#5277C3", npm: "curl -L https://nixos.org/nix/install | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Web3 / Blockchain
+    { id: "solidity", name: "Solidity", category: "Web3/Blockchain", description: "Contract-oriented programming language for Ethereum", website: "https://soliditylang.org", color: "#363636", npm: "npm install solc", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "hardhat", name: "Hardhat", category: "Web3/Blockchain", description: "Ethereum development environment", website: "https://hardhat.org", color: "#FFF100", npm: "npm install -D hardhat", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "foundry", name: "Foundry", category: "Web3/Blockchain", description: "Blazing fast, portable toolkit for Ethereum", website: "https://getfoundry.sh", color: "#FF6B35", npm: "curl -L https://foundry.paradigm.xyz | bash", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "wagmi", name: "Wagmi", category: "Web3/Blockchain", description: "React Hooks for Ethereum", website: "https://wagmi.sh", color: "#000000", npm: "npm install wagmi viem", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "viem", name: "Viem", category: "Web3/Blockchain", description: "TypeScript interface for Ethereum", website: "https://viem.sh", color: "#FFC94D", npm: "npm install viem", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "ipfs", name: "IPFS", category: "Web3/Blockchain", description: "Peer-to-peer hypermedia protocol", website: "https://ipfs.tech", color: "#65C2CB", npm: "npm install ipfs-http-client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "thirdweb", name: "Thirdweb", category: "Web3/Blockchain", description: "Complete web3 development framework", website: "https://thirdweb.com", color: "#F213A4", npm: "npm install thirdweb", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Data Engineering
+    { id: "dbt", name: "dbt", category: "Data Engineering", description: "Data build tool for analytics engineering", website: "https://getdbt.com", color: "#FF694B", npm: "pip install dbt-core", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "airflow", name: "Apache Airflow", category: "Data Engineering", description: "Platform to programmatically author and schedule workflows", website: "https://airflow.apache.org", color: "#017CEE", npm: "pip install apache-airflow", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "metabase", name: "Metabase", category: "Data Engineering", description: "Open-source business intelligence tool", website: "https://metabase.com", color: "#509EE3", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "dagster", name: "Dagster", category: "Data Engineering", description: "Orchestration platform for data pipelines", website: "https://dagster.io", color: "#4E61A6", npm: "pip install dagster", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "prefect", name: "Prefect", category: "Data Engineering", description: "Workflow orchestration for data teams", website: "https://prefect.io", color: "#024DFF", npm: "pip install prefect", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "great-expectations", name: "Great Expectations", category: "Data Engineering", description: "Data quality validation framework", website: "https://greatexpectations.io", color: "#FF6B35", npm: "pip install great-expectations", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // API Gateway
+    { id: "kong", name: "Kong", category: "API Gateway", description: "Cloud-native API gateway", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "traefik", name: "Traefik", category: "API Gateway", description: "Cloud-native application proxy", website: "https://traefik.io", color: "#24A1C1", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "envoy", name: "Envoy", category: "API Gateway", description: "Cloud-native high-performance proxy", website: "https://envoyproxy.io", color: "#AC6199", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "nginx", name: "NGINX", category: "API Gateway", description: "High-performance web server and reverse proxy", website: "https://nginx.org", color: "#009639", npm: "# Install from nginx.org", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "istio", name: "Istio", category: "API Gateway", description: "Service mesh for Kubernetes", website: "https://istio.io", color: "#466BB0", npm: "curl -L https://istio.io/downloadIstio | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Security
+    { id: "snyk", name: "Snyk", category: "Security", description: "Developer security platform", website: "https://snyk.io", color: "#4C4A73", npm: "npm install -g snyk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "trivy", name: "Trivy", category: "Security", description: "Comprehensive vulnerability scanner", website: "https://trivy.dev", color: "#1904DA", npm: "brew install trivy", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "vault", name: "HashiCorp Vault", category: "Security", description: "Secrets management and data protection", website: "https://vaultproject.io", color: "#000000", npm: "# Install from vaultproject.io", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "owasp-zap", name: "OWASP ZAP", category: "Security", description: "Web application security scanner", website: "https://zaproxy.org", color: "#4B4B4B", npm: "# Install ZAP app", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Documentation
+    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Documentation website generator", website: "https://docusaurus.io", color: "#3ECC5F", npm: "npx create-docusaurus@latest", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "vitepress", name: "VitePress", category: "Documentation", description: "Vite-powered static site generator for docs", website: "https://vitepress.dev", color: "#646CFF", npm: "npm install -D vitepress", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "mintlify", name: "Mintlify", category: "Documentation", description: "Modern documentation platform", website: "https://mintlify.com", color: "#0B0B0F", npm: "npm install -g mintlify", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "gitbook", name: "GitBook", category: "Documentation", description: "Documentation and knowledge base platform", website: "https://gitbook.com", color: "#3884FF", npm: "# Web platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // BaaS / Low-code
+    { id: "appwrite", name: "Appwrite", category: "BaaS", description: "Open-source backend server", website: "https://appwrite.io", color: "#FD366E", npm: "npm install appwrite", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "pocketbase", name: "PocketBase", category: "BaaS", description: "Open-source backend in a single file", website: "https://pocketbase.io", color: "#B8DBE4", npm: "# Download binary", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "directus", name: "Directus", category: "BaaS", description: "Open-source data platform", website: "https://directus.io", color: "#263238", npm: "npm install directus", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "nhost", name: "Nhost", category: "BaaS", description: "Open-source Firebase alternative with GraphQL", website: "https://nhost.io", color: "#0EA5E9", npm: "npm install @nhost/react", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Workflow Automation
+    { id: "n8n", name: "n8n", category: "Workflow Automation", description: "Fair-code workflow automation tool", website: "https://n8n.io", color: "#EA4B71", npm: "npx n8n", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "windmill", name: "Windmill", category: "Workflow Automation", description: "Developer platform for workflows and internal tools", website: "https://windmill.dev", color: "#4E80EE", npm: "npm install -g windmill-cli", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Data Visualization
+    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents for the web", website: "https://d3js.org", color: "#F9A03C", npm: "npm install d3", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "Simple yet flexible JavaScript charting", website: "https://chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "echarts", name: "Apache ECharts", category: "Data Visualization", description: "Powerful charting and visualization library", website: "https://echarts.apache.org", color: "#AA344D", npm: "npm install echarts", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "Composable charting library built on React components", website: "https://recharts.org", color: "#22B8CF", npm: "npm install recharts", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Video / Streaming
+    { id: "mux", name: "Mux", category: "Video/Streaming", description: "Video API for developers", website: "https://mux.com", color: "#1B1B1F", npm: "npm install @mux/mux-node", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "cloudflare-stream", name: "Cloudflare Stream", category: "Video/Streaming", description: "Video streaming and encoding", website: "https://cloudflare.com/stream", color: "#F38020", npm: "# Cloudflare API", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
+    { id: "twilio", name: "Twilio", category: "Video/Streaming", description: "Communication APIs for voice, video, and messaging", website: "https://twilio.com", color: "#F22F46", npm: "npm install twilio", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // MLOps
+    { id: "mlflow", name: "MLflow", category: "MLOps", description: "Open-source platform for ML lifecycle", website: "https://mlflow.org", color: "#0194E2", npm: "pip install mlflow", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "weights-biases", name: "Weights & Biases", category: "MLOps", description: "ML experiment tracking and visualization", website: "https://wandb.ai", color: "#FFBE00", npm: "pip install wandb", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "ray", name: "Ray", category: "MLOps", description: "Distributed computing framework for AI", website: "https://ray.io", color: "#028CF0", npm: "pip install ray", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Additional Languages
+    { id: "elixir", name: "Elixir", category: "Languages", description: "Functional language built on the Erlang VM", website: "https://elixir-lang.org", color: "#4E2A8E", npm: "# Install from elixir-lang.org", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "zig", name: "Zig", category: "Languages", description: "General-purpose low-level programming language", website: "https://ziglang.org", color: "#F7A41D", npm: "# Install from ziglang.org", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Additional Databases
+    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "Time-series database built on PostgreSQL", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Additional Monitoring
+    { id: "grafana-loki", name: "Grafana Loki", category: "Monitoring/Observability", description: "Log aggregation system", website: "https://grafana.com/oss/loki", color: "#F46800", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/7195757?s=200&v=4" },
+    { id: "better-stack", name: "Better Stack", category: "Monitoring/Observability", description: "Log management and uptime monitoring", website: "https://betterstack.com", color: "#000000", npm: "npm install @betterstack/logging", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // AI Agents / Orchestration
+    { id: "langgraph", name: "LangGraph", category: "AI Agents", description: "Build stateful, agentic AI applications", website: "https://langchain-ai.github.io/langgraph", color: "#1C3C3C", npm: "npm install @langchain/langgraph", icon: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Framework for orchestrating role-playing AI agents", website: "https://crewai.com", color: "#FF5A5F", npm: "pip install crewai", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "autogen", name: "AutoGen", category: "AI Agents", description: "Multi-agent conversation framework from Microsoft", website: "https://microsoft.github.io/autogen", color: "#0078D4", npm: "pip install pyautogen", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "flowise", name: "Flowise", category: "AI Agents", description: "Drag & drop UI to build LLM apps", website: "https://flowiseai.com", color: "#7C3AED", npm: "npx flowise start", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // 3D / Game Development
+    { id: "threejs", name: "Three.js", category: "3D/Game Dev", description: "3D library for the web", website: "https://threejs.org", color: "#000000", npm: "npm install three", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Powerful 3D engine for the web", website: "https://babylonjs.com", color: "#BB464B", npm: "npm install @babylonjs/core", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "phaser", name: "Phaser", category: "3D/Game Dev", description: "Fast 2D game framework", website: "https://phaser.io", color: "#8BC34A", npm: "npm install phaser", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "react-three-fiber", name: "React Three Fiber", category: "3D/Game Dev", description: "React renderer for Three.js", website: "https://docs.pmnd.rs/react-three-fiber", color: "#000000", npm: "npm install @react-three/fiber", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Maps / Geolocation
+    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom maps and location services", website: "https://mapbox.com", color: "#4264FB", npm: "npm install mapbox-gl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Open-source interactive maps", website: "https://leafletjs.com", color: "#199900", npm: "npm install leaflet", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "maplibre", name: "MapLibre GL", category: "Maps/Geo", description: "Open-source vector map renderer", website: "https://maplibre.org", color: "#396CB2", npm: "npm install maplibre-gl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "google-maps", name: "Google Maps", category: "Maps/Geo", description: "Google Maps Platform", website: "https://developers.google.com/maps", color: "#4285F4", npm: "npm install @googlemaps/js-api-loader", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Push Notifications
+    { id: "onesignal", name: "OneSignal", category: "Push Notifications", description: "Push notifications for web and mobile", website: "https://onesignal.com", color: "#E54B4B", npm: "npm install onesignal", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/products/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://avatars.githubusercontent.com/u/1335026?s=200&v=4" },
+
+    // Voice / Audio
+    { id: "whisper", name: "OpenAI Whisper", category: "Voice/Audio", description: "Speech recognition and transcription", website: "https://openai.com/research/whisper", color: "#412991", npm: "pip install openai-whisper", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "elevenlabs", name: "ElevenLabs", category: "Voice/Audio", description: "AI voice generation and text-to-speech", website: "https://elevenlabs.io", color: "#000000", npm: "npm install elevenlabs", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Performance / Web Vitals
+    { id: "lighthouse", name: "Lighthouse", category: "Performance", description: "Automated auditing for web performance", website: "https://developers.google.com/web/tools/lighthouse", color: "#F44B21", npm: "npm install -g lighthouse", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "web-vitals", name: "Web Vitals", category: "Performance", description: "Essential metrics for healthy site", website: "https://web.dev/vitals", color: "#4285F4", npm: "npm install web-vitals", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "bundlephobia", name: "BundlePhobia", category: "Performance", description: "Bundle size analysis for npm packages", website: "https://bundlephobia.com", color: "#EF4444", npm: "# Web tool", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Accessibility
+    { id: "axe-core", name: "axe-core", category: "Accessibility", description: "Accessibility testing engine", website: "https://deque.com/axe", color: "#F04E23", npm: "npm install axe-core", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "pa11y", name: "Pa11y", category: "Accessibility", description: "Automated accessibility testing", website: "https://pa11y.org", color: "#4B0082", npm: "npm install -g pa11y", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Internationalization
+    { id: "i18next", name: "i18next", category: "Internationalization", description: "Internationalization framework for JavaScript", website: "https://i18next.com", color: "#26A69A", npm: "npm install i18next", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "next-intl", name: "next-intl", category: "Internationalization", description: "Internationalization for Next.js", website: "https://next-intl-docs.vercel.app", color: "#000000", npm: "npm install next-intl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "react-i18next", name: "react-i18next", category: "Internationalization", description: "React bindings for i18next", website: "https://react.i18next.com", color: "#26A69A", npm: "npm install react-i18next", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // OpenTelemetry
+    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Open-source observability framework", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // IoT
+    { id: "mqtt", name: "MQTT", category: "IoT", description: "Lightweight messaging protocol for IoT", website: "https://mqtt.org", color: "#660066", npm: "npm install mqtt", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "esp32", name: "ESP32", category: "IoT", description: "Low-cost microcontroller with WiFi/Bluetooth", website: "https://espressif.com", color: "#E7352C", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "arduino", name: "Arduino", category: "IoT", description: "Open-source electronics platform", website: "https://arduino.cc", color: "#00979D", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" }
 ];
 
 export const categories = [
@@ -386,5 +509,25 @@ export const categories = [
     "Edge/Serverless",
     "Feature Flags",
     "Background Jobs",
-    "Dev Environments"
+    "Dev Environments",
+    "Web3/Blockchain",
+    "Data Engineering",
+    "API Gateway",
+    "Security",
+    "Documentation",
+    "BaaS",
+    "Workflow Automation",
+    "Data Visualization",
+    "Video/Streaming",
+    "MLOps",
+    "AI Agents",
+    "3D/Game Dev",
+    "Maps/Geo",
+    "Push Notifications",
+    "Voice/Audio",
+    "Performance",
+    "Accessibility",
+    "Internationalization",
+    "OpenTelemetry",
+    "IoT"
 ];
