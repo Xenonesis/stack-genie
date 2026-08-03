@@ -10,29 +10,31 @@ export const size = {
 }
 export const contentType = 'image/png'
  
-// Image generation
+// Image generation for Stack Genie Favicon
 export default function Icon() {
   return new ImageResponse(
     (
-      // ImageResponse JSX element
       <div
         style={{
-          fontSize: 24,
-          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          fontSize: 16,
+          background: '#101010',
+          border: '1px solid #212121',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
+          color: '#ffffff',
+          fontWeight: 400,
+          fontFamily: 'sans-serif',
+          letterSpacing: '-0.5px',
           borderRadius: '4px',
         }}
       >
-        TG
+        <span style={{ color: '#ffffff', fontWeight: 600 }}>S</span>
+        <span style={{ color: '#6f6759', fontWeight: 600 }}>G</span>
       </div>
     ),
-    // ImageResponse options
     {
       ...size,
     }

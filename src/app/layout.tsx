@@ -25,21 +25,24 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Tech Genie - AI-Powered Development",
-  description: "Modern Next.js scaffold optimized for AI-powered development with Tech Genie. Built with TypeScript, Tailwind CSS, and shadcn/ui.",
-  keywords: ["Tech Genie", "Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui", "AI development", "React"],
-  authors: [{ name: "Tech Genie Team" }],
+  title: "Stack Genie — AI Stack Architect",
+  description: "Build, analyze, and optimize your perfect tech stack with Stack Genie AI.",
+  keywords: ["Stack Genie", "Tech Stack", "Next.js", "TypeScript", "Tailwind CSS", "AI Development", "React"],
+  icons: {
+    icon: "/icon",
+    apple: "/icon",
+  },
   openGraph: {
-    title: "Tech Genie",
-    description: "AI-powered development with modern React stack",
-    url: "https://techgenie.dev",
-    siteName: "Tech Genie",
+    title: "Stack Genie",
+    description: "AI Stack Architect & Infrastructure Builder",
+    url: "https://stackgenie.dev",
+    siteName: "Stack Genie",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Tech Genie",
-    description: "AI-powered development with modern React stack",
+    title: "Stack Genie",
+    description: "AI Stack Architect & Infrastructure Builder",
   },
 };
 
@@ -49,14 +52,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          forcedTheme="dark"
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
         >
           <ErrorBoundary>

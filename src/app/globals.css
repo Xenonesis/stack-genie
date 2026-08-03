@@ -46,8 +46,54 @@
 
 :root {
   --radius: 0.25rem;
-  
-  /* Hyperstudio Design System Tokens */
+
+  /* Light Theme */
+  --background: 0 0% 98%; /* #f8f9fa */
+  --foreground: 0 0% 6.3%; /* #101010 */
+
+  --card: 0 0% 100%; /* #ffffff */
+  --card-foreground: 0 0% 6.3%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 6.3%;
+
+  --primary: 0 0% 6.3%; /* #101010 dark CTA */
+  --primary-foreground: 0 0% 100%; /* #ffffff */
+
+  --secondary: 0 0% 92%;
+  --secondary-foreground: 0 0% 6.3%;
+
+  --success: 142 70% 35%;
+  --success-foreground: 0 0% 100%;
+
+  --warning: 38 92% 50%;
+  --warning-foreground: 0 0% 10%;
+
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 40%;
+
+  --accent: 0 0% 93%;
+  --accent-foreground: 0 0% 6.3%;
+
+  --border: 0 0% 88%;
+  --input: 0 0% 88%;
+  --ring: 38 11% 39%;
+
+  --sidebar: 0 0% 96%;
+  --sidebar-foreground: 0 0% 6.3%;
+  --sidebar-primary: 0 0% 6.3%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 92%;
+  --sidebar-accent-foreground: 0 0% 6.3%;
+  --sidebar-border: 0 0% 88%;
+  --sidebar-ring: 38 11% 39%;
+}
+
+.dark {
+  /* Hyperstudio Obsidian Dark Theme */
   --obsidian: #101010;
   --carbon: #080808;
   --chalk: #f3f3f3;
@@ -60,7 +106,6 @@
   --card-slate: #3b3d45;
   --pulse-green: #98ff38;
 
-  /* Theme color mapping (Default Obsidian Dark Canvas) */
   --background: 0 0% 6.3%; /* #101010 obsidian */
   --foreground: 0 0% 95.3%; /* #f3f3f3 chalk */
   
@@ -94,57 +139,6 @@
   --border: 0 0% 12.9%; /* #212121 graphite hairline border */
   --input: 0 0% 12.9%;
   --ring: 38 11% 39%; /* #6f6759 compass gold */
-  
-  --chart-1: 38 11% 39%;
-  --chart-2: 0 0% 61.2%;
-  --chart-3: 90 100% 61%;
-  --chart-4: 38 92% 50%;
-  --chart-5: 0 62.8% 30.6%;
-  
-  --sidebar: 0 0% 3.1%;
-  --sidebar-foreground: 0 0% 95.3%;
-  --sidebar-primary: 0 0% 100%;
-  --sidebar-primary-foreground: 0 0% 6.3%;
-  --sidebar-accent: 0 0% 12.9%;
-  --sidebar-accent-foreground: 0 0% 95.3%;
-  --sidebar-border: 0 0% 12.9%;
-  --sidebar-ring: 38 11% 39%;
-}
-
-.dark {
-  --background: 0 0% 6.3%;
-  --foreground: 0 0% 95.3%;
-
-  --card: 0 0% 3.1%;
-  --card-foreground: 0 0% 95.3%;
-  
-  --popover: 0 0% 3.1%;
-  --popover-foreground: 0 0% 95.3%;
-  
-  --primary: 0 0% 100%;
-  --primary-foreground: 0 0% 6.3%;
-  
-  --secondary: 0 0% 12.9%;
-  --secondary-foreground: 0 0% 95.3%;
-  
-  --success: 90 100% 61%;
-  --success-foreground: 0 0% 6.3%;
-  
-  --warning: 38 92% 50%;
-  --warning-foreground: 0 0% 10%;
-  
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  
-  --muted: 0 0% 12.9%;
-  --muted-foreground: 0 0% 61.2%;
-  
-  --accent: 0 0% 12.9%;
-  --accent-foreground: 0 0% 95.3%;
-  
-  --border: 0 0% 12.9%;
-  --input: 0 0% 12.9%;
-  --ring: 38 11% 39%;
   
   --sidebar: 0 0% 3.1%;
   --sidebar-foreground: 0 0% 95.3%;

@@ -1,34 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <defs>
-    <linearGradient id="genieGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#8B5CF6" />
-      <stop offset="50%" stop-color="#A78BFA" />
-      <stop offset="100%" stop-color="#C4B5FD" />
-    </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceGraphic" stdDeviation="3" />
-    </filter>
-  </defs>
-  
-  <!-- Magic lamp base -->
-  <path d="M30,70 L70,70 L65,85 L35,85 Z" fill="url(#genieGradient)" />
-  
-  <!-- Lamp body -->
-  <ellipse cx="50" cy="50" rx="15" ry="25" fill="url(#genieGradient)" filter="url(#glow)" />
-  
-  <!-- Magic sparkles -->
-  <circle cx="35" cy="35" r="2" fill="#FBBF24" opacity="0.8">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
-  </circle>
-  <circle cx="65" cy="25" r="1.5" fill="#60A5FA" opacity="0.8">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite" />
-  </circle>
-  <circle cx="45" cy="15" r="1" fill="#34D399" opacity="0.8">
-    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite" />
-  </circle>
-  
-  <!-- Genie smoke effect -->
-  <path d="M50,25 Q55,15 60,20 Q65,25 60,30 Q55,35 50,30 Z" fill="#C7D2FE" opacity="0.6">
-    <animate attributeName="opacity" values="0.6;0.2;0.6" dur="3s" repeatCount="indefinite" />
-  </path>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Stack Genie Hyperstudio Logo -->
+  <!-- Base background (transparent / fits dark obsidian) -->
+
+  <!-- Top Genie Sparkle -->
+  <path d="M50 12 L52.5 22.5 L63 25 L52.5 27.5 L50 38 L47.5 27.5 L37 25 L47.5 22.5 Z" fill="#6f6759" />
+
+  <!-- Stack Layer 1 (Top) -->
+  <polygon points="50,34 76,46 50,58 24,46" fill="#181818" stroke="#ffffff" stroke-width="1.5" stroke-linejoin="round" />
+
+  <!-- Stack Layer 2 (Middle) -->
+  <polygon points="50,48 76,60 50,72 24,60" fill="#101010" stroke="#6f6759" stroke-width="1.5" stroke-linejoin="round" />
+
+  <!-- Stack Layer 3 (Bottom) -->
+  <polygon points="50,62 76,74 50,86 24,74" fill="#080808" stroke="#474747" stroke-width="1.5" stroke-linejoin="round" />
+
+  <!-- Connecting vertical hairlines for 3D stack structure -->
+  <path d="M24 46 L24 74 M76 46 L76 74 M50 58 L50 86" stroke="#212121" stroke-width="1" />
 </svg>

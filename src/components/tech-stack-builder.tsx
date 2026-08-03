@@ -1075,12 +1075,12 @@ export function TechStackBuilderContent() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row">
       {/* Mobile Header - Show/Hide Sidebar Toggle */}
-      <div className="lg:hidden bg-card/90 backdrop-blur-md border-b border-border/80 shadow-sm p-4 flex items-center justify-between sticky top-0 z-30">
+      <div className="lg:hidden bg-[#080808] backdrop-blur-md border-b border-[#212121] p-4 flex items-center justify-between sticky top-0 z-30">
         <div className="flex items-center gap-4">
-          <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 p-1 flex items-center justify-center shrink-0">
-            <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
+          <div className="w-8 h-8 rounded-md bg-[#101010] border border-[#212121] p-1 flex items-center justify-center shrink-0">
+            <img src="/logo.svg" alt="Stack Genie Logo" className="w-full h-full object-contain" />
           </div>
-          <h1 className="text-lg font-bold text-foreground font-display tracking-tight">Tech Genie</h1>
+          <h1 className="text-lg font-normal text-[#f3f3f3] font-sans tracking-tight">Stack Genie</h1>
         </div>
         <Button
           variant="outline"
@@ -1091,7 +1091,7 @@ export function TechStackBuilderContent() {
             if (sidebar) sidebar.classList.toggle('sidebar-open');
             if (overlay) overlay.classList.toggle('active');
           }}
-          className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
+          className="bg-transparent border-[#212121] text-[#f3f3f3]"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -1119,10 +1119,10 @@ export function TechStackBuilderContent() {
         {/* Sidebar Brand Header */}
         <div className="p-6 flex items-center gap-4 flex-shrink-0 border-b border-[#212121]">
           <div className="w-9 h-9 rounded-md bg-[#101010] border border-[#212121] p-1.5 flex items-center justify-center shrink-0">
-            <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
+            <img src="/logo.svg" alt="Stack Genie Logo" className="w-full h-full object-contain" />
           </div>
           <div>
-            <h2 className="font-normal text-[18px] text-[#f3f3f3] tracking-tight font-sans">Tech Genie</h2>
+            <h2 className="font-normal text-[18px] text-[#f3f3f3] tracking-tight font-sans">Stack Genie</h2>
             <p className="text-[10px] font-mono text-[#9c9c9c] uppercase tracking-widest">AI Stack Architect</p>
           </div>
         </div>
@@ -1138,7 +1138,7 @@ export function TechStackBuilderContent() {
               setProjectName(value);
             }}
             className="bg-[#101010] border border-[#212121] text-[#f3f3f3] text-xs font-mono rounded-md focus-visible:ring-0 focus-visible:border-[#6f6759]"
-            placeholder="my-tech-genie-app"
+            placeholder="my-stack-genie-app"
           />
         </div>
 
@@ -1458,14 +1458,15 @@ export function TechStackBuilderContent() {
             <div className="flex-1 min-w-0">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-normal text-[#f3f3f3] flex items-center gap-3 font-sans tracking-tight">
                 <div className="w-8 h-8 rounded-md bg-[#121212] border border-[#212121] p-1 flex items-center justify-center shrink-0">
-                  <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
+                  <img src="/logo.svg" alt="Stack Genie Logo" className="w-full h-full object-contain" />
                 </div>
-                <span className="truncate">Tech Genie Stack Builder</span>
+                <span className="truncate">Stack Genie Builder</span>
                 <Sparkles className="w-4 h-4 text-[#6f6759] flex-shrink-0" />
               </h1>
               <p className="text-xs font-normal text-[#9c9c9c] mt-1">Build your perfect tech stack with AI-powered recommendations</p>
             </div>
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               <Button
                 variant="outline"
                 size="sm"
