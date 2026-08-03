@@ -1,4 +1,4 @@
-import { X } from "lucide-react";
+import { X, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Technology, AIAnalysis } from "@/types/tech-stack";
 import { ReactNode } from "react";
@@ -19,9 +19,22 @@ export function SelectedStackSidebar({
   toggleTechnology,
   techIconRenderer: TechIcon
 }: SelectedStackSidebarProps) {
+  const allTechs = Object.values(selectedStack).flat();
+
+  // Conflict detection rules
+  const conflicts: string[] = [];
+  const orms = allTechs.filter(t => t.category === "ORM");
+  if (orms.length > 1) conflicts.push(`Multiple ORMs selected (${orms.map(o => o.name).join(", ")})`);
+
+  const css = allTechs.filter(t => t.category === "CSS Frameworks");
+  if (css.length > 1) conflicts.push(`Multiple CSS frameworks selected`);
+
+  const frontends = allTechs.filter(t => t.category === "Frontend");
+  if (frontends.length > 1) conflicts.push(`Multiple UI frameworks selected (${frontends.map(f => f.name).join(", ")})`);
+
   return (
     <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-3">
         <label className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Selected Stack ({getTotalSelected()})</label>
         {getTotalSelected() > 0 && (
           <div className="flex items-center gap-1">
@@ -36,6 +49,18 @@ export function SelectedStackSidebar({
           </div>
         )}
       </div>
+
+      {/* Conflicts Alert Banner */}
+      {conflicts.length > 0 && (
+        <div className="mb-3 p-2 bg-destructive/10 border border-destructive/30 rounded-lg text-[11px] text-destructive flex items-start gap-1.5 font-medium">
+          <AlertTriangle className="w-3.5 h-3.5 shrink-0 mt-0.5" />
+          <div className="space-y-0.5">
+            {conflicts.map((c, i) => (
+              <div key={i}>{c}</div>
+            ))}
+          </div>
+        </div>
+      )}
       <div className="h-40 overflow-y-auto pr-2 -mr-2">
         <div className="space-y-3">
           <AnimatePresence>

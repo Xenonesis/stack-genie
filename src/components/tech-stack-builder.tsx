@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare } from "lucide-react";
+import { ChevronDown, Search, X, Plus, RotateCcw, Shuffle, Save, Share, Copy, Sparkles, Brain, Zap, MessageSquare, Scale, LayoutGrid, Layers, FileCode } from "lucide-react";
 import { technologyData, categories } from "@/data/technologies";
 import { Technology, TechStack, AIRecommendation, AIAnalysis } from "@/types/tech-stack";
 import { generateCommand, generateSmartCommand } from "@/utils/commandGenerator";
@@ -20,6 +20,8 @@ import { logger } from "@/lib/logger";
 import { TechCard } from "./tech-stack/tech-card";
 import { CategorySection } from "./tech-stack/category-section";
 import { SelectedStackSidebar } from "./tech-stack/selected-stack-sidebar";
+import { ArchitectureFlowView } from "./tech-stack/architecture-flow-view";
+import { TechComparatorModal } from "./tech-stack/tech-comparator-modal";
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
   <div
     className="bg-gray-600 rounded-md border border-border shadow-xs flex items-center justify-center text-foreground font-bold"
@@ -121,6 +123,9 @@ export function TechStackBuilderContent() {
   const [showAiPanel, setShowAiPanel] = useState(false);
   const [showPopularStacks, setShowPopularStacks] = useState(false);
   const [templateSearchTerm, setTemplateSearchTerm] = useState("");
+  const [activeView, setActiveView] = useState<'grid' | 'architecture'>('grid');
+  const [isComparatorOpen, setIsComparatorOpen] = useState(false);
+  const [selectedCategoryFilter, setSelectedCategoryFilter] = useState<string>("All");
   const [templateUseCaseFilter, setTemplateUseCaseFilter] = useState("All");
   const [templateInfraFilter, setTemplateInfraFilter] = useState("All");
   const [templateAiFilter, setTemplateAiFilter] = useState("All");
@@ -1501,43 +1506,83 @@ export function TechStackBuilderContent() {
               <Button
                 variant="outline"
                 size="sm"
-                onClick={() => setShowAiPanel(!showAiPanel)}
-                className="bg-primary border-0 text-foreground hover:bg-primary/90 text-xs font-medium tracking-wider sm:text-sm"
+                onClick={() => setIsComparatorOpen(true)}
+                className="bg-accent/60 border-border/50 text-foreground hover:bg-accent text-xs font-medium"
               >
-                <MessageSquare className="w-3 h-3 sm:w-4 sm:h-4 mr-1" />
+                <Scale className="w-3.5 h-3.5 mr-1 text-primary" />
+                <span className="hidden sm:inline">Compare</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setShowAiPanel(!showAiPanel)}
+                className="bg-primary border-0 text-primary-foreground hover:bg-primary/90 text-xs font-semibold"
+              >
+                <MessageSquare className="w-3.5 h-3.5 mr-1" />
                 <span className="hidden sm:inline">AI Assistant</span>
                 <span className="sm:hidden">AI</span>
               </Button>
             </div>
           </div>
 
-          {/* Search */}
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-3 h-3 sm:w-4 sm:h-4" />
-            <Input
-              placeholder="Search technologies..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-8 sm:pl-10 bg-card border-border text-foreground placeholder-gray-400 text-sm"
-            />
+          {/* Controls Bar: Search & View Switcher */}
+          <div className="flex flex-col sm:flex-row items-center gap-3">
+            <div className="relative flex-1 w-full">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+              <Input
+                placeholder="Search technologies..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-9 bg-accent/40 border-0 text-foreground placeholder:text-muted-foreground text-sm focus-visible:ring-1 focus-visible:ring-primary/50"
+              />
+            </div>
+
+            {/* View Switcher Pills */}
+            <div className="flex items-center gap-1 bg-accent/40 p-1 rounded-lg border border-border/30 w-full sm:w-auto shrink-0">
+              <button
+                onClick={() => setActiveView('grid')}
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                  activeView === 'grid'
+                    ? "bg-card text-foreground shadow-xs font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <LayoutGrid className="w-3.5 h-3.5" />
+                Grid View
+              </button>
+              <button
+                onClick={() => setActiveView('architecture')}
+                className={`flex-1 sm:flex-none flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                  activeView === 'architecture'
+                    ? "bg-card text-foreground shadow-xs font-semibold"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Layers className="w-3.5 h-3.5" />
+                Topology Map
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Technology Grid */}
+        {/* Content Area */}
         <div className="flex-1 overflow-y-auto">
           <div className="p-6 lg:p-8">
-            <AnimatePresence>
-              <motion.div
-                initial="hidden"
-                animate="visible"
-                variants={{
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.1
+            {activeView === 'architecture' ? (
+              <ArchitectureFlowView selectedStack={selectedStack} techIconRenderer={TechIcon} />
+            ) : (
+              <AnimatePresence>
+                <motion.div
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.1
+                      }
                     }
-                  }
-                }}
-              >
+                  }}
+                >
                 {categories.map((category) => {
                   const categoryTechs = getTechnologiesByCategory(category);
                   if (categoryTechs.length === 0) return null;
@@ -1560,6 +1605,7 @@ export function TechStackBuilderContent() {
                 })}
               </motion.div>
             </AnimatePresence>
+            )}
           </div>
         </div>
       </div>
@@ -1699,6 +1745,14 @@ export function TechStackBuilderContent() {
           </div>
         </div>
       )}
+
+      {/* Tech Comparator Modal */}
+      <TechComparatorModal
+        isOpen={isComparatorOpen}
+        onClose={() => setIsComparatorOpen(false)}
+        allTechnologies={technologyData}
+        techIconRenderer={TechIcon}
+      />
     </div>
   );
 }
