@@ -152,16 +152,16 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
     ];
 
     return (
-        <div className="flex flex-col h-full bg-[#0d1117] border-l border-gray-800">
+        <div className="flex flex-col h-full bg-background border-l border-border">
             {/* Header */}
-            <div className="p-4 border-b border-gray-800 flex-shrink-0">
+            <div className="p-4 border-b border-border flex-shrink-0">
                 <div className="flex items-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                        <Bot className="w-4 h-4 text-white" />
+                    <div className="w-8 h-8 bg-primary text-primary-foreground rounded-full flex items-center justify-center">
+                        <Bot className="w-4 h-4 text-primary-foreground" />
                     </div>
                     <div>
-                        <h3 className="font-semibold text-white">AI Assistant</h3>
-                        <p className="text-xs text-gray-400">Tech stack expert</p>
+                        <h3 className="font-semibold text-foreground">AI Assistant</h3>
+                        <p className="text-xs text-muted-foreground">Tech stack expert</p>
                     </div>
                 </div>
             </div>
@@ -179,29 +179,29 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                                 className={`flex gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                             >
                                 {message.role === 'assistant' && (
-                                    <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <Bot className="w-4 h-4 text-white" />
+                                    <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center flex-shrink-0">
+                                        <Bot className="w-4 h-4 text-primary-foreground" />
                                     </div>
                                 )}
                                 
                                 <div className={`max-w-[80%] ${message.role === 'user' ? 'order-1' : ''}`}>
                                     <Card className={`${
                                         message.role === 'user' 
-                                            ? 'bg-blue-600 border-blue-500' 
-                                            : 'bg-[#161b22] border-gray-700'
+                                            ? 'bg-primary text-primary-foreground border-primary' 
+                                            : 'bg-card border-border'
                                     }`}>
                                         <CardContent className="p-3">
-                                            <div className="text-sm text-white whitespace-pre-wrap">
+                                            <div className="text-sm whitespace-pre-wrap">
                                                 {message.content}
                                             </div>
                                             
                                             {message.role === 'assistant' && (
-                                                <div className="flex items-center gap-2 mt-2 pt-2 border-t border-gray-700">
+                                                <div className="flex items-center gap-2 mt-2 pt-2 border-t border-border">
                                                     <Button
                                                         variant="ghost"
                                                         size="sm"
                                                         onClick={() => copyMessage(message.content)}
-                                                        className="h-6 w-6 p-0 text-gray-400 hover:text-white"
+                                                        className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground"
                                                     >
                                                         <Copy className="w-3 h-3" />
                                                     </Button>
@@ -211,8 +211,8 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                                                         onClick={() => markHelpful(message.id, true)}
                                                         className={`h-6 w-6 p-0 ${
                                                             message.helpful === true 
-                                                                ? 'text-green-400' 
-                                                                : 'text-gray-400 hover:text-green-400'
+                                                                ? 'text-green-500' 
+                                                                : 'text-muted-foreground hover:text-green-500'
                                                         }`}
                                                     >
                                                         <ThumbsUp className="w-3 h-3" />
@@ -223,8 +223,8 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                                                         onClick={() => markHelpful(message.id, false)}
                                                         className={`h-6 w-6 p-0 ${
                                                             message.helpful === false 
-                                                                ? 'text-red-400' 
-                                                                : 'text-gray-400 hover:text-red-400'
+                                                                ? 'text-red-500' 
+                                                                : 'text-muted-foreground hover:text-red-500'
                                                         }`}
                                                     >
                                                         <ThumbsDown className="w-3 h-3" />
@@ -233,14 +233,14 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                                             )}
                                         </CardContent>
                                     </Card>
-                                    <div className="text-xs text-gray-500 mt-1 px-1">
+                                    <div className="text-xs text-muted-foreground mt-1 px-1">
                                         {message.timestamp.toLocaleTimeString()}
                                     </div>
                                 </div>
 
                                 {message.role === 'user' && (
-                                    <div className="w-8 h-8 bg-gray-600 rounded-full flex items-center justify-center flex-shrink-0">
-                                        <User className="w-4 h-4 text-white" />
+                                    <div className="w-8 h-8 bg-secondary rounded-full flex items-center justify-center flex-shrink-0">
+                                        <User className="w-4 h-4 text-foreground" />
                                     </div>
                                 )}
                             </motion.div>
@@ -253,16 +253,31 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                             animate={{ opacity: 1, y: 0 }}
                             className="flex gap-3"
                         >
-                            <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-                                <Bot className="w-4 h-4 text-white" />
+                            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                <Bot className="w-4 h-4 text-primary-foreground" />
                             </div>
-                            <Card className="bg-[#161b22] border-gray-700">
+                            <Card className="bg-card border-border">
                                 <CardContent className="p-3">
-                                    <div className="flex items-center gap-2">
-                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" />
-                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }} />
-                                        <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                                    </div>
+                                    <motion.div 
+                                        className="flex items-center gap-2"
+                                        variants={{ animate: { transition: { staggerChildren: 0.15 } } }}
+                                        initial="initial"
+                                        animate="animate"
+                                    >
+                                        {[1, 2, 3].map((i) => (
+                                            <motion.div 
+                                                key={i}
+                                                variants={{ 
+                                                    initial: { y: 0 }, 
+                                                    animate: { 
+                                                        y: -4, 
+                                                        transition: { type: "spring", stiffness: 400, damping: 17, repeat: Infinity, repeatType: "reverse" } 
+                                                    } 
+                                                }} 
+                                                className="w-2 h-2 bg-primary/50 rounded-full" 
+                                            />
+                                        ))}
+                                    </motion.div>
                                 </CardContent>
                             </Card>
                         </motion.div>
@@ -274,8 +289,8 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
 
             {/* Quick Questions */}
             {messages.length <= 1 && (
-                <div className="p-4 border-t border-gray-800">
-                    <div className="text-xs text-gray-400 mb-2">Quick questions:</div>
+                <div className="p-4 border-t border-border">
+                    <div className="text-xs text-muted-foreground mb-2">Quick questions:</div>
                     <div className="grid grid-cols-1 gap-1">
                         {quickQuestions.slice(0, 3).map((question, index) => (
                             <Button
@@ -283,7 +298,7 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => setInput(question)}
-                                className="justify-start text-xs text-gray-300 hover:text-white hover:bg-gray-800 h-8"
+                                className="justify-start text-xs text-muted-foreground hover:text-foreground hover:bg-secondary h-8"
                             >
                                 <MessageSquare className="w-3 h-3 mr-2" />
                                 {question}
@@ -294,7 +309,7 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
             )}
 
             {/* Input */}
-            <div className="p-4 border-t border-gray-800 flex-shrink-0">
+            <div className="p-4 border-t border-border flex-shrink-0">
                 <div className="flex gap-2">
                     <Input
                         ref={inputRef}
@@ -302,13 +317,13 @@ export function AIChatPanel({ selectedStack, projectDescription, onTechnologyAdd
                         onChange={(e) => setInput(e.target.value)}
                         onKeyPress={handleKeyPress}
                         placeholder="Ask about your tech stack..."
-                        className="bg-[#161b22] border-gray-700 text-white placeholder-gray-400"
+                        className="bg-card border-border text-foreground placeholder:text-muted-foreground"
                         disabled={isLoading}
                     />
                     <Button
                         onClick={handleSend}
                         disabled={!input.trim() || isLoading}
-                        className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 border-0"
+                        className="bg-primary hover:bg-primary/90 text-primary-foreground border-0"
                     >
                         <Send className="w-4 h-4" />
                     </Button>

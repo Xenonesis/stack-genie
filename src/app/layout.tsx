@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Open_Sans, Poppins, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ErrorBoundary } from "@/components/ui/error-boundary";
 import { PerformanceMonitoring } from "@/components/performance-monitoring";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const openSans = Open_Sans({
+const inter = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
@@ -18,10 +18,10 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const ibmPlexMono = IBM_Plex_Mono({
+const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -51,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${openSans.variable} ${poppins.variable} ${ibmPlexMono.variable} font-sans antialiased bg-background text-foreground`}
+        className={`${inter.variable} ${poppins.variable} ${jetbrainsMono.variable} font-sans antialiased bg-background text-foreground`}
       >
         <ThemeProvider
           attribute="class"
@@ -66,8 +66,6 @@ export default function RootLayout({
           </ErrorBoundary>
         </ThemeProvider>
       </body>
-
-
     </html>
   );
 }

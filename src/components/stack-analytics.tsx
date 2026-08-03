@@ -1,28 +1,12 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { 
-    BarChart, 
-    Bar, 
-    XAxis, 
-    YAxis, 
-    CartesianGrid, 
-    Tooltip, 
-    ResponsiveContainer,
-    PieChart,
-    Pie,
-    Cell,
-    RadarChart,
-    PolarGrid,
-    PolarAngleAxis,
-    PolarRadiusAxis,
-    Radar
-} from "recharts";
 import { 
     TrendingUp, 
     TrendingDown, 
@@ -35,7 +19,8 @@ import {
     Shield,
     Code,
     Database,
-    Globe
+    Globe,
+    BarChart
 } from "lucide-react";
 import { Technology, TechStack } from "@/types/tech-stack";
 import { technologyData } from "@/data/technologies";
@@ -146,77 +131,121 @@ export function StackAnalytics({ selectedStack, projectDescription }: StackAnaly
                             <TabsTrigger value="recommendations">Recommendations</TabsTrigger>
                         </TabsList>
 
-                        <TabsContent value="overview" className="space-y-4">
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                <Card>
-                                    <CardContent className="p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-sm text-muted-foreground">Overall Score</p>
-                                                <p className="text-2xl font-bold">{overallScore.overall}/100</p>
-                                            </div>
-                                            <Star className="h-8 w-8 text-yellow-500" />
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                                <Card>
-                                    <CardContent className="p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-sm text-muted-foreground">Performance</p>
-                                                <p className="text-2xl font-bold">{overallScore.performance}/100</p>
-                                            </div>
-                                            <Zap className="h-8 w-8 text-blue-500" />
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                                <Card>
-                                    <CardContent className="p-4">
-                                        <div className="flex items-center justify-between">
-                                            <div>
-                                                <p className="text-sm text-muted-foreground">Learning Curve</p>
-                                                <p className="text-2xl font-bold">{overallScore.learningCurve}/100</p>
-                                            </div>
-                                            <Clock className="h-8 w-8 text-green-500" />
-                                        </div>
-                                    </CardContent>
-                                </Card>
-                            </div>
-                        </TabsContent>
-
-                        <TabsContent value="metrics" className="space-y-4">
-                            <div className="space-y-4">
-                                {stackMetrics.map((tech, index) => (
-                                    <Card key={index}>
-                                        <CardContent className="p-4">
-                                            <h4 className="font-semibold mb-2">{tech.name}</h4>
-                                            <div className="space-y-2">
-                                                <div className="flex justify-between items-center">
-                                                    <span className="text-sm">Popularity</span>
-                                                    <span className="text-sm font-medium">{tech.popularity}%</span>
+                        <TabsContent value="overview" className="space-y-4 outline-none">
+                            <motion.div 
+                                className="grid grid-cols-1 md:grid-cols-4 gap-4"
+                                initial="hidden"
+                                animate="visible"
+                                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+                            >
+                                <motion.div 
+                                    className="md:col-span-2"
+                                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } } }}
+                                >
+                                    <Card className="h-full bg-gradient-to-br from-primary/10 to-transparent">
+                                        <CardContent className="p-4 h-full flex flex-col justify-center">
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <p className="text-sm text-muted-foreground">Overall Score</p>
+                                                    <p className="text-4xl font-bold">{overallScore.overall}/100</p>
                                                 </div>
-                                                <Progress value={tech.popularity} className="h-2" />
+                                                <Star className="h-12 w-12 text-yellow-500 opacity-90" />
                                             </div>
                                         </CardContent>
                                     </Card>
-                                ))}
-                            </div>
+                                </motion.div>
+                                
+                                <motion.div 
+                                    className="md:col-span-1"
+                                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } } }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <Card className="h-full">
+                                        <CardContent className="p-4 h-full flex flex-col justify-center">
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <p className="text-sm text-muted-foreground">Performance</p>
+                                                    <p className="text-2xl font-bold">{overallScore.performance}/100</p>
+                                                </div>
+                                                <Zap className="h-8 w-8 text-blue-500 opacity-90" />
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+
+                                <motion.div 
+                                    className="md:col-span-1"
+                                    variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 300, damping: 25 } } }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                >
+                                    <Card className="h-full">
+                                        <CardContent className="p-4 h-full flex flex-col justify-center">
+                                            <div className="flex items-center justify-between">
+                                                <div>
+                                                    <p className="text-sm text-muted-foreground">Learning Curve</p>
+                                                    <p className="text-2xl font-bold">{overallScore.learningCurve}/100</p>
+                                                </div>
+                                                <Clock className="h-8 w-8 text-green-500 opacity-90" />
+                                            </div>
+                                        </CardContent>
+                                    </Card>
+                                </motion.div>
+                            </motion.div>
                         </TabsContent>
 
-                        <TabsContent value="recommendations" className="space-y-4">
-                            <Card>
-                                <CardContent className="p-4">
-                                    <div className="flex items-start gap-3">
-                                        <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
-                                        <div>
-                                            <h4 className="font-semibold">Good Stack Choice</h4>
-                                            <p className="text-sm text-muted-foreground">
-                                                Your selected technologies work well together and are suitable for most projects.
-                                            </p>
+                        <TabsContent value="metrics" className="space-y-4 outline-none">
+                            <motion.div 
+                                className="space-y-4"
+                                initial="hidden"
+                                animate="visible"
+                                variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+                            >
+                                {stackMetrics.map((tech, index) => (
+                                    <motion.div 
+                                        key={index}
+                                        variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0, transition: { type: "spring", stiffness: 300, damping: 25 } } }}
+                                        whileHover={{ scale: 1.01 }}
+                                        whileTap={{ scale: 0.99 }}
+                                    >
+                                        <Card>
+                                            <CardContent className="p-4">
+                                                <h4 className="font-semibold mb-2">{tech.name}</h4>
+                                                <div className="space-y-2">
+                                                    <div className="flex justify-between items-center">
+                                                        <span className="text-sm">Popularity</span>
+                                                        <span className="text-sm font-medium">{tech.popularity}%</span>
+                                                    </div>
+                                                    <Progress value={tech.popularity} className="h-2" />
+                                                </div>
+                                            </CardContent>
+                                        </Card>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </TabsContent>
+
+                        <TabsContent value="recommendations" className="space-y-4 outline-none">
+                            <motion.div
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                            >
+                                <Card>
+                                    <CardContent className="p-4">
+                                        <div className="flex items-start gap-3">
+                                            <CheckCircle className="h-5 w-5 text-green-500 mt-0.5" />
+                                            <div>
+                                                <h4 className="font-semibold">Good Stack Choice</h4>
+                                                <p className="text-sm text-muted-foreground">
+                                                    Your selected technologies work well together and are suitable for most projects.
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
                         </TabsContent>
                     </Tabs>
                 </CardContent>

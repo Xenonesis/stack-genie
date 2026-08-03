@@ -17,8 +17,9 @@ import { useTechStack } from "@/hooks/useTechStack";
 import { callAI } from "@/utils/ai";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { logger } from "@/lib/logger";
-
-// Fallback icon component
+import { TechCard } from "./tech-stack/tech-card";
+import { CategorySection } from "./tech-stack/category-section";
+import { SelectedStackSidebar } from "./tech-stack/selected-stack-sidebar";
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
   <div
     className="bg-gray-600 rounded-md border border-border shadow-xs flex items-center justify-center text-foreground font-bold"
@@ -1043,7 +1044,7 @@ export function TechStackBuilderContent() {
     <div className="min-h-screen bg-background text-foreground flex flex-col lg:flex-row">
       {/* Mobile Header - Show/Hide Sidebar Toggle */}
       <div className="lg:hidden bg-card/90 backdrop-blur-md border-b border-border/80 shadow-sm p-4 flex items-center justify-between sticky top-0 z-30">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 p-1 flex items-center justify-center shrink-0">
             <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
           </div>
@@ -1069,22 +1070,22 @@ export function TechStackBuilderContent() {
       {/* Sidebar */}
       <div
         id="mobile-sidebar"
-        className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card/95 backdrop-blur-sm border-r border-border/80 flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
+        className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card/95 backdrop-blur-md border-r border-border/30 flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0 shadow-[4px_0_24px_rgba(0,0,0,0.02)]"
       >
         {/* Sidebar Brand Header */}
-        <div className="p-4 border-b border-border flex items-center gap-3 flex-shrink-0">
-          <div className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 p-1.5 flex items-center justify-center shadow-xs shrink-0">
-            <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
+        <div className="p-6 flex items-center gap-4 flex-shrink-0">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/20 p-2 flex items-center justify-center shadow-sm shrink-0">
+            <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain drop-shadow-sm" />
           </div>
           <div>
-            <h2 className="font-bold text-base text-foreground tracking-tight font-display">Tech Genie</h2>
-            <p className="text-[11px] text-muted-foreground font-medium">AI Tech Stack Architect</p>
+            <h2 className="font-bold text-lg text-foreground tracking-tight font-display">Tech Genie</h2>
+            <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-widest">AI Stack Architect</p>
           </div>
         </div>
 
         {/* Fixed Header - Project Name */}
-        <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
-          <label className="block text-xs font-medium tracking-wider sm:text-sm text-muted-foreground mb-2">Project Name:</label>
+        <div className="px-6 pb-6 flex-shrink-0">
+          <label className="block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Project Details</label>
           <Input
             value={projectName}
             onChange={(e) => {
@@ -1092,10 +1093,9 @@ export function TechStackBuilderContent() {
               const value = e.target.value.toLowerCase().replace(/[^a-z0-9-_]/g, '');
               setProjectName(value);
             }}
-            className="bg-background border-border text-foreground text-sm"
+            className="bg-accent/50 border-0 text-foreground text-sm focus-visible:ring-1 focus-visible:ring-primary/50"
             placeholder="my-tech-genie-app"
           />
-          <p className="text-xs font-medium tracking-wider text-muted-foreground mt-1">Only lowercase letters, numbers, hyphens, and underscores</p>
         </div>
 
         {/* Scrollable Content */}
@@ -1103,58 +1103,58 @@ export function TechStackBuilderContent() {
           <div className="flex flex-col">
 
             {/* AI-Powered Section */}
-            <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+            <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
               <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-                <label className="text-xs font-medium tracking-wider sm:text-sm text-muted-foreground font-medium">AI Assistant</label>
+                <Sparkles className="w-4 h-4 text-primary" />
+                <label className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">AI Assistant</label>
               </div>
 
-              <div className="space-y-2 sm:space-y-3">
+              <div className="space-y-3">
                 <div>
                   <Input
                     value={projectDescription}
                     onChange={(e) => setProjectDescription(e.target.value)}
-                    className="bg-background border-border text-foreground text-xs font-medium tracking-wider sm:text-sm"
+                    className="bg-accent/50 border-0 text-foreground text-sm focus-visible:ring-1 focus-visible:ring-primary/50"
                     placeholder="Describe your project..."
                   />
                 </div>
 
                 <div className="grid grid-cols-1 gap-2">
                   <Button
-                    variant="outline"
+                    variant="default"
                     size="sm"
                     onClick={generateAIStack}
                     disabled={isAnalyzing || !projectDescription.trim()}
-                    className="bg-primary border-0 text-foreground hover:bg-primary/90 disabled:opacity-50 text-xs font-medium tracking-wider"
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50 text-xs font-semibold shadow-sm"
                   >
                     {isAnalyzing ? (
                       <>
-                        <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin mr-1" />
+                        <div className="w-3 h-3 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin mr-2" />
                         Generating...
                       </>
                     ) : (
                       <>
-                        <Brain className="w-3 h-3 mr-1" />
+                        <Brain className="w-4 h-4 mr-2" />
                         Generate AI Stack
                       </>
                     )}
                   </Button>
 
                   <Button
-                    variant="outline"
+                    variant="secondary"
                     size="sm"
                     onClick={analyzeStackWithAI}
                     disabled={isAnalyzing || !projectDescription.trim()}
-                    className="bg-background border-primary/40 text-primary hover:bg-primary/15 disabled:opacity-50 text-xs font-medium tracking-wider"
+                    className="w-full bg-secondary/60 text-secondary-foreground hover:bg-secondary disabled:opacity-50 text-xs font-semibold"
                   >
                     {isAnalyzing ? (
                       <>
-                        <div className="w-3 h-3 border border-primary/60 border-t-transparent rounded-full animate-spin mr-1" />
+                        <div className="w-3 h-3 border-2 border-secondary-foreground border-t-transparent rounded-full animate-spin mr-2" />
                         Analyzing...
                       </>
                     ) : (
                       <>
-                        <Zap className="w-3 h-3 mr-1" />
+                        <Zap className="w-4 h-4 mr-2" />
                         Analyze Current Stack
                       </>
                     )}
@@ -1165,11 +1165,11 @@ export function TechStackBuilderContent() {
 
             {/* AI Recommendations Panel */}
             {showAiPanel && aiAnalysis && (
-              <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+              <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center gap-2">
-                    <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
-                    <label className="text-xs font-medium tracking-wider sm:text-sm text-muted-foreground font-medium">AI Analysis</label>
+                    <Brain className="w-4 h-4 text-primary" />
+                    <label className="text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">AI Analysis</label>
                   </div>
                   <Button
                     variant="ghost"
@@ -1177,18 +1177,19 @@ export function TechStackBuilderContent() {
                     onClick={() => setShowAiPanel(false)}
                     className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-3.5 h-3.5" />
                   </Button>
                 </div>
 
-                <div className="space-y-2 sm:space-y-3 max-h-48 sm:max-h-64 overflow-y-auto">
+                <div className="space-y-3 max-h-64 overflow-y-auto pr-1">
                   {/* Project Analysis */}
-                  <div className="bg-background rounded-md border border-border shadow-xs p-4">
-                    <div className="text-xs font-medium tracking-wider text-primary font-medium mb-1">Project Type</div>
-                    <div className="text-xs font-medium tracking-wider text-foreground">{aiAnalysis.projectType}</div>
-                    <div className="text-xs font-medium tracking-wider text-muted-foreground mt-1">
-                      Complexity: <span className={`font-medium ${aiAnalysis.complexity === 'Simple' ? 'text-success' :
-                        aiAnalysis.complexity === 'Moderate' ? 'text-warning' : 'text-destructive'
+                  <div className="bg-accent/40 rounded-xl p-3">
+                    <div className="text-[10px] font-bold tracking-widest uppercase text-primary mb-1">Project Type</div>
+                    <div className="text-xs font-semibold text-foreground">{aiAnalysis.projectType}</div>
+                    <div className="text-xs text-muted-foreground mt-1.5 flex items-center justify-between">
+                      <span>Complexity:</span>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${aiAnalysis.complexity === 'Simple' ? 'bg-success/20 text-success' :
+                        aiAnalysis.complexity === 'Moderate' ? 'bg-warning/20 text-warning' : 'bg-destructive/20 text-destructive'
                         }`}>{aiAnalysis.complexity}</span>
                     </div>
                   </div>
@@ -1196,33 +1197,33 @@ export function TechStackBuilderContent() {
                   {/* Recommendations */}
                   {aiAnalysis.recommendations.length > 0 && (
                     <div>
-                      <div className="text-xs font-medium tracking-wider text-success font-medium mb-2">Recommendations</div>
+                      <div className="text-[10px] font-bold tracking-widest uppercase text-success mb-2">Recommended Tech</div>
                       <div className="space-y-2">
                         {aiAnalysis.recommendations.slice(0, 3).map((rec, index) => (
-                          <div key={index} className="bg-background rounded-md border border-border shadow-xs p-2">
-                            <div className="flex items-center justify-between mb-1">
+                          <div key={index} className="bg-accent/30 rounded-lg p-2.5 hover:bg-accent/50 transition-colors">
+                            <div className="flex items-center justify-between mb-1.5">
                               <div className="flex items-center gap-2">
                                 <TechIcon
                                   src={rec.technology.icon || ""}
                                   alt={rec.technology.name}
-                                  width={12}
-                                  height={12}
-                                  className="rounded"
+                                  width={14}
+                                  height={14}
+                                  className="rounded-sm"
                                 />
-                                <span className="text-xs font-medium tracking-wider text-foreground font-medium">{rec.technology.name}</span>
+                                <span className="text-xs font-medium text-foreground">{rec.technology.name}</span>
                               </div>
                               <Button
                                 variant="ghost"
                                 size="sm"
                                 onClick={() => applyAIRecommendation(rec)}
-                                className="h-5 w-5 p-0 text-success hover:text-success"
+                                className="h-6 px-2 text-[10px] font-bold uppercase tracking-wider text-success hover:bg-success/20 hover:text-success"
                               >
-                                <Plus className="w-3 h-3" />
+                                <Plus className="w-3 h-3 mr-1" /> Add
                               </Button>
                             </div>
-                            <div className="text-xs font-medium tracking-wider text-muted-foreground">{rec.reason}</div>
-                            <div className="text-xs font-medium tracking-wider text-primary mt-1">
-                              Confidence: {rec.confidence}%
+                            <div className="text-[11px] text-muted-foreground leading-snug">{rec.reason}</div>
+                            <div className="text-[10px] font-semibold text-primary/80 mt-1.5">
+                              {rec.confidence}% Match
                             </div>
                           </div>
                         ))}
@@ -1233,11 +1234,11 @@ export function TechStackBuilderContent() {
                   {/* Warnings */}
                   {aiAnalysis.warnings.length > 0 && (
                     <div>
-                      <div className="text-xs font-medium tracking-wider text-warning font-medium mb-2">Warnings</div>
-                      <div className="space-y-1">
+                      <div className="text-[10px] font-bold tracking-widest uppercase text-warning mb-2">Warnings</div>
+                      <div className="space-y-1.5">
                         {aiAnalysis.warnings.slice(0, 2).map((warning, index) => (
-                          <div key={index} className="bg-warning/15 border border-warning/40 rounded-md shadow-xs p-2">
-                            <div className="text-xs font-medium tracking-wider text-foreground">{warning}</div>
+                          <div key={index} className="bg-warning/10 rounded-lg p-2.5 text-xs text-foreground/90">
+                            {warning}
                           </div>
                         ))}
                       </div>
@@ -1247,11 +1248,11 @@ export function TechStackBuilderContent() {
                   {/* Suggestions */}
                   {aiAnalysis.suggestions.length > 0 && (
                     <div>
-                      <div className="text-xs font-medium tracking-wider text-primary font-medium mb-2">Suggestions</div>
-                      <div className="space-y-1">
+                      <div className="text-[10px] font-bold tracking-widest uppercase text-primary mb-2">Suggestions</div>
+                      <div className="space-y-1.5">
                         {aiAnalysis.suggestions.slice(0, 2).map((suggestion, index) => (
-                          <div key={index} className="bg-primary/15 border border-primary/40 rounded-md shadow-xs p-2">
-                            <div className="text-xs font-medium tracking-wider text-foreground">{suggestion}</div>
+                          <div key={index} className="bg-primary/10 rounded-lg p-2.5 text-xs text-foreground/90">
+                            {suggestion}
                           </div>
                         ))}
                       </div>
@@ -1262,37 +1263,37 @@ export function TechStackBuilderContent() {
             )}
 
             {/* Action Buttons */}
-            <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
+            <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
               <div className="grid grid-cols-2 gap-2">
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={clearStack}
-                  className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
+                  className="bg-muted/30 hover:bg-muted/80 text-foreground text-xs font-medium"
                 >
-                  <RotateCcw className="w-4 h-4 mr-1" />
+                  <RotateCcw className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
                   Reset
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={generateRandomStack}
-                  className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
+                  className="bg-muted/30 hover:bg-muted/80 text-foreground text-xs font-medium"
                 >
-                  <Shuffle className="w-4 h-4 mr-1" />
+                  <Shuffle className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
                   Random
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => setShowPopularStacks(true)}
-                  className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
+                  className="bg-muted/30 hover:bg-muted/80 text-foreground text-xs font-medium"
                 >
-                  <Sparkles className="w-4 h-4 mr-1" />
+                  <Sparkles className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
                   Templates
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => {
                     if (getTotalSelected() === 0) return;
@@ -1309,13 +1310,13 @@ export function TechStackBuilderContent() {
                     });
                   }}
                   disabled={getTotalSelected() === 0}
-                  className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
+                  className="bg-muted/30 hover:bg-muted/80 text-foreground text-xs font-medium disabled:opacity-50"
                 >
-                  <Save className="w-4 h-4 mr-1" />
+                  <Save className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
                   Save
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => {
                     if (getTotalSelected() === 0) return;
@@ -1348,18 +1349,18 @@ export function TechStackBuilderContent() {
                     }
                   }}
                   disabled={getTotalSelected() === 0}
-                  className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground disabled:opacity-50"
+                  className="bg-muted/30 hover:bg-muted/80 text-foreground text-xs font-medium disabled:opacity-50"
                 >
-                  <Share className="w-4 h-4 mr-1" />
+                  <Share className="w-3.5 h-3.5 mr-2 text-muted-foreground" />
                   Share
                 </Button>
               </div>
             </div>
 
             {/* Command Generator */}
-            <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
-              <div className="flex items-center justify-between mb-2">
-                <label className="block text-xs font-medium tracking-wider sm:text-sm text-muted-foreground">Generated Command:</label>
+            <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
+              <div className="flex items-center justify-between mb-3">
+                <label className="block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground">Generated Command</label>
                 <Button
                   variant="ghost"
                   size="sm"
@@ -1373,7 +1374,7 @@ export function TechStackBuilderContent() {
                     }
                   }}
                   disabled={!command || !projectDescription.trim()}
-                  className="h-6 text-xs font-medium tracking-wider text-primary hover:text-primary-foreground disabled:opacity-50"
+                  className="h-6 px-2 text-[10px] font-bold tracking-widest uppercase text-primary hover:text-primary-foreground disabled:opacity-50"
                 >
                   <Sparkles className="w-3 h-3 mr-1" />
                   AI Enhance
@@ -1385,7 +1386,7 @@ export function TechStackBuilderContent() {
                     ref={commandTextareaRef}
                     value={command}
                     readOnly
-                    className="w-full bg-background border border-border text-foreground text-sm font-mono tracking-tight rounded-md px-3 py-2 resize-none overflow-hidden transition-all duration-200"
+                    className="w-full bg-accent/50 border-0 text-foreground text-xs font-mono rounded-md px-3 py-2 resize-none overflow-hidden focus-visible:ring-1 focus-visible:ring-primary/50 transition-all duration-200"
                     placeholder="Select technologies to generate command..."
                     style={{
                       minHeight: '40px',
@@ -1394,11 +1395,11 @@ export function TechStackBuilderContent() {
                   />
                 </div>
                 <Button
-                  variant="outline"
+                  variant="secondary"
                   size="sm"
                   onClick={copyCommand}
                   disabled={!command}
-                  className="bg-background border-border text-foreground hover:bg-accent text-accent-foreground disabled:opacity-50 self-start"
+                  className="bg-secondary/60 hover:bg-secondary text-secondary-foreground disabled:opacity-50 self-start shrink-0"
                 >
                   <Copy className="w-4 h-4" />
                 </Button>
@@ -1406,109 +1407,63 @@ export function TechStackBuilderContent() {
             </div>
 
             {/* Selected Stack */}
-            <div className="p-4 sm:p-4 border-b border-border flex-shrink-0">
-              <div className="flex items-center justify-between mb-2">
-                <label className="text-xs font-medium tracking-wider sm:text-sm text-muted-foreground">Selected Stack ({getTotalSelected()})</label>
-                {getTotalSelected() > 0 && (
-                  <div className="flex items-center gap-1 text-xs font-medium tracking-wider">
-                    {aiAnalysis && (
-                      <div className={`px-2 py-1 rounded-md border border-border shadow-xs text-xs font-medium tracking-wider font-medium ${aiAnalysis.complexity === 'Simple' ? 'bg-success/30 text-success' :
-                        aiAnalysis.complexity === 'Moderate' ? 'bg-warning/20 text-warning' :
-                          'bg-destructive/20 text-destructive'
-                        }`}>
-                        {aiAnalysis.complexity}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
-              <div className="h-32 overflow-y-auto">
-                <div className="space-y-1">
-                  {Object.entries(selectedStack).map(([category, techs]) => (
-                    <div key={category}>
-                      <div className="text-xs font-medium tracking-wider text-muted-foreground font-medium mb-1">{category}</div>
-                      {techs.map((tech) => (
-                        <div key={tech.id} className="flex items-center justify-between bg-background rounded-md border border-border shadow-xs px-2 py-1 mb-1">
-                          <div className="flex items-center gap-2">
-                            <TechIcon
-                              src={tech.icon}
-                              alt={tech.name}
-                              width={16}
-                              height={16}
-                              className="rounded"
-                            />
-                            <span className="text-sm text-foreground">{tech.name}</span>
-                          </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => toggleTechnology(tech)}
-                            className="h-6 w-6 p-0 text-muted-foreground hover:text-foreground hover:bg-accent text-accent-foreground"
-                          >
-                            <X className="w-3 h-3" />
-                          </Button>
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                  {getTotalSelected() === 0 && (
-                    <div className="text-sm text-muted-foreground text-center py-4">
-                      No technologies selected
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
+            <SelectedStackSidebar
+              selectedStack={selectedStack}
+              getTotalSelected={getTotalSelected}
+              aiAnalysis={aiAnalysis}
+              toggleTechnology={toggleTechnology}
+              techIconRenderer={TechIcon}
+            />
 
             {/* Quick Presets */}
-            <div className="p-4 sm:p-4 flex-shrink-0">
-              <label className="block text-xs font-medium tracking-wider sm:text-sm text-muted-foreground mb-2">Quick Presets:</label>
+            <div className="px-6 py-6 border-t border-border/30 flex-shrink-0">
+              <label className="block text-[11px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Quick Presets</label>
               <div className="space-y-1">
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('default')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   Default Stack
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('convex-react')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   Convex + React
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('mobile')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   Mobile App
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('api-only')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   API Only
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('full-featured')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   Full Featured
                 </Button>
                 <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => applyPreset('saas-pro')}
-                  className="w-full justify-start bg-card border-border text-foreground hover:bg-accent hover:text-accent-foreground transition-colors text-xs font-medium tracking-wider font-medium"
+                  className="w-full justify-start text-foreground hover:bg-accent/60 hover:text-accent-foreground transition-colors text-xs font-medium"
                 >
                   SaaS Pro
                 </Button>
@@ -1530,9 +1485,9 @@ export function TechStackBuilderContent() {
       <div className="flex-1 flex flex-col w-full lg:h-screen overflow-hidden">
         {/* Header */}
         <div className="p-6 lg:p-8 border-b border-border flex-shrink-0">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-4 mb-4 sm:mb-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div className="flex-1 min-w-0">
-              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground flex items-center gap-3 font-display tracking-tight font-semibold">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-foreground flex items-center gap-4 font-display tracking-tight">
                 <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/10 border border-primary/20 p-1 flex items-center justify-center shrink-0">
                   <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
                 </div>
@@ -1572,152 +1527,38 @@ export function TechStackBuilderContent() {
         <div className="flex-1 overflow-y-auto">
           <div className="p-6 lg:p-8">
             <AnimatePresence>
-              {categories.map((category) => {
-                const categoryTechs = getTechnologiesByCategory(category);
-                if (categoryTechs.length === 0) return null;
-                const isExpanded = expandedCategories.has(category);
+              <motion.div
+                initial="hidden"
+                animate="visible"
+                variants={{
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.1
+                    }
+                  }
+                }}
+              >
+                {categories.map((category) => {
+                  const categoryTechs = getTechnologiesByCategory(category);
+                  if (categoryTechs.length === 0) return null;
+                  const isExpanded = expandedCategories.has(category);
 
-                return (
-                  <motion.div
-                    key={category}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    className="mb-8"
-                  >
-                    <button
-                      onClick={() => toggleCategory(category)}
-                      className="flex items-center justify-between w-full mb-4 text-left"
-                    >
-                      <h2 className="text-xl font-semibold text-foreground font-display tracking-tight font-semibold">{category}</h2>
-                      <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-accent text-accent-foreground text-foreground">
-                          {categoryTechs.length}
-                        </Badge>
-                        <ChevronDown
-                          className={`w-5 h-5 text-muted-foreground transition-transform ${isExpanded ? 'rotate-180' : ''
-                            }`}
-                        />
-                      </div>
-                    </button>
-
-                    <AnimatePresence>
-                      {isExpanded && (
-                        <motion.div
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-4"
-                        >
-                          {categoryTechs.map((tech) => {
-                            const isSelected = isTechnologySelected(tech);
-                            return (
-                              <motion.div
-                                key={tech.id}
-                                layout
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                              >
-                                <Card
-                                  className={`cursor-pointer transition-all duration-200 ${isSelected
-                                    ? 'bg-primary/20 border-blue-500 ring-1 ring-blue-500/50'
-                                    : 'bg-card border-border hover:border-input/50 hover:bg-accent text-accent-foreground'
-                                    }`}
-                                  onClick={() => toggleTechnology(tech)}
-                                >
-                                  <CardContent className="p-4 sm:p-4">
-                                    <div className="flex items-start justify-between mb-2 sm:mb-4">
-                                      <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
-                                        <TechIcon
-                                          src={tech.icon}
-                                          alt={tech.name}
-                                          width={28}
-                                          height={28}
-                                          className="rounded-md border border-border shadow-xs flex-shrink-0"
-                                        />
-                                        <div className="flex-1 min-w-0">
-                                          <div className="flex items-center gap-1 sm:gap-2 mb-1 flex-wrap">
-                                            <h3 className="font-semibold text-foreground text-xs font-medium tracking-wider sm:text-sm truncate">{tech.name}</h3>
-                                            {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
-                                              <div className="flex items-center gap-0.5 sm:gap-1 flex-shrink-0">
-                                                <Sparkles className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
-                                                <span className="text-[10px] sm:text-xs font-medium tracking-wider text-primary font-medium">AI Pick</span>
-                                              </div>
-                                            )}
-                                          </div>
-                                          {/* AI Compatibility Indicator */}
-                                          {Object.values(selectedStack).flat().length > 0 && (
-                                            <div className="flex items-center gap-0.5 sm:gap-1">
-                                              {(() => {
-                                                const selectedTechs = Object.values(selectedStack).flat();
-                                                const hasCompatibleFramework = selectedTechs.some(selected => {
-                                                  // Simple compatibility logic
-                                                  if (tech.category === "CSS Framework" && selected.category === "Web Framework") return true;
-                                                  if (tech.category === "Database" && (selected.category === "Backend Framework" || selected.category === "Web Framework")) return true;
-                                                  if (tech.category === "ORM" && selected.category === "Database") return true;
-                                                  if (tech.category === "Authentication" && selected.category === "Web Framework") return true;
-                                                  if (tech.category === "State Management" && selected.category === "Web Framework") return true;
-                                                  return false;
-                                                });
-
-                                                if (hasCompatibleFramework) {
-                                                  return (
-                                                    <>
-                                                      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                                                      <span className="text-[10px] sm:text-xs font-medium tracking-wider text-success">Compatible</span>
-                                                    </>
-                                                  );
-                                                }
-                                                return null;
-                                              })()}
-                                            </div>
-                                          )}
-                                        </div>
-                                      </div>
-                                      {isSelected && (
-                                        <motion.div
-                                          initial={{ scale: 0 }}
-                                          animate={{ scale: 1 }}
-                                          className="w-4 h-4 sm:w-5 sm:h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
-                                        >
-                                          <Plus className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-foreground rotate-45" />
-                                        </motion.div>
-                                      )}
-                                    </div>
-                                    <p className="text-muted-foreground text-xs sm:text-xs font-medium tracking-wider leading-relaxed mb-2 line-clamp-2">
-                                      {tech.description}
-                                    </p>
-
-                                    {/* AI Recommendation Reason */}
-                                    {(() => {
-                                      const recommendation = aiRecommendations.find(rec => rec.technology.id === tech.id);
-                                      if (recommendation) {
-                                        return (
-                                          <div className="bg-primary/15 border border-primary/35 rounded-md shadow-xs p-1.5 sm:p-2 mt-2">
-                                            <div className="flex items-center gap-1 mb-1">
-                                              <Brain className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-primary" />
-                                              <span className="text-[10px] sm:text-xs font-medium tracking-wider text-primary font-medium">AI Insight</span>
-                                            </div>
-                                            <p className="text-[10px] sm:text-xs font-medium tracking-wider text-foreground/85 line-clamp-2">{recommendation.reason}</p>
-                                            <div className="text-[10px] sm:text-xs font-medium tracking-wider text-primary mt-1">
-                                              Confidence: {recommendation.confidence}%
-                                            </div>
-                                          </div>
-                                        );
-                                      }
-                                      return null;
-                                    })()}
-                                  </CardContent>
-                                </Card>
-                              </motion.div>
-                            );
-                          })}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
+                  return (
+                    <CategorySection
+                      key={category}
+                      category={category}
+                      categoryTechs={categoryTechs}
+                      isExpanded={isExpanded}
+                      toggleCategory={toggleCategory}
+                      isTechnologySelected={isTechnologySelected}
+                      toggleTechnology={toggleTechnology}
+                      aiRecommendations={aiRecommendations}
+                      selectedStack={selectedStack}
+                      techIconRenderer={TechIcon}
+                    />
+                  );
+                })}
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>
