@@ -24,7 +24,7 @@ import { ArchitectureFlowView } from "./tech-stack/architecture-flow-view";
 import { TechComparatorModal } from "./tech-stack/tech-comparator-modal";
 const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
   <div
-    className="bg-gray-600 rounded-md border border-border shadow-xs flex items-center justify-center text-foreground font-bold"
+    className="bg-muted rounded-md border border-border shadow-xs flex items-center justify-center text-foreground font-bold"
     style={{ width: `${size}px`, height: `${size}px`, fontSize: `${size * 0.4}px` }}
   >
     {name.charAt(0).toUpperCase()}
@@ -1053,16 +1053,16 @@ export function TechStackBuilderContent() {
           <div className="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 p-1 flex items-center justify-center shrink-0">
             <img src="/logo.svg" alt="Tech Genie Logo" className="w-full h-full object-contain" />
           </div>
-          <h1 className="text-lg font-bold text-foreground font-display tracking-tight font-semibold">Tech Genie</h1>
+          <h1 className="text-lg font-bold text-foreground font-display tracking-tight">Tech Genie</h1>
         </div>
         <Button
           variant="outline"
           size="sm"
           onClick={() => {
             const sidebar = document.getElementById('mobile-sidebar');
-            if (sidebar) {
-              sidebar.classList.toggle('hidden');
-            }
+            const overlay = document.getElementById('sidebar-overlay');
+            if (sidebar) sidebar.classList.toggle('sidebar-open');
+            if (overlay) overlay.classList.toggle('active');
           }}
           className="bg-background border-border text-foreground hover:bg-accent hover:text-accent-foreground"
         >
@@ -1071,6 +1071,18 @@ export function TechStackBuilderContent() {
           </svg>
         </Button>
       </div>
+
+      {/* Mobile Sidebar Overlay */}
+      <div
+        id="sidebar-overlay"
+        className="sidebar-overlay lg:hidden"
+        onClick={() => {
+          const sidebar = document.getElementById('mobile-sidebar');
+          const overlay = document.getElementById('sidebar-overlay');
+          if (sidebar) sidebar.classList.remove('sidebar-open');
+          if (overlay) overlay.classList.remove('active');
+        }}
+      />
 
       {/* Sidebar */}
       <div
@@ -1533,8 +1545,17 @@ export function TechStackBuilderContent() {
                 placeholder="Search technologies..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-9 bg-accent/40 border-0 text-foreground placeholder:text-muted-foreground text-sm focus-visible:ring-1 focus-visible:ring-primary/50"
+                className="pl-9 pr-9 bg-accent/40 border-0 text-foreground placeholder:text-muted-foreground text-sm focus-visible:ring-1 focus-visible:ring-primary/50"
               />
+              {searchTerm && (
+                <button
+                  onClick={() => setSearchTerm('')}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  aria-label="Clear search"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
             </div>
 
             {/* View Switcher Pills */}
@@ -1655,7 +1676,7 @@ export function TechStackBuilderContent() {
                 <select
                   value={templateUseCaseFilter}
                   onChange={(e) => setTemplateUseCaseFilter(e.target.value)}
-                  className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="themed-select h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                 >
                   {templateUseCases.map((useCase) => (
                     <option key={useCase} value={useCase}>{useCase}</option>
@@ -1664,7 +1685,7 @@ export function TechStackBuilderContent() {
                 <select
                   value={templateInfraFilter}
                   onChange={(e) => setTemplateInfraFilter(e.target.value)}
-                  className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="themed-select h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                 >
                   {['All', 'Minimal', 'Standard', 'Production'].map((infra) => (
                     <option key={infra} value={infra}>{infra}</option>
@@ -1673,7 +1694,7 @@ export function TechStackBuilderContent() {
                 <select
                   value={templateAiFilter}
                   onChange={(e) => setTemplateAiFilter(e.target.value)}
-                  className="h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
+                  className="themed-select h-9 rounded-md border border-border bg-card px-3 text-sm text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/60"
                 >
                   {['All', 'AI Ready', 'Non-AI'].map((ai) => (
                     <option key={ai} value={ai}>{ai}</option>

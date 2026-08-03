@@ -53,35 +53,9 @@ export function TechCard({
               <div>
                 <h3 className="font-semibold text-foreground text-sm sm:text-base tracking-tight">{tech.name}</h3>
                 {aiRecommendations.some(rec => rec.technology.id === tech.id) && (
-                    <div className="flex items-center gap-1 mt-0.5">
-                      <Sparkles className="w-3 h-3 text-primary" />
-                      <span className="text-[10px] font-medium text-primary">AI Pick</span>
-                    </div>
-                )}
-                {/* AI Compatibility Indicator */}
-                {Object.values(selectedStack).flat().length > 0 && (
-                  <div className="flex items-center gap-2">
-                    {(() => {
-                      const selectedTechs = Object.values(selectedStack).flat();
-                      const hasCompatibleFramework = selectedTechs.some(selected => {
-                        if (tech.category === "CSS Framework" && selected.category === "Web Framework") return true;
-                        if (tech.category === "Database" && (selected.category === "Backend Framework" || selected.category === "Web Framework")) return true;
-                        if (tech.category === "ORM" && selected.category === "Database") return true;
-                        if (tech.category === "Authentication" && selected.category === "Web Framework") return true;
-                        if (tech.category === "State Management" && selected.category === "Web Framework") return true;
-                        return false;
-                      });
-
-                      if (hasCompatibleFramework) {
-                        return (
-                          <>
-                            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-green-400 rounded-full flex-shrink-0"></div>
-                            <span className="text-[10px] sm:text-xs font-medium tracking-wider text-success">Compatible</span>
-                          </>
-                        );
-                      }
-                      return null;
-                    })()}
+                  <div className="flex items-center gap-1 mt-0.5">
+                    <Sparkles className="w-3 h-3 text-primary" />
+                    <span className="text-[10px] font-medium text-primary">AI Pick</span>
                   </div>
                 )}
               </div>
@@ -96,6 +70,7 @@ export function TechCard({
               </motion.div>
             )}
           </div>
+
           <p className="text-muted-foreground text-xs sm:text-xs font-medium tracking-wider leading-relaxed mb-2 line-clamp-2">
             {tech.description}
           </p>

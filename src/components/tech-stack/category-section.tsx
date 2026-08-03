@@ -79,7 +79,7 @@ export function CategorySection({
             }}
             className="overflow-hidden"
           >
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5 py-4 p-2 -m-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-5">
             {categoryTechs.map((tech) => {
               const isSelected = isTechnologySelected(tech);
               return (

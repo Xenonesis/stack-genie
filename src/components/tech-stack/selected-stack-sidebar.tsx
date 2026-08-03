@@ -61,55 +61,61 @@ export function SelectedStackSidebar({
           </div>
         </div>
       )}
-      <div className="h-40 overflow-y-auto pr-2 -mr-2">
-        <div className="space-y-3">
-          <AnimatePresence>
-            {Object.entries(selectedStack).map(([category, techs]) => (
-              <div key={category}>
-                {techs.length > 0 && <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground/60 mb-2">{category}</div>}
-                <AnimatePresence>
-                  {techs.map((tech) => (
-                    <motion.div
-                      key={tech.id}
-                      initial={{ opacity: 0, x: -10, height: 0 }}
-                      animate={{ opacity: 1, x: 0, height: "auto" }}
-                      exit={{ opacity: 0, x: 10, height: 0 }}
-                      className="flex items-center justify-between bg-accent/40 rounded-lg px-3 py-2 mb-2 group transition-colors hover:bg-accent/60"
-                    >
-                      <div className="flex items-center gap-3">
-                        <TechIcon
-                          src={tech.icon}
-                          alt={tech.name}
-                          width={16}
-                          height={16}
-                          className="rounded-sm"
-                        />
-                        <span className="text-sm font-medium text-foreground">{tech.name}</span>
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => toggleTechnology(tech)}
-                        className="h-6 w-6 p-0 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/20 hover:text-destructive"
+      <div className="relative">
+        <div className="h-52 overflow-y-auto pr-2 -mr-2 stack-scroll-container">
+          <div className="space-y-3">
+            <AnimatePresence>
+              {Object.entries(selectedStack).map(([category, techs]) => (
+                <div key={category}>
+                  {techs.length > 0 && <div className="text-[10px] font-semibold tracking-widest uppercase text-muted-foreground/60 mb-2">{category}</div>}
+                  <AnimatePresence>
+                    {techs.map((tech) => (
+                      <motion.div
+                        key={tech.id}
+                        initial={{ opacity: 0, x: -10, height: 0 }}
+                        animate={{ opacity: 1, x: 0, height: "auto" }}
+                        exit={{ opacity: 0, x: 10, height: 0 }}
+                        className="flex items-center justify-between bg-accent/40 rounded-lg px-3 py-2 mb-2 group transition-colors hover:bg-accent/60"
                       >
-                        <X className="w-3.5 h-3.5" />
-                      </Button>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-              </div>
-            ))}
-          </AnimatePresence>
-          {getTotalSelected() === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="text-xs font-medium text-muted-foreground/60 text-center py-6 border border-dashed border-border/40 rounded-xl"
-            >
-              No technologies selected
-            </motion.div>
-          )}
+                        <div className="flex items-center gap-3">
+                          <TechIcon
+                            src={tech.icon}
+                            alt={tech.name}
+                            width={16}
+                            height={16}
+                            className="rounded-sm"
+                          />
+                          <span className="text-sm font-medium text-foreground">{tech.name}</span>
+                        </div>
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => toggleTechnology(tech)}
+                          className="h-6 w-6 p-0 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity hover:bg-destructive/20 hover:text-destructive"
+                        >
+                          <X className="w-3.5 h-3.5" />
+                        </Button>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </AnimatePresence>
+            {getTotalSelected() === 0 && (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-xs font-medium text-muted-foreground/60 text-center py-6 border border-dashed border-border/40 rounded-xl"
+              >
+                No technologies selected
+              </motion.div>
+            )}
+          </div>
         </div>
+        {/* Fade-out bottom hint to indicate more content can be scrolled */}
+        {getTotalSelected() > 3 && (
+          <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-card to-transparent rounded-b-lg" />
+        )}
       </div>
     </div>
   );

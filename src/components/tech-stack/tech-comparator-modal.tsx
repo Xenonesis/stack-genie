@@ -29,7 +29,7 @@ export function TechComparatorModal({ isOpen, onClose, allTechnologies, techIcon
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="max-w-4xl bg-card border-border/50 text-foreground p-6 rounded-2xl shadow-2xl">
+      <DialogContent className="max-w-4xl bg-zinc-950 dark:bg-zinc-950 bg-white border-zinc-800 text-foreground p-6 rounded-2xl shadow-2xl opacity-100">
         <DialogHeader className="mb-4">
           <div className="flex items-center gap-2">
             <Scale className="w-5 h-5 text-primary" />
