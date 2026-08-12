@@ -541,64 +541,52 @@ export const technologyData: Technology[] = [
 
     // OpenTelemetry
     { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Vendor-neutral observability framework for distributed systems", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
-];
+// API Documentation
+    { id: "redoc-cli", name: "Redoc CLI", category: "API Documentation", description: "CLI for OpenAPI docs", website: "https://redocly.com", color: "#00707C", npm: "npm install -g redoc-cli", icon: "https://redocly.com/favicon.ico" },
 
+    // Background Jobs
+    { id: "sidekiq", name: "Sidekiq", category: "Background Jobs", description: "Background job processing for Ruby", website: "https://sidekiq.com", color: "#000000", npm: "gem install sidekiq", icon: "https://sidekiq.com/img/sidekiq-icon@2x-180x180.png" },
+    { id: "resque", name: "Resque", category: "Message Queues/Event Streaming", description: "Redis-backed job queue for Ruby", website: "https://github.com/resque/resque", color: "#FF6600", npm: "gem install resque", icon: "https://avatars.githubusercontent.com/u/12885341?s=200&v=4" },
+    { id: "celery", name: "Celery", category: "Message Queues/Event Streaming", description: "Distributed task queue for Python", website: "https://docs.celeryproject.org", color: "#FDB515", npm: "pip install celery", icon: "https://docs.celeryproject.org/en/stable/_static/celery-logo-dark.png" },
+    { id: "rq", name: "RQ", category: "Message Queues/Event Streaming", description: "Redis Queue for Python", website: "https://python-rq.org", color: "#DC382D", npm: "pip install rq", icon: "https://python-rq.org/img/rq-logo.png" },
 
-export const categories = [
-    "Web Framework",
-    "Native Framework",
-    "Backend Framework",
-    "CSS Framework",
-    "Database",
-    "Runtime",
-    "ORM",
-    "Monorepo",
-    "Package Manager",
-    "Testing",
-    "Authentication",
-    "State Management",
-    "Build Tools",
-    "Hosting",
-    "Validation",
-    "GraphQL/API",
-    "Real-time",
-    "CMS",
-    "Search",
-    "Email",
-    "Analytics",
-    "Payment",
-    "Storage",
-    "Languages",
-    "DevOps/Infrastructure",
-    "Monitoring/Observability",
-    "Message Queues/Event Streaming",
-    "API Documentation",
-    "Version Control",
-    "Code Quality/Linting",
-    "AI/LLM",
-    "Vector Database",
-    "Edge/Serverless",
-    "Feature Flags",
-    "Background Jobs",
-    "Dev Environments",
-    "Web3/Blockchain",
-    "Data Engineering",
-    "API Gateway",
-    "Security",
-    "Documentation",
-    "BaaS",
-    "Workflow Automation",
-    "Data Visualization",
-    "Video/Streaming",
-    "MLOps",
-    "AI Agents",
-    "3D/Game Dev",
-    "Maps/Geo",
-    "Push Notifications",
-    "Voice/Audio",
-    "Performance",
-    "Accessibility",
-    "Internationalization",
-    "OpenTelemetry",
-    "IoT"
+    // Data Visualization
+    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "JavaScript charting library", website: "https://www.chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://www.chartjs.org/img/logo.png" },
+    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents", website: "https://d3js.org", color: "#000000", npm: "npm install d3", icon: "https://d3js.org/d3icon.PNG" },
+    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "React-based charting library", website: "https://recharts.org", color: "#3880E0", npm: "npm install recharts", icon: "https://recharts.org/img/favicon.ico" },
+
+    // Maps/Geo
+    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Interactive map library", website: "https://leafletjs.com", color: "#66CC00", npm: "npm install leaflet", icon: "https://leafletjs.com/docs/img/logo-mark.png" },
+    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom map design platform", website: "https://mapbox.com", color: "#1E74C5", npm: "npm install mapbox-gl", icon: "https://maps.mapbox.com/mapbox-gl-js/docs/img/mapbox-icon.png" },
+
+    // Push Notifications
+    { id: "web-push", name: "Web Push", category: "Push Notifications", description: "Self-hosted push notifications", website: "https://github.com/web-push-libs/web-push", color: "#000000", npm: "npm install web-push", icon: "https://www.google.com/favicon.ico" },
+
+    // Accessibility
+    { id: "axe-core", name: "Axe", category: "Accessibility", description: "Accessibility testing tool", website: "https://github.com/dequelabs/axe-core", color: "#000000", npm: "npm install axe-core", icon: "https://www.deque.com/axe/images/axe-icon@3x.png" },
+
+    // Web3/Blockchain
+    { id: "web3", name: "Web3.js", category: "Web3/Blockchain", description: "JavaScript library for Ethereum", website: "https://web3js.readthedocs.io", color: "#8B0000", npm: "npm install web3", icon: "https://web3js.readthedocs.io/en/stable/images/favicon.ico" },
+    { id: "ethers", name: "Ethers.js", category: "Web3/Blockchain", description: "Ethereum library and provider", website: "https://docs.ethers.io", color: "#C0C0C0", npm: "npm install ethers", icon: "https://docs.ethers.io/v5/assets/logos/ethers-32.png" },
+    { id: "solana", name: "Solana", category: "Web3/Blockchain", description: "Solana blockchain SDK", website: "https://solana.com", color: "#99451B", npm: "npm install @solana/web3.js", icon: "https://solana.com/solana-logo1.png" },
+
+    // AI/LLM
+    { id: "anthropic", name: "Anthropic SDK", category: "AI/LLM", description: "Claude API client", website: "https://docs.anthropic.com", color: "#FF5A35", npm: "npm install @anthropic-ai/sdk", icon: "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png" },
+    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "ML models and datasets", website: "https://huggingface.co", color: "#EEE5C0", npm: "npm install @huggingface/hub", icon: "https://huggingface.co/front/images/logos/mark/favicon.ico" },
+    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.ai", color: "#000000", npm: "node install ollama", icon: "https://ollama.ai/favicon.ico" },
+
+    // Edge/Serverless
+    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless on edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "# Web service", icon: "https://workers.cloudflare.com/favicon.ico" },
+
+    // Monorepo
+    { id: "turborepo", name: "TurboRepo", category: "Monorepo", description: "High-performance build system", website: "https://turbo.build/repo", color: "#00ADD8", npm: "npx create-turbo@latest", icon: "https://turbo.build/img/favicon.ico" },
+
+    // Package Manager
+    { id: "bun-package", name: "Bun Package", category: "Package Manager", description: "Package manager for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "# Built into Bun", icon: "https://bun.sh/img/logo.svg" },
+
+    // Feature Flags
+    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Feature flag management", website: "https://flagsmith.com", color: "#FF6600", npm: "# Web service", icon: "https://flagsmith.com/favicon.ico" },
+
+    // Dev Environments
+    { id: "gitpod", name: "Gitpod", category: "Dev Environments", description: "Cloud dev environments", website: "https://gitpod.io", color: "#FF6600", npm: "# Web service", icon: "https://gitpod.io/img/favicon.ico" },
 ];
