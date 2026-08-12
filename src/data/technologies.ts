@@ -471,7 +471,78 @@ export const technologyData: Technology[] = [
     { id: "mqtt", name: "MQTT", category: "IoT", description: "Lightweight messaging protocol for IoT", website: "https://mqtt.org", color: "#660066", npm: "npm install mqtt", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "esp32", name: "ESP32", category: "IoT", description: "Low-cost microcontroller with WiFi/Bluetooth", website: "https://espressif.com", color: "#E7352C", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "arduino", name: "Arduino", category: "IoT", description: "Open-source electronics platform", website: "https://arduino.cc", color: "#00979D", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" }
+,
+    // Additional Technologies - State Management
+    { id: "redux", name: "Redux", category: "State Management", description: "Predictable state container for JavaScript apps", website: "https://redux.js.org", color: "#764ABC", npm: "npm install @reduxjs/toolkit react-redux", icon: "https://redux.js.org/icons/redux-131x131.png" },
+    { id: "mobx", name: "MobX", category: "State Management", description: "Simple, scalable state management", website: "https://mobx.js.org", color: "#FF9955", npm: "npm install mobx mobx-react-lite", icon: "https://avatars.githubusercontent.com/u/17475736?s=200&v=4" },
+    { id: "xstate", name: "XState", category: "State Management", description: "State machines and statecharts", website: "https://xstate.js.org", color: "#2C3E50", npm: "npm install xstate", icon: "https://avatars.githubusercontent.com/u/28773662?s=200&v=4" },
+    { id: "valtio", name: "Valtio", category: "State Management", description: "Makes proxy-state simple for React and Vanilla", website: "https://valtio.pmnd.rs", color: "#1E40AF", npm: "npm install valtio", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
+    { id: "nanostores", name: "Nanostores", category: "State Management", description: "Tiny state manager", website: "https://github.com/nanostores/nanostores", color: "#FF6B35", npm: "npm install nanostores", icon: "https://avatars.githubusercontent.com/u/84611369?s=200&v=4" },
+    { id: "jotai", name: "Jotai", category: "State Management", description: "Primitive and flexible state management for React", website: "https://jotai.org", color: "#000000", npm: "npm install jotai", icon: "https://jotai.org/favicon.svg" },
+    { id: "recoil", name: "Recoil", category: "State Management", description: "Experimental state management library for React apps", website: "https://recoiljs.org", color: "#3578E5", npm: "npm install recoil", icon: "https://recoiljs.org/img/favicon.png" },
+
+    // GraphQL/API
+    { id: "graphql", name: "GraphQL", category: "GraphQL/API", description: "Query language for APIs and runtime for executing those queries", website: "https://graphql.org", color: "#E535AB", npm: "npm install graphql", icon: "https://graphql.org/img/favicon.ico" },
+    { id: "grpc", name: "gRPC", category: "GraphQL/API", description: "High-performance RPC framework using HTTP/2", website: "https://grpc.io", color: "#4285F4", npm: "npm install @grpc/grpc-js @grpc/proto-loader", icon: "https://grpc.io/img/icons/icon-192x192.png" },
+
+    // API Gateway
+    { id: "aws-api-gateway", name: "AWS API Gateway", category: "API Gateway", description: "Fully managed service for creating, publishing, and maintaining APIs at any scale", website: "https://aws.amazon.com/api-gateway", color: "#FF9900", npm: "npm install aws-sdk", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
+    { id: "kong", name: "Kong", category: "API Gateway", description: "Commercial-grade API gateway and micro-service management layer", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://konghq.com/images/new-kong-logo.svg" },
+
+    // Monitoring/Observability
+    { id: "logrocket", name: "LogRocket", category: "Monitoring/Observability", description: "Session replay and performance monitoring for web apps", website: "https://logrocket.com", color: "#00A884", npm: "npm install logrocket", icon: "https://logrocket.com/favicon.ico" },
+    { id: "raptor", name: "Raptor", category: "Monitoring/Observability", description: "Real-user monitoring for web applications", website: "https://raptor.com.au", color: "#0066CC", npm: "# Browser RUM" },
+    { id: "google-lighthouse", name: "Google Lighthouse", category: "Performance", description: "Automated auditing tool for web performance, accessibility, and SEO", website: "https://developers.google.com/web/tools/lighthouse", color: "#4CAF50", npm: "npm install -g lighthouse", icon: "https://www.google.com/favicon.ico" },
+    { id: "webpagetest", name: "WebPageTest", category: "Performance", description: "Website speed test from global locations with real browsers", website: "https://webpagetest.org", color: "#0F60AB", npm: "# Web tool", icon: "https://www.webpagetest.org/assets/images/favicon.ico" },
+    { id: "sitespeedio", name: "Sitespeed.io", category: "Performance", description: "Web performance monitoring and benchmarking tool", website: "https://sitespeed.io", color: "#FF8C00", npm: "npm install -g @sitespeedio/sitespeed.io", icon: "https://sitespeed.io/images/favicons/favicon.ico" },
+
+    // Security
+    { id: "dependency-check", name: "OWASP Dependency-Check", category: "Security", description: "Identify project dependencies with known vulnerabilities", website: "https://owasp.org/www-project-dependency-check/", color: "#000000", npm: "npm install -g dependency-check", icon: "https://owasp.org/assets/img/pages/projects/dependency-check/logo-horizontal.svg" },
+
+    // Background Jobs
+    { id: "bullmq", name: "BullMQ", category: "Background Jobs", description: "Redis-based queue for Node.js with priority and delayed jobs", website: "https://github.com/taskforcesh/bullmq", color: "#00AD66", npm: "npm install bullmq", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "agenda", name: "Agenda", category: "Background Jobs", description: "Mongo-backed job scheduling for Node.js", website: "https://github.com/rs/node-agenda", color: "#456194", npm: "npm install agenda", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+
+    // Video/Streaming
+    { id: "videojs", name: "Video.js", category: "Video/Streaming", description: "HTML5 video player library", website: "https://videojs.com", color: "#000000", npm: "npm install video.js", icon: "https://videojs.com/img/favicon.ico" },
+    { id: "plyr", name: "Plyr", category: "Video/Streaming", description: "Simple, responsive HTML5 media player", website: "https://plyr.io", color: "#000000", npm: "npm install plyr", icon: "https://plyr.io/img/favicon-192x192.png" },
+    { id: "hlsjs", name: "HLS.js", category: "Video/Streaming", description: "JavaScript HLS client for adaptive streaming", website: "https://github.com/video-dev/hls.js", color: "#000000", npm: "npm install hls.js", icon: "https://github.com/video-dev/hls.js/raw/master/docs/images/favicon.ico" },
+
+    // Voice/Audio
+    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web with Web Audio API", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://howlerjs.com/img/favicon.ico" },
+    { id: "tonejs", name: "Tone.js", category: "Voice/Audio", description: "Web Audio framework for creating musically meaningful sounds", website: "https://tonejs.github.io", color: "#FF6B35", npm: "npm install tone", icon: "https://tonejs.github.io/img/tone.svg" },
+
+    // DevOps/Infrastructure
+    { id: "aws-cdk", name: "AWS CDK", category: "DevOps/Infrastructure", description: "Infrastructure as code using familiar programming languages", website: "https://docs.aws.amazon.com/cdk", color: "#FF9900", npm: "npm install aws-cdk", icon: "https://docs.aws.amazon.com/cdk/api/latest/img/aws-cdk-icon.png" },
+    { id: "argo-cd", name: "Argo CD", category: "DevOps/Infrastructure", description: "Continuous delivery tool for Kubernetes with GitOps", website: "https://argoproj.github.io/argo-cd/", color: "#0084B5", npm: "kubectl apply -n argocd", icon: "https://argoproj.github.io/img/logo-argo-cd.svg" },
+
+    // Internationalization
+    { id: "crowdin", name: "Crowdin", category: "Internationalization", description: "Continuous localization platform for software and content", website: "https://crowdin.com", color: "#00C1B5", npm: "# Web service", icon: "https://crowdin.com/favicon.ico" },
+    { id: "lokalise", name: "Lokalise", category: "Internationalization", description: "Translation management platform for teams", website: "https://lokalise.com", color: "#FF6F00", npm: "# Web service", icon: "https://lokalise.com/favicon.ico" },
+
+    // Workflow Automation
+    { id: "zapier", name: "Zapier", category: "Workflow Automation", description: "No-code automation platform connecting 5,000+ apps", website: "https://zapier.com", color: "#FF4D00", npm: "# Web service", icon: "https://zapier.com/favicon.ico" },
+    { id: "make", name: "Make (Integromat)", category: "Workflow Automation", description: "Visual automation platform for business workflows", website: "https://make.com", color: "#002B5C", npm: "# Web service", icon: "https://make.com/img/favicon.ico" },
+
+    // IoT
+    { id: "raspberrypi", name: "Raspberry Pi", category: "IoT", description: "Single-board computer for IoT projects", website: "https://raspberrypi.org", color: "#A2AAAD", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/43035311?s=200&v=4" },
+    { id: "micropython", name: "MicroPython", category: "IoT", description: "Python implementation for microcontrollers", website: "https://micropython.org", color: "#A2AAAD", npm: "pip install micropython", icon: "https://avatars.githubusercontent.com/u/41427671?s=200&v=4" },
+
+    // Database
+    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database system", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://duckdb.org/img/duckdb-logo.svg" },
+    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "PostgreSQL extension for time-series data", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://timescale.com/images/timescale-logo-colour.svg" },
+
+    // ORM
+    { id: "prisma-client", name: "Prisma Client", category: "ORM", description: "Generated TypeScript/JavaScript ORM for type-safe database access", website: "https://www.prisma.io", color: "#2D3748", npm: "npm install @prisma/client", icon: "https://www.prisma.io/images/favicon/favicon.ico" },
+    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript supporting many databases", website: "https://typeorm.io", color: "#E83524", npm: "npm install typeorm", icon: "https://typeorm.io/img/typeorm.png" },
+    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based ORM for Postgres, MySQL, SQLite and more", website: "https://sequelize.org", color: "#52B0E7", npm: "npm install sequelize", icon: "https://sequelize.org/img/logo-gradient.svg" },
+    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant MongoDB object modeling for Node.js", website: "https://mongoosejs.com", color: "#880000", npm: "npm install mongoose", icon: "https://mongoosejs.com/docs/images/mongoose-logo-white.png" },
+    { id: "knex", name: "Knex.js", category: "ORM", description: "SQL query builder for PostgreSQL, MySQL, SQLite and more", website: "https://knexjs.org", color: "#D26B38", npm: "npm install knex", icon: "https://knexjs.org/img/knex-icon.svg" },
+
+    // OpenTelemetry
+    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Vendor-neutral observability framework for distributed systems", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
 ];
+
 
 export const categories = [
     "Web Framework",
