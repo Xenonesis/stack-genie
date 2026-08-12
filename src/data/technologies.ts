@@ -589,4 +589,16 @@ export const technologyData: Technology[] = [
 
     // Dev Environments
     { id: "gitpod", name: "Gitpod", category: "Dev Environments", description: "Cloud dev environments", website: "https://gitpod.io", color: "#FF6600", npm: "# Web service", icon: "https://gitpod.io/img/favicon.ico" },
+{ id: "ghost", name: "Ghost", category: "CMS", description: "Publishing platform", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
+    { id: "backendless", name: "Backendless", category: "BaaS", description: "Mobile backend service", website: "https://backendless.com", color: "#0066CC", npm: "# Web service", icon: "https://backendless.com/favicon.ico" },
+    { id: "parseserver", name: "Parse Server", category: "BaaS", description: "Open source BaaS", website: "https://parseplatform.org", color: "#000000", npm: "npm install parse", icon: "https://parseplatform.org/img/parse-logo.png" },
+    { id: "faiss", name: "FAISS", category: "Vector Database", description: "Facebook AI Similarity Search", website: "https://faiss.ai", color: "#000000", npm: "pip install faiss-cpu", icon: "https://faiss.ai/img/faiss-logo.svg" },
+    { id: "voyage", name: "Voyage AI", category: "Vector Database", description: "Embedding API", website: "https://www.voyage.ai", color: "#000000", npm: "npm install voyage-api", icon: "https://www.voyage.ai/favicon.ico" },
+    { id: "seldon-core", name: "Seldon Core", category: "MLOps", description: "ML serving platform", website: "https://seldon.io", color: "#000000", npm: "# Helm chart", icon: "https://seldon.io/img/seldon-logo.svg" },
+    { id: "bentoml", name: "BentoML", category: "MLOps", description: "ML model serving", website: "https://bentoml.com", color: "#FF6600", npm: "pip install bentoml", icon: "https://bentoml.com/img/bentoml_logo.png" },
+    { id: "kubeflow", name: "Kubeflow", category: "MLOps", description: "Kubernetes ML platform", website: "https://kubeflow.org", color: "#9074D4", npm: "# Kubernetes", icon: "https://kubeflow.org/img/logo.png" },
+    { id: "tfserving", name: "TensorFlow Serving", category: "MLOps", description: "Model serving for TensorFlow", website: "https://www.tensorflow.org/tfx/guide/serving", color: "#FF6600", npm: "# Docker", icon: "https://www.tensorflow.org/images/tf-logo2-green-bg.png" },
+    { id: "torchserve", name: "TorchServe", category: "MLOps", description: "Model serving for PyTorch", website: "https://pytorch.org/torchserve/", color: "#EE4C24", npm: "pip install torchserve", icon: "https://pytorch.org/meta-images/logo-icon-dark.png" },
+    { id: "react-native", name: "React Native", category: "Native Framework", description: "Mobile app development", website: "https://reactnative.dev", color: "#26B2A7", npm: "npm install react-native", icon: "https://reactnative.dev/img/react_native_icon.png" },
+    { id: "nativebase", name: "NativeBase", category: "Native Framework", description: "React Native component library", website: "https://nativebase.io", color: "#4092C5", npm: "npm install native-base", icon: "https://nativebase.io/img/icon-square.png" },
 ];
