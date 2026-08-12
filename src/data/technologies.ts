@@ -601,4 +601,64 @@ export const technologyData: Technology[] = [
     { id: "torchserve", name: "TorchServe", category: "MLOps", description: "Model serving for PyTorch", website: "https://pytorch.org/torchserve/", color: "#EE4C24", npm: "pip install torchserve", icon: "https://pytorch.org/meta-images/logo-icon-dark.png" },
     { id: "react-native", name: "React Native", category: "Native Framework", description: "Mobile app development", website: "https://reactnative.dev", color: "#26B2A7", npm: "npm install react-native", icon: "https://reactnative.dev/img/react_native_icon.png" },
     { id: "nativebase", name: "NativeBase", category: "Native Framework", description: "React Native component library", website: "https://nativebase.io", color: "#4092C5", npm: "npm install native-base", icon: "https://nativebase.io/img/icon-square.png" },
+// OpenTelemetry - more tools
+    { id: "opentelemetry-collector", name: "OpenTelemetry Collector", category: "OpenTelemetry", description: "Vendor-neutral observability collector", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/collector", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
+    { id: "zipkin", name: "Zipkin", category: "OpenTelemetry", description: "Distributed tracing system", website: "https://zipkin.io", color: "#000000", npm: "npm install zipkin", icon: "https://zipkin.io/img/logo.svg" },
+
+    // Runtime - more runtimes
+    { id: "deno-deploy", name: "Deno Deploy", category: "Runtime", description: "Edge-first serverless runtime", website: "https://deno.com/deploy", color: "#000000", npm: "# Web service", icon: "https://deno.com/favicon.ico" },
+    { id: "bun-types", name: "Bun:types", category: "Runtime", description: "Type definitions for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "npm install @types/bun", icon: "https://bun.sh/img/logo.svg" },
+
+    // Push Notifications - more
+    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/docs/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
+    { id: "one-signal", name: "OneSignal", category: "Push Notifications", description: "Push notification service", website: "https://onesignal.com", color: "#00C4CC", npm: "npm install onesignal-node", icon: "https://onesignal.com/images/favicon.ico" },
+
+    // Accessibility - more
+    { id: "react-aria", name: "React Aria", category: "Accessibility", description: "React hooks for accessibility", website: "https://react-spectrum.adobe.com/react-aria/", color: "#6736D3", npm: "npm install @react-aria/react", icon: "https://react-spectrum.adobe.com/favicon.ico" },
+
+    // Search - more
+    { id: "elasticsearch-js", name: "Elasticsearch JS Client", category: "Search", description: "Official Elasticsearch client for Node.js", website: "https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html", color: "#00557C", npm: "npm install @elastic/elasticsearch", icon: "https://www.elastic.co/static/img/favicon.ico" },
+
+    // Email - more
+    { id: "mailgun-js", name: "Mailgun JS", category: "Email", description: "Mailgun API client for Node.js", website: "https://www.mailgun.com", color: "#FF6600", npm: "npm install mailgun-js", icon: "https://www.mailgun.com/favicon.ico" },
+
+    // Payment - more
+    { id: "stripe-cli", name: "Stripe CLI", category: "Payment", description: "Command-line tool for Stripe development", website: "https://stripe.com/docs/stripe-cli", color: "#635BFF", npm: "npm install -g stripe", icon: "https://stripe.com/img/favicon.ico" },
+    { id: "paypal-checkout", name: "PayPal Checkout", category: "Payment", description: "PayPal payment buttons SDK", website: "https://developer.paypal.com", color: "#003087", npm: "npm install @paypal/checkout-server-sdk", icon: "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" },
+
+    // API Documentation - more  
+    { id: "swagger-cli", name: "Swagger CLI", category: "API Documentation", description: "OpenAPI/Swagger tooling", website: "https://swagger.io/tools/swagger-cli/", color: "#85EA2D", npm: "npm install -g @apidevtools/swagger-cli", icon: "https://swagger.io/favicon.ico" },
+
+    // Version Control - more
+    { id: "svn", name: "Subversion", category: "Version Control", description: "Apache Subversion version control", website: "https://subversion.apache.org", color: "#8BB447", npm: "# Command line tools", icon: "https://subversion.apache.org/images/subversion_32x32.png" },
+
+    // Documentation - more
+    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Open source Markdown documentation generator", website: "https://docusaurus.io", color: "#FF5A35", npm: "npm install @docusaurus/core", icon: "https://docusaurus.io/img/favicon.ico" },
+    { id: "mkdocs", name: "MkDocs", category: "Documentation", description: "Static site generator for docs", website: "https://www.mkdocs.org", color: "#009688", npm: "pip install mkdocs", icon: "https://www.mkdocs.org/_static/favicon.ico" },
+
+    // AI Agents - more
+    { id: "langchain", name: "LangChain", category: "AI Agents", description: "Frameworks for building LLM applications", website: "https://langchain.com", color: "#39Ad6D", npm: "npm install langchain", icon: "https://langchain.com/favicon.ico" },
+    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Multiple AI agents working together", website: "https://crewai.com", color: "#000000", npm: "pip install crewai", icon: "https://crewai.com/favicon.ico" },
+
+    // 3D/Game Dev - more
+    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Web-based 3D engine", website: "https://babylonjs.com", color: "#000000", npm: "npm install @babylonjs/core", icon: "https://babylonjs.com/images/favicon.ico" },
+
+    // Workflow Automation - more
+    { id: "trayio", name: "Tray.io", category: "Workflow Automation", description: "Integration platform automation", website: "https://tray.io", color: "#6366F1", npm: "# Web service", icon: "https://tray.io/favicon.ico" },
+    { id: "workato", name: "Workato", category: "Workflow Automation", description: "Enterprise automation platform", website: "https://www.workato.com", color: "#FF6600", npm: "# Web service", icon: "https://www.workato.com/favicon.ico" },
+
+    // Code Quality/Linting - more
+    { id: "eslint", name: "ESLint", category: "Code Quality/Linting", description: "JavaScript linter", website: "https://eslint.org", color: "#4B32C5", npm: "npm install eslint", icon: "https://eslint.org/img/favicon-32x32.png" },
+    { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7DF1E", npm: "npm install prettier", icon: "https://prettier.io/img/favicon-32x32.png" },
+
+    // DevOps/Infrastructure - more
+    { id: "azure-bicep", name: "Azure Bicep", category: "DevOps/Infrastructure", description: "Declarative Azure deployment language", website: "https://learn.microsoft.com/azure/azure-resource-manager/bicep", color: "#0078D4", npm: "npm install -g bicep", icon: "https://learn.microsoft.com/static/devops/icons/bicep.png" },
+    { id: "redis-pubsub", name: "Redis Pub/Sub", category: "Message Queues/Event Streaming", description: "Redis built-in pub/sub messaging", website: "https://redis.io", color: "#DC382D", npm: "npm install redis", icon: "https://redis.io/images/brand/redis-brand-rgb-icon.svg" },
+    { id: "helmet", name: "Helmet", category: "Security", description: "Express middleware for security headers", website: "https://helmetjs.github.io", color: "#48A9A6", npm: "npm install helmet", icon: "https://helmetjs.github.io/img/helmet-icon.svg" },
+    { id: "cors", name: "CORS", category: "Security", description: "Node.js CORS middleware", website: "https://github.com/expressjs/cors", color: "#4CAF50", npm: "npm install cors", icon: "https://nodejs.org/img/favicon.ico" },
+    { id: "truffle", name: "Truffle Suite", category: "Web3/Blockchain", description: "Popular Ethereum development framework", website: "https://trufflesuite.com", color: "#E7AD5A", npm: "npm install -g truffle", icon: "https://trufflesuite.com/img/favicon.ico" },
+    { id: "highcharts", name: "Highcharts", category: "Data Visualization", description: "Charting library with advanced features", website: "https://highcharts.com", color: "#7CB5E3", npm: "npm install highcharts", icon: "https://www.highcharts.com/sample/img/social.png" },
+{ id: "travis-ci", name: "Travis CI", category: "DevOps/Infrastructure", description: "CI/CD platform", website: "https://travis-ci.com", color: "#000000", npm: "# Web service", icon: "https://travis-ci.com/img/travis-ci-banner.svg" },
+    { id: "microservices", name: "Microservices", category: "Backend Framework", description: "Architectural pattern for distributed systems", website: "https://martinfowler.com/articles/microservices.html", color: "#FF6600", npm: "# Architectural pattern", icon: "https://martinfowler.com/img/microservice.png" },
+    { id: "serverless", name: "Serverless", category: "Edge/Serverless", description: "Architectural pattern for cloud computing", website: "https://www.serverless.com", color: "#00DB00", npm: "# Architectural pattern", icon: "https://www.serverless.com/static/Logos/serverless-colored.svg" },
 ];
