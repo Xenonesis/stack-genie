@@ -101,14 +101,14 @@ export const technologyData: Technology[] = [
     // ORM
     { id: "prisma", name: "Prisma", category: "ORM", description: "Next-generation Node.js and TypeScript ORM", website: "https://prisma.io", color: "#2D3748", npm: "npm install prisma", icon: "https://avatars.githubusercontent.com/u/17219288?s=200&v=4" },
     { id: "drizzle", name: "Drizzle ORM", category: "ORM", description: "TypeScript ORM that is production ready", website: "https://orm.drizzle.team", color: "#C5F74F", npm: "npm install drizzle-orm", icon: "https://avatars.githubusercontent.com/u/108468352?s=200&v=4" },
-    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript", website: "https://typeorm.io", color: "#E83524", npm: "npm install typeorm", icon: "https://avatars.githubusercontent.com/u/20165699?s=200&v=4" },
-    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based Node.js ORM for Postgres, MySQL, MariaDB, SQLite and Microsoft SQL Server", website: "https://sequelize.org", color: "#52B0E7", npm: "npm install sequelize", icon: "https://avatars.githubusercontent.com/u/3591786?s=200&v=4" },
-    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant mongodb object modeling for node.js", website: "https://mongoosejs.com", color: "#880000", npm: "npm install mongoose", icon: "https://avatars.githubusercontent.com/u/7552965?s=200&v=4" },
-    { id: "knex", name: "Knex.js", category: "ORM", description: "SQL query builder for JavaScript", website: "https://knexjs.org", color: "#D26B38", npm: "npm install knex", icon: "https://avatars.githubusercontent.com/u/13896769?s=200&v=4" },
+    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript supporting many databases", website: "https://typeorm.io", color: "#E83524", npm: "npm install typeorm", icon: "https://typeorm.io/img/typeorm.png" },
+    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based ORM for Postgres, MySQL, SQLite and more", website: "https://sequelize.org", color: "#52B0E7", npm: "npm install sequelize", icon: "https://sequelize.org/img/logo-gradient.svg" },
+    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant MongoDB object modeling for Node.js", website: "https://mongoosejs.com", color: "#880000", npm: "npm install mongoose", icon: "https://mongoosejs.com/docs/images/mongoose-logo-white.png" },
+    { id: "knex", name: "Knex.js", category: "ORM", description: "SQL query builder for PostgreSQL, MySQL, SQLite and more", website: "https://knexjs.org", color: "#D26B38", npm: "npm install knex", icon: "https://knexjs.org/img/knex-icon.svg" },
     { id: "objection", name: "Objection.js", category: "ORM", description: "SQL-friendly ORM for Node.js", website: "https://vincit.github.io/objection.js", color: "#FF6B35", npm: "npm install objection", icon: "https://avatars.githubusercontent.com/u/3514357?s=200&v=4" },
 
     // Monorepo
-    { id: "turborepo", name: "Turborepo", category: "Monorepo", description: "High-performance build system for JavaScript and TypeScript codebases", website: "https://turbo.build", color: "#EF4444", npm: "npm install turbo", icon: "https://avatars.githubusercontent.com/u/84177906?s=200&v=4" },
+    { id: "turborepo", name: "Turborepo", category: "Monorepo", description: "High-performance build system for JavaScript and TypeScript codebases", website: "https://turbo.build", color: "#EF4444", npm: "npm install turbo", icon: "https://turbo.build/img/favicon.ico" },
     { id: "nx", name: "Nx", category: "Monorepo", description: "Smart, fast and extensible build system", website: "https://nx.dev", color: "#143055", npm: "npx create-nx-workspace", icon: "https://avatars.githubusercontent.com/u/23692104?s=200&v=4" },
     { id: "lerna", name: "Lerna", category: "Monorepo", description: "A tool for managing JavaScript projects with multiple packages", website: "https://lerna.js.org", color: "#9333EA", npm: "npm install lerna", icon: "https://avatars.githubusercontent.com/u/19333396?s=200&v=4" },
     { id: "rush", name: "Rush", category: "Monorepo", description: "Scalable monorepo manager for the web", website: "https://rushjs.io", color: "#087CFA", npm: "npm install -g @microsoft/rush", icon: "https://avatars.githubusercontent.com/u/19333396?s=200&v=4" },
@@ -226,7 +226,7 @@ export const technologyData: Technology[] = [
 
     // State Management
     { id: "zustand", name: "Zustand", category: "State Management", description: "Small, fast and scalable bearbones state-management solution", website: "https://zustand-demo.pmnd.rs", color: "#443E38", npm: "npm install zustand", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
-    { id: "redux", name: "Redux Toolkit", category: "State Management", description: "The official, opinionated, batteries-included toolset for efficient Redux development", website: "https://redux-toolkit.js.org", color: "#764ABC", npm: "npm install @reduxjs/toolkit", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+    { id: "redux", name: "Redux Toolkit", category: "State Management", description: "The official, opinionated, batteries-included toolset for efficient Redux development", website: "https://redux-toolkit.js.org", color: "#764ABC", npm: "npm install @reduxjs/toolkit react-redux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
     { id: "jotai", name: "Jotai", category: "State Management", description: "Primitive and flexible state management for React", website: "https://jotai.org", color: "#000000", npm: "npm install jotai", icon: "https://jotai.org/favicon.svg" },
     { id: "valtio", name: "Valtio", category: "State Management", description: "Makes proxy-state simple for React and Vanilla", website: "https://valtio.pmnd.rs", color: "#1E40AF", npm: "npm install valtio", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
     { id: "recoil", name: "Recoil", category: "State Management", description: "Experimental state management library for React apps", website: "https://recoiljs.org", color: "#3578E5", npm: "npm install recoil", icon: "https://recoiljs.org/img/favicon.png" },
@@ -303,20 +303,20 @@ export const technologyData: Technology[] = [
     { id: "bitbucket", name: "Bitbucket", category: "Version Control", description: "Git repository hosting", website: "https://bitbucket.org", color: "#0052CC", npm: "# Create account at bitbucket.org", icon: "https://avatars.githubusercontent.com/u/2263316?s=200&v=4" },
 
     // Code Quality/Linting
-    { id: "eslint", name: "ESLint", category: "Code Quality/Linting", description: "JavaScript linter", website: "https://eslint.org", color: "#4B32C3", npm: "npm install eslint", icon: "https://avatars.githubusercontent.com/u/6019716?s=200&v=4" },
-    { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7B93E", npm: "npm install prettier", icon: "https://avatars.githubusercontent.com/u/25822731?s=200&v=4" },
+    { id: "eslint", name: "ESLint", category: "Code Quality/Linting", description: "JavaScript linter", website: "https://eslint.org", color: "#4B32C3", npm: "npm install eslint", icon: "https://eslint.org/img/favicon-32x32.png" },
+    { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7B93E", npm: "npm install prettier", icon: "https://prettier.io/img/favicon-32x32.png" },
     { id: "husky", name: "Husky", category: "Code Quality/Linting", description: "Git hooks made easy", website: "https://typicode.github.io/husky", color: "#42B883", npm: "npm install husky", icon: "https://avatars.githubusercontent.com/u/5502029?s=200&v=4" },
     { id: "lint-staged", name: "lint-staged", category: "Code Quality/Linting", description: "Run linters on git staged files", website: "https://github.com/okonet/lint-staged", color: "#000000", npm: "npm install lint-staged", icon: "https://avatars.githubusercontent.com/u/1282980?s=200&v=4" },
     { id: "sonarqube", name: "SonarQube", category: "Code Quality/Linting", description: "Code quality and security analysis", website: "https://sonarqube.org", color: "#4E9BCD", npm: "# Install SonarQube server", icon: "https://avatars.githubusercontent.com/u/2607971?s=200&v=4" },
 
     // AI / LLM Tooling
     { id: "vercel-ai-sdk", name: "Vercel AI SDK", category: "AI/LLM", description: "TypeScript toolkit for building AI applications", website: "https://ai-sdk.dev", color: "#000000", npm: "npm install ai", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
-    { id: "langchain", name: "LangChain", category: "AI/LLM", description: "Framework for developing LLM-powered applications", website: "https://langchain.com", color: "#1C3C3C", npm: "npm install langchain", icon: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
+    { id: "langchain", name: "LangChain", category: "AI/LLM", description: "Framework for developing LLM-powered applications", website: "https://langchain.com", color: "#1C3C3C", npm: "npm install langchain", icon: "https://langchain.com/favicon.ico" },
     { id: "llamaindex", name: "LlamaIndex", category: "AI/LLM", description: "Data framework for LLM applications", website: "https://llamaindex.ai", color: "#FF6F00", npm: "npm install llamaindex", icon: "https://avatars.githubusercontent.com/u/108554348?s=200&v=4" },
     { id: "openai", name: "OpenAI", category: "AI/LLM", description: "AI models and APIs for building intelligent applications", website: "https://openai.com", color: "#412991", npm: "npm install openai", icon: "https://avatars.githubusercontent.com/u/14957082?s=200&v=4" },
-    { id: "anthropic", name: "Anthropic", category: "AI/LLM", description: "Claude AI models and API", website: "https://anthropic.com", color: "#D97757", npm: "npm install @anthropic-ai/sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "AI model hub and inference API", website: "https://huggingface.co", color: "#FFD21E", npm: "npm install @huggingface/inference", icon: "https://avatars.githubusercontent.com/u/25720743?s=200&v=4" },
-    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.com", color: "#000000", npm: "curl -fsSL https://ollama.com/install.sh | sh", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "anthropic", name: "Anthropic", category: "AI/LLM", description: "Claude AI models and API", website: "https://anthropic.com", color: "#D97757", npm: "npm install @anthropic-ai/sdk", icon: "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png" },
+    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "AI model hub and inference API", website: "https://huggingface.co", color: "#FFD21E", npm: "npm install @huggingface/inference", icon: "https://huggingface.co/front/images/logos/mark/favicon.ico" },
+    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.com", color: "#000000", npm: "curl -fsSL https://ollama.com/install.sh | sh", icon: "https://ollama.ai/favicon.ico" },
     { id: "pgvector", name: "pgvector", category: "AI/LLM", description: "Open-source vector similarity search for Postgres", website: "https://github.com/pgvector/pgvector", color: "#336791", npm: "# Postgres extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Vector Databases
@@ -327,14 +327,14 @@ export const technologyData: Technology[] = [
     { id: "milvus", name: "Milvus", category: "Vector Database", description: "Vector database for scalable similarity search", website: "https://milvus.io", color: "#00A1EA", npm: "npm install @zilliz/milvus2-sdk-node", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Edge / Serverless Compute
-    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless execution at the edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
-    { id: "deno-deploy", name: "Deno Deploy", category: "Edge/Serverless", description: "Global edge runtime for JavaScript and TypeScript", website: "https://deno.com/deploy", color: "#000000", npm: "npm install -g deployctl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless execution at the edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://workers.cloudflare.com/favicon.ico" },
+    { id: "deno-deploy", name: "Deno Deploy", category: "Edge/Serverless", description: "Global edge runtime for JavaScript and TypeScript", website: "https://deno.com/deploy", color: "#000000", npm: "npm install -g deployctl", icon: "https://deno.com/favicon.ico" },
     { id: "aws-lambda", name: "AWS Lambda", category: "Edge/Serverless", description: "Serverless compute service", website: "https://aws.amazon.com/lambda", color: "#FF9900", npm: "npm install @aws-sdk/client-lambda", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
     { id: "vercel-edge", name: "Vercel Edge", category: "Edge/Serverless", description: "Edge functions on Vercel", website: "https://vercel.com/docs/edge-network", color: "#000000", npm: "# Built into Vercel", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
 
     // Feature Flags
     { id: "launchdarkly", name: "LaunchDarkly", category: "Feature Flags", description: "Feature management platform", website: "https://launchdarkly.com", color: "#00A3FF", npm: "npm install launchdarkly-node-server-sdk", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Open-source feature flag and remote config service", website: "https://flagsmith.com", color: "#FF6B35", npm: "npm install flagsmith", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Open-source feature flag and remote config service", website: "https://flagsmith.com", color: "#FF6B35", npm: "npm install flagsmith", icon: "https://flagsmith.com/favicon.ico" },
     { id: "unleash", name: "Unleash", category: "Feature Flags", description: "Open-source feature management", website: "https://getunleash.io", color: "#E11D48", npm: "npm install unleash-client", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "growthbook", name: "GrowthBook", category: "Feature Flags", description: "Open-source feature flags and A/B testing", website: "https://growthbook.io", color: "#7C3AED", npm: "npm install @growthbook/growthbook", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
@@ -367,7 +367,7 @@ export const technologyData: Technology[] = [
     { id: "great-expectations", name: "Great Expectations", category: "Data Engineering", description: "Data quality validation framework", website: "https://greatexpectations.io", color: "#FF6B35", npm: "pip install great-expectations", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // API Gateway
-    { id: "kong", name: "Kong", category: "API Gateway", description: "Cloud-native API gateway", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "kong", name: "Kong", category: "API Gateway", description: "Commercial-grade API gateway and micro-service management layer", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://konghq.com/images/new-kong-logo.svg" },
     { id: "traefik", name: "Traefik", category: "API Gateway", description: "Cloud-native application proxy", website: "https://traefik.io", color: "#24A1C1", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "envoy", name: "Envoy", category: "API Gateway", description: "Cloud-native high-performance proxy", website: "https://envoyproxy.io", color: "#AC6199", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "nginx", name: "NGINX", category: "API Gateway", description: "High-performance web server and reverse proxy", website: "https://nginx.org", color: "#009639", npm: "# Install from nginx.org", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
@@ -380,7 +380,7 @@ export const technologyData: Technology[] = [
     { id: "owasp-zap", name: "OWASP ZAP", category: "Security", description: "Web application security scanner", website: "https://zaproxy.org", color: "#4B4B4B", npm: "# Install ZAP app", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Documentation
-    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Documentation website generator", website: "https://docusaurus.io", color: "#3ECC5F", npm: "npx create-docusaurus@latest", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Documentation website generator", website: "https://docusaurus.io", color: "#3ECC5F", npm: "npx create-docusaurus@latest", icon: "https://docusaurus.io/img/favicon.ico" },
     { id: "vitepress", name: "VitePress", category: "Documentation", description: "Vite-powered static site generator for docs", website: "https://vitepress.dev", color: "#646CFF", npm: "npm install -D vitepress", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "mintlify", name: "Mintlify", category: "Documentation", description: "Modern documentation platform", website: "https://mintlify.com", color: "#0B0B0F", npm: "npm install -g mintlify", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "gitbook", name: "GitBook", category: "Documentation", description: "Documentation and knowledge base platform", website: "https://gitbook.com", color: "#3884FF", npm: "# Web platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
@@ -396,10 +396,10 @@ export const technologyData: Technology[] = [
     { id: "windmill", name: "Windmill", category: "Workflow Automation", description: "Developer platform for workflows and internal tools", website: "https://windmill.dev", color: "#4E80EE", npm: "npm install -g windmill-cli", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Data Visualization
-    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents for the web", website: "https://d3js.org", color: "#F9A03C", npm: "npm install d3", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "Simple yet flexible JavaScript charting", website: "https://chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents for the web", website: "https://d3js.org", color: "#F9A03C", npm: "npm install d3", icon: "https://d3js.org/d3icon.PNG" },
+    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "Simple yet flexible JavaScript charting", website: "https://chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://www.chartjs.org/img/logo.png" },
     { id: "echarts", name: "Apache ECharts", category: "Data Visualization", description: "Powerful charting and visualization library", website: "https://echarts.apache.org", color: "#AA344D", npm: "npm install echarts", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "Composable charting library built on React components", website: "https://recharts.org", color: "#22B8CF", npm: "npm install recharts", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "Composable charting library built on React components", website: "https://recharts.org", color: "#22B8CF", npm: "npm install recharts", icon: "https://recharts.org/img/favicon.ico" },
 
     // Video / Streaming
     { id: "mux", name: "Mux", category: "Video/Streaming", description: "Video API for developers", website: "https://mux.com", color: "#1B1B1F", npm: "npm install @mux/mux-node", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
@@ -416,8 +416,8 @@ export const technologyData: Technology[] = [
     { id: "zig", name: "Zig", category: "Languages", description: "General-purpose low-level programming language", website: "https://ziglang.org", color: "#F7A41D", npm: "# Install from ziglang.org", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Additional Databases
-    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "Time-series database built on PostgreSQL", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "PostgreSQL extension for time-series data", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://timescale.com/images/timescale-logo-colour.svg" },
+    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database system", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://duckdb.org/img/duckdb-logo.svg" },
 
     // Additional Monitoring
     { id: "grafana-loki", name: "Grafana Loki", category: "Monitoring/Observability", description: "Log aggregation system", website: "https://grafana.com/oss/loki", color: "#F46800", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/7195757?s=200&v=4" },
@@ -425,30 +425,30 @@ export const technologyData: Technology[] = [
 
     // AI Agents / Orchestration
     { id: "langgraph", name: "LangGraph", category: "AI Agents", description: "Build stateful, agentic AI applications", website: "https://langchain-ai.github.io/langgraph", color: "#1C3C3C", npm: "npm install @langchain/langgraph", icon: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" },
-    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Framework for orchestrating role-playing AI agents", website: "https://crewai.com", color: "#FF5A5F", npm: "pip install crewai", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Framework for orchestrating role-playing AI agents", website: "https://crewai.com", color: "#FF5A5F", npm: "pip install crewai", icon: "https://crewai.com/favicon.ico" },
     { id: "autogen", name: "AutoGen", category: "AI Agents", description: "Multi-agent conversation framework from Microsoft", website: "https://microsoft.github.io/autogen", color: "#0078D4", npm: "pip install pyautogen", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "flowise", name: "Flowise", category: "AI Agents", description: "Drag & drop UI to build LLM apps", website: "https://flowiseai.com", color: "#7C3AED", npm: "npx flowise start", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // 3D / Game Development
     { id: "threejs", name: "Three.js", category: "3D/Game Dev", description: "3D library for the web", website: "https://threejs.org", color: "#000000", npm: "npm install three", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Powerful 3D engine for the web", website: "https://babylonjs.com", color: "#BB464B", npm: "npm install @babylonjs/core", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Powerful 3D engine for the web", website: "https://babylonjs.com", color: "#BB464B", npm: "npm install @babylonjs/core", icon: "https://babylonjs.com/images/favicon.ico" },
     { id: "phaser", name: "Phaser", category: "3D/Game Dev", description: "Fast 2D game framework", website: "https://phaser.io", color: "#8BC34A", npm: "npm install phaser", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "react-three-fiber", name: "React Three Fiber", category: "3D/Game Dev", description: "React renderer for Three.js", website: "https://docs.pmnd.rs/react-three-fiber", color: "#000000", npm: "npm install @react-three/fiber", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Maps / Geolocation
-    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom maps and location services", website: "https://mapbox.com", color: "#4264FB", npm: "npm install mapbox-gl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Open-source interactive maps", website: "https://leafletjs.com", color: "#199900", npm: "npm install leaflet", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom maps and location services", website: "https://mapbox.com", color: "#4264FB", npm: "npm install mapbox-gl", icon: "https://maps.mapbox.com/mapbox-gl-js/docs/img/mapbox-icon.png" },
+    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Open-source interactive maps", website: "https://leafletjs.com", color: "#199900", npm: "npm install leaflet", icon: "https://leafletjs.com/docs/img/logo-mark.png" },
     { id: "maplibre", name: "MapLibre GL", category: "Maps/Geo", description: "Open-source vector map renderer", website: "https://maplibre.org", color: "#396CB2", npm: "npm install maplibre-gl", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "google-maps", name: "Google Maps", category: "Maps/Geo", description: "Google Maps Platform", website: "https://developers.google.com/maps", color: "#4285F4", npm: "npm install @googlemaps/js-api-loader", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Push Notifications
     { id: "onesignal", name: "OneSignal", category: "Push Notifications", description: "Push notifications for web and mobile", website: "https://onesignal.com", color: "#E54B4B", npm: "npm install onesignal", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/products/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://avatars.githubusercontent.com/u/1335026?s=200&v=4" },
+    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/products/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
 
     // Voice / Audio
     { id: "whisper", name: "OpenAI Whisper", category: "Voice/Audio", description: "Speech recognition and transcription", website: "https://openai.com/research/whisper", color: "#412991", npm: "pip install openai-whisper", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "elevenlabs", name: "ElevenLabs", category: "Voice/Audio", description: "AI voice generation and text-to-speech", website: "https://elevenlabs.io", color: "#000000", npm: "npm install elevenlabs", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
-    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web with Web Audio API", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://howlerjs.com/img/favicon.ico" },
 
     // Performance / Web Vitals
     { id: "lighthouse", name: "Lighthouse", category: "Performance", description: "Automated auditing for web performance", website: "https://developers.google.com/web/tools/lighthouse", color: "#F44B21", npm: "npm install -g lighthouse", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
@@ -456,7 +456,7 @@ export const technologyData: Technology[] = [
     { id: "bundlephobia", name: "BundlePhobia", category: "Performance", description: "Bundle size analysis for npm packages", website: "https://bundlephobia.com", color: "#EF4444", npm: "# Web tool", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Accessibility
-    { id: "axe-core", name: "axe-core", category: "Accessibility", description: "Accessibility testing engine", website: "https://deque.com/axe", color: "#F04E23", npm: "npm install axe-core", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "axe-core", name: "axe-core", category: "Accessibility", description: "Accessibility testing engine", website: "https://deque.com/axe", color: "#F04E23", npm: "npm install axe-core", icon: "https://www.deque.com/axe/images/axe-icon@3x.png" },
     { id: "pa11y", name: "Pa11y", category: "Accessibility", description: "Automated accessibility testing", website: "https://pa11y.org", color: "#4B0082", npm: "npm install -g pa11y", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // Internationalization
@@ -465,29 +465,19 @@ export const technologyData: Technology[] = [
     { id: "react-i18next", name: "react-i18next", category: "Internationalization", description: "React bindings for i18next", website: "https://react.i18next.com", color: "#26A69A", npm: "npm install react-i18next", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
 
     // OpenTelemetry
-    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Open-source observability framework", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
+    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Vendor-neutral observability framework for distributed systems", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
 
     // IoT
     { id: "mqtt", name: "MQTT", category: "IoT", description: "Lightweight messaging protocol for IoT", website: "https://mqtt.org", color: "#660066", npm: "npm install mqtt", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "esp32", name: "ESP32", category: "IoT", description: "Low-cost microcontroller with WiFi/Bluetooth", website: "https://espressif.com", color: "#E7352C", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" },
     { id: "arduino", name: "Arduino", category: "IoT", description: "Open-source electronics platform", website: "https://arduino.cc", color: "#00979D", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/10022570?s=200&v=4" }
 ,
-    // Additional Technologies - State Management
-    { id: "redux", name: "Redux", category: "State Management", description: "Predictable state container for JavaScript apps", website: "https://redux.js.org", color: "#764ABC", npm: "npm install @reduxjs/toolkit react-redux", icon: "https://redux.js.org/icons/redux-131x131.png" },
-    { id: "mobx", name: "MobX", category: "State Management", description: "Simple, scalable state management", website: "https://mobx.js.org", color: "#FF9955", npm: "npm install mobx mobx-react-lite", icon: "https://avatars.githubusercontent.com/u/17475736?s=200&v=4" },
-    { id: "xstate", name: "XState", category: "State Management", description: "State machines and statecharts", website: "https://xstate.js.org", color: "#2C3E50", npm: "npm install xstate", icon: "https://avatars.githubusercontent.com/u/28773662?s=200&v=4" },
-    { id: "valtio", name: "Valtio", category: "State Management", description: "Makes proxy-state simple for React and Vanilla", website: "https://valtio.pmnd.rs", color: "#1E40AF", npm: "npm install valtio", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
-    { id: "nanostores", name: "Nanostores", category: "State Management", description: "Tiny state manager", website: "https://github.com/nanostores/nanostores", color: "#FF6B35", npm: "npm install nanostores", icon: "https://avatars.githubusercontent.com/u/84611369?s=200&v=4" },
-    { id: "jotai", name: "Jotai", category: "State Management", description: "Primitive and flexible state management for React", website: "https://jotai.org", color: "#000000", npm: "npm install jotai", icon: "https://jotai.org/favicon.svg" },
-    { id: "recoil", name: "Recoil", category: "State Management", description: "Experimental state management library for React apps", website: "https://recoiljs.org", color: "#3578E5", npm: "npm install recoil", icon: "https://recoiljs.org/img/favicon.png" },
-
     // GraphQL/API
     { id: "graphql", name: "GraphQL", category: "GraphQL/API", description: "Query language for APIs and runtime for executing those queries", website: "https://graphql.org", color: "#E535AB", npm: "npm install graphql", icon: "https://graphql.org/img/favicon.ico" },
     { id: "grpc", name: "gRPC", category: "GraphQL/API", description: "High-performance RPC framework using HTTP/2", website: "https://grpc.io", color: "#4285F4", npm: "npm install @grpc/grpc-js @grpc/proto-loader", icon: "https://grpc.io/img/icons/icon-192x192.png" },
 
     // API Gateway
     { id: "aws-api-gateway", name: "AWS API Gateway", category: "API Gateway", description: "Fully managed service for creating, publishing, and maintaining APIs at any scale", website: "https://aws.amazon.com/api-gateway", color: "#FF9900", npm: "npm install aws-sdk", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
-    { id: "kong", name: "Kong", category: "API Gateway", description: "Commercial-grade API gateway and micro-service management layer", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://konghq.com/images/new-kong-logo.svg" },
 
     // Monitoring/Observability
     { id: "logrocket", name: "LogRocket", category: "Monitoring/Observability", description: "Session replay and performance monitoring for web apps", website: "https://logrocket.com", color: "#00A884", npm: "npm install logrocket", icon: "https://logrocket.com/favicon.ico" },
@@ -509,7 +499,6 @@ export const technologyData: Technology[] = [
     { id: "hlsjs", name: "HLS.js", category: "Video/Streaming", description: "JavaScript HLS client for adaptive streaming", website: "https://github.com/video-dev/hls.js", color: "#000000", npm: "npm install hls.js", icon: "https://github.com/video-dev/hls.js/raw/master/docs/images/favicon.ico" },
 
     // Voice/Audio
-    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web with Web Audio API", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://howlerjs.com/img/favicon.ico" },
     { id: "tonejs", name: "Tone.js", category: "Voice/Audio", description: "Web Audio framework for creating musically meaningful sounds", website: "https://tonejs.github.io", color: "#FF6B35", npm: "npm install tone", icon: "https://tonejs.github.io/img/tone.svg" },
 
     // DevOps/Infrastructure
@@ -527,21 +516,8 @@ export const technologyData: Technology[] = [
     // IoT
     { id: "raspberrypi", name: "Raspberry Pi", category: "IoT", description: "Single-board computer for IoT projects", website: "https://raspberrypi.org", color: "#A2AAAD", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/43035311?s=200&v=4" },
     { id: "micropython", name: "MicroPython", category: "IoT", description: "Python implementation for microcontrollers", website: "https://micropython.org", color: "#A2AAAD", npm: "pip install micropython", icon: "https://avatars.githubusercontent.com/u/41427671?s=200&v=4" },
-
-    // Database
-    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database system", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://duckdb.org/img/duckdb-logo.svg" },
-    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "PostgreSQL extension for time-series data", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://timescale.com/images/timescale-logo-colour.svg" },
-
     // ORM
-    { id: "prisma-client", name: "Prisma Client", category: "ORM", description: "Generated TypeScript/JavaScript ORM for type-safe database access", website: "https://www.prisma.io", color: "#2D3748", npm: "npm install @prisma/client", icon: "https://www.prisma.io/images/favicon/favicon.ico" },
-    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript supporting many databases", website: "https://typeorm.io", color: "#E83524", npm: "npm install typeorm", icon: "https://typeorm.io/img/typeorm.png" },
-    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based ORM for Postgres, MySQL, SQLite and more", website: "https://sequelize.org", color: "#52B0E7", npm: "npm install sequelize", icon: "https://sequelize.org/img/logo-gradient.svg" },
-    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant MongoDB object modeling for Node.js", website: "https://mongoosejs.com", color: "#880000", npm: "npm install mongoose", icon: "https://mongoosejs.com/docs/images/mongoose-logo-white.png" },
-    { id: "knex", name: "Knex.js", category: "ORM", description: "SQL query builder for PostgreSQL, MySQL, SQLite and more", website: "https://knexjs.org", color: "#D26B38", npm: "npm install knex", icon: "https://knexjs.org/img/knex-icon.svg" },
-
-    // OpenTelemetry
-    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Vendor-neutral observability framework for distributed systems", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
-// API Documentation
+    { id: "prisma-client", name: "Prisma Client", category: "ORM", description: "Generated TypeScript/JavaScript ORM for type-safe database access", website: "https://www.prisma.io", color: "#2D3748", npm: "npm install @prisma/client", icon: "https://www.prisma.io/images/favicon/favicon.ico" },// API Documentation
     { id: "redoc-cli", name: "Redoc CLI", category: "API Documentation", description: "CLI for OpenAPI docs", website: "https://redocly.com", color: "#00707C", npm: "npm install -g redoc-cli", icon: "https://redocly.com/favicon.ico" },
 
     // Background Jobs
@@ -549,44 +525,14 @@ export const technologyData: Technology[] = [
     { id: "resque", name: "Resque", category: "Message Queues/Event Streaming", description: "Redis-backed job queue for Ruby", website: "https://github.com/resque/resque", color: "#FF6600", npm: "gem install resque", icon: "https://avatars.githubusercontent.com/u/12885341?s=200&v=4" },
     { id: "celery", name: "Celery", category: "Message Queues/Event Streaming", description: "Distributed task queue for Python", website: "https://docs.celeryproject.org", color: "#FDB515", npm: "pip install celery", icon: "https://docs.celeryproject.org/en/stable/_static/celery-logo-dark.png" },
     { id: "rq", name: "RQ", category: "Message Queues/Event Streaming", description: "Redis Queue for Python", website: "https://python-rq.org", color: "#DC382D", npm: "pip install rq", icon: "https://python-rq.org/img/rq-logo.png" },
-
-    // Data Visualization
-    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "JavaScript charting library", website: "https://www.chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://www.chartjs.org/img/logo.png" },
-    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents", website: "https://d3js.org", color: "#000000", npm: "npm install d3", icon: "https://d3js.org/d3icon.PNG" },
-    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "React-based charting library", website: "https://recharts.org", color: "#3880E0", npm: "npm install recharts", icon: "https://recharts.org/img/favicon.ico" },
-
-    // Maps/Geo
-    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Interactive map library", website: "https://leafletjs.com", color: "#66CC00", npm: "npm install leaflet", icon: "https://leafletjs.com/docs/img/logo-mark.png" },
-    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom map design platform", website: "https://mapbox.com", color: "#1E74C5", npm: "npm install mapbox-gl", icon: "https://maps.mapbox.com/mapbox-gl-js/docs/img/mapbox-icon.png" },
-
     // Push Notifications
     { id: "web-push", name: "Web Push", category: "Push Notifications", description: "Self-hosted push notifications", website: "https://github.com/web-push-libs/web-push", color: "#000000", npm: "npm install web-push", icon: "https://www.google.com/favicon.ico" },
-
-    // Accessibility
-    { id: "axe-core", name: "Axe", category: "Accessibility", description: "Accessibility testing tool", website: "https://github.com/dequelabs/axe-core", color: "#000000", npm: "npm install axe-core", icon: "https://www.deque.com/axe/images/axe-icon@3x.png" },
-
     // Web3/Blockchain
     { id: "web3", name: "Web3.js", category: "Web3/Blockchain", description: "JavaScript library for Ethereum", website: "https://web3js.readthedocs.io", color: "#8B0000", npm: "npm install web3", icon: "https://web3js.readthedocs.io/en/stable/images/favicon.ico" },
     { id: "ethers", name: "Ethers.js", category: "Web3/Blockchain", description: "Ethereum library and provider", website: "https://docs.ethers.io", color: "#C0C0C0", npm: "npm install ethers", icon: "https://docs.ethers.io/v5/assets/logos/ethers-32.png" },
     { id: "solana", name: "Solana", category: "Web3/Blockchain", description: "Solana blockchain SDK", website: "https://solana.com", color: "#99451B", npm: "npm install @solana/web3.js", icon: "https://solana.com/solana-logo1.png" },
-
-    // AI/LLM
-    { id: "anthropic", name: "Anthropic SDK", category: "AI/LLM", description: "Claude API client", website: "https://docs.anthropic.com", color: "#FF5A35", npm: "npm install @anthropic-ai/sdk", icon: "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png" },
-    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "ML models and datasets", website: "https://huggingface.co", color: "#EEE5C0", npm: "npm install @huggingface/hub", icon: "https://huggingface.co/front/images/logos/mark/favicon.ico" },
-    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.ai", color: "#000000", npm: "node install ollama", icon: "https://ollama.ai/favicon.ico" },
-
-    // Edge/Serverless
-    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless on edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "# Web service", icon: "https://workers.cloudflare.com/favicon.ico" },
-
-    // Monorepo
-    { id: "turborepo", name: "TurboRepo", category: "Monorepo", description: "High-performance build system", website: "https://turbo.build/repo", color: "#00ADD8", npm: "npx create-turbo@latest", icon: "https://turbo.build/img/favicon.ico" },
-
     // Package Manager
     { id: "bun-package", name: "Bun Package", category: "Package Manager", description: "Package manager for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "# Built into Bun", icon: "https://bun.sh/img/logo.svg" },
-
-    // Feature Flags
-    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Feature flag management", website: "https://flagsmith.com", color: "#FF6600", npm: "# Web service", icon: "https://flagsmith.com/favicon.ico" },
-
     // Dev Environments
     { id: "gitpod", name: "Gitpod", category: "Dev Environments", description: "Cloud dev environments", website: "https://gitpod.io", color: "#FF6600", npm: "# Web service", icon: "https://gitpod.io/img/favicon.ico" },
 { id: "ghost", name: "Ghost", category: "CMS", description: "Publishing platform", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
@@ -606,11 +552,9 @@ export const technologyData: Technology[] = [
     { id: "zipkin", name: "Zipkin", category: "OpenTelemetry", description: "Distributed tracing system", website: "https://zipkin.io", color: "#000000", npm: "npm install zipkin", icon: "https://zipkin.io/img/logo.svg" },
 
     // Runtime - more runtimes
-    { id: "deno-deploy", name: "Deno Deploy", category: "Runtime", description: "Edge-first serverless runtime", website: "https://deno.com/deploy", color: "#000000", npm: "# Web service", icon: "https://deno.com/favicon.ico" },
     { id: "bun-types", name: "Bun:types", category: "Runtime", description: "Type definitions for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "npm install @types/bun", icon: "https://bun.sh/img/logo.svg" },
 
     // Push Notifications - more
-    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/docs/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
     { id: "one-signal", name: "OneSignal", category: "Push Notifications", description: "Push notification service", website: "https://onesignal.com", color: "#00C4CC", npm: "npm install onesignal-node", icon: "https://onesignal.com/images/favicon.ico" },
 
     // Accessibility - more
@@ -633,24 +577,10 @@ export const technologyData: Technology[] = [
     { id: "svn", name: "Subversion", category: "Version Control", description: "Apache Subversion version control", website: "https://subversion.apache.org", color: "#8BB447", npm: "# Command line tools", icon: "https://subversion.apache.org/images/subversion_32x32.png" },
 
     // Documentation - more
-    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Open source Markdown documentation generator", website: "https://docusaurus.io", color: "#FF5A35", npm: "npm install @docusaurus/core", icon: "https://docusaurus.io/img/favicon.ico" },
     { id: "mkdocs", name: "MkDocs", category: "Documentation", description: "Static site generator for docs", website: "https://www.mkdocs.org", color: "#009688", npm: "pip install mkdocs", icon: "https://www.mkdocs.org/_static/favicon.ico" },
-
-    // AI Agents - more
-    { id: "langchain", name: "LangChain", category: "AI Agents", description: "Frameworks for building LLM applications", website: "https://langchain.com", color: "#39Ad6D", npm: "npm install langchain", icon: "https://langchain.com/favicon.ico" },
-    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Multiple AI agents working together", website: "https://crewai.com", color: "#000000", npm: "pip install crewai", icon: "https://crewai.com/favicon.ico" },
-
-    // 3D/Game Dev - more
-    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Web-based 3D engine", website: "https://babylonjs.com", color: "#000000", npm: "npm install @babylonjs/core", icon: "https://babylonjs.com/images/favicon.ico" },
-
     // Workflow Automation - more
     { id: "trayio", name: "Tray.io", category: "Workflow Automation", description: "Integration platform automation", website: "https://tray.io", color: "#6366F1", npm: "# Web service", icon: "https://tray.io/favicon.ico" },
     { id: "workato", name: "Workato", category: "Workflow Automation", description: "Enterprise automation platform", website: "https://www.workato.com", color: "#FF6600", npm: "# Web service", icon: "https://www.workato.com/favicon.ico" },
-
-    // Code Quality/Linting - more
-    { id: "eslint", name: "ESLint", category: "Code Quality/Linting", description: "JavaScript linter", website: "https://eslint.org", color: "#4B32C5", npm: "npm install eslint", icon: "https://eslint.org/img/favicon-32x32.png" },
-    { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7DF1E", npm: "npm install prettier", icon: "https://prettier.io/img/favicon-32x32.png" },
-
     // DevOps/Infrastructure - more
     { id: "azure-bicep", name: "Azure Bicep", category: "DevOps/Infrastructure", description: "Declarative Azure deployment language", website: "https://learn.microsoft.com/azure/azure-resource-manager/bicep", color: "#0078D4", npm: "npm install -g bicep", icon: "https://learn.microsoft.com/static/devops/icons/bicep.png" },
     { id: "redis-pubsub", name: "Redis Pub/Sub", category: "Message Queues/Event Streaming", description: "Redis built-in pub/sub messaging", website: "https://redis.io", color: "#DC382D", npm: "npm install redis", icon: "https://redis.io/images/brand/redis-brand-rgb-icon.svg" },
@@ -748,4 +678,101 @@ export const technologyData: Technology[] = [
     { id: "typesense-search", name: "Typesense", category: "Search", description: "Typo-tolerant search engine", website: "https://typesense.org", color: "#D23669", npm: "npm install typesense", icon: "https://typesense.org/img/favicon.ico" },
     { id: "ghost-cms", name: "Ghost CMS", category: "CMS", description: "Publishing platform", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
     { id: "cloudinary-storage", name: "Cloudinary Storage", category: "Storage", description: "Media asset management platform", website: "https://cloudinary.com", color: "#2C528C", npm: "npm install cloudinary", icon: "https://cloudinary.com/favicon.ico" },
+
+    // =====================================================================
+    // 2026 Trend Additions
+    // Researched via JS Rising Stars 2025, State of JS 2025 and 2026
+    // web-development trend reports (AI-first development, agentic
+    // workflows, Rust tooling, meta-frameworks, edge compute, animation).
+    // =====================================================================
+
+    // AI Coding Assistants (new category - AI-first development trend)
+    { id: "github-copilot", name: "GitHub Copilot", category: "AI Coding Assistants", description: "AI pair programmer that suggests code and entire functions in real time", website: "https://github.com/features/copilot", color: "#2088FF", npm: "# IDE extension", icon: "https://github.com/github.png", skills: ["AI-assisted development", "Prompting", "Code review"], compatibleWith: ["typescript", "javascript", "vscode"] },
+    { id: "cursor", name: "Cursor", category: "AI Coding Assistants", description: "AI-first code editor built for agentic coding workflows", website: "https://cursor.com", color: "#000000", npm: "# Install from cursor.com", icon: "https://github.com/getcursor.png", skills: ["AI-assisted development", "Agentic workflows", "Refactoring"], compatibleWith: ["typescript", "git", "github"] },
+    { id: "v0", name: "v0 by Vercel", category: "AI Coding Assistants", description: "Generative UI builder that scaffolds Next.js apps from prompts", website: "https://v0.dev", color: "#000000", npm: "# Web service", icon: "https://github.com/vercel.png", skills: ["Generative UI", "Prototyping", "Design-to-code"], compatibleWith: ["nextjs", "shadcn", "tailwind", "react"] },
+    { id: "bolt-new", name: "bolt.new", category: "AI Coding Assistants", description: "Prompt, run, edit, and deploy full-stack web applications in the browser", website: "https://bolt.new", color: "#0EA5A5", npm: "# Web service", icon: "https://github.com/stackblitz.png", skills: ["AI app generation", "Full-stack prototyping", "Deployment"], compatibleWith: ["vite", "react", "typescript"] },
+    { id: "dyad", name: "Dyad", category: "AI Coding Assistants", description: "Free, local, open-source AI app builder and v0/Bolt alternative", website: "https://dyad.sh", color: "#6366F1", npm: "# Install from dyad.sh", icon: "https://github.com/dyad-sh.png", skills: ["Local AI development", "App generation", "Privacy-first AI"], compatibleWith: ["react", "ollama", "typescript"] },
+    { id: "lovable", name: "Lovable", category: "AI Coding Assistants", description: "AI platform that generates and deploys full-stack apps from prompts", website: "https://lovable.dev", color: "#FF5C37", npm: "# Web service", icon: "https://lovable.dev/favicon.ico", skills: ["AI app generation", "No-code building", "Rapid prototyping"], compatibleWith: ["supabase", "react", "tailwind"] },
+
+    // Animation (new category - memorable, motion-rich UI trend)
+    { id: "motion", name: "Motion", category: "Animation", description: "Production-ready animation library for the web, successor of Framer Motion", website: "https://motion.dev", color: "#FF2E88", npm: "npm install motion", icon: "https://github.com/motiondivision.png", skills: ["Animation", "Gestures", "Layout transitions"], compatibleWith: ["react", "vue", "solid", "svelte"] },
+    { id: "gsap", name: "GSAP", category: "Animation", description: "Industry-standard JavaScript animation engine for the web", website: "https://gsap.com", color: "#88CE02", npm: "npm install gsap", icon: "https://github.com/greensock.png", skills: ["Timeline animation", "ScrollTrigger", "SVG animation"], compatibleWith: ["threejs", "astro", "nextjs"] },
+    { id: "react-bits", name: "React Bits", category: "Animation", description: "Open-source collection of animated, interactive React components", website: "https://reactbits.dev", color: "#A78BFA", npm: "# Copy-paste registry", icon: "https://github.com/DavidHDev.png", skills: ["Component design", "Micro-interactions", "Visual effects"], compatibleWith: ["react", "shadcn", "motion", "gsap"] },
+    { id: "react-spring", name: "React Spring", category: "Animation", description: "Spring-physics based animation library for React", website: "https://react-spring.dev", color: "#FF6B9D", npm: "npm install @react-spring/web", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4", skills: ["Physics-based animation", "React hooks", "Cross-platform UI"], compatibleWith: ["react", "react-three-fiber"] },
+    { id: "lottie", name: "Lottie", category: "Animation", description: "Lightweight runtime for rendering After Effects vector animations", website: "https://lottiefiles.com", color: "#00DDB6", npm: "npm install lottie-react", icon: "https://github.com/airbnb.png", skills: ["Vector animation", "Asset optimization", "Designer handoff"], compatibleWith: ["react", "vue", "reactnative"] },
+
+    // Web Framework additions (HTMX and rising frameworks trend)
+    { id: "htmx", name: "htmx", category: "Web Framework", description: "Access AJAX, WebSockets and Server Sent Events directly in HTML", website: "https://htmx.org", color: "#3366CC", npm: "npm install htmx.org", icon: "https://htmx.org/favicon.ico", skills: ["Progressive enhancement", "Server-driven UI", "Hypermedia"], compatibleWith: ["django", "laravel", "rails", "express", "fastify", "aspnet-core"] },
+    { id: "ripple", name: "Ripple", category: "Web Framework", description: "Elegant TypeScript UI framework combining ideas from React, Solid and Svelte", website: "https://ripplejs.com", color: "#6366F1", npm: "npm install @lazarv/ripple", icon: "https://github.com/Ripple-TS.png", skills: ["Reactivity", "TypeScript", "Component architecture"], compatibleWith: ["typescript", "vite"] },
+
+    // Backend Framework additions (unified backend trend)
+    { id: "motia", name: "Motia", category: "Backend Framework", description: "Multi-language backend framework unifying APIs, jobs, queues, workflows and AI agents", website: "https://motia.dev", color: "#7C3AED", npm: "npm install motia", icon: "https://github.com/MotiaDev.png", skills: ["Backend architecture", "Event-driven design", "Observability"], compatibleWith: ["typescript", "python", "docker"] },
+
+    // Build Tools additions (Rust toolchain and React Compiler trend)
+    { id: "rolldown", name: "Rolldown", category: "Build Tools", description: "Fast Rust-based bundler with Rollup-compatible API, built for Vite", website: "https://rolldown.rs", color: "#F97316", npm: "npm install rolldown", icon: "https://github.com/rolldown.png", skills: ["Bundling", "Build optimization", "Rust tooling"], compatibleWith: ["vite", "typescript"] },
+    { id: "react-compiler", name: "React Compiler", category: "Build Tools", description: "Build-time compiler that automatically memoizes React code", website: "https://react.dev/learn/react-compiler", color: "#61DAFB", npm: "npm install babel-plugin-react-compiler", icon: "https://react.dev/favicon.ico", skills: ["Performance optimization", "React internals", "Build pipelines"], compatibleWith: ["react", "nextjs", "vite", "expo"] },
+
+    // Code Quality/Linting additions (Rust linter/formatter trend)
+    { id: "biome", name: "Biome", category: "Code Quality/Linting", description: "Fast Rust-based formatter and linter for the web ecosystem", website: "https://biomejs.dev", color: "#60A5FA", npm: "npm install -D @biomejs/biome", icon: "https://github.com/biomejs.png", skills: ["Formatting", "Linting", "CI quality gates"], compatibleWith: ["typescript", "github-actions"] },
+    { id: "oxlint", name: "Oxlint", category: "Code Quality/Linting", description: "High-performance Rust-based JavaScript linter from the Oxc project", website: "https://oxc.rs", color: "#4F46E5", npm: "npm install -D oxlint", icon: "https://github.com/oxc-project.png", skills: ["Linting", "Static analysis", "Performance tooling"], compatibleWith: ["eslint", "typescript"] },
+
+    // CSS Framework additions (headless primitives and design tokens trend)
+    { id: "radix-ui", name: "Radix UI", category: "CSS Framework", description: "Unstyled, accessible UI component primitives for the web", website: "https://radix-ui.com", color: "#6E56CF", npm: "npm install @radix-ui/react-dialog", icon: "https://github.com/radix-ui.png", skills: ["Accessibility", "Headless components", "Design systems"], compatibleWith: ["react", "tailwind", "shadcn", "styled-components"] },
+    { id: "base-ui", name: "Base UI", category: "CSS Framework", description: "Unstyled UI components and headless primitives from the MUI team", website: "https://base-ui.com", color: "#007FFF", npm: "npm install @base-ui-components/react", icon: "https://github.com/base-ui-components.png", skills: ["Headless components", "Accessibility", "Design systems"], compatibleWith: ["react", "tailwind", "shadcn"] },
+
+    // State Management additions (TanStack-ification of frontend logic)
+    { id: "tanstack-query", name: "TanStack Query", category: "State Management", description: "Powerful asynchronous state management for data fetching and caching", website: "https://tanstack.com/query", color: "#EF4444", npm: "npm install @tanstack/react-query", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4", skills: ["Server state", "Caching", "Data synchronization"], compatibleWith: ["react", "vue", "solid", "svelte", "angular", "trpc"] },
+    { id: "swr", name: "SWR", category: "State Management", description: "React hooks for data fetching with stale-while-revalidate caching", website: "https://swr.vercel.app", color: "#000000", npm: "npm install swr", icon: "https://github.com/vercel.png", skills: ["Data fetching", "Caching strategies", "React hooks"], compatibleWith: ["react", "nextjs"] },
+
+    // AI Agents additions (agentic workflow trend)
+    { id: "mastra", name: "Mastra", category: "AI Agents", description: "TypeScript framework for building AI-powered applications and agents", website: "https://mastra.ai", color: "#1E90FF", npm: "npm install mastra", icon: "https://github.com/mastra-ai.png", skills: ["Agent orchestration", "Workflow design", "RAG pipelines"], compatibleWith: ["typescript", "vercel-ai-sdk", "openai", "anthropic"] },
+    { id: "stagehand", name: "Stagehand", category: "AI Agents", description: "AI browser automation framework built on Playwright", website: "https://stagehand.dev", color: "#F5C518", npm: "npm install @browserbasehq/stagehand", icon: "https://github.com/browserbase.png", skills: ["Browser automation", "Agent tooling", "E2E scripting"], compatibleWith: ["playwright", "typescript", "openai"] },
+    { id: "voltagent", name: "VoltAgent", category: "AI Agents", description: "Open-source TypeScript AI agent framework with built-in LLM observability", website: "https://voltagent.dev", color: "#EAB308", npm: "npm install @voltagent/core", icon: "https://github.com/VoltAgent.png", skills: ["Agent development", "LLM observability", "TypeScript"], compatibleWith: ["typescript", "vercel-ai-sdk", "langchain"] },
+    { id: "genkit", name: "Genkit", category: "AI Agents", description: "Google's open-source framework for building AI-powered apps and agents", website: "https://genkit.dev", color: "#4285F4", npm: "npm install genkit", icon: "https://github.com/firebase.png", skills: ["Agent flows", "Model evaluation", "Multi-turn conversations"], compatibleWith: ["typescript", "firebase-firestore", "gemini"] },
+    { id: "browser-use", name: "browser-use", category: "AI Agents", description: "Python framework that lets AI agents control web browsers", website: "https://browser-use.com", color: "#5B5BD6", npm: "pip install browser-use", icon: "https://github.com/browser-use.png", skills: ["Browser automation", "Agent tooling", "Python"], compatibleWith: ["playwright", "python", "langchain"] },
+
+    // AI/LLM additions (MCP protocol and multi-provider trend)
+    { id: "mcp", name: "Model Context Protocol", category: "AI/LLM", description: "Open standard for connecting AI assistants to data sources and tools", website: "https://modelcontextprotocol.io", color: "#10B981", npm: "npm install @modelcontextprotocol/sdk", icon: "https://github.com/modelcontextprotocol.png", skills: ["AI integration", "Tool servers", "Agent interoperability"], compatibleWith: ["openai", "anthropic", "langchain", "vercel-ai-sdk"] },
+    { id: "gemini", name: "Google Gemini", category: "AI/LLM", description: "Google's multimodal AI models and developer API", website: "https://ai.google.dev", color: "#886CE4", npm: "npm install @google/genai", icon: "https://ai.google.dev/favicon.ico", skills: ["Multimodal AI", "Prompt engineering", "Grounding"], compatibleWith: ["vercel-ai-sdk", "genkit", "firebase-firestore"] },
+    { id: "mistral", name: "Mistral AI", category: "AI/LLM", description: "European frontier AI models with open-weight options", website: "https://mistral.ai", color: "#FA520F", npm: "npm install @mistralai/mistralai", icon: "https://mistral.ai/favicon.ico", skills: ["LLM integration", "Fine-tuning", "Prompt engineering"], compatibleWith: ["vercel-ai-sdk", "langchain", "ollama"] },
+    { id: "deepseek", name: "DeepSeek", category: "AI/LLM", description: "Cost-efficient open-weight reasoning models and API", website: "https://deepseek.com", color: "#4D6BFE", npm: "npm install deepseek-sdk", icon: "https://www.deepseek.com/favicon.ico", skills: ["Reasoning models", "Cost optimization", "LLM integration"], compatibleWith: ["vercel-ai-sdk", "ollama", "openrouter"] },
+    { id: "langfuse", name: "Langfuse", category: "AI/LLM", description: "Open-source LLM observability, tracing and evaluation platform", website: "https://langfuse.com", color: "#2563EB", npm: "npm install langfuse", icon: "https://github.com/langfuse.png", skills: ["LLM observability", "Evaluation", "Prompt management"], compatibleWith: ["langchain", "vercel-ai-sdk", "openai", "anthropic"] },
+
+    // Database additions (edge database trend)
+    { id: "cloudflare-d1", name: "Cloudflare D1", category: "Database", description: "Serverless SQLite database running on Cloudflare Workers at the edge", website: "https://developers.cloudflare.com/d1", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4", skills: ["Edge computing", "SQLite", "Serverless data"], compatibleWith: ["cloudflare-workers", "drizzle", "prisma"] },
+
+    // Vector Database additions (serverless AI memory trend)
+    { id: "turbopuffer", name: "Turbopuffer", category: "Vector Database", description: "Serverless vector database with object-storage-backed indexes", website: "https://turbopuffer.com", color: "#14B8A6", npm: "npm install @turbopuffer/turbopuffer", icon: "https://turbopuffer.com/favicon.ico", skills: ["Vector search", "RAG architecture", "Cost scaling"], compatibleWith: ["openai", "vercel-ai-sdk", "llamaindex"] },
+    { id: "lancedb", name: "LanceDB", category: "Vector Database", description: "Embedded serverless vector database for AI applications", website: "https://lancedb.com", color: "#5E6AD2", npm: "npm install @lancedb/lancedb", icon: "https://github.com/lancedb.png", skills: ["Embedded search", "Multimodal retrieval", "RAG architecture"], compatibleWith: ["llamaindex", "langchain", "duckdb"] },
+
+    // Native Framework additions (cross-platform newcomer trend)
+    { id: "lynx", name: "Lynx", category: "Native Framework", description: "ByteDance's open-source cross-platform framework with dual-thread rendering", website: "https://lynxjs.org", color: "#12B8CB", npm: "npm install -g @lynx-dev/lynx-cli", icon: "https://github.com/lynx-family.png", skills: ["Cross-platform UI", "Web-like rendering", "Performance tuning"], compatibleWith: ["react", "typescript"] },
+    { id: "dioxus", name: "Dioxus", category: "Native Framework", description: "Rust fullstack app framework for web, desktop, and mobile", website: "https://dioxuslabs.com", color: "#E5484D", npm: "cargo install dioxus-cli", icon: "https://github.com/DioxusLabs.png", skills: ["Rust", "Cross-platform UI", "Reactivity"], compatibleWith: ["rust", "tauri"] },
+    { id: "nativewind", name: "NativeWind", category: "Native Framework", description: "Tailwind CSS utility-first styling for React Native", website: "https://nativewind.dev", color: "#06B6D4", npm: "npm install nativewind", icon: "https://github.com/nativewind.png", skills: ["Mobile styling", "Design systems", "Tailwind workflows"], compatibleWith: ["reactnative", "expo", "tailwind"] },
+    { id: "tamagui", name: "Tamagui", category: "Native Framework", description: "Universal UI kit and style system for React Native and web with an optimizing compiler", website: "https://tamagui.dev", color: "#17A2B8", npm: "npm install tamagui", icon: "https://github.com/tamagui.png", skills: ["Universal UI", "Style compilation", "Theming"], compatibleWith: ["reactnative", "expo", "react"] },
+
+    // Testing additions (AI-driven UI automation trend)
+    { id: "midscene", name: "Midscene.js", category: "Testing", description: "Vision-based AI UI automation framework for web and mobile", website: "https://midscenejs.com", color: "#3370FF", npm: "npm install @midscene/web", icon: "https://github.com/web-infra-dev.png", skills: ["AI testing", "UI automation", "Natural-language scripting"], compatibleWith: ["playwright", "typescript", "vitest"] },
+
+    // CMS additions (git-based content trend)
+    { id: "tina-cms", name: "Tina CMS", category: "CMS", description: "Git-backed headless CMS with visual editing", website: "https://tina.io", color: "#EC4815", npm: "npx @tinacms/cli@latest init", icon: "https://github.com/tinacms.png", skills: ["Content modeling", "Git workflows", "Visual editing"], compatibleWith: ["nextjs", "astro", "react"] },
+
+    // Hosting additions (developer cloud trend)
+    { id: "zeabur", name: "Zeabur", category: "Hosting", description: "Platform for deploying full-stack apps with zero configuration", website: "https://zeabur.com", color: "#6C2BD9", npm: "npm install -g @zeabur/cli", icon: "https://github.com/zeabur.png", skills: ["Deployment", "CI/CD", "Infrastructure basics"], compatibleWith: ["nextjs", "docker", "github-actions"] },
+
+    // Monitoring/Observability additions (log analytics trend)
+    { id: "axiom", name: "Axiom", category: "Monitoring/Observability", description: "Serverless observability platform for logs, traces and metrics", website: "https://axiom.co", color: "#3B82F6", npm: "npm install @axiomhq/js", icon: "https://axiom.co/favicon.ico", skills: ["Log analytics", "Tracing", "OpenTelemetry"], compatibleWith: ["opentelemetry", "vercel", "nextjs"] },
+
+    // Validation additions (next-gen type-safe validation trend)
+    { id: "arktype", name: "ArkType", category: "Validation", description: "TypeScript's optimal validation library with inferred static types", website: "https://arktype.io", color: "#8B5CF6", npm: "npm install arktype", icon: "https://github.com/arktypeio.png", skills: ["Schema validation", "Type inference", "Performance profiling"], compatibleWith: ["typescript", "hono", "trpc"] },
+
+    // Documentation additions (developer presentations trend)
+    { id: "slidev", name: "Slidev", category: "Documentation", description: "Presentation slides for developers, powered by Vue and Markdown", website: "https://sli.dev", color: "#FFB800", npm: "npm create slidev@latest", icon: "https://github.com/slidevjs.png", skills: ["Technical writing", "Markdown", "Live coding demos"], compatibleWith: ["vue", "vite", "typescript"] },
+
+    // OpenRouter (multi-provider AI routing trend)
+    { id: "openrouter", name: "OpenRouter", category: "AI/LLM", description: "Unified API gateway for routing between hundreds of LLM providers", website: "https://openrouter.ai", color: "#6B7280", npm: "npm install openai", icon: "https://openrouter.ai/favicon.ico", skills: ["Model routing", "Cost optimization", "Fallback strategies"], compatibleWith: ["vercel-ai-sdk", "langchain", "openai"] }
 ];
+
+export const categories: string[] = Array.from(
+    new Set(technologyData.map((t) => t.category))
+);

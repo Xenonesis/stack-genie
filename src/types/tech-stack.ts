@@ -7,6 +7,10 @@ export interface Technology {
     color?: string;
     npm?: string;
     icon?: string;
+    /** Core developer skills exercised by this technology */
+    skills?: string[];
+    /** IDs of technologies that pair well with this one */
+    compatibleWith?: string[];
 }
 
 export interface TechStack {
