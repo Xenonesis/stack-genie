@@ -1,14 +1,41 @@
 import { useState, useEffect, useRef } from "react";
 
+// Deterministic palette for fallback badges
+const FALLBACK_GRADIENTS = [
+  "from-violet-600 to-indigo-700",
+  "from-cyan-600 to-blue-700",
+  "from-emerald-600 to-teal-700",
+  "from-amber-600 to-orange-700",
+  "from-rose-600 to-pink-700",
+  "from-fuchsia-600 to-purple-700",
+  "from-blue-600 to-sky-700",
+  "from-teal-600 to-cyan-700",
+];
+
+function getGradientForName(name: string): string {
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash << 5) - hash + name.charCodeAt(i);
+    hash |= 0;
+  }
+  const index = Math.abs(hash) % FALLBACK_GRADIENTS.length;
+  return FALLBACK_GRADIENTS[index];
+}
+
 // Fallback icon component
-export const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => (
-  <div
-    className="bg-gray-600 rounded-md border border-border shadow-xs flex items-center justify-center text-foreground font-bold"
-    style={{ width: `${size}px`, height: `${size}px`, fontSize: `${size * 0.4}px` }}
-  >
-    {name.charAt(0).toUpperCase()}
-  </div>
-);
+export const FallbackIcon = ({ name, size = 32 }: { name: string; size?: number }) => {
+  const gradient = getGradientForName(name || "Tech");
+  const initial = (name || "T").charAt(0).toUpperCase();
+  return (
+    <div
+      className={`bg-gradient-to-br ${gradient} rounded-md border border-white/10 shadow-xs flex items-center justify-center text-white font-bold select-none shrink-0`}
+      style={{ width: `${size}px`, height: `${size}px`, fontSize: `${Math.max(10, Math.floor(size * 0.45))}px` }}
+      title={name}
+    >
+      {initial}
+    </div>
+  );
+};
 
 // Custom Image component with error handling
 export const TechIcon = ({ src, alt, width, height, className }: {
