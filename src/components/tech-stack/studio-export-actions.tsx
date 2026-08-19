@@ -2,16 +2,13 @@
 
 import React, { useState, useCallback } from "react";
 import {
-  Download,
   Copy,
   Check,
   FileCode,
   FileText,
   ImageIcon,
-  Share2,
   Loader2,
   ChevronDown,
-  Sparkles,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -29,6 +26,7 @@ import {
 } from "@/components/ui/tooltip";
 import { useToast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
+import { THEME_CANVAS_BG } from "./studio-theme";
 
 export interface StudioExportActionsProps {
   mermaidCode: string;
@@ -40,17 +38,10 @@ export interface StudioExportActionsProps {
 
 /**
  * Returns background fill color for canvas rendering based on selected diagram theme.
+ * Value comes from THEME_CANVAS_BG so preview and exported PNG always match.
  */
 export function getThemeBackgroundColor(theme: 'dark' | 'light' | 'neutral'): string {
-  switch (theme) {
-    case 'light':
-      return '#ffffff';
-    case 'neutral':
-      return '#0f172a';
-    case 'dark':
-    default:
-      return '#080808';
-  }
+  return THEME_CANVAS_BG[theme] ?? THEME_CANVAS_BG.dark;
 }
 
 /**

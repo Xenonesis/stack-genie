@@ -10,8 +10,6 @@ import {
   Sun,
   Palette,
   Code2,
-  SlidersHorizontal,
-  Sparkles,
   ChevronDown
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -29,6 +27,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { THEME_CANVAS_BG } from "./studio-theme";
 
 export interface StudioToolbarProps {
   direction: 'TD' | 'LR';
@@ -60,7 +59,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
     description: 'High-contrast dark mode with glowing tier borders',
     icon: Moon,
     accentColor: '#38bdf8',
-    bgColor: '#080808',
+    bgColor: THEME_CANVAS_BG.dark,
   },
   {
     id: 'light',
@@ -69,7 +68,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
     description: 'Crisp white canvas with soft architectural tinting',
     icon: Sun,
     accentColor: '#0284c7',
-    bgColor: '#ffffff',
+    bgColor: THEME_CANVAS_BG.light,
   },
   {
     id: 'neutral',
@@ -78,7 +77,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
     description: 'Modern slate palette optimized for documentation',
     icon: Palette,
     accentColor: '#4b5563',
-    bgColor: '#0f172a',
+    bgColor: THEME_CANVAS_BG.neutral,
   },
 ];
 

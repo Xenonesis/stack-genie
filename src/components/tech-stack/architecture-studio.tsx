@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { X, Layers, ExternalLink } from "lucide-react";
 import { TechStack } from "@/types/tech-stack";
 import { generateMermaidDiagram } from "@/utils/mermaidGenerator";
@@ -40,7 +40,6 @@ export function ArchitectureStudio({
 
   // Captured rendered SVG for export actions (kept in state so the footer
   // re-renders once the diagram becomes available).
-  const svgRef = useRef<SVGSVGElement | null>(null);
   const [svgElement, setSvgElement] = useState<SVGSVGElement | null>(null);
 
   // Auto-generated diagram unless the user has edited the code manually
@@ -54,7 +53,6 @@ export function ArchitectureStudio({
     });
 
   const handleSvgRendered = useCallback((svg: SVGSVGElement | null) => {
-    svgRef.current = svg;
     setSvgElement(svg);
   }, []);
 

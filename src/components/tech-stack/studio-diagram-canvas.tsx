@@ -12,6 +12,7 @@ import {
   Crosshair 
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { THEME_CANVAS_BG } from "./studio-theme";
 
 export interface StudioDiagramCanvasProps {
   mermaidCode: string;
@@ -162,11 +163,19 @@ export function StudioDiagramCanvas({
     setIsDragging(false);
   }, []);
 
-  // Wheel zoom / pan handling
-  const handleWheel = useCallback(
-    (e: React.WheelEvent<HTMLDivElement>) => {
+  // Native non-passive wheel listener for zoom (Ctrl/Cmd + wheel) and pan.
+  // React's onWheel is passive (preventDefault is a no-op), which lets the
+  // browser double-zoom and scroll the page behind the modal; a manual
+  // { passive: false } listener prevents both.
+  useEffect(() => {
+    if (!mounted) return;
+    const el = containerRef.current;
+    if (!el) return;
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
       if (e.ctrlKey || e.metaKey) {
-        e.preventDefault();
+        // Zoom with clamped step (bounds 0.2..3.0)
         const delta = e.deltaY < 0 ? 0.1 : -0.1;
         onZoomChange((prev) => {
           const next = Math.round((prev + delta) * 10) / 10;
@@ -179,9 +188,11 @@ export function StudioDiagramCanvas({
           y: prev.y - e.deltaY,
         }));
       }
-    },
-    [onZoomChange]
-  );
+    };
+
+    el.addEventListener("wheel", handleWheel, { passive: false });
+    return () => el.removeEventListener("wheel", handleWheel);
+  }, [mounted, onZoomChange]);
 
   // Zoom control actions
   const handleZoomIn = useCallback(() => {
@@ -207,28 +218,18 @@ export function StudioDiagramCanvas({
     setPan({ x: 0, y: 0 });
   }, []);
 
-  // Theme-aware grid background styles
-  const gridBackground =
-    theme === "dark"
-      ? {
-          backgroundColor: "#09090b",
-          backgroundImage: "radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px)",
-          backgroundSize: "24px 24px",
-          backgroundPosition: `${pan.x}px ${pan.y}px`,
-        }
-      : theme === "light"
-      ? {
-          backgroundColor: "#ffffff",
-          backgroundImage: "radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px)",
-          backgroundSize: "24px 24px",
-          backgroundPosition: `${pan.x}px ${pan.y}px`,
-        }
-      : {
-          backgroundColor: "#f4f4f5",
-          backgroundImage: "radial-gradient(circle, rgba(100, 116, 139, 0.12) 1.2px, transparent 1.2px)",
-          backgroundSize: "24px 24px",
-          backgroundPosition: `${pan.x}px ${pan.y}px`,
-        };
+  // Theme-aware grid background styles (bg colors shared with export)
+  const gridBackground = {
+    backgroundColor: THEME_CANVAS_BG[theme],
+    backgroundImage:
+      theme === "dark"
+        ? "radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.2px, transparent 1.2px)"
+        : theme === "light"
+        ? "radial-gradient(circle, rgba(0, 0, 0, 0.08) 1.2px, transparent 1.2px)"
+        : "radial-gradient(circle, rgba(100, 116, 139, 0.12) 1.2px, transparent 1.2px)",
+    backgroundSize: "24px 24px",
+    backgroundPosition: `${pan.x}px ${pan.y}px`,
+  };
 
   if (!mounted) {
     return (
@@ -251,7 +252,6 @@ export function StudioDiagramCanvas({
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseLeave}
-      onWheel={handleWheel}
       style={gridBackground}
       className={`relative w-full h-full min-h-[450px] overflow-hidden rounded-xl border border-border/80 dark:border-[#212124] select-none transition-colors duration-200 outline-none focus-visible:ring-1 focus-visible:ring-ring ${
         isDragging ? "cursor-grabbing" : "cursor-grab"
