@@ -12,6 +12,20 @@ export interface Technology {
     /** IDs of technologies that pair well with this one */
     compatibleWith?: string[];
 }
+export interface StackTemplate {
+    id: string;
+    name: string;
+    description: string;
+    useCase: string;
+    infra: "Minimal" | "Standard" | "Production";
+    aiReady: boolean;
+    techIds: string[];
+}
+
+export interface StackTemplateIssues {
+    missingIds: string[];
+    missingRequirements: string[];
+}
 
 export interface TechStack {
     [category: string]: Technology[];
