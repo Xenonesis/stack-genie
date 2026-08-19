@@ -16,6 +16,7 @@ import { MainContentHeader } from "./tech-stack/main-content-header";
 import { SearchControlsBar } from "./tech-stack/search-controls-bar";
 import { TechCategoryGrid } from "./tech-stack/tech-category-grid";
 import { ArchitectureFlowView } from "./tech-stack/architecture-flow-view";
+import { ArchitectureStudio } from "./tech-stack/architecture-studio";
 import { PopularStacksModal } from "./tech-stack/popular-stacks-modal";
 import { TechComparatorModal } from "./tech-stack/tech-comparator-modal";
 import { TechIcon } from "./tech-stack/tech-icon";
@@ -49,6 +50,7 @@ export function TechStackBuilderContent() {
   const [showPopularStacks, setShowPopularStacks] = useState(false);
   const [activeView, setActiveView] = useState<'grid' | 'architecture'>('grid');
   const [isComparatorOpen, setIsComparatorOpen] = useState(false);
+  const [studioOpen, setStudioOpen] = useState(false);
   // Sidebar visibility: open by default on desktop, closed (drawer) on mobile
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(() => typeof window === "undefined" || window.innerWidth >= 1024);
 
@@ -406,7 +408,11 @@ export function TechStackBuilderContent() {
         <div className="flex-1 overflow-y-auto">
           <div className="p-6 lg:p-8">
             {activeView === 'architecture' ? (
-              <ArchitectureFlowView selectedStack={selectedStack} techIconRenderer={TechIcon} />
+              <ArchitectureFlowView
+                selectedStack={selectedStack}
+                techIconRenderer={TechIcon}
+                onOpenStudio={() => setStudioOpen(true)}
+              />
             ) : (
               <TechCategoryGrid
                 categories={categories}
@@ -441,6 +447,15 @@ export function TechStackBuilderContent() {
         onClose={() => setIsComparatorOpen(false)}
         allTechnologies={technologyData}
         techIconRenderer={TechIcon}
+      />
+
+      {/* Architecture Studio Modal */}
+      <ArchitectureStudio
+        isOpen={studioOpen}
+        onClose={() => setStudioOpen(false)}
+        selectedStack={selectedStack}
+        projectName={projectName}
+        projectDescription={projectDescription}
       />
     </div>
   );

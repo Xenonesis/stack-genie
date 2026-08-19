@@ -3,14 +3,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TechStack } from "@/types/tech-stack";
-import { Layers, ArrowDownRight, Server, Database, Cpu, Activity } from "lucide-react";
+import { Layers, ArrowDownRight, Server, Database, Cpu, Activity, ExternalLink } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface ArchitectureFlowViewProps {
   selectedStack: TechStack;
   techIconRenderer: (props: { src?: string; alt: string; width: number; height?: number; className?: string }) => React.ReactNode;
+  onOpenStudio?: () => void;
 }
 
-export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon }: ArchitectureFlowViewProps) {
+export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon, onOpenStudio }: ArchitectureFlowViewProps) {
   const allTechs = Object.values(selectedStack).flat();
 
   // Categorize tech into architectural layers
@@ -62,6 +64,18 @@ export function ArchitectureFlowView({ selectedStack, techIconRenderer: TechIcon
           </div>
         </div>
         <div className="flex items-center gap-2">
+          {onOpenStudio && (
+            <Button
+              type="button"
+              size="sm"
+              onClick={onOpenStudio}
+              className="h-8 px-3 gap-1.5 text-xs font-semibold shadow-xs transition-all bg-amber-600 hover:bg-amber-700 text-white dark:bg-[#98ff38] dark:hover:bg-[#b4ff66] dark:text-black"
+            >
+              <ExternalLink className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Open Studio & Export</span>
+              <span className="sm:hidden">Export</span>
+            </Button>
+          )}
           <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[4px] text-[10px] font-mono tracking-widest uppercase bg-emerald-50 dark:bg-[#1a1a1a] text-emerald-700 dark:text-[#98ff38] border border-emerald-200 dark:border-[#212121]">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-[#98ff38]" /> Validated Topology
           </span>
