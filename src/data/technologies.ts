@@ -1,869 +1,12165 @@
 import { Technology } from '@/types/tech-stack';
 
 export const technologyData: Technology[] = [
-    // Web Framework
-    { id: "react", name: "React", category: "Web Framework", description: "A JavaScript library for building user interfaces", website: "https://reactjs.org", color: "#61DAFB", npm: "npm install react", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { id: "tanstack-router", name: "TanStack Router", category: "Web Framework", description: "Type-safe router for React applications", website: "https://tanstack.com/router", color: "#FD4F00", npm: "npm install @tanstack/react-router", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4" },
-    { id: "nextjs", name: "Next.js", category: "Web Framework", description: "The React Framework for Production", website: "https://nextjs.org", color: "#000000", npm: "npx create-next-app@latest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-    { id: "vue", name: "Vue.js", category: "Web Framework", description: "The Progressive JavaScript Framework", website: "https://vuejs.org", color: "#4FC08D", npm: "npm install vue", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" },
-    { id: "nuxt", name: "Nuxt.js", category: "Web Framework", description: "The Intuitive Vue Framework", website: "https://nuxt.com", color: "#00DC82", npm: "npx nuxi@latest init", icon: "https://nuxt.com/assets/design-kit/icon-green.png" },
-    { id: "angular", name: "Angular", category: "Web Framework", description: "Platform for building mobile and desktop web applications", website: "https://angular.io", color: "#DD0031", npm: "npm install -g @angular/cli", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg" },
-    { id: "svelte", name: "Svelte", category: "Web Framework", description: "Cybernetically enhanced web apps", website: "https://svelte.dev", color: "#FF3E00", npm: "npm create svelte@latest my-app", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
-    { id: "sveltekit", name: "SvelteKit", category: "Web Framework", description: "The fastest way to build svelte apps", website: "https://kit.svelte.dev", color: "#FF3E00", npm: "npm create sveltekit@latest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg" },
-    { id: "remix", name: "Remix", category: "Web Framework", description: "Full stack web framework focused on web standards", website: "https://remix.run", color: "#000000", npm: "npx create-remix@latest", icon: "https://avatars.githubusercontent.com/u/64235328?s=200&v=4" },
-    { id: "astro", name: "Astro", category: "Web Framework", description: "The web framework for content-driven websites", website: "https://astro.build", color: "#FF5D01", npm: "npm create astro@latest", icon: "https://avatars.githubusercontent.com/u/44914786?s=200&v=4" },
-    { id: "solid", name: "SolidJS", category: "Web Framework", description: "Simple and performant reactivity for building user interfaces", website: "https://solidjs.com", color: "#2C4F7C", npm: "npx degit solidjs/templates/js my-app", icon: "https://avatars.githubusercontent.com/u/79330284?s=200&v=4" },
-    { id: "qwik", name: "Qwik", category: "Web Framework", description: "The HTML-first framework", website: "https://qwik.builder.io", color: "#AC7EF4", npm: "npm create qwik@latest", icon: "https://qwik.builder.io/logos/qwik-logo.svg" },
-    { id: "fresh", name: "Fresh", category: "Web Framework", description: "The next-gen web framework for Deno", website: "https://fresh.deno.dev", color: "#00D2FF", npm: "deno run -A -r https://fresh.deno.dev", icon: "https://avatars.githubusercontent.com/u/86735756?s=200&v=4" },
-    { id: "lit", name: "Lit", category: "Web Framework", description: "Simple. Fast. Web Components.", website: "https://lit.dev", color: "#324FFF", npm: "npm install lit", icon: "https://avatars.githubusercontent.com/u/18489846?s=200&v=4" },
-    { id: "preact", name: "Preact", category: "Web Framework", description: "Fast 3kB React alternative", website: "https://preactjs.com", color: "#673AB8", npm: "npm install preact", icon: "https://avatars.githubusercontent.com/u/26872990?s=200&v=4" },
-    { id: "react-router", name: "React Router", category: "Web Framework", description: "Declarative routing for React", website: "https://reactrouter.com", color: "#CA4245", npm: "npm install react-router-dom", icon: "https://avatars.githubusercontent.com/u/12504344?s=200&v=4" },
-    { id: "tanstack-start", name: "TanStack Start", category: "Web Framework", description: "Full-stack React framework powered by TanStack Router", website: "https://tanstack.com/start", color: "#FD4F00", npm: "npm create @tanstack/start@latest", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4" , skills: ["Full-stack React","SSR & streaming","Server functions"], compatibleWith: ["react","tanstack-router","tanstack-query","vite","tailwind"] },
-    { id: "redwoodjs", name: "RedwoodJS", category: "Web Framework", description: "Full-stack JS framework for the JAMstack", website: "https://redwoodjs.com", color: "#BF4722", npm: "yarn create redwood-app", icon: "https://avatars.githubusercontent.com/u/45009844?s=200&v=4" },
-    { id: "analog", name: "Analog", category: "Web Framework", description: "Full-stack meta-framework for Angular", website: "https://analogjs.org", color: "#DD0031", npm: "npm create analog@latest", icon: "https://avatars.githubusercontent.com/u/107374264?s=200&v=4" },
-
-    // Database
-    { id: "sqlite", name: "SQLite", category: "Database", description: "Self-contained, serverless, zero-configuration SQL database", website: "https://sqlite.org", color: "#003B57", npm: "npm install sqlite3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" },
-    { id: "postgresql", name: "PostgreSQL", category: "Database", description: "Advanced open source relational database", website: "https://postgresql.org", color: "#336791", npm: "npm install pg", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-    { id: "mongodb", name: "MongoDB", category: "Database", description: "Document-oriented NoSQL database", website: "https://mongodb.com", color: "#47A248", npm: "npm install mongodb", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-    { id: "mysql", name: "MySQL", category: "Database", description: "The world's most popular open source database", website: "https://mysql.com", color: "#4479A1", npm: "npm install mysql2", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-    { id: "redis", name: "Redis", category: "Database", description: "In-memory data structure store", website: "https://redis.io", color: "#DC382D", npm: "npm install redis", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" },
-    { id: "supabase", name: "Supabase", category: "Database", description: "Open source Firebase alternative", website: "https://supabase.com", color: "#3ECF8E", npm: "npm install @supabase/supabase-js", icon: "https://supabase.com/favicon/favicon-32x32.png" },
-    { id: "planetscale", name: "PlanetScale", category: "Database", description: "The MySQL-compatible serverless database platform", website: "https://planetscale.com", color: "#000000", npm: "npm install @planetscale/database", icon: "https://avatars.githubusercontent.com/u/35612527?s=200&v=4" },
-    { id: "turso", name: "Turso", category: "Database", description: "SQLite for Production", website: "https://turso.tech", color: "#4FF8D2", npm: "npm install @libsql/client", icon: "https://avatars.githubusercontent.com/u/88491428?s=200&v=4" , skills: ["Edge SQLite","Embedded replicas","LibSQL"], compatibleWith: ["drizzle","prisma","cloudflare-workers","nextjs","sqlite"] },
-    { id: "dynamodb", name: "DynamoDB", category: "Database", description: "NoSQL database service", website: "https://aws.amazon.com/dynamodb", color: "#FF9900", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4", npm: "npm install @aws-sdk/client-dynamodb" },
-    { id: "cockroachdb", name: "CockroachDB", category: "Database", description: "Distributed SQL database", website: "https://cockroachlabs.com", color: "#6933FF", icon: "https://avatars.githubusercontent.com/u/6748139?s=200&v=4", npm: "npm install pg" },
-    { id: "neon", name: "Neon", category: "Database", description: "Serverless Postgres", website: "https://neon.tech", color: "#00E599", icon: "https://avatars.githubusercontent.com/u/77690634?s=200&v=4", npm: "npm install @neondatabase/serverless" , skills: ["Serverless Postgres","Database branching","Connection pooling"], compatibleWith: ["drizzle","prisma","nextjs","hono","postgresql"] },
-    { id: "xata", name: "Xata", category: "Database", description: "Serverless database with built-in search", website: "https://xata.io", color: "#7C3AED", icon: "https://avatars.githubusercontent.com/u/75191490?s=200&v=4", npm: "npm install @xata.io/client" },
-    { id: "firebase-firestore", name: "Firebase Firestore", category: "Database", description: "NoSQL document database", website: "https://firebase.google.com/products/firestore", color: "#FFCA28", npm: "npm install firebase", icon: "https://avatars.githubusercontent.com/u/1335026?s=200&v=4" },
-    { id: "cassandra", name: "Apache Cassandra", category: "Database", description: "Distributed NoSQL database", website: "https://cassandra.apache.org", color: "#1287B1", npm: "npm install cassandra-driver", icon: "https://avatars.githubusercontent.com/u/47359?s=200&v=4" },
-    { id: "influxdb", name: "InfluxDB", category: "Database", description: "Time series database", website: "https://influxdata.com", color: "#22ADF6", npm: "npm install @influxdata/influxdb-client", icon: "https://avatars.githubusercontent.com/u/5713248?s=200&v=4" },
-    { id: "neo4j", name: "Neo4j", category: "Database", description: "Graph database", website: "https://neo4j.com", color: "#008CC1", npm: "npm install neo4j-driver", icon: "https://avatars.githubusercontent.com/u/201120?s=200&v=4" },
-    { id: "clickhouse", name: "ClickHouse", category: "Database", description: "Open-source columnar database for analytics", website: "https://clickhouse.com", color: "#FFCC01", npm: "npm install @clickhouse/client", icon: "https://avatars.githubusercontent.com/u/54801242?s=200&v=4" },
-    { id: "tidb", name: "TiDB", category: "Database", description: "Distributed SQL database with MySQL compatibility", website: "https://tidbcloud.com", color: "#E6006D", npm: "npm install mysql2", icon: "https://avatars.githubusercontent.com/u/41984085?s=200&v=4" },
-    { id: "mariadb", name: "MariaDB", category: "Database", description: "Open-source relational database, MySQL drop-in replacement", website: "https://mariadb.org", color: "#003545", npm: "npm install mariadb", icon: "https://avatars.githubusercontent.com/u/111519?s=200&v=4" },
-    { id: "surrealdb", name: "SurrealDB", category: "Database", description: "Multi-model database for modern applications", website: "https://surrealdb.com", color: "#FF00A0", npm: "npm install surrealdb.js", icon: "https://avatars.githubusercontent.com/u/10026800?s=200&v=4" },
-
-    // Runtime
-    { id: "bun", name: "Bun", category: "Runtime", description: "Fast all-in-one JavaScript runtime", website: "https://bun.sh", color: "#FBF0DF", npm: "curl -fsSL https://bun.sh/install | bash", icon: "https://avatars.githubusercontent.com/u/99155232?s=200&v=4" },
-    { id: "nodejs", name: "Node.js", category: "Runtime", description: "JavaScript runtime built on Chrome's V8 engine", website: "https://nodejs.org", color: "#339933", npm: "# Install from nodejs.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { id: "deno", name: "Deno", category: "Runtime", description: "A secure runtime for JavaScript and TypeScript", website: "https://deno.land", color: "#000000", npm: "curl -fsSL https://deno.land/install.sh | sh", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg" },
-
-    // Backend Framework
-    { id: "hono", name: "Hono", category: "Backend Framework", description: "Fast, lightweight web framework", website: "https://hono.dev", color: "#E36002", npm: "npm install hono", icon: "https://avatars.githubusercontent.com/u/78773850?s=200&v=4" },
-    { id: "express", name: "Express.js", category: "Backend Framework", description: "Fast, unopinionated, minimalist web framework for Node.js", website: "https://expressjs.com", color: "#000000", npm: "npm install express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-    { id: "fastify", name: "Fastify", category: "Backend Framework", description: "Fast and low overhead web framework for Node.js", website: "https://fastify.io", color: "#000000", npm: "npm install fastify", icon: "https://avatars.githubusercontent.com/u/24939410?s=200&v=4" },
-    { id: "nestjs", name: "NestJS", category: "Backend Framework", description: "A progressive Node.js framework for building efficient server-side applications", website: "https://nestjs.com", color: "#E0234E", npm: "npm install @nestjs/core", icon: "https://avatars.githubusercontent.com/u/28507035?s=200&v=4" },
-    { id: "koa", name: "Koa.js", category: "Backend Framework", description: "Expressive middleware for node.js using ES2017 async functions", website: "https://koajs.com", color: "#33333D", npm: "npm install koa", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-    { id: "trpc", name: "tRPC", category: "Backend Framework", description: "End-to-end typesafe APIs made easy", website: "https://trpc.io", color: "#398CCB", npm: "npm install @trpc/server", icon: "https://trpc.io/img/logo.svg" },
-    { id: "adonisjs", name: "AdonisJS", category: "Backend Framework", description: "Node.js web framework", website: "https://adonisjs.com", color: "#220052", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/adonisjs/adonisjs-original.svg", npm: "npm init adonisjs@latest" },
-    { id: "elysia", name: "Elysia", category: "Backend Framework", description: "Fast and ergonomic Bun web framework", website: "https://elysiajs.com", color: "#7C3AED", icon: "https://elysiajs.com/assets/elysia.svg", npm: "bun add elysia" , skills: ["High-performance API","End-to-end type safety","Bun runtime"], compatibleWith: ["bun","typescript","drizzle","prisma"] },
-    { id: "django", name: "Django", category: "Backend Framework", description: "Python web framework", website: "https://djangoproject.com", color: "#092E20", npm: "pip install django", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-    { id: "flask", name: "Flask", category: "Backend Framework", description: "Lightweight Python web framework", website: "https://flask.palletsprojects.com", color: "#000000", npm: "pip install flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" },
-    { id: "spring", name: "Spring Boot", category: "Backend Framework", description: "Java application framework", website: "https://spring.io/projects/spring-boot", color: "#6DB33F", npm: "# Use Spring Initializr", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
-    { id: "laravel", name: "Laravel", category: "Backend Framework", description: "PHP web application framework", website: "https://laravel.com", color: "#FF2D20", npm: "composer create-project laravel/laravel", icon: "https://avatars.githubusercontent.com/u/958072?s=200&v=4" },
-    { id: "rails", name: "Ruby on Rails", category: "Backend Framework", description: "Ruby web application framework", website: "https://rubyonrails.org", color: "#CC0000", npm: "gem install rails", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg" },
-    { id: "gin", name: "Gin", category: "Backend Framework", description: "Go web framework", website: "https://gin-gonic.com", color: "#00ADD8", npm: "go get github.com/gin-gonic/gin", icon: "https://avatars.githubusercontent.com/u/7894478?s=200&v=4" },
-    { id: "fiber", name: "Fiber", category: "Backend Framework", description: "Express inspired Go web framework", website: "https://gofiber.io", color: "#00ADD8", npm: "go get github.com/gofiber/fiber/v2", icon: "https://avatars.githubusercontent.com/u/59947262?s=200&v=4" },
-    { id: "fastapi", name: "FastAPI", category: "Backend Framework", description: "Modern Python web framework for building APIs", website: "https://fastapi.tiangolo.com", color: "#009688", npm: "pip install fastapi", icon: "https://avatars.githubusercontent.com/u/15635592?s=200&v=4" },
-    { id: "aspnet-core", name: "ASP.NET Core", category: "Backend Framework", description: "Cross-platform .NET web framework", website: "https://dotnet.microsoft.com/apps/aspnet", color: "#512BD4", npm: "dotnet new webapi", icon: "https://avatars.githubusercontent.com/u/9141961?s=200&v=4" },
-    { id: "phoenix", name: "Phoenix", category: "Backend Framework", description: "Productive web framework for Elixir", website: "https://phoenixframework.org", color: "#FD4F00", npm: "mix archive.install hex phx_new", icon: "https://avatars.githubusercontent.com/u/164?s=200&v=4" },
-    { id: "axum", name: "Axum", category: "Backend Framework", description: "Ergonomic Rust web framework", website: "https://github.com/tokio-rs/axum", color: "#000000", npm: "cargo add axum", icon: "https://avatars.githubusercontent.com/u/14062570?s=200&v=4" },
-
-    // CSS Framework
-    { id: "tailwind", name: "Tailwind CSS", category: "CSS Framework", description: "Utility-first CSS framework", website: "https://tailwindcss.com", color: "#06B6D4", npm: "npm install tailwindcss", icon: "https://avatars.githubusercontent.com/u/67109815?s=200&v=4" },
-    { id: "bootstrap", name: "Bootstrap", category: "CSS Framework", description: "The most popular HTML, CSS, and JS library", website: "https://getbootstrap.com", color: "#7952B3", npm: "npm install bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
-    { id: "chakra", name: "Chakra UI", category: "CSS Framework", description: "Simple, modular and accessible component library", website: "https://chakra-ui.com", color: "#319795", npm: "npm install @chakra-ui/react", icon: "https://avatars.githubusercontent.com/u/54212428?s=200&v=4" },
-    { id: "mui", name: "Material-UI", category: "CSS Framework", description: "React components for faster and easier web development", website: "https://mui.com", color: "#007FFF", npm: "npm install @mui/material", icon: "https://mui.com/static/logo.png" },
-    { id: "antd", name: "Ant Design", category: "CSS Framework", description: "Enterprise-class UI design language and React UI library", website: "https://ant.design", color: "#1890FF", npm: "npm install antd", icon: "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg" },
-    { id: "mantine", name: "Mantine", category: "CSS Framework", description: "Full-featured React components library", website: "https://mantine.dev", color: "#339AF0", npm: "npm install @mantine/core", icon: "https://mantine.dev/favicon.svg" },
-    { id: "shadcn", name: "shadcn/ui", category: "CSS Framework", description: "Beautifully designed components built with Radix UI and Tailwind CSS", website: "https://ui.shadcn.com", color: "#000000", npm: "npx shadcn-ui@latest init", icon: "https://avatars.githubusercontent.com/u/124599?s=200&v=4" },
-    { id: "panda-css", name: "Panda CSS", category: "CSS Framework", description: "Zero-runtime CSS-in-JS", website: "https://panda-css.com", color: "#FED7AA", icon: "https://avatars.githubusercontent.com/u/155136102?s=200&v=4", npm: "npm install -D @pandacss/dev" , skills: ["Build-time CSS-in-JS","Design tokens","Type-safe styles"], compatibleWith: ["react","vue","solid","nextjs","park-ui"] },
-    { id: "unocss", name: "UnoCSS", category: "CSS Framework", description: "Instant on-demand atomic CSS engine", website: "https://unocss.dev", color: "#333333", icon: "https://unocss.dev/favicon.svg", npm: "npm install -D unocss" },
-    { id: "styled-components", name: "Styled Components", category: "CSS Framework", description: "CSS-in-JS library", website: "https://styled-components.com", color: "#DB7093", icon: "https://avatars.githubusercontent.com/u/20658825?s=200&v=4", npm: "npm install styled-components" },
-    { id: "emotion", name: "Emotion", category: "CSS Framework", description: "CSS-in-JS library", website: "https://emotion.sh", color: "#D26AC2", icon: "https://avatars.githubusercontent.com/u/28973759?s=200&v=4", npm: "npm install @emotion/react @emotion/styled" },
-    { id: "bulma", name: "Bulma", category: "CSS Framework", description: "Modern CSS framework based on Flexbox", website: "https://bulma.io", color: "#00D1B2", npm: "npm install bulma", icon: "https://avatars.githubusercontent.com/u/22254154?s=200&v=4" },
-    { id: "foundation", name: "Foundation", category: "CSS Framework", description: "Responsive front-end framework", website: "https://get.foundation", color: "#1779BA", npm: "npm install foundation-sites", icon: "https://avatars.githubusercontent.com/u/1142434?s=200&v=4" },
-    { id: "semantic-ui", name: "Semantic UI", category: "CSS Framework", description: "User interface component framework", website: "https://semantic-ui.com", color: "#35BDB2", npm: "npm install semantic-ui", icon: "https://avatars.githubusercontent.com/u/6543015?s=200&v=4" },
-    { id: "windicss", name: "Windi CSS", category: "CSS Framework", description: "Next generation utility-first CSS framework", website: "https://windicss.org", color: "#48B0F1", npm: "npm install windicss", icon: "https://avatars.githubusercontent.com/u/78513062?s=200&v=4" },
-
-    // Native Framework
-    { id: "reactnative", name: "React Native", category: "Native Framework", description: "Create native apps for Android and iOS using React", website: "https://reactnative.dev", color: "#61DAFB", npm: "npx react-native init", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-    { id: "flutter", name: "Flutter", category: "Native Framework", description: "Google's UI toolkit for building natively compiled applications", website: "https://flutter.dev", color: "#02569B", npm: "flutter create my_app", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" },
-    { id: "ionic", name: "Ionic", category: "Native Framework", description: "Cross-platform mobile app development", website: "https://ionicframework.com", color: "#3880FF", npm: "npm install -g @ionic/cli", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg" },
-    { id: "expo", name: "Expo", category: "Native Framework", description: "Platform for making universal native apps with React", website: "https://expo.dev", color: "#000020", npm: "npm install -g @expo/cli", icon: "https://avatars.githubusercontent.com/u/12504344?s=200&v=4" },
-    { id: "tauri", name: "Tauri", category: "Native Framework", description: "Build smaller, faster, and more secure desktop applications", website: "https://tauri.app", color: "#FFC131", npm: "npm install @tauri-apps/cli", icon: "https://avatars.githubusercontent.com/u/54536011?s=200&v=4" },
-    { id: "electron", name: "Electron", category: "Native Framework", description: "Build cross-platform desktop apps with JavaScript, HTML, and CSS", website: "https://electronjs.org", color: "#47848F", npm: "npm install electron", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg" },
-    { id: "capacitor", name: "Capacitor", category: "Native Framework", description: "Cross-platform native runtime for web apps", website: "https://capacitorjs.com", color: "#119EFF", npm: "npm install @capacitor/core", icon: "https://avatars.githubusercontent.com/u/32264020?s=200&v=4" },
-    { id: "cordova", name: "Apache Cordova", category: "Native Framework", description: "Mobile app development framework", website: "https://cordova.apache.org", color: "#E8E8E8", npm: "npm install -g cordova", icon: "https://avatars.githubusercontent.com/u/47359?s=200&v=4" },
-    { id: "nwjs", name: "NW.js", category: "Native Framework", description: "Desktop app framework with web technologies", website: "https://nwjs.io", color: "#3D3D3D", npm: "npm install nw", icon: "https://avatars.githubusercontent.com/u/10180421?s=200&v=4" },
-
-    // ORM
-    { id: "prisma", name: "Prisma", category: "ORM", description: "Next-generation Node.js and TypeScript ORM", website: "https://prisma.io", color: "#2D3748", npm: "npm install prisma", icon: "https://avatars.githubusercontent.com/u/17219288?s=200&v=4" },
-    { id: "drizzle", name: "Drizzle ORM", category: "ORM", description: "TypeScript ORM that is production ready", website: "https://orm.drizzle.team", color: "#C5F74F", npm: "npm install drizzle-orm", icon: "https://avatars.githubusercontent.com/u/108468352?s=200&v=4" },
-    { id: "typeorm", name: "TypeORM", category: "ORM", description: "ORM for TypeScript and JavaScript supporting many databases", website: "https://typeorm.io", color: "#E83524", npm: "npm install typeorm", icon: "https://typeorm.io/img/typeorm.png" },
-    { id: "sequelize", name: "Sequelize", category: "ORM", description: "Promise-based ORM for Postgres, MySQL, SQLite and more", website: "https://sequelize.org", color: "#52B0E7", npm: "npm install sequelize", icon: "https://sequelize.org/img/logo-gradient.svg" },
-    { id: "mongoose", name: "Mongoose", category: "ORM", description: "Elegant MongoDB object modeling for Node.js", website: "https://mongoosejs.com", color: "#880000", npm: "npm install mongoose", icon: "https://mongoosejs.com/docs/images/mongoose-logo-white.png" },
-    { id: "knex", name: "Knex.js", category: "ORM", description: "SQL query builder for PostgreSQL, MySQL, SQLite and more", website: "https://knexjs.org", color: "#D26B38", npm: "npm install knex", icon: "https://knexjs.org/img/knex-icon.svg" },
-    { id: "objection", name: "Objection.js", category: "ORM", description: "SQL-friendly ORM for Node.js", website: "https://vincit.github.io/objection.js", color: "#FF6B35", npm: "npm install objection", icon: "https://avatars.githubusercontent.com/u/3514357?s=200&v=4" },
-
-    // Monorepo
-    { id: "turborepo", name: "Turborepo", category: "Monorepo", description: "High-performance build system for JavaScript and TypeScript codebases", website: "https://turbo.build", color: "#EF4444", npm: "npm install turbo", icon: "https://turbo.build/img/favicon.ico" },
-    { id: "nx", name: "Nx", category: "Monorepo", description: "Smart, fast and extensible build system", website: "https://nx.dev", color: "#143055", npm: "npx create-nx-workspace", icon: "https://avatars.githubusercontent.com/u/23692104?s=200&v=4" },
-    { id: "lerna", name: "Lerna", category: "Monorepo", description: "A tool for managing JavaScript projects with multiple packages", website: "https://lerna.js.org", color: "#9333EA", npm: "npm install lerna", icon: "https://avatars.githubusercontent.com/u/19333396?s=200&v=4" },
-    { id: "rush", name: "Rush", category: "Monorepo", description: "Scalable monorepo manager for the web", website: "https://rushjs.io", color: "#087CFA", npm: "npm install -g @microsoft/rush", icon: "https://avatars.githubusercontent.com/u/19333396?s=200&v=4" },
-
-    // Package Manager
-    { id: "npm", name: "npm", category: "Package Manager", description: "Node package manager", website: "https://npmjs.com", color: "#CB3837", npm: "# Built into Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" },
-    { id: "yarn", name: "Yarn", category: "Package Manager", description: "Fast, reliable, and secure dependency management", website: "https://yarnpkg.com", color: "#2C8EBB", npm: "npm install -g yarn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg" },
-    { id: "pnpm", name: "pnpm", category: "Package Manager", description: "Fast, disk space efficient package manager", website: "https://pnpm.io", color: "#F69220", npm: "npm install -g pnpm", icon: "https://pnpm.io/img/pnpm-no-name-with-frame.svg" },
-    { id: "bun-pm", name: "Bun (Package Manager)", category: "Package Manager", description: "Ultra-fast package manager", website: "https://bun.sh", color: "#FBF0DF", npm: "curl -fsSL https://bun.sh/install | bash", icon: "https://avatars.githubusercontent.com/u/99155232?s=200&v=4" },
-
-    // Testing
-    { id: "jest", name: "Jest", category: "Testing", description: "Delightful JavaScript testing framework", website: "https://jestjs.io", color: "#C21325", npm: "npm install jest", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" },
-    { id: "vitest", name: "Vitest", category: "Testing", description: "A blazing fast unit test framework powered by Vite", website: "https://vitest.dev", color: "#6E9F18", npm: "npm install vitest", icon: "https://avatars.githubusercontent.com/u/95747107?s=200&v=4" },
-    { id: "cypress", name: "Cypress", category: "Testing", description: "Fast, easy and reliable testing for anything that runs in a browser", website: "https://cypress.io", color: "#17202C", npm: "npm install cypress", icon: "https://avatars.githubusercontent.com/u/8908513?s=200&v=4" },
-    { id: "playwright", name: "Playwright", category: "Testing", description: "Fast and reliable end-to-end testing for modern web apps", website: "https://playwright.dev", color: "#2EAD33", npm: "npm install @playwright/test", icon: "https://playwright.dev/img/playwright-logo.svg" },
-    { id: "testing-library", name: "Testing Library", category: "Testing", description: "Simple and complete testing utilities", website: "https://testing-library.com", color: "#E33332", npm: "npm install @testing-library/react", icon: "https://avatars.githubusercontent.com/u/49996085?s=200&v=4" },
-    { id: "storybook", name: "Storybook", category: "Testing", description: "UI component development environment", website: "https://storybook.js.org", color: "#FF4785", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg", npm: "npx storybook@latest init" },
-    { id: "msw", name: "Mock Service Worker (MSW)", category: "Testing", description: "API mocking library", website: "https://mswjs.io", color: "#FF6A33", icon: "https://avatars.githubusercontent.com/u/64637271?s=200&v=4", npm: "npm install msw" , skills: ["Network mocking","Service workers","Integration testing"], compatibleWith: ["vitest","jest","react","typescript"] },
-    { id: "jasmine", name: "Jasmine", category: "Testing", description: "Behavior-driven development framework", website: "https://jasmine.github.io", color: "#8A4182", npm: "npm install jasmine", icon: "https://avatars.githubusercontent.com/u/4624710?s=200&v=4" },
-    { id: "mocha", name: "Mocha", category: "Testing", description: "JavaScript test framework", website: "https://mochajs.org", color: "#8D6748", npm: "npm install mocha", icon: "https://avatars.githubusercontent.com/u/8770005?s=200&v=4" },
-    { id: "ava", name: "AVA", category: "Testing", description: "Node.js test runner", website: "https://github.com/avajs/ava", color: "#663399", npm: "npm install ava", icon: "https://avatars.githubusercontent.com/u/8527916?s=200&v=4" },
-    { id: "webdriverio", name: "WebdriverIO", category: "Testing", description: "Browser and mobile automation test framework", website: "https://webdriver.io", color: "#EA5906", npm: "npm install @wdio/cli", icon: "https://avatars.githubusercontent.com/u/6512473?s=200&v=4" },
-    { id: "k6", name: "k6", category: "Testing", description: "Developer-first load testing tool", website: "https://k6.io", color: "#7D64FF", npm: "npm install -g k6", icon: "https://avatars.githubusercontent.com/u/17356833?s=200&v=4" },
-    { id: "testcontainers", name: "Testcontainers", category: "Testing", description: "Throwaway Docker containers for testing", website: "https://testcontainers.com", color: "#0F2B4D", npm: "npm install -D @testcontainers/postgresql", icon: "https://avatars.githubusercontent.com/u/15209772?s=200&v=4" },
-    { id: "pact", name: "Pact", category: "Testing", description: "Contract testing framework", website: "https://pact.io", color: "#FFA000", npm: "npm install -D @pact-foundation/pact", icon: "https://avatars.githubusercontent.com/u/2013204?s=200&v=4" },
-    { id: "faker", name: "Faker", category: "Testing", description: "Generate massive amounts of fake data", website: "https://fakerjs.dev", color: "#0F9D58", npm: "npm install -D @faker-js/faker", icon: "https://avatars.githubusercontent.com/u/29155814?s=200&v=4" },
-
-    // Authentication
-    { id: "nextauth", name: "NextAuth.js", category: "Authentication", description: "Complete open source authentication solution for Next.js applications", website: "https://next-auth.js.org", color: "#EB5424", npm: "npm install next-auth", icon: "https://avatars.githubusercontent.com/u/67470890?s=200&v=4" },
-    { id: "auth0", name: "Auth0", category: "Authentication", description: "Secure access for everyone", website: "https://auth0.com", color: "#EB5424", npm: "npm install @auth0/nextjs-auth0", icon: "https://avatars.githubusercontent.com/u/2824157?s=200&v=4" },
-    { id: "clerk", name: "Clerk", category: "Authentication", description: "More than authentication", website: "https://clerk.com", color: "#6C47FF", npm: "npm install @clerk/nextjs", icon: "https://avatars.githubusercontent.com/u/49538330?s=200&v=4" , skills: ["User authentication","Pre-built UI components","Organization management"], compatibleWith: ["nextjs","react","expo","typescript"] },
-    { id: "supabase-auth", name: "Supabase Auth", category: "Authentication", description: "User management and authentication", website: "https://supabase.com/auth", color: "#3ECF8E", npm: "npm install @supabase/auth-ui-react", icon: "https://supabase.com/favicon/favicon-32x32.png" },
-    { id: "firebase-auth", name: "Firebase Auth", category: "Authentication", description: "Simple, free multi-platform sign-in", website: "https://firebase.google.com/products/auth", color: "#FFCA28", npm: "npm install firebase", icon: "https://avatars.githubusercontent.com/u/1335026?s=200&v=4" },
-    { id: "lucia", name: "Lucia", category: "Authentication", description: "Authentication library for TypeScript", website: "https://lucia-auth.com", color: "#5F57FF", icon: "https://avatars.githubusercontent.com/u/89729670?s=200&v=4", npm: "npm install lucia" , skills: ["Session management","Database adapters","OAuth2 flows"], compatibleWith: ["drizzle","prisma","nextjs","svelte","typescript"] },
-    { id: "better-auth", name: "Better Auth", category: "Authentication", description: "The most comprehensive authentication framework", website: "https://better-auth.com", color: "#10B981", icon: "https://avatars.githubusercontent.com/u/180618636?s=200&v=4", npm: "npm install better-auth" , skills: ["Authentication","OAuth2 & SSO","Session management"], compatibleWith: ["nextjs","react","svelte","hono","astro","drizzle","prisma"] },
-    { id: "passport", name: "Passport.js", category: "Authentication", description: "Authentication middleware for Node.js", website: "https://passportjs.org", color: "#34E27A", npm: "npm install passport", icon: "https://avatars.githubusercontent.com/u/1160530?s=200&v=4" },
-    { id: "kinde", name: "Kinde", category: "Authentication", description: "Modern authentication for apps", website: "https://kinde.com", color: "#FFC700", npm: "npm install @kinde-oss/kinde-auth-nextjs", icon: "https://avatars.githubusercontent.com/u/101196420?s=200&v=4" , skills: ["Authentication","User management","Feature flags"], compatibleWith: ["nextjs","react","svelte","typescript"] },
-    { id: "workos", name: "WorkOS", category: "Authentication", description: "Enterprise-grade auth for developers", website: "https://workos.com", color: "#6366F1", npm: "npm install @workos-inc/node", icon: "https://workos.com/favicon.ico" , skills: ["Enterprise SSO","SCIM directory sync","Magic link auth"], compatibleWith: ["nextjs","react","typescript","hono"] },
-    { id: "keycloak", name: "Keycloak", category: "Authentication", description: "Open-source identity and access management", website: "https://keycloak.org", color: "#008AAA", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/10639145?s=200&v=4" },
-
-    // Validation
-    { id: "zod", name: "Zod", category: "Validation", description: "TypeScript-first schema validation with static type inference", website: "https://zod.dev", color: "#3E67B1", npm: "npm install zod", icon: "https://zod.dev/logo.svg" },
-    { id: "yup", name: "Yup", category: "Validation", description: "Dead simple Object schema validation", website: "https://github.com/jquense/yup", color: "#FF6B6B", npm: "npm install yup", icon: "https://avatars.githubusercontent.com/u/1496508?s=200&v=4" },
-    { id: "joi", name: "Joi", category: "Validation", description: "The most powerful schema description language and data validator for JavaScript", website: "https://joi.dev", color: "#F7931E", npm: "npm install joi", icon: "https://joi.dev/img/joiLogo.svg" },
-    { id: "valibot", name: "Valibot", category: "Validation", description: "The modular and type safe schema library for validating structural data", website: "https://valibot.dev", color: "#8B5CF6", npm: "npm install valibot", icon: "https://valibot.dev/favicon.svg" , skills: ["Modular schema validation","Tree-shaking","Type inference"], compatibleWith: ["typescript","react","hono"] },
-
-    // GraphQL/API
-    { id: "apollo-graphql", name: "Apollo GraphQL", category: "GraphQL/API", description: "Comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL", website: "https://apollographql.com", color: "#311C87", npm: "npm install @apollo/client graphql", icon: "https://avatars.githubusercontent.com/u/17189275?s=200&v=4" },
-    { id: "graphql-yoga", name: "GraphQL Yoga", category: "GraphQL/API", description: "Fully-featured GraphQL Server with focus on easy setup, performance & great developer experience", website: "https://the-guild.dev/graphql/yoga-server", color: "#E10098", npm: "npm install graphql-yoga graphql", icon: "https://avatars.githubusercontent.com/u/20284515?s=200&v=4" },
-    { id: "hasura", name: "Hasura", category: "GraphQL/API", description: "Instant GraphQL on all your data", website: "https://hasura.io", color: "#1EB4D4", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/25479918?s=200&v=4" },
-    { id: "pothos", name: "Pothos", category: "GraphQL/API", description: "Pothos GraphQL is library for creating GraphQL schemas in typescript using a strongly typed code first approach", website: "https://pothos-graphql.dev", color: "#FF6B35", npm: "npm install @pothos/core graphql", icon: "https://pothos-graphql.dev/assets/logo.svg" },
-    { id: "graphql-codegen", name: "GraphQL Code Generator", category: "GraphQL/API", description: "Generate code from your GraphQL schema and operations with a simple CLI", website: "https://the-guild.dev/graphql/codegen", color: "#E535AB", npm: "npm install -D @graphql-codegen/cli", icon: "https://avatars.githubusercontent.com/u/20284515?s=200&v=4" },
-
-    // Real-time/WebSocket
-    { id: "socketio", name: "Socket.io", category: "Real-time", description: "Bidirectional and low-latency communication for every platform", website: "https://socket.io", color: "#010101", npm: "npm install socket.io socket.io-client", icon: "https://socket.io/images/logo.svg" },
-    { id: "pusher", name: "Pusher", category: "Real-time", description: "Hosted APIs to build realtime features", website: "https://pusher.com", color: "#300D4F", npm: "npm install pusher pusher-js", icon: "https://avatars.githubusercontent.com/u/739550?s=200&v=4" },
-    { id: "ably", name: "Ably", category: "Real-time", description: "APIs to build, extend, and deliver powerful digital experiences in realtime", website: "https://ably.com", color: "#FF5416", npm: "npm install ably", icon: "https://avatars.githubusercontent.com/u/5665186?s=200&v=4" },
-    { id: "partykit", name: "PartyKit", category: "Real-time", description: "Everything's better with friends. Add a real-time, collaborative layer to your app, fast", website: "https://partykit.io", color: "#FF6B9D", npm: "npm install partykit", icon: "https://avatars.githubusercontent.com/u/98838967?s=200&v=4" },
-    { id: "liveblocks", name: "Liveblocks", category: "Real-time", description: "Real-time collaboration infrastructure", website: "https://liveblocks.io", color: "#F00000", npm: "npm install @liveblocks/client", icon: "https://liveblocks.io/favicon.ico" },
-    { id: "livekit", name: "LiveKit", category: "Real-time", description: "Open-source WebRTC infrastructure", website: "https://livekit.io", color: "#00A3FF", npm: "npm install livekit-client", icon: "https://livekit.io/favicon.ico" },
-    { id: "yjs", name: "Yjs", category: "Real-time", description: "CRDT framework for collaborative applications", website: "https://yjs.dev", color: "#000000", npm: "npm install yjs", icon: "https://yjs.dev/favicon.ico" , skills: ["CRDT shared types","Collaborative text editing","WebSocket sync"], compatibleWith: ["react","typescript","socketio","automerge","tinybase"] },
-
-    // CMS (Content Management)
-    { id: "sanity", name: "Sanity", category: "CMS", description: "Platform for structured content that comes with an open-source editing environment", website: "https://sanity.io", color: "#F03E2F", npm: "npm install @sanity/client", icon: "https://avatars.githubusercontent.com/u/17177659?s=200&v=4" },
-    { id: "contentful", name: "Contentful", category: "CMS", description: "The composable content platform for business at scale", website: "https://contentful.com", color: "#2478CC", npm: "npm install contentful", icon: "https://avatars.githubusercontent.com/u/472182?s=200&v=4" },
-    { id: "strapi", name: "Strapi", category: "CMS", description: "The leading open-source headless CMS", website: "https://strapi.io", color: "#4945FF", npm: "npx create-strapi-app@latest", icon: "https://avatars.githubusercontent.com/u/19872173?s=200&v=4" },
-    { id: "payload", name: "Payload CMS", category: "CMS", description: "The best way to build a modern backend + admin UI. No black magic, all TypeScript", website: "https://payloadcms.com", color: "#000000", npm: "npx create-payload-app@latest", icon: "https://avatars.githubusercontent.com/u/62968818?s=200&v=4" },
-    { id: "keystatic", name: "Keystatic", category: "CMS", description: "The content management system for the component age", website: "https://keystatic.com", color: "#6366F1", npm: "npm install @keystatic/core", icon: "https://avatars.githubusercontent.com/u/84868432?s=200&v=4" },
-
-    // Search
-    { id: "algolia", name: "Algolia", category: "Search", description: "AI-powered search and discovery platform", website: "https://algolia.com", color: "#003DFF", npm: "npm install algoliasearch", icon: "https://avatars.githubusercontent.com/u/2034458?s=200&v=4" },
-    { id: "meilisearch", name: "Meilisearch", category: "Search", description: "A lightning-fast search engine that fits effortlessly into your apps, websites, and workflow", website: "https://meilisearch.com", color: "#FF5CAA", npm: "npm install meilisearch", icon: "https://avatars.githubusercontent.com/u/43250847?s=200&v=4" },
-    { id: "typesense", name: "Typesense", category: "Search", description: "Fast, typo-tolerant search engine for building delightful search experiences", website: "https://typesense.org", color: "#D23669", npm: "npm install typesense", icon: "https://avatars.githubusercontent.com/u/10323546?s=200&v=4" },
-    { id: "elasticsearch", name: "Elasticsearch", category: "Search", description: "Distributed, RESTful search and analytics engine", website: "https://elastic.co", color: "#005571", npm: "npm install @elastic/elasticsearch", icon: "https://avatars.githubusercontent.com/u/6764390?s=200&v=4" },
-
-    // Email
-    { id: "resend", name: "Resend", category: "Email", description: "The best API to reach humans instead of spam folders", website: "https://resend.com", color: "#000000", npm: "npm install resend", icon: "https://avatars.githubusercontent.com/u/96661497?s=200&v=4" , skills: ["Transactional email","React email templates","Webhooks"], compatibleWith: ["nextjs","react","typescript","react-email"] },
-    { id: "sendgrid", name: "SendGrid", category: "Email", description: "Email delivery service", website: "https://sendgrid.com", color: "#1A82E2", npm: "npm install @sendgrid/mail", icon: "https://avatars.githubusercontent.com/u/181234?s=200&v=4" },
-    { id: "postmark", name: "Postmark", category: "Email", description: "Fast and reliable transactional email service", website: "https://postmarkapp.com", color: "#FFDD00", npm: "npm install postmark", icon: "https://avatars.githubusercontent.com/u/629503?s=200&v=4" },
-    { id: "react-email", name: "React Email", category: "Email", description: "Build and send emails using React", website: "https://react.email", color: "#000000", npm: "npm install @react-email/components", icon: "https://avatars.githubusercontent.com/u/109174925?s=200&v=4" },
-
-    // Analytics
-    { id: "posthog", name: "PostHog", category: "Analytics", description: "How engineers build successful products", website: "https://posthog.com", color: "#1D4AFF", npm: "npm install posthog-js", icon: "https://avatars.githubusercontent.com/u/53387734?s=200&v=4" , skills: ["Product analytics","Session replay","A/B testing"], compatibleWith: ["nextjs","react","typescript","python"] },
-    { id: "plausible", name: "Plausible Analytics", category: "Analytics", description: "Simple and privacy-friendly alternative to Google Analytics", website: "https://plausible.io", color: "#5850EC", npm: "npm install plausible-tracker", icon: "https://avatars.githubusercontent.com/u/52078544?s=200&v=4" },
-    { id: "umami", name: "Umami", category: "Analytics", description: "Simple, fast, privacy-focused alternative to Google Analytics", website: "https://umami.is", color: "#FF6B35", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/65772953?s=200&v=4" },
-    { id: "google-analytics", name: "Google Analytics", category: "Analytics", description: "Web analytics service offered by Google", website: "https://analytics.google.com", color: "#E37400", npm: "npm install @vercel/analytics", icon: "https://avatars.githubusercontent.com/u/1342004?s=200&v=4" },
-    { id: "mixpanel", name: "Mixpanel", category: "Analytics", description: "Product analytics for modern teams", website: "https://mixpanel.com", color: "#7856FF", npm: "npm install mixpanel-browser", icon: "https://mixpanel.com/favicon.ico" },
-    { id: "amplitude", name: "Amplitude", category: "Analytics", description: "Product analytics platform", website: "https://amplitude.com", color: "#1D4ED8", npm: "npm install @amplitude/analytics-browser", icon: "https://amplitude.com/favicon.ico" },
-    { id: "segment", name: "Segment", category: "Analytics", description: "Customer data platform", website: "https://segment.com", color: "#00B295", npm: "npm install @segment/analytics-next", icon: "https://segment.com/favicon.ico" },
-
-    // Payment
-    { id: "stripe", name: "Stripe", category: "Payment", description: "Online payment processing for internet businesses", website: "https://stripe.com", color: "#635BFF", npm: "npm install stripe @stripe/stripe-js", icon: "https://avatars.githubusercontent.com/u/856813?s=200&v=4" },
-    { id: "paypal", name: "PayPal", category: "Payment", description: "Online payments system", website: "https://paypal.com", color: "#00457C", npm: "npm install @paypal/checkout-server-sdk", icon: "https://avatars.githubusercontent.com/u/476675?s=200&v=4" },
-    { id: "lemon-squeezy", name: "Lemon Squeezy", category: "Payment", description: "The all-in-one platform for running your SaaS business", website: "https://lemonsqueezy.com", color: "#FFD23F", npm: "npm install @lemonsqueezy/lemonsqueezy.js", icon: "https://avatars.githubusercontent.com/u/82379168?s=200&v=4" },
-    { id: "paddle", name: "Paddle", category: "Payment", description: "Merchant of record for SaaS businesses", website: "https://paddle.com", color: "#FFD23F", npm: "npm install @paddle/paddle-js", icon: "https://paddle.com/favicon.ico" },
-
-    // Storage/CDN
-    { id: "cloudinary", name: "Cloudinary", category: "Storage", description: "Image and video management in the cloud", website: "https://cloudinary.com", color: "#3448C5", npm: "npm install cloudinary", icon: "https://avatars.githubusercontent.com/u/1460763?s=200&v=4" },
-    { id: "uploadthing", name: "UploadThing", category: "Storage", description: "File uploads for modern web apps", website: "https://uploadthing.com", color: "#F97316", npm: "npm install uploadthing", icon: "https://avatars.githubusercontent.com/u/106103625?s=200&v=4" },
-    { id: "aws-s3", name: "AWS S3", category: "Storage", description: "Object storage built to retrieve any amount of data from anywhere", website: "https://aws.amazon.com/s3", color: "#FF9900", npm: "npm install @aws-sdk/client-s3", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
-    { id: "vercel-blob", name: "Vercel Blob", category: "Storage", description: "Fast object storage for the frontend", website: "https://vercel.com/storage/blob", color: "#000000", npm: "npm install @vercel/blob", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
-    { id: "cloudflare-r2", name: "Cloudflare R2", category: "Storage", description: "S3-compatible object storage with zero egress fees", website: "https://cloudflare.com/r2", color: "#F38020", npm: "npm install @aws-sdk/client-s3", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
-    { id: "backblaze-b2", name: "Backblaze B2", category: "Storage", description: "Affordable cloud object storage", website: "https://backblaze.com/b2", color: "#E31F24", npm: "npm install b2sdk", icon: "https://www.backblaze.com/favicon.ico" },
-
-
-    // Additional Build Tools
-    { id: "turbopack", name: "Turbopack", category: "Build Tools", description: "The Rust-powered successor to Webpack", website: "https://turbo.build/pack", color: "#0EA5E9", npm: "# Built into Next.js 13+", icon: "https://avatars.githubusercontent.com/u/84177906?s=200&v=4" , skills: ["Incremental compilation","Next.js dev server","Rust bundler"], compatibleWith: ["nextjs","react","typescript"] },
-    { id: "rspack", name: "Rspack", category: "Build Tools", description: "A fast Rust-based web bundler", website: "https://rspack.dev", color: "#FF6B35", npm: "npm install @rspack/cli", icon: "https://avatars.githubusercontent.com/u/108205785?s=200&v=4" , skills: ["Bundling","Build optimization","Rust web tooling"], compatibleWith: ["react","vue","typescript","tailwind","rsbuild"] },
-    { id: "farm", name: "Farm", category: "Build Tools", description: "Extremely fast Vite-compatible web build tool written in Rust", website: "https://farmfe.org", color: "#00D8FF", npm: "npm create farm@latest", icon: "https://avatars.githubusercontent.com/u/108205785?s=200&v=4" , skills: ["Incremental compilation","Module-level caching","Rust web tooling"], compatibleWith: ["react","vue","typescript","tailwind"] },
-
-    // Additional Hosting
-    { id: "coolify", name: "Coolify", category: "Hosting", description: "An open-source & self-hostable Heroku / Netlify / Vercel alternative", website: "https://coolify.io", color: "#6366F1", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/83192107?s=200&v=4" , skills: ["Self-hosted PaaS","Docker orchestration","Automated deployments"], compatibleWith: ["docker","nextjs","postgresql","redis","github-actions"] },
-    { id: "dokku", name: "Dokku", category: "Hosting", description: "A docker-powered PaaS that helps you build and manage the lifecycle of applications", website: "https://dokku.com", color: "#3E4C96", npm: "# Deploy via Git push", icon: "https://avatars.githubusercontent.com/u/13455795?s=200&v=4" },
-    { id: "heroku", name: "Heroku", category: "Hosting", description: "Cloud platform as a service supporting several programming languages", website: "https://heroku.com", color: "#430098", npm: "npm install -g heroku", icon: "https://avatars.githubusercontent.com/u/23211?s=200&v=4" },
-
-    // State Management
-    { id: "zustand", name: "Zustand", category: "State Management", description: "Small, fast and scalable bearbones state-management solution", website: "https://zustand-demo.pmnd.rs", color: "#443E38", npm: "npm install zustand", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
-    { id: "redux", name: "Redux Toolkit", category: "State Management", description: "The official, opinionated, batteries-included toolset for efficient Redux development", website: "https://redux-toolkit.js.org", color: "#764ABC", npm: "npm install @reduxjs/toolkit react-redux", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
-    { id: "jotai", name: "Jotai", category: "State Management", description: "Primitive and flexible state management for React", website: "https://jotai.org", color: "#000000", npm: "npm install jotai", icon: "https://jotai.org/favicon.svg" },
-    { id: "valtio", name: "Valtio", category: "State Management", description: "Makes proxy-state simple for React and Vanilla", website: "https://valtio.pmnd.rs", color: "#1E40AF", npm: "npm install valtio", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4" },
-    { id: "recoil", name: "Recoil", category: "State Management", description: "Experimental state management library for React apps", website: "https://recoiljs.org", color: "#3578E5", npm: "npm install recoil", icon: "https://recoiljs.org/img/favicon.png" },
-    { id: "mobx", name: "MobX", category: "State Management", description: "Simple, scalable state management", website: "https://mobx.js.org", color: "#FF9955", icon: "https://avatars.githubusercontent.com/u/17475736?s=200&v=4", npm: "npm install mobx mobx-react-lite" },
-    { id: "xstate", name: "XState", category: "State Management", description: "State machines and statecharts", website: "https://xstate.js.org", color: "#2C3E50", icon: "https://avatars.githubusercontent.com/u/28773662?s=200&v=4", npm: "npm install xstate" },
-    { id: "nanostores", name: "Nanostores", category: "State Management", description: "Tiny state manager", website: "https://github.com/nanostores/nanostores", color: "#FF6B35", icon: "https://avatars.githubusercontent.com/u/84611369?s=200&v=4", npm: "npm install nanostores" },
-
-    // Build Tools
-    { id: "vite", name: "Vite", category: "Build Tools", description: "Next generation frontend tooling", website: "https://vitejs.dev", color: "#646CFF", npm: "npm create vite@latest", icon: "https://vitejs.dev/logo.svg" },
-    { id: "webpack", name: "Webpack", category: "Build Tools", description: "Static module bundler for modern JavaScript applications", website: "https://webpack.js.org", color: "#8DD6F9", npm: "npm install webpack", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" },
-    { id: "rollup", name: "Rollup", category: "Build Tools", description: "Module bundler for JavaScript", website: "https://rollupjs.org", color: "#EC4A3F", npm: "npm install rollup", icon: "https://rollupjs.org/favicon.png" },
-    { id: "parcel", name: "Parcel", category: "Build Tools", description: "The zero configuration build tool for the web", website: "https://parceljs.org", color: "#E7A427", npm: "npm install parcel", icon: "https://avatars.githubusercontent.com/u/22735755?s=200&v=4" },
-    { id: "esbuild", name: "esbuild", category: "Build Tools", description: "An extremely fast JavaScript bundler", website: "https://esbuild.github.io", color: "#FFCF00", npm: "npm install esbuild", icon: "https://esbuild.github.io/favicon.svg" },
-
-    // Hosting
-    { id: "vercel", name: "Vercel", category: "Hosting", description: "Platform for frontend frameworks and static sites", website: "https://vercel.com", color: "#000000", npm: "npm install -g vercel", icon: "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png" },
-    { id: "netlify", name: "Netlify", category: "Hosting", description: "All-in-one platform for automating modern web projects", website: "https://netlify.com", color: "#00C7B7", npm: "npm install -g netlify-cli", icon: "https://www.netlify.com/v3/img/components/logomark.png" },
-    { id: "railway", name: "Railway", category: "Hosting", description: "Deploy from GitHub with zero configuration", website: "https://railway.app", color: "#0B0D0E", npm: "npm install -g @railway/cli", icon: "https://railway.app/brand/logo-light.png" },
-    { id: "render", name: "Render", category: "Hosting", description: "Cloud platform for developers and teams", website: "https://render.com", color: "#46E3B7", npm: "# Deploy via Git", icon: "https://avatars.githubusercontent.com/u/36424661?s=200&v=4" },
-    { id: "fly", name: "Fly.io", category: "Hosting", description: "Deploy app servers close to your users", website: "https://fly.io", color: "#8B5CF6", npm: "npm install -g @fly/flyctl", icon: "https://avatars.githubusercontent.com/u/22525303?s=200&v=4" },
-    { id: "cloudflare-pages", name: "Cloudflare Pages", category: "Hosting", description: "JAMstack platform for frontend developers", website: "https://pages.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
-    { id: "aws", name: "AWS", category: "Hosting", description: "Amazon Web Services cloud platform", website: "https://aws.amazon.com", color: "#FF9900", npm: "npm install aws-cdk", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
-    { id: "digitalocean", name: "DigitalOcean", category: "Hosting", description: "Cloud infrastructure for developers", website: "https://digitalocean.com", color: "#0080FF", npm: "npm install -g doctl", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg" },
-
-
-
-    // Languages
-    { id: "typescript", name: "TypeScript", category: "Languages", description: "Typed superset of JavaScript", website: "https://typescriptlang.org", color: "#3178C6", npm: "npm install typescript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-    { id: "javascript", name: "JavaScript", category: "Languages", description: "Programming language of the web", website: "https://developer.mozilla.org/en-US/docs/Web/JavaScript", color: "#F7DF1E", npm: "# Built into browsers", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-    { id: "python", name: "Python", category: "Languages", description: "High-level programming language", website: "https://python.org", color: "#3776AB", npm: "# Install from python.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-    { id: "go", name: "Go", category: "Languages", description: "Open source programming language", website: "https://golang.org", color: "#00ADD8", npm: "# Install from golang.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" },
-    { id: "rust", name: "Rust", category: "Languages", description: "Systems programming language", website: "https://rust-lang.org", color: "#000000", npm: "# Install from rustup.rs", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg" },
-    { id: "java", name: "Java", category: "Languages", description: "Object-oriented programming language", website: "https://java.com", color: "#ED8B00", npm: "# Install JDK", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-    { id: "csharp", name: "C#", category: "Languages", description: "Modern object-oriented language", website: "https://docs.microsoft.com/en-us/dotnet/csharp", color: "#239120", npm: "# Install .NET SDK", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" },
-    { id: "php", name: "PHP", category: "Languages", description: "Server-side scripting language", website: "https://php.net", color: "#777BB4", npm: "# Install from php.net", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
-    { id: "ruby", name: "Ruby", category: "Languages", description: "Dynamic programming language", website: "https://ruby-lang.org", color: "#CC342D", npm: "# Install from ruby-lang.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg" },
-    { id: "kotlin", name: "Kotlin", category: "Languages", description: "Modern programming language", website: "https://kotlinlang.org", color: "#7F52FF", npm: "# Install Kotlin compiler", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg" },
-    { id: "swift", name: "Swift", category: "Languages", description: "Apple's programming language", website: "https://swift.org", color: "#FA7343", npm: "# Install Xcode", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" },
-    { id: "dart", name: "Dart", category: "Languages", description: "Client-optimized language", website: "https://dart.dev", color: "#0175C2", npm: "# Install Dart SDK", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg" },
-
-    // DevOps/Infrastructure
-    { id: "docker", name: "Docker", category: "DevOps/Infrastructure", description: "Containerization platform", website: "https://docker.com", color: "#2496ED", npm: "# Install Docker Desktop", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-    { id: "kubernetes", name: "Kubernetes", category: "DevOps/Infrastructure", description: "Container orchestration", website: "https://kubernetes.io", color: "#326CE5", npm: "# Install kubectl", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" },
-    { id: "terraform", name: "Terraform", category: "DevOps/Infrastructure", description: "Infrastructure as code", website: "https://terraform.io", color: "#623CE4", npm: "# Install from terraform.io", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" },
-    { id: "ansible", name: "Ansible", category: "DevOps/Infrastructure", description: "IT automation platform", website: "https://ansible.com", color: "#EE0000", npm: "pip install ansible", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg" },
-    { id: "jenkins", name: "Jenkins", category: "DevOps/Infrastructure", description: "Automation server", website: "https://jenkins.io", color: "#D33833", npm: "# Install from jenkins.io", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg" },
-    { id: "github-actions", name: "GitHub Actions", category: "DevOps/Infrastructure", description: "CI/CD platform", website: "https://github.com/features/actions", color: "#2088FF", npm: "# Configure in .github/workflows", icon: "https://avatars.githubusercontent.com/u/44036562?s=200&v=4" },
-    { id: "gitlab-ci", name: "GitLab CI", category: "DevOps/Infrastructure", description: "Continuous integration", website: "https://docs.gitlab.com/ee/ci", color: "#FC6D26", npm: "# Configure in .gitlab-ci.yml", icon: "https://avatars.githubusercontent.com/u/22032?s=200&v=4" },
-    { id: "circleci", name: "CircleCI", category: "DevOps/Infrastructure", description: "Continuous integration platform", website: "https://circleci.com", color: "#343434", npm: "# Configure in .circleci/config.yml", icon: "https://avatars.githubusercontent.com/u/1231870?s=200&v=4" },
-
-    // Monitoring/Observability
-    { id: "sentry", name: "Sentry", category: "Monitoring/Observability", description: "Error tracking and performance monitoring", website: "https://sentry.io", color: "#362D59", npm: "npm install @sentry/node", icon: "https://avatars.githubusercontent.com/u/1396951?s=200&v=4" , skills: ["Error tracking","Performance monitoring","Session replay"], compatibleWith: ["nextjs","react","vue","nodejs","python"] },
-    { id: "datadog", name: "Datadog", category: "Monitoring/Observability", description: "Monitoring and analytics platform", website: "https://datadoghq.com", color: "#632CA6", npm: "npm install dd-trace", icon: "https://avatars.githubusercontent.com/u/365230?s=200&v=4" },
-    { id: "newrelic", name: "New Relic", category: "Monitoring/Observability", description: "Application performance monitoring", website: "https://newrelic.com", color: "#008C99", npm: "npm install newrelic", icon: "https://avatars.githubusercontent.com/u/31739?s=200&v=4" },
-    { id: "prometheus", name: "Prometheus", category: "Monitoring/Observability", description: "Monitoring system and time series database", website: "https://prometheus.io", color: "#E6522C", npm: "npm install prom-client", icon: "https://avatars.githubusercontent.com/u/3380462?s=200&v=4" },
-    { id: "grafana", name: "Grafana", category: "Monitoring/Observability", description: "Analytics and monitoring platform", website: "https://grafana.com", color: "#F46800", npm: "# Install Grafana server", icon: "https://avatars.githubusercontent.com/u/7195757?s=200&v=4" },
-    { id: "jaeger", name: "Jaeger", category: "Monitoring/Observability", description: "Distributed tracing system", website: "https://jaegertracing.io", color: "#60D0E4", npm: "npm install jaeger-client", icon: "https://avatars.githubusercontent.com/u/28545596?s=200&v=4" },
-
-    // Message Queues/Event Streaming
-    { id: "rabbitmq", name: "RabbitMQ", category: "Message Queues/Event Streaming", description: "Message broker", website: "https://rabbitmq.com", color: "#FF6600", npm: "npm install amqplib", icon: "https://avatars.githubusercontent.com/u/96669?s=200&v=4" },
-    { id: "apache-kafka", name: "Apache Kafka", category: "Message Queues/Event Streaming", description: "Distributed event streaming platform", website: "https://kafka.apache.org", color: "#231F20", npm: "npm install kafkajs", icon: "https://avatars.githubusercontent.com/u/47359?s=200&v=4" },
-    { id: "nats", name: "NATS", category: "Message Queues/Event Streaming", description: "Cloud native messaging system", website: "https://nats.io", color: "#199bfc", npm: "npm install nats", icon: "https://avatars.githubusercontent.com/u/6501170?s=200&v=4" },
-    { id: "bull", name: "Bull", category: "Message Queues/Event Streaming", description: "Redis-based queue for Node.js", website: "https://github.com/OptimalBits/bull", color: "#D82C20", npm: "npm install bull", icon: "https://avatars.githubusercontent.com/u/1045194?s=200&v=4" },
-
-    // API Documentation
-    { id: "swagger", name: "Swagger/OpenAPI", category: "API Documentation", description: "API documentation and design", website: "https://swagger.io", color: "#85EA2D", npm: "npm install swagger-ui-express", icon: "https://avatars.githubusercontent.com/u/7658037?s=200&v=4" },
-    { id: "postman", name: "Postman", category: "API Documentation", description: "API development platform", website: "https://postman.com", color: "#FF6C37", npm: "# Install Postman app", icon: "https://avatars.githubusercontent.com/u/10251060?s=200&v=4" },
-    { id: "insomnia", name: "Insomnia", category: "API Documentation", description: "API client and design tool", website: "https://insomnia.rest", color: "#4000BF", npm: "# Install Insomnia app", icon: "https://avatars.githubusercontent.com/u/25882507?s=200&v=4" },
-
-    // Version Control
-    { id: "git", name: "Git", category: "Version Control", description: "Distributed version control system", website: "https://git-scm.com", color: "#F05032", npm: "# Install from git-scm.com", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-    { id: "github", name: "GitHub", category: "Version Control", description: "Git repository hosting service", website: "https://github.com", color: "#181717", npm: "# Create account at github.com", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-    { id: "gitlab", name: "GitLab", category: "Version Control", description: "Git repository manager", website: "https://gitlab.com", color: "#FC6D26", npm: "# Create account at gitlab.com", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg" },
-    { id: "bitbucket", name: "Bitbucket", category: "Version Control", description: "Git repository hosting", website: "https://bitbucket.org", color: "#0052CC", npm: "# Create account at bitbucket.org", icon: "https://avatars.githubusercontent.com/u/2263316?s=200&v=4" },
-
-    // Code Quality/Linting
-    { id: "eslint", name: "ESLint", category: "Code Quality/Linting", description: "JavaScript linter", website: "https://eslint.org", color: "#4B32C3", npm: "npm install eslint", icon: "https://eslint.org/img/favicon-32x32.png" },
-    { id: "prettier", name: "Prettier", category: "Code Quality/Linting", description: "Code formatter", website: "https://prettier.io", color: "#F7B93E", npm: "npm install prettier", icon: "https://prettier.io/img/favicon-32x32.png" },
-    { id: "husky", name: "Husky", category: "Code Quality/Linting", description: "Git hooks made easy", website: "https://typicode.github.io/husky", color: "#42B883", npm: "npm install husky", icon: "https://avatars.githubusercontent.com/u/5502029?s=200&v=4" },
-    { id: "lint-staged", name: "lint-staged", category: "Code Quality/Linting", description: "Run linters on git staged files", website: "https://github.com/okonet/lint-staged", color: "#000000", npm: "npm install lint-staged", icon: "https://avatars.githubusercontent.com/u/1282980?s=200&v=4" },
-    { id: "sonarqube", name: "SonarQube", category: "Code Quality/Linting", description: "Code quality and security analysis", website: "https://sonarqube.org", color: "#4E9BCD", npm: "# Install SonarQube server", icon: "https://avatars.githubusercontent.com/u/2607971?s=200&v=4" },
-
-    // AI / LLM Tooling
-    { id: "vercel-ai-sdk", name: "Vercel AI SDK", category: "AI/LLM", description: "TypeScript toolkit for building AI applications", website: "https://ai-sdk.dev", color: "#000000", npm: "npm install ai", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
-    { id: "langchain", name: "LangChain", category: "AI/LLM", description: "Framework for developing LLM-powered applications", website: "https://langchain.com", color: "#1C3C3C", npm: "npm install langchain", icon: "https://langchain.com/favicon.ico" },
-    { id: "llamaindex", name: "LlamaIndex", category: "AI/LLM", description: "Data framework for LLM applications", website: "https://llamaindex.ai", color: "#FF6F00", npm: "npm install llamaindex", icon: "https://avatars.githubusercontent.com/u/108554348?s=200&v=4" },
-    { id: "openai", name: "OpenAI", category: "AI/LLM", description: "AI models and APIs for building intelligent applications", website: "https://openai.com", color: "#412991", npm: "npm install openai", icon: "https://avatars.githubusercontent.com/u/14957082?s=200&v=4" },
-    { id: "anthropic", name: "Anthropic", category: "AI/LLM", description: "Claude AI models and API", website: "https://anthropic.com", color: "#D97757", npm: "npm install @anthropic-ai/sdk", icon: "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png" },
-    { id: "huggingface", name: "Hugging Face", category: "AI/LLM", description: "AI model hub and inference API", website: "https://huggingface.co", color: "#FFD21E", npm: "npm install @huggingface/inference", icon: "https://huggingface.co/front/images/logos/mark/favicon.ico" },
-    { id: "ollama", name: "Ollama", category: "AI/LLM", description: "Run LLMs locally", website: "https://ollama.com", color: "#000000", npm: "curl -fsSL https://ollama.com/install.sh | sh", icon: "https://ollama.ai/favicon.ico" },
-    { id: "pgvector", name: "pgvector", category: "AI/LLM", description: "Open-source vector similarity search for Postgres", website: "https://github.com/pgvector/pgvector", color: "#336791", npm: "# Postgres extension", icon: "https://github.com/pgvector.png" , skills: ["Vector similarity search","Postgres embeddings","HNSW indexing"], compatibleWith: ["postgresql","prisma","drizzle","openai","langchain"] },
-
-    // Vector Databases
-    { id: "pinecone", name: "Pinecone", category: "Vector Database", description: "Vector database for AI applications", website: "https://pinecone.io", color: "#00C853", npm: "npm install @pinecone-database/pinecone", icon: "https://www.pinecone.io/favicon.ico" },
-    { id: "weaviate", name: "Weaviate", category: "Vector Database", description: "Open-source vector database", website: "https://weaviate.io", color: "#5A67D8", npm: "npm install weaviate-ts-client", icon: "https://weaviate.io/favicon.ico" },
-    { id: "qdrant", name: "Qdrant", category: "Vector Database", description: "Vector search engine", website: "https://qdrant.tech", color: "#FF3D00", npm: "npm install @qdrant/js-client-rest", icon: "https://qdrant.tech/favicon.ico" },
-    { id: "chroma", name: "Chroma", category: "Vector Database", description: "AI-native open-source embedding database", website: "https://trychroma.com", color: "#7C3AED", npm: "npm install chromadb", icon: "https://trychroma.com/favicon.ico" },
-    { id: "milvus", name: "Milvus", category: "Vector Database", description: "Vector database for scalable similarity search", website: "https://milvus.io", color: "#00A1EA", npm: "npm install @zilliz/milvus2-sdk-node", icon: "https://milvus.io/favicon.ico" },
-
-    // Edge / Serverless Compute
-    { id: "cloudflare-workers", name: "Cloudflare Workers", category: "Edge/Serverless", description: "Serverless execution at the edge", website: "https://workers.cloudflare.com", color: "#F38020", npm: "npm install -g wrangler", icon: "https://workers.cloudflare.com/favicon.ico" },
-    { id: "deno-deploy", name: "Deno Deploy", category: "Edge/Serverless", description: "Global edge runtime for JavaScript and TypeScript", website: "https://deno.com/deploy", color: "#000000", npm: "npm install -g deployctl", icon: "https://deno.com/favicon.ico" },
-    { id: "aws-lambda", name: "AWS Lambda", category: "Edge/Serverless", description: "Serverless compute service", website: "https://aws.amazon.com/lambda", color: "#FF9900", npm: "npm install @aws-sdk/client-lambda", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
-    { id: "vercel-edge", name: "Vercel Edge", category: "Edge/Serverless", description: "Edge functions on Vercel", website: "https://vercel.com/docs/edge-network", color: "#000000", npm: "# Built into Vercel", icon: "https://avatars.githubusercontent.com/u/14985020?s=200&v=4" },
-
-    // Feature Flags
-    { id: "launchdarkly", name: "LaunchDarkly", category: "Feature Flags", description: "Feature management platform", website: "https://launchdarkly.com", color: "#00A3FF", npm: "npm install launchdarkly-node-server-sdk", icon: "https://launchdarkly.com/favicon.ico" },
-    { id: "flagsmith", name: "Flagsmith", category: "Feature Flags", description: "Open-source feature flag and remote config service", website: "https://flagsmith.com", color: "#FF6B35", npm: "npm install flagsmith", icon: "https://flagsmith.com/favicon.ico" },
-    { id: "unleash", name: "Unleash", category: "Feature Flags", description: "Open-source feature management", website: "https://getunleash.io", color: "#E11D48", npm: "npm install unleash-client", icon: "https://www.getunleash.io/favicon.ico" },
-    { id: "growthbook", name: "GrowthBook", category: "Feature Flags", description: "Open-source feature flags and A/B testing", website: "https://growthbook.io", color: "#7C3AED", npm: "npm install @growthbook/growthbook", icon: "https://www.growthbook.io/favicon.ico" },
-
-    // Background Jobs / Queues
-    { id: "inngest", name: "Inngest", category: "Background Jobs", description: "Serverless background jobs and workflows", website: "https://inngest.com", color: "#7C3AED", npm: "npm install inngest", icon: "https://inngest.com/favicon.ico" , skills: ["Durable execution","Step functions","Event-driven workflows"], compatibleWith: ["nextjs","typescript","hono","express"] },
-    { id: "trigger-dev", name: "Trigger.dev", category: "Background Jobs", description: "Background jobs for TypeScript", website: "https://trigger.dev", color: "#FF4D00", npm: "npm install @trigger.dev/sdk", icon: "https://trigger.dev/favicon.ico" , skills: ["Background jobs","Long-running tasks","Serverless workflows"], compatibleWith: ["nextjs","react","typescript","prisma"] },
-    { id: "temporal", name: "Temporal", category: "Background Jobs", description: "Durable execution platform", website: "https://temporal.io", color: "#000000", npm: "npm install @temporalio/client", icon: "https://temporal.io/favicon.ico" },
-
-    // Dev Containers / Environments
-    { id: "dev-container", name: "Dev Container", category: "Dev Environments", description: "Development containers specification", website: "https://containers.dev", color: "#2496ED", npm: "# VS Code extension", icon: "https://containers.dev/favicon.ico" },
-    { id: "devpod", name: "DevPod", category: "Dev Environments", description: "Client-only, open-source dev environment tool", website: "https://devpod.sh", color: "#7C3AED", npm: "curl -fsSL https://devpod.sh/install.sh | bash", icon: "https://devpod.sh/favicon.ico" },
-    { id: "codespaces", name: "GitHub Codespaces", category: "Dev Environments", description: "Cloud development environments", website: "https://github.com/features/codespaces", color: "#2088FF", npm: "# GitHub feature", icon: "https://avatars.githubusercontent.com/u/44036562?s=200&v=4" },
-    { id: "nix", name: "Nix", category: "Dev Environments", description: "Reproducible builds and dev environments", website: "https://nixos.org", color: "#5277C3", npm: "curl -L https://nixos.org/nix/install | sh", icon: "https://nixos.org/favicon.ico" },
-
-    // Web3 / Blockchain
-    { id: "solidity", name: "Solidity", category: "Web3/Blockchain", description: "Contract-oriented programming language for Ethereum", website: "https://soliditylang.org", color: "#363636", npm: "npm install solc", icon: "https://soliditylang.org/favicon.ico" },
-    { id: "hardhat", name: "Hardhat", category: "Web3/Blockchain", description: "Ethereum development environment", website: "https://hardhat.org", color: "#FFF100", npm: "npm install -D hardhat", icon: "https://hardhat.org/favicon.ico" },
-    { id: "foundry", name: "Foundry", category: "Web3/Blockchain", description: "Blazing fast, portable toolkit for Ethereum", website: "https://getfoundry.sh", color: "#FF6B35", npm: "curl -L https://foundry.paradigm.xyz | bash", icon: "https://getfoundry.sh/favicon.ico" },
-    { id: "wagmi", name: "Wagmi", category: "Web3/Blockchain", description: "React Hooks for Ethereum", website: "https://wagmi.sh", color: "#000000", npm: "npm install wagmi viem", icon: "https://wagmi.sh/favicon.ico" },
-    { id: "viem", name: "Viem", category: "Web3/Blockchain", description: "TypeScript interface for Ethereum", website: "https://viem.sh", color: "#FFC94D", npm: "npm install viem", icon: "https://viem.sh/favicon.ico" },
-    { id: "ipfs", name: "IPFS", category: "Web3/Blockchain", description: "Peer-to-peer hypermedia protocol", website: "https://ipfs.tech", color: "#65C2CB", npm: "npm install ipfs-http-client", icon: "https://ipfs.tech/favicon.ico" },
-    { id: "thirdweb", name: "Thirdweb", category: "Web3/Blockchain", description: "Complete web3 development framework", website: "https://thirdweb.com", color: "#F213A4", npm: "npm install thirdweb", icon: "https://thirdweb.com/favicon.ico" },
-
-    // Data Engineering
-    { id: "dbt", name: "dbt", category: "Data Engineering", description: "Data build tool for analytics engineering", website: "https://getdbt.com", color: "#FF694B", npm: "pip install dbt-core", icon: "https://www.getdbt.com/favicon.ico" },
-    { id: "airflow", name: "Apache Airflow", category: "Data Engineering", description: "Platform to programmatically author and schedule workflows", website: "https://airflow.apache.org", color: "#017CEE", npm: "pip install apache-airflow", icon: "https://airflow.apache.org/images/feature-image.png" },
-    { id: "metabase", name: "Metabase", category: "Data Engineering", description: "Open-source business intelligence tool", website: "https://metabase.com", color: "#509EE3", npm: "# Deploy via Docker", icon: "https://www.metabase.com/favicon.ico" },
-    { id: "dagster", name: "Dagster", category: "Data Engineering", description: "Orchestration platform for data pipelines", website: "https://dagster.io", color: "#4E61A6", npm: "pip install dagster", icon: "https://dagster.io/favicon.ico" },
-    { id: "prefect", name: "Prefect", category: "Data Engineering", description: "Workflow orchestration for data teams", website: "https://prefect.io", color: "#024DFF", npm: "pip install prefect", icon: "https://www.prefect.io/favicon.ico" },
-    { id: "great-expectations", name: "Great Expectations", category: "Data Engineering", description: "Data quality validation framework", website: "https://greatexpectations.io", color: "#FF6B35", npm: "pip install great-expectations", icon: "https://greatexpectations.io/favicon.ico" },
-
-    // API Gateway
-    { id: "kong", name: "Kong", category: "API Gateway", description: "Commercial-grade API gateway and micro-service management layer", website: "https://konghq.com", color: "#003459", npm: "# Deploy via Docker", icon: "https://konghq.com/images/new-kong-logo.svg" },
-    { id: "traefik", name: "Traefik", category: "API Gateway", description: "Cloud-native application proxy", website: "https://traefik.io", color: "#24A1C1", npm: "# Deploy via Docker", icon: "https://traefik.io/favicon.ico" },
-    { id: "envoy", name: "Envoy", category: "API Gateway", description: "Cloud-native high-performance proxy", website: "https://envoyproxy.io", color: "#AC6199", npm: "# Deploy via Docker", icon: "https://www.envoyproxy.io/favicon.ico" },
-    { id: "nginx", name: "NGINX", category: "API Gateway", description: "High-performance web server and reverse proxy", website: "https://nginx.org", color: "#009639", npm: "# Install from nginx.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
-    { id: "istio", name: "Istio", category: "API Gateway", description: "Service mesh for Kubernetes", website: "https://istio.io", color: "#466BB0", npm: "curl -L https://istio.io/downloadIstio | sh", icon: "https://istio.io/favicons/favicon.ico" },
-
-    // Security
-    { id: "snyk", name: "Snyk", category: "Security", description: "Developer security platform", website: "https://snyk.io", color: "#4C4A73", npm: "npm install -g snyk", icon: "https://snyk.io/favicon.ico" },
-    { id: "trivy", name: "Trivy", category: "Security", description: "Comprehensive vulnerability scanner", website: "https://trivy.dev", color: "#1904DA", npm: "brew install trivy", icon: "https://trivy.dev/favicon.ico" },
-    { id: "vault", name: "HashiCorp Vault", category: "Security", description: "Secrets management and data protection", website: "https://vaultproject.io", color: "#000000", npm: "# Install from vaultproject.io", icon: "https://www.vaultproject.io/favicon.ico" },
-    { id: "owasp-zap", name: "OWASP ZAP", category: "Security", description: "Web application security scanner", website: "https://zaproxy.org", color: "#4B4B4B", npm: "# Install ZAP app", icon: "https://www.zaproxy.org/favicon.ico" },
-
-    // Documentation
-    { id: "docusaurus", name: "Docusaurus", category: "Documentation", description: "Documentation website generator", website: "https://docusaurus.io", color: "#3ECC5F", npm: "npx create-docusaurus@latest", icon: "https://docusaurus.io/img/favicon.ico" },
-    { id: "vitepress", name: "VitePress", category: "Documentation", description: "Vite-powered static site generator for docs", website: "https://vitepress.dev", color: "#646CFF", npm: "npm install -D vitepress", icon: "https://vitepress.dev/vitepress-logo-mini.svg" },
-    { id: "mintlify", name: "Mintlify", category: "Documentation", description: "Modern documentation platform", website: "https://mintlify.com", color: "#0B0B0F", npm: "npm install -g mintlify", icon: "https://mintlify.com/favicon.ico" },
-    { id: "gitbook", name: "GitBook", category: "Documentation", description: "Documentation and knowledge base platform", website: "https://gitbook.com", color: "#3884FF", npm: "# Web platform", icon: "https://www.gitbook.com/favicon.ico" },
-
-    // BaaS / Low-code
-    { id: "appwrite", name: "Appwrite", category: "BaaS", description: "Open-source backend server", website: "https://appwrite.io", color: "#FD366E", npm: "npm install appwrite", icon: "https://appwrite.io/favicon.ico" },
-    { id: "pocketbase", name: "PocketBase", category: "BaaS", description: "Open-source backend in a single file", website: "https://pocketbase.io", color: "#B8DBE4", npm: "# Download binary", icon: "https://pocketbase.io/images/favicon.png" },
-    { id: "directus", name: "Directus", category: "BaaS", description: "Open-source data platform", website: "https://directus.io", color: "#263238", npm: "npm install directus", icon: "https://directus.io/favicon.ico" },
-    { id: "nhost", name: "Nhost", category: "BaaS", description: "Open-source Firebase alternative with GraphQL", website: "https://nhost.io", color: "#0EA5E9", npm: "npm install @nhost/react", icon: "https://nhost.io/favicon.ico" },
-
-    // Workflow Automation
-    { id: "n8n", name: "n8n", category: "Workflow Automation", description: "Fair-code workflow automation tool", website: "https://n8n.io", color: "#EA4B71", npm: "npx n8n", icon: "https://n8n.io/favicon.ico" },
-    { id: "windmill", name: "Windmill", category: "Workflow Automation", description: "Developer platform for workflows and internal tools", website: "https://windmill.dev", color: "#4E80EE", npm: "npm install -g windmill-cli", icon: "https://windmill.dev/favicon.ico" },
-
-    // Data Visualization
-    { id: "d3", name: "D3.js", category: "Data Visualization", description: "Data-driven documents for the web", website: "https://d3js.org", color: "#F9A03C", npm: "npm install d3", icon: "https://d3js.org/d3icon.PNG" },
-    { id: "chartjs", name: "Chart.js", category: "Data Visualization", description: "Simple yet flexible JavaScript charting", website: "https://chartjs.org", color: "#FF6384", npm: "npm install chart.js", icon: "https://www.chartjs.org/img/logo.png" },
-    { id: "echarts", name: "Apache ECharts", category: "Data Visualization", description: "Powerful charting and visualization library", website: "https://echarts.apache.org", color: "#AA344D", npm: "npm install echarts", icon: "https://echarts.apache.org/en/images/favicon.png" },
-    { id: "recharts", name: "Recharts", category: "Data Visualization", description: "Composable charting library built on React components", website: "https://recharts.org", color: "#22B8CF", npm: "npm install recharts", icon: "https://recharts.org/img/favicon.ico" },
-
-    // Video / Streaming
-    { id: "mux", name: "Mux", category: "Video/Streaming", description: "Video API for developers", website: "https://mux.com", color: "#1B1B1F", npm: "npm install @mux/mux-node", icon: "https://mux.com/favicon.ico" },
-    { id: "cloudflare-stream", name: "Cloudflare Stream", category: "Video/Streaming", description: "Video streaming and encoding", website: "https://cloudflare.com/stream", color: "#F38020", npm: "# Cloudflare API", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4" },
-    { id: "twilio", name: "Twilio", category: "Video/Streaming", description: "Communication APIs for voice, video, and messaging", website: "https://twilio.com", color: "#F22F46", npm: "npm install twilio", icon: "https://www.twilio.com/favicon.ico" },
-
-    // MLOps
-    { id: "mlflow", name: "MLflow", category: "MLOps", description: "Open-source platform for ML lifecycle", website: "https://mlflow.org", color: "#0194E2", npm: "pip install mlflow", icon: "https://mlflow.org/favicon.ico" },
-    { id: "weights-biases", name: "Weights & Biases", category: "MLOps", description: "ML experiment tracking and visualization", website: "https://wandb.ai", color: "#FFBE00", npm: "pip install wandb", icon: "https://wandb.ai/favicon.ico" },
-    { id: "ray", name: "Ray", category: "MLOps", description: "Distributed computing framework for AI", website: "https://ray.io", color: "#028CF0", npm: "pip install ray", icon: "https://www.ray.io/favicon.ico" },
-
-    // Additional Languages
-    { id: "elixir", name: "Elixir", category: "Languages", description: "Functional language built on the Erlang VM", website: "https://elixir-lang.org", color: "#4E2A8E", npm: "# Install from elixir-lang.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg" },
-    { id: "zig", name: "Zig", category: "Languages", description: "General-purpose low-level programming language", website: "https://ziglang.org", color: "#F7A41D", npm: "# Install from ziglang.org", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg" },
-
-    // Additional Databases
-    { id: "timescaledb", name: "TimescaleDB", category: "Database", description: "PostgreSQL extension for time-series data", website: "https://timescale.com", color: "#FDB515", npm: "# Postgres extension", icon: "https://timescale.com/images/timescale-logo-colour.svg" },
-    { id: "duckdb", name: "DuckDB", category: "Database", description: "In-process analytical database system", website: "https://duckdb.org", color: "#FFF000", npm: "npm install duckdb", icon: "https://duckdb.org/img/duckdb-logo.svg" , skills: ["Embedded analytics","Columnar SQL","Fast parquet querying"], compatibleWith: ["python","nodejs","lancedb","postgresql","sqlite"] },
-
-    // Additional Monitoring
-    { id: "grafana-loki", name: "Grafana Loki", category: "Monitoring/Observability", description: "Log aggregation system", website: "https://grafana.com/oss/loki", color: "#F46800", npm: "# Deploy via Docker", icon: "https://avatars.githubusercontent.com/u/7195757?s=200&v=4" },
-    { id: "better-stack", name: "Better Stack", category: "Monitoring/Observability", description: "Log management and uptime monitoring", website: "https://betterstack.com", color: "#000000", npm: "npm install @betterstack/logging", icon: "https://betterstack.com/favicon.ico" , skills: ["Uptime monitoring","Incident alerting","Log streaming"], compatibleWith: ["nextjs","nodejs","docker","kubernetes"] },
-
-    // AI Agents / Orchestration
-    { id: "langgraph", name: "LangGraph", category: "AI Agents", description: "Build stateful, agentic AI applications", website: "https://langchain-ai.github.io/langgraph", color: "#1C3C3C", npm: "npm install @langchain/langgraph", icon: "https://avatars.githubusercontent.com/u/126733545?s=200&v=4" , skills: ["Multi-agent workflows","Stateful graphs","Human-in-the-loop AI"], compatibleWith: ["langchain","python","typescript","openai","anthropic"] },
-    { id: "crewai", name: "CrewAI", category: "AI Agents", description: "Framework for orchestrating role-playing AI agents", website: "https://crewai.com", color: "#FF5A5F", npm: "pip install crewai", icon: "https://crewai.com/favicon.ico" },
-    { id: "autogen", name: "AutoGen", category: "AI Agents", description: "Multi-agent conversation framework from Microsoft", website: "https://microsoft.github.io/autogen", color: "#0078D4", npm: "pip install pyautogen", icon: "https://microsoft.github.io/autogen/img/favicon.svg" },
-    { id: "flowise", name: "Flowise", category: "AI Agents", description: "Drag & drop UI to build LLM apps", website: "https://flowiseai.com", color: "#7C3AED", npm: "npx flowise start", icon: "https://flowiseai.com/favicon.ico" },
-
-    // 3D / Game Development
-    { id: "threejs", name: "Three.js", category: "3D/Game Dev", description: "3D library for the web", website: "https://threejs.org", color: "#000000", npm: "npm install three", icon: "https://threejs.org/files/favicon.ico" },
-    { id: "babylonjs", name: "Babylon.js", category: "3D/Game Dev", description: "Powerful 3D engine for the web", website: "https://babylonjs.com", color: "#BB464B", npm: "npm install @babylonjs/core", icon: "https://babylonjs.com/images/favicon.ico" },
-    { id: "phaser", name: "Phaser", category: "3D/Game Dev", description: "Fast 2D game framework", website: "https://phaser.io", color: "#8BC34A", npm: "npm install phaser", icon: "https://phaser.io/images/favicon.ico" },
-    { id: "react-three-fiber", name: "React Three Fiber", category: "3D/Game Dev", description: "React renderer for Three.js", website: "https://docs.pmnd.rs/react-three-fiber", color: "#000000", npm: "npm install @react-three/fiber", icon: "https://docs.pmnd.rs/favicon.ico" },
-
-    // Maps / Geolocation
-    { id: "mapbox", name: "Mapbox", category: "Maps/Geo", description: "Custom maps and location services", website: "https://mapbox.com", color: "#4264FB", npm: "npm install mapbox-gl", icon: "https://maps.mapbox.com/mapbox-gl-js/docs/img/mapbox-icon.png" },
-    { id: "leaflet", name: "Leaflet", category: "Maps/Geo", description: "Open-source interactive maps", website: "https://leafletjs.com", color: "#199900", npm: "npm install leaflet", icon: "https://leafletjs.com/docs/img/logo-mark.png" },
-    { id: "maplibre", name: "MapLibre GL", category: "Maps/Geo", description: "Open-source vector map renderer", website: "https://maplibre.org", color: "#396CB2", npm: "npm install maplibre-gl", icon: "https://maplibre.org/favicon.ico" },
-    { id: "google-maps", name: "Google Maps", category: "Maps/Geo", description: "Google Maps Platform", website: "https://developers.google.com/maps", color: "#4285F4", npm: "npm install @googlemaps/js-api-loader", icon: "https://maps.google.com/favicon.ico" },
-
-    // Push Notifications
-    { id: "onesignal", name: "OneSignal", category: "Push Notifications", description: "Push notifications for web and mobile", website: "https://onesignal.com", color: "#E54B4B", npm: "npm install onesignal", icon: "https://onesignal.com/favicon.ico" },
-    { id: "firebase-messaging", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Cross-platform messaging solution", website: "https://firebase.google.com/products/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
-
-    // Voice / Audio
-    { id: "whisper", name: "OpenAI Whisper", category: "Voice/Audio", description: "Speech recognition and transcription", website: "https://openai.com/research/whisper", color: "#412991", npm: "pip install openai-whisper", icon: "https://openai.com/favicon.ico" },
-    { id: "elevenlabs", name: "ElevenLabs", category: "Voice/Audio", description: "AI voice generation and text-to-speech", website: "https://elevenlabs.io", color: "#000000", npm: "npm install elevenlabs", icon: "https://elevenlabs.io/favicon.ico" , skills: ["Voice synthesis","Voice cloning","Streaming audio generation"], compatibleWith: ["nextjs","react","python","typescript","openai"] },
-    { id: "howler", name: "Howler.js", category: "Voice/Audio", description: "Audio library for the modern web with Web Audio API", website: "https://howlerjs.com", color: "#FF6B35", npm: "npm install howler", icon: "https://howlerjs.com/img/favicon.ico" },
-
-    // Performance / Web Vitals
-    { id: "lighthouse", name: "Lighthouse", category: "Performance", description: "Automated auditing for web performance", website: "https://developers.google.com/web/tools/lighthouse", color: "#F44B21", npm: "npm install -g lighthouse", icon: "https://developers.google.com/web/tools/lighthouse/images/lighthouse-icon.png" },
-    { id: "web-vitals", name: "Web Vitals", category: "Performance", description: "Essential metrics for healthy site", website: "https://web.dev/vitals", color: "#4285F4", npm: "npm install web-vitals", icon: "https://web.dev/images/favicon.ico" },
-    { id: "bundlephobia", name: "BundlePhobia", category: "Performance", description: "Bundle size analysis for npm packages", website: "https://bundlephobia.com", color: "#EF4444", npm: "# Web tool", icon: "https://bundlephobia.com/favicon.ico" },
-
-    // Accessibility
-    { id: "axe-core", name: "axe-core", category: "Accessibility", description: "Accessibility testing engine", website: "https://deque.com/axe", color: "#F04E23", npm: "npm install axe-core", icon: "https://www.deque.com/axe/images/axe-icon@3x.png" },
-    { id: "pa11y", name: "Pa11y", category: "Accessibility", description: "Automated accessibility testing", website: "https://pa11y.org", color: "#4B0082", npm: "npm install -g pa11y", icon: "https://pa11y.org/favicon.ico" },
-
-    // Internationalization
-    { id: "i18next", name: "i18next", category: "Internationalization", description: "Internationalization framework for JavaScript", website: "https://i18next.com", color: "#26A69A", npm: "npm install i18next", icon: "https://www.i18next.com/img/favicon.ico" },
-    { id: "next-intl", name: "next-intl", category: "Internationalization", description: "Internationalization for Next.js", website: "https://next-intl-docs.vercel.app", color: "#000000", npm: "npm install next-intl", icon: "https://next-intl-docs.vercel.app/favicon.ico" },
-    { id: "react-i18next", name: "react-i18next", category: "Internationalization", description: "React bindings for i18next", website: "https://react.i18next.com", color: "#26A69A", npm: "npm install react-i18next", icon: "https://react.i18next.com/favicon.ico" },
-
-    // OpenTelemetry
-    { id: "opentelemetry", name: "OpenTelemetry", category: "OpenTelemetry", description: "Vendor-neutral observability framework for distributed systems", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
-
-    // IoT
-    { id: "mqtt", name: "MQTT", category: "IoT", description: "Lightweight messaging protocol for IoT", website: "https://mqtt.org", color: "#660066", npm: "npm install mqtt", icon: "https://mqtt.org/favicon.ico" },
-    { id: "esp32", name: "ESP32", category: "IoT", description: "Low-cost microcontroller with WiFi/Bluetooth", website: "https://espressif.com", color: "#E7352C", npm: "# Hardware platform", icon: "https://www.espressif.com/favicon.ico" },
-    { id: "arduino", name: "Arduino", category: "IoT", description: "Open-source electronics platform", website: "https://arduino.cc", color: "#00979D", npm: "# Hardware platform", icon: "https://www.arduino.cc/favicon.ico" }
-,
-    // GraphQL/API
-    { id: "graphql", name: "GraphQL", category: "GraphQL/API", description: "Query language for APIs and runtime for executing those queries", website: "https://graphql.org", color: "#E535AB", npm: "npm install graphql", icon: "https://graphql.org/img/favicon.ico" },
-    { id: "grpc", name: "gRPC", category: "GraphQL/API", description: "High-performance RPC framework using HTTP/2", website: "https://grpc.io", color: "#4285F4", npm: "npm install @grpc/grpc-js @grpc/proto-loader", icon: "https://grpc.io/img/icons/icon-192x192.png" },
-
-    // API Gateway
-    { id: "aws-api-gateway", name: "AWS API Gateway", category: "API Gateway", description: "Fully managed service for creating, publishing, and maintaining APIs at any scale", website: "https://aws.amazon.com/api-gateway", color: "#FF9900", npm: "npm install aws-sdk", icon: "https://avatars.githubusercontent.com/u/2232217?s=200&v=4" },
-
-    // Monitoring/Observability
-    { id: "logrocket", name: "LogRocket", category: "Monitoring/Observability", description: "Session replay and performance monitoring for web apps", website: "https://logrocket.com", color: "#00A884", npm: "npm install logrocket", icon: "https://logrocket.com/favicon.ico" },
-    { id: "raptor", name: "Raptor", category: "Monitoring/Observability", description: "Real-user monitoring for web applications", website: "https://raptor.com.au", color: "#0066CC", npm: "# Browser RUM", icon: "https://github.com/raptor.png" },
-    { id: "google-lighthouse", name: "Google Lighthouse", category: "Performance", description: "Automated auditing tool for web performance, accessibility, and SEO", website: "https://developers.google.com/web/tools/lighthouse", color: "#4CAF50", npm: "npm install -g lighthouse", icon: "https://developers.google.com/web/tools/lighthouse/images/lighthouse-icon.png" },
-    { id: "webpagetest", name: "WebPageTest", category: "Performance", description: "Website speed test from global locations with real browsers", website: "https://webpagetest.org", color: "#0F60AB", npm: "# Web tool", icon: "https://www.webpagetest.org/assets/images/favicon.ico" },
-    { id: "sitespeedio", name: "Sitespeed.io", category: "Performance", description: "Web performance monitoring and benchmarking tool", website: "https://sitespeed.io", color: "#FF8C00", npm: "npm install -g @sitespeedio/sitespeed.io", icon: "https://sitespeed.io/images/favicons/favicon.ico" },
-
-    // Security
-    { id: "dependency-check", name: "OWASP Dependency-Check", category: "Security", description: "Identify project dependencies with known vulnerabilities", website: "https://owasp.org/www-project-dependency-check/", color: "#000000", npm: "npm install -g dependency-check", icon: "https://owasp.org/assets/img/pages/projects/dependency-check/logo-horizontal.svg" },
-
-    // Background Jobs
-    { id: "bullmq", name: "BullMQ", category: "Background Jobs", description: "Redis-based queue for Node.js with priority and delayed jobs", website: "https://github.com/taskforcesh/bullmq", color: "#00AD66", npm: "npm install bullmq", icon: "https://taskforcesh.github.io/bullmq/favicon.ico" },
-    { id: "agenda", name: "Agenda", category: "Background Jobs", description: "Mongo-backed job scheduling for Node.js", website: "https://github.com/rs/node-agenda", color: "#456194", npm: "npm install agenda", icon: "https://github.com/agenda.png" },
-
-    // Video/Streaming
-    { id: "videojs", name: "Video.js", category: "Video/Streaming", description: "HTML5 video player library", website: "https://videojs.com", color: "#000000", npm: "npm install video.js", icon: "https://videojs.com/img/favicon.ico" },
-    { id: "plyr", name: "Plyr", category: "Video/Streaming", description: "Simple, responsive HTML5 media player", website: "https://plyr.io", color: "#000000", npm: "npm install plyr", icon: "https://plyr.io/img/favicon-192x192.png" },
-    { id: "hlsjs", name: "HLS.js", category: "Video/Streaming", description: "JavaScript HLS client for adaptive streaming", website: "https://github.com/video-dev/hls.js", color: "#000000", npm: "npm install hls.js", icon: "https://github.com/video-dev/hls.js/raw/master/docs/images/favicon.ico" },
-
-    // Voice/Audio
-    { id: "tonejs", name: "Tone.js", category: "Voice/Audio", description: "Web Audio framework for creating musically meaningful sounds", website: "https://tonejs.github.io", color: "#FF6B35", npm: "npm install tone", icon: "https://tonejs.github.io/img/tone.svg" },
-
-    // DevOps/Infrastructure
-    { id: "aws-cdk", name: "AWS CDK", category: "DevOps/Infrastructure", description: "Infrastructure as code using familiar programming languages", website: "https://docs.aws.amazon.com/cdk", color: "#FF9900", npm: "npm install aws-cdk", icon: "https://docs.aws.amazon.com/cdk/api/latest/img/aws-cdk-icon.png" },
-    { id: "argo-cd", name: "Argo CD", category: "DevOps/Infrastructure", description: "Continuous delivery tool for Kubernetes with GitOps", website: "https://argoproj.github.io/argo-cd/", color: "#0084B5", npm: "kubectl apply -n argocd", icon: "https://argoproj.github.io/img/logo-argo-cd.svg" },
-
-    // Internationalization
-    { id: "crowdin", name: "Crowdin", category: "Internationalization", description: "Continuous localization platform for software and content", website: "https://crowdin.com", color: "#00C1B5", npm: "# Web service", icon: "https://crowdin.com/favicon.ico" },
-    { id: "lokalise", name: "Lokalise", category: "Internationalization", description: "Translation management platform for teams", website: "https://lokalise.com", color: "#FF6F00", npm: "# Web service", icon: "https://lokalise.com/favicon.ico" },
-
-    // Workflow Automation
-    { id: "zapier", name: "Zapier", category: "Workflow Automation", description: "No-code automation platform connecting 5,000+ apps", website: "https://zapier.com", color: "#FF4D00", npm: "# Web service", icon: "https://zapier.com/favicon.ico" },
-    { id: "make", name: "Make (Integromat)", category: "Workflow Automation", description: "Visual automation platform for business workflows", website: "https://make.com", color: "#002B5C", npm: "# Web service", icon: "https://make.com/img/favicon.ico" },
-
-    // IoT
-    { id: "raspberrypi", name: "Raspberry Pi", category: "IoT", description: "Single-board computer for IoT projects", website: "https://raspberrypi.org", color: "#A2AAAD", npm: "# Hardware platform", icon: "https://avatars.githubusercontent.com/u/43035311?s=200&v=4" },
-    { id: "micropython", name: "MicroPython", category: "IoT", description: "Python implementation for microcontrollers", website: "https://micropython.org", color: "#A2AAAD", npm: "pip install micropython", icon: "https://avatars.githubusercontent.com/u/41427671?s=200&v=4" },
-    // ORM
-    { id: "prisma-client", name: "Prisma Client", category: "ORM", description: "Generated TypeScript/JavaScript ORM for type-safe database access", website: "https://www.prisma.io", color: "#2D3748", npm: "npm install @prisma/client", icon: "https://www.prisma.io/images/favicon/favicon.ico" },// API Documentation
-    { id: "redoc-cli", name: "Redoc CLI", category: "API Documentation", description: "CLI for OpenAPI docs", website: "https://redocly.com", color: "#00707C", npm: "npm install -g redoc-cli", icon: "https://redocly.com/favicon.ico" },
-
-    // Background Jobs
-    { id: "sidekiq", name: "Sidekiq", category: "Background Jobs", description: "Background job processing for Ruby", website: "https://sidekiq.com", color: "#000000", npm: "gem install sidekiq", icon: "https://sidekiq.com/img/sidekiq-icon@2x-180x180.png" },
-    { id: "resque", name: "Resque", category: "Message Queues/Event Streaming", description: "Redis-backed job queue for Ruby", website: "https://github.com/resque/resque", color: "#FF6600", npm: "gem install resque", icon: "https://avatars.githubusercontent.com/u/12885341?s=200&v=4" },
-    { id: "celery", name: "Celery", category: "Message Queues/Event Streaming", description: "Distributed task queue for Python", website: "https://docs.celeryproject.org", color: "#FDB515", npm: "pip install celery", icon: "https://docs.celeryproject.org/en/stable/_static/celery-logo-dark.png" },
-    { id: "rq", name: "RQ", category: "Message Queues/Event Streaming", description: "Redis Queue for Python", website: "https://python-rq.org", color: "#DC382D", npm: "pip install rq", icon: "https://python-rq.org/img/rq-logo.png" },
-    // Push Notifications
-    { id: "web-push", name: "Web Push", category: "Push Notifications", description: "Self-hosted push notifications", website: "https://github.com/web-push-libs/web-push", color: "#000000", npm: "npm install web-push", icon: "https://github.com/web-push-libs.png" },
-    // Web3/Blockchain
-    { id: "web3", name: "Web3.js", category: "Web3/Blockchain", description: "JavaScript library for Ethereum", website: "https://web3js.readthedocs.io", color: "#8B0000", npm: "npm install web3", icon: "https://web3js.readthedocs.io/en/stable/images/favicon.ico" },
-    { id: "ethers", name: "Ethers.js", category: "Web3/Blockchain", description: "Ethereum library and provider", website: "https://docs.ethers.io", color: "#C0C0C0", npm: "npm install ethers", icon: "https://docs.ethers.io/v5/assets/logos/ethers-32.png" },
-    { id: "solana", name: "Solana", category: "Web3/Blockchain", description: "Solana blockchain SDK", website: "https://solana.com", color: "#99451B", npm: "npm install @solana/web3.js", icon: "https://solana.com/solana-logo1.png" },
-    // Package Manager
-    { id: "bun-package", name: "Bun Package", category: "Package Manager", description: "Package manager for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "# Built into Bun", icon: "https://bun.sh/img/logo.svg" },
-    // Dev Environments
-    { id: "gitpod", name: "Gitpod", category: "Dev Environments", description: "Cloud dev environments", website: "https://gitpod.io", color: "#FF6600", npm: "# Web service", icon: "https://gitpod.io/img/favicon.ico" },
-{ id: "ghost", name: "Ghost", category: "CMS", description: "Publishing platform", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
-    { id: "backendless", name: "Backendless", category: "BaaS", description: "Mobile backend service", website: "https://backendless.com", color: "#0066CC", npm: "# Web service", icon: "https://backendless.com/favicon.ico" },
-    { id: "parseserver", name: "Parse Server", category: "BaaS", description: "Open source BaaS", website: "https://parseplatform.org", color: "#000000", npm: "npm install parse", icon: "https://parseplatform.org/img/parse-logo.png" },
-    { id: "faiss", name: "FAISS", category: "Vector Database", description: "Facebook AI Similarity Search", website: "https://faiss.ai", color: "#000000", npm: "pip install faiss-cpu", icon: "https://faiss.ai/img/faiss-logo.svg" },
-    { id: "voyage", name: "Voyage AI", category: "Vector Database", description: "Embedding API", website: "https://www.voyage.ai", color: "#000000", npm: "npm install voyage-api", icon: "https://www.voyage.ai/favicon.ico" },
-    { id: "seldon-core", name: "Seldon Core", category: "MLOps", description: "ML serving platform", website: "https://seldon.io", color: "#000000", npm: "# Helm chart", icon: "https://seldon.io/img/seldon-logo.svg" },
-    { id: "bentoml", name: "BentoML", category: "MLOps", description: "ML model serving", website: "https://bentoml.com", color: "#FF6600", npm: "pip install bentoml", icon: "https://bentoml.com/img/bentoml_logo.png" },
-    { id: "kubeflow", name: "Kubeflow", category: "MLOps", description: "Kubernetes ML platform", website: "https://kubeflow.org", color: "#9074D4", npm: "# Kubernetes", icon: "https://kubeflow.org/img/logo.png" },
-    { id: "tfserving", name: "TensorFlow Serving", category: "MLOps", description: "Model serving for TensorFlow", website: "https://www.tensorflow.org/tfx/guide/serving", color: "#FF6600", npm: "# Docker", icon: "https://www.tensorflow.org/images/tf-logo2-green-bg.png" },
-    { id: "torchserve", name: "TorchServe", category: "MLOps", description: "Model serving for PyTorch", website: "https://pytorch.org/torchserve/", color: "#EE4C24", npm: "pip install torchserve", icon: "https://pytorch.org/meta-images/logo-icon-dark.png" },
-    { id: "react-native", name: "React Native", category: "Native Framework", description: "Mobile app development", website: "https://reactnative.dev", color: "#26B2A7", npm: "npm install react-native", icon: "https://reactnative.dev/img/react_native_icon.png" },
-    { id: "nativebase", name: "NativeBase", category: "Native Framework", description: "React Native component library", website: "https://nativebase.io", color: "#4092C5", npm: "npm install native-base", icon: "https://nativebase.io/img/icon-square.png" },
-// OpenTelemetry - more tools
-    { id: "opentelemetry-collector", name: "OpenTelemetry Collector", category: "OpenTelemetry", description: "Vendor-neutral observability collector", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/collector", icon: "https://opentelemetry.io/img/full-colorLogo.svg" },
-    { id: "zipkin", name: "Zipkin", category: "OpenTelemetry", description: "Distributed tracing system", website: "https://zipkin.io", color: "#000000", npm: "npm install zipkin", icon: "https://zipkin.io/img/logo.svg" },
-
-    // Runtime - more runtimes
-    { id: "bun-types", name: "Bun:types", category: "Runtime", description: "Type definitions for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "npm install @types/bun", icon: "https://bun.sh/img/logo.svg" },
-
-    // Push Notifications - more
-    { id: "one-signal", name: "OneSignal", category: "Push Notifications", description: "Push notification service", website: "https://onesignal.com", color: "#00C4CC", npm: "npm install onesignal-node", icon: "https://onesignal.com/images/favicon.ico" },
-
-    // Accessibility - more
-    { id: "react-aria", name: "React Aria", category: "Accessibility", description: "React hooks for accessibility", website: "https://react-spectrum.adobe.com/react-aria/", color: "#6736D3", npm: "npm install @react-aria/react", icon: "https://react-spectrum.adobe.com/favicon.ico" },
-
-    // Search - more
-    { id: "elasticsearch-js", name: "Elasticsearch JS Client", category: "Search", description: "Official Elasticsearch client for Node.js", website: "https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html", color: "#00557C", npm: "npm install @elastic/elasticsearch", icon: "https://www.elastic.co/static/img/favicon.ico" },
-
-    // Email - more
-    { id: "mailgun-js", name: "Mailgun JS", category: "Email", description: "Mailgun API client for Node.js", website: "https://www.mailgun.com", color: "#FF6600", npm: "npm install mailgun-js", icon: "https://www.mailgun.com/favicon.ico" },
-
-    // Payment - more
-    { id: "stripe-cli", name: "Stripe CLI", category: "Payment", description: "Command-line tool for Stripe development", website: "https://stripe.com/docs/stripe-cli", color: "#635BFF", npm: "npm install -g stripe", icon: "https://stripe.com/img/favicon.ico" },
-    { id: "paypal-checkout", name: "PayPal Checkout", category: "Payment", description: "PayPal payment buttons SDK", website: "https://developer.paypal.com", color: "#003087", npm: "npm install @paypal/checkout-server-sdk", icon: "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg" },
-
-    // API Documentation - more  
-    { id: "swagger-cli", name: "Swagger CLI", category: "API Documentation", description: "OpenAPI/Swagger tooling", website: "https://swagger.io/tools/swagger-cli/", color: "#85EA2D", npm: "npm install -g @apidevtools/swagger-cli", icon: "https://swagger.io/favicon.ico" },
-
-    // Version Control - more
-    { id: "svn", name: "Subversion", category: "Version Control", description: "Apache Subversion version control", website: "https://subversion.apache.org", color: "#8BB447", npm: "# Command line tools", icon: "https://subversion.apache.org/images/subversion_32x32.png" },
-
-    // Documentation - more
-    { id: "mkdocs", name: "MkDocs", category: "Documentation", description: "Static site generator for docs", website: "https://www.mkdocs.org", color: "#009688", npm: "pip install mkdocs", icon: "https://www.mkdocs.org/_static/favicon.ico" },
-    // Workflow Automation - more
-    { id: "trayio", name: "Tray.io", category: "Workflow Automation", description: "Integration platform automation", website: "https://tray.io", color: "#6366F1", npm: "# Web service", icon: "https://tray.io/favicon.ico" },
-    { id: "workato", name: "Workato", category: "Workflow Automation", description: "Enterprise automation platform", website: "https://www.workato.com", color: "#FF6600", npm: "# Web service", icon: "https://www.workato.com/favicon.ico" },
-    // DevOps/Infrastructure - more
-    { id: "azure-bicep", name: "Azure Bicep", category: "DevOps/Infrastructure", description: "Declarative Azure deployment language", website: "https://learn.microsoft.com/azure/azure-resource-manager/bicep", color: "#0078D4", npm: "npm install -g bicep", icon: "https://learn.microsoft.com/static/devops/icons/bicep.png" },
-    { id: "redis-pubsub", name: "Redis Pub/Sub", category: "Message Queues/Event Streaming", description: "Redis built-in pub/sub messaging", website: "https://redis.io", color: "#DC382D", npm: "npm install redis", icon: "https://redis.io/images/brand/redis-brand-rgb-icon.svg" },
-    { id: "helmet", name: "Helmet", category: "Security", description: "Express middleware for security headers", website: "https://helmetjs.github.io", color: "#48A9A6", npm: "npm install helmet", icon: "https://helmetjs.github.io/img/helmet-icon.svg" },
-    { id: "cors", name: "CORS", category: "Security", description: "Node.js CORS middleware", website: "https://github.com/expressjs/cors", color: "#4CAF50", npm: "npm install cors", icon: "https://nodejs.org/img/favicon.ico" },
-    { id: "truffle", name: "Truffle Suite", category: "Web3/Blockchain", description: "Popular Ethereum development framework", website: "https://trufflesuite.com", color: "#E7AD5A", npm: "npm install -g truffle", icon: "https://trufflesuite.com/img/favicon.ico" },
-    { id: "highcharts", name: "Highcharts", category: "Data Visualization", description: "Charting library with advanced features", website: "https://highcharts.com", color: "#7CB5E3", npm: "npm install highcharts", icon: "https://www.highcharts.com/sample/img/social.png" },
-{ id: "travis-ci", name: "Travis CI", category: "DevOps/Infrastructure", description: "CI/CD platform", website: "https://travis-ci.com", color: "#000000", npm: "# Web service", icon: "https://travis-ci.com/img/travis-ci-banner.svg" },
-    { id: "microservices", name: "Microservices", category: "Backend Framework", description: "Architectural pattern for distributed systems", website: "https://martinfowler.com/articles/microservices.html", color: "#FF6600", npm: "# Architectural pattern", icon: "https://martinfowler.com/img/microservice.png" },
-    { id: "serverless", name: "Serverless", category: "Edge/Serverless", description: "Architectural pattern for cloud computing", website: "https://www.serverless.com", color: "#00DB00", npm: "# Architectural pattern", icon: "https://www.serverless.com/static/Logos/serverless-colored.svg" },
-    { id: "superstruct", name: "Superstruct", category: "Validation", description: "TypeScript-first validation", website: "https://github.com/ianstormtaylor/superstruct", color: "#FF6600", npm: "npm install superstruct", icon: "https://github.com/ianstormtaylor/superstruct/raw/master/docs/img/logo.svg" },
-    { id: "ajv", name: "Ajv", category: "Validation", description: "JSON Schema validator", website: "https://ajv.js.org", color: "#009688", npm: "npm install ajv", icon: "https://ajv.js.org/img/favicon.ico" },
-    { id: "react-aria-components", name: "React Aria Components", category: "Accessibility", description: "Accessible React components from Adobe", website: "https://react-spectrum.adobe.com/react-aria-components/", color: "#6736D3", npm: "npm install @react-aria/react", icon: "https://react-spectrum.adobe.com/favicon.ico" },
-    { id: "reach-ui", name: "Reach UI", category: "Accessibility", description: "Accessible UI components", website: "https://reach.tech", color: "#1C92D4", npm: "npm install @reach/style-hot", icon: "https://reach.tech/img/favicon.ico" },
-    { id: "react-stately", name: "React Stately", category: "Accessibility", description: "React hooks for state management", website: "https://react-spectrum.adobe.com/react-aria/state", color: "#6736D3", npm: "npm install @react-aria/stately", icon: "https://react-spectrum.adobe.com/favicon.ico" },
-    { id: "headlessui-react", name: "Headless UI React", category: "Accessibility", description: "Headless UI components for React", website: "https://headlessui.com", color: "#000000", npm: "npm install @headlessui/react", icon: "https://headlessui.com/favicon.ico" },
-    { id: "opentelemetry-collector-contrib", name: "OTel Collector Contrib", category: "OpenTelemetry", description: "Extended OpenTelemetry Collector", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/collector", icon: "https://opentelemetry.io/img/favicons/favicon-dark.png" },
-    { id: "opentelemetry-sdk", name: "OpenTelemetry SDK", category: "OpenTelemetry", description: "Core SDK for instrumentation", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/sdk", icon: "https://opentelemetry.io/img/favicons/favicon-dark.png" },
-    { id: "opentelemetry-api", name: "OpenTelemetry API", category: "OpenTelemetry", description: "API for OpenTelemetry", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/api", icon: "https://opentelemetry.io/img/favicons/favicon-dark.png" },
-    { id: "opentelemetry-node", name: "OpenTelemetry Node", category: "OpenTelemetry", description: "Node.js instrumentation", website: "https://opentelemetry.io", color: "#425CC7", npm: "npm install @opentelemetry/node", icon: "https://opentelemetry.io/img/favicons/favicon-dark.png" },
-    { id: "deno-fresh", name: "Deno Fresh", category: "Runtime", description: "Full-stack framework for Deno", website: "https://fresh.deno.dev", color: "#00D2FF", npm: "deno run -A -r https://fresh.deno.dev", icon: "https://fresh.deno.dev/icon.svg" },
-    { id: "bun-runtime", name: "Bun Runtime", category: "Runtime", description: "Ultra-fast JavaScript runtime", website: "https://bun.sh", color: "#FBF0DF", npm: "bun run", icon: "https://bun.sh/img/logo.svg" },
-    { id: "volta", name: "Volta", category: "Package Manager", description: "Pin JavaScript dependencies", website: "https://volta.sh", color: "#5A2CF0", npm: "npm install -g @volta/tool", icon: "https://volta.sh/img/volta-logo.svg" },
-    { id: "typesense-client", name: "Typesense Client", category: "Search", description: "Client for Typesense", website: "https://typesense.org", color: "#D23669", npm: "npm install typesense", icon: "https://typesense.org/img/favicon.ico" },
-    { id: "meilisearch-client", name: "MeiliSearch Client", category: "Search", description: "Client for MeiliSearch", website: "https://meilisearch.com", color: "#FF5CAA", npm: "npm install meilisearch", icon: "https://www.meilisearch.com/img/favicon.ico" },
-    { id: "mailjet", name: "Mailjet", category: "Email", description: "Email marketing and transactional service", website: "https://www.mailjet.com", color: "#FF6600", npm: "npm install @mailjet/mailjet-rest", icon: "https://www.mailjet.com/images/logos/favicon.ico" },
-    { id: "ses", name: "Amazon SES", category: "Email", description: "AWS email service", website: "https://aws.amazon.com/ses", color: "#FF9900", npm: "npm install @aws-sdk/client-ses", icon: "https://aws.amazon.com/images/faces/favicons/fav-cloud.ico" },
-    { id: "mailgun", name: "Mailgun", category: "Email", description: "Email delivery service", website: "https://www.mailgun.com", color: "#FF6600", npm: "npm install mailgun-js", icon: "https://www.mailgun.com/images/mgl-icon.png" },
-    { id: "git-lfs", name: "Git LFS", category: "Version Control", description: "Large file storage for Git", website: "https://git-lfs.github.com", color: "#000000", npm: "git lfs install", icon: "https://github.com/git-lfs/git-lfs/raw/main/docs/img/git-lfs-logo.svg" },
-    { id: "sourcegraph", name: "Sourcegraph", category: "Version Control", description: "Code search and navigation platform", website: "https://sourcegraph.com", color: "#000000", npm: "npm install -g sourcegraph", icon: "https://sourcegraph.com/.static/favicon.ico" },
-    { id: "splitio", name: "Split", category: "Feature Flags", description: "Feature flagging platform", website: "https://split.io", color: "#000000", npm: "npm install splitio", icon: "https://split.io/img/favicon.ico" },
-    { id: "replit", name: "Replit", category: "Dev Environments", description: "Online IDE", website: "https://replit.com", color: "#000000", npm: "# Web service", icon: "https://replit.com/_next/static/favicon.ico" },
-    { id: "playcanvas", name: "PlayCanvas", category: "3D/Game Dev", description: "3D web game engine", website: "https://playcanvas.com", color: "#E74C3C", npm: "# Web service", icon: "https://playcanvas.com/img/favicon.ico" },
-    { id: "cannon-es", name: "Cannon-ES", category: "3D/Game Dev", description: "Physics engine", website: "https://github.com/pmndrs/cannon-es", color: "#000000", npm: "npm install cannon-es", icon: "https://github.com/pmndrs/cannon-es/raw/master/docs/img/cannon-es.png" },
-    { id: "pusher-beams", name: "Pusher Beams", category: "Push Notifications", description: "Push notifications service", website: "https://pusher.com/beams", color: "#FF4C00", npm: "npm install @pusher/beams-server-sdk", icon: "https://pusher.com/img/favicon.ico" },
-    { id: "fcm", name: "Firebase Cloud Messaging", category: "Push Notifications", description: "Google's messaging solution", website: "https://firebase.google.com/docs/cloud-messaging", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
-    { id: "tone", name: "Tone.js", category: "Voice/Audio", description: "Web Audio framework", website: "https://tonejs.github.io", color: "#FF6B35", npm: "npm install tone", icon: "https://tonejs.github.io/img/tone.svg" },
-    { id: "wavesurfer", name: "WaveSurfer", category: "Voice/Audio", description: "Audio waveform visualization", website: "https://wavesurfer.xyz", color: "#FF6600", npm: "npm install wavesurfer", icon: "https://wavesurfer.xyz/img/favicon.ico" },
-    { id: "phrase", name: "Phrase", category: "Internationalization", description: "Translation management", website: "https://phrase.com", color: "#00AEEF", npm: "# Web service", icon: "https://phrase.com/images/phrase-icon.png" },
-    { id: "zephyr", name: "Zephyr RTOS", category: "IoT", description: "Real-time operating system", website: "https://www.zephyrproject.org", color: "#000000", npm: "# RTOS", icon: "https://www.zephyrproject.org/img/logo.png" },
-    { id: "ghost-cli", name: "Ghost CLI", category: "CMS", description: "Ghost management CLI", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
-    { id: "minio", name: "MinIO", category: "Storage", description: "High-performance object storage", website: "https://min.io", color: "#DE55FF", npm: "docker run -p 9000:9000 minio/minio server /data", icon: "https://min.io/img/minio-black-icon.svg" },
-    { id: "netlify-functions", name: "Netlify Functions", category: "Edge/Serverless", description: "Serverless functions on Netlify", website: "https://docs.netlify.com/functions/overview/", color: "#00C73A", npm: "# Netlify feature", icon: "https://www.netlify.com/img/favicon.ico" },
-    { id: "n8n-io", name: "n8n", category: "Workflow Automation", description: "Workflow automation tool", website: "https://n8n.io", color: "#FF481C", npm: "npm install n8n", icon: "https://n8n.io/img/favicon.ico" },
-    { id: "huginn", name: "Huginn", category: "Workflow Automation", description: "Self-hosted automation agent", website: "https://huginn.ai", color: "#000000", npm: "gem install huginn", icon: "https://huginn.ai/images/favicon.ico" },
-    { id: "calibre", name: "Calibre", category: "Performance", description: "Performance monitoring", website: "https://calibreapp.com", color: "#5C7CFA", npm: "# Web service", icon: "https://calibreapp.com/favicon.ico" },
-    { id: "pinecone-client", name: "Pinecone Client", category: "Vector Database", description: "Official Pinecone client", website: "https://pinecone.io", color: "#000000", npm: "npm install @pinecone-database/pinecone", icon: "https://pinecone.io/img/favicon.ico" },
-    { id: "class-validator", name: "class-validator", category: "Validation", description: "Decorators for validation", website: "https://github.com/typestack/class-validator", color: "#0077CC", npm: "npm install class-validator", icon: "https://typestack.github.io/class-validator/assets/logo.svg" },
-    { id: "turbo", name: "Turborepo", category: "Monorepo", description: "High-performance build pipeline", website: "https://turborepo.org", color: "#00ADD8", npm: "npx create-turbo@latest", icon: "https://turborepo.org/favicon.ico" },
-    { id: "swagger-editor", name: "Swagger Editor", category: "API Documentation", description: "OpenAPI editor in browser", website: "https://swagger.io/tools/swagger-editor/", color: "#85EA2D", npm: "npm install @apidevtools/swagger-editor", icon: "https://swagger.io/favicon.ico" },
-    { id: "redoc", name: "Redoc", category: "API Documentation", description: "Interactive API documentation", website: "https://redoc.ly", color: "#00707C", npm: "npm install redoc", icon: "https://redocly.com/favicon.ico" },
-    { id: "openapi-cli", name: "OpenAPI CLI", category: "API Documentation", description: "OpenAPI tooling", website: "https://github.com/APIDevTools/swagger-cli", color: "#009688", npm: "npm install @apidevtools/swagger-cli", icon: "https://swagger.io/favicon.ico" },
-    { id: "vscode", name: "VS Code", category: "Dev Environments", description: "Microsoft's source code editor", website: "https://code.visualstudio.com", color: "#007ACC", npm: "code .", icon: "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next" },
-    { id: "peerjs", name: "PeerJS", category: "Voice/Audio", description: "WebRTC peer-to-peer data sharing", website: "https://peerjs.com", color: "#333333", npm: "npm install peerjs", icon: "https://peerjs.com/img/favicon.ico" },
-    { id: "formatjs", name: "FormatJS", category: "Internationalization", description: "i18n library from FormatJS", website: "https://formatjs.io", color: "#000000", npm: "npm install react-intl", icon: "https://formatjs.io/img/logo.svg" },
-    { id: "freertos", name: "FreeRTOS", category: "IoT", description: "Real-time OS for microcontrollers", website: "https://www.freertos.org", color: "#000000", npm: "# RTOS", icon: "https://www.freertos.org/images/FreeRTOSToken.png" },
-    { id: "kue", name: "Kue", category: "Background Jobs", description: "Redis-backed job queue", website: "https://github.com/Automattic/kue", color: "#555555", npm: "npm install kue", icon: "https://github.com/Automattic/kue/raw/master/docs/img/kue-logo-horizontal.png" },
-    { id: "spark", name: "Apache Spark", category: "Data Engineering", description: "Unified analytics engine", website: "https://spark.apache.org", color: "#E36C0A", npm: "pip install pyspark", icon: "https://spark.apache.org/images/spark-logo1b.png" },
-    { id: "mapbox-gl", name: "Mapbox GL JS", category: "Maps/Geo", description: "Custom map design platform", website: "https://docs.mapbox.com/mapbox-gl-js", color: "#1E74C5", npm: "npm install mapbox-gl", icon: "https://mapbox.com/img/logo-icon.png" },
-    { id: "openlayers", name: "OpenLayers", category: "Maps/Geo", description: "High-performance 3D GIS", website: "https://openlayers.org", color: "#000000", npm: "npm install ol", icon: "https://openlayers.org/version/latest/theme/images/olLogo.png" },
-    { id: "webpugins", name: "WebPageTest", category: "Performance", description: "Website speed test", website: "https://webpagetest.org", color: "#0F60AB", npm: "# Web tool", icon: "https://www.webpagetest.org/assets/images/favicon.ico" },
-    { id: "apollo-server", name: "Apollo Server", category: "GraphQL/API", description: "GraphQL server framework", website: "https://www.apollographql.com/docs/apollo-server/", color: "#449868", npm: "npm install @apollo/server", icon: "https://www.apollographql.com/img/apollo-p-logo.svg" },
-    { id: "firebase-database", name: "Firebase Realtime Database", category: "Real-time", description: "Cloud-hosted NoSQL database", website: "https://firebase.google.com/docs/database", color: "#FFCA28", npm: "npm install firebase", icon: "https://firebase.google.com/favicon.ico" },
-    { id: "eslint-plugin", name: "ESLint Plugin", category: "Code Quality/Linting", description: "ESLint plugins", website: "https://eslint.org", color: "#4B32C5", npm: "npm install eslint-plugin", icon: "https://eslint.org/img/favicon-32x32.png" },
-    { id: "csurf", name: "csurf", category: "Security", description: "CSRF protection middleware", website: "https://github.com/expressjs/csurf", color: "#000000", npm: "npm install csurf", icon: "https://github.com/expressjs/csurf/raw/master/docs/img/csurf.svg" },
-    { id: "autogpt", name: "AutoGPT", category: "AI Agents", description: "Autonomous LLM agent", website: "https://github.com/Significant-Gravitons/AutoGPT", color: "#000000", npm: "pip install autogpt", icon: "https://github.com/Significant-Gravitons/AutoGPT/raw/main/docs/images/favicon.ico" },
-    { id: "babyagi", name: "BabyAGI", category: "AI Agents", description: "Task execution autonomous agent", website: "https://github.com/yushi-shihad/babyagi", color: "#000000", npm: "pip install babyagi", icon: "https://github.com/yushi-shihad/babyagi/raw/main/docs/images/favicon.ico" },
-    { id: "bee-queue", name: "Bee-Queue", category: "Background Jobs", description: "Fast and reliable job queue", website: "https://github.com/bee-queue/bee-queue", color: "#000000", npm: "npm install bee-queue", icon: "https://github.com/bee-queue/bee-queue/raw/master/docs/img/logo.png" },
-    { id: "kafka", name: "Apache Kafka", category: "Data Engineering", description: "Distributed event streaming", website: "https://kafka.apache.org", color: "#2C528C", npm: "pip install kafka-python", icon: "https://kafka.apache.org/img/kafka-icon.png" },
-    { id: "mkdocs-material", name: "MkDocs Material", category: "Documentation", description: "Material theme for MkDocs", website: "https://squidfunk.github.io/mkdocs-material/", color: "#009688", npm: "pip install mkdocs-material", icon: "https://www.mkdocs.org/_static/favicon.ico" },
-    { id: "vercel-functions", name: "Vercel Functions", category: "Edge/Serverless", description: "Serverless functions", website: "https://vercel.com/docs/concepts/functions/serverless-functions", color: "#000000", npm: "npx vercel", icon: "https://vercel.com/favicon.ico" },
-    { id: "espidf", name: "ESP-IDF", category: "IoT", description: "Espressif IoT development Framework", website: "https://docs.espressif.com", color: "#E7352C", npm: "# IoT SDK", icon: "https://espressif.com/images/product-icon.png" },
-    { id: "changeset", name: "Changeset", category: "Monorepo", description: "Collect and publish changelogs", website: "https://github.com/atlassian/changeset", color: "#0052CC", npm: "npm install @changeset/cli", icon: "https://github.com/atlassian/changeset/raw/main/docs/media/logo.svg" },
-    { id: "corepack", name: "Corepack", category: "Package Manager", description: "Built-in package manager coordinator", website: "https://nodejs.org/api/corepack.html", color: "#68AC57", npm: "corepack enable", icon: "https://nodejs.org/img/favicon.ico" },
-    { id: "adyen", name: "Adyen", category: "Payment", description: "Payment platform for businesses", website: "https://adyen.com", color: "#000000", npm: "pip install Adyen", icon: "https://www.adyen.com/h/image/logo?scale=square&background=fff&quality=80" },
-    { id: "nx-cloud", name: "Nx Cloud", category: "Monorepo", description: "Cloud-powered Nx workspace", website: "https://nx.dev", color: "#4A90E2", npm: "npm install nx", icon: "https://nx.dev/favicon.ico" },
-    { id: "bit", name: "Bit", category: "Version Control", description: "Distributed version control for components", website: "https://Bit.dev", color: "#0052CC", npm: "npm install @teambit/bvm", icon: "https://bit.dev/favicon.ico" },
-    { id: "split", name: "Split", category: "Feature Flags", description: "Feature flagging platform", website: "https://split.io", color: "#000000", npm: "npm install splitio", icon: "https://split.io/img/favicon.ico" },
-    { id: "gitpod-worker", name: "Gitpod Worker", category: "Dev Environments", description: "Gitpod infrastructure", website: "https://gitpod.io", color: "#FF6600", npm: "# Web service", icon: "https://gitpod.io/img/favicon.ico" },
-    { id: "pixijs", name: "PixiJS", category: "3D/Game Dev", description: "2D rendering engine", website: "https://pixijs.com", color: "#000000", npm: "npm install pixi.js", icon: "https://pixijs.com/favicon.ico" },
-    { id: "transifex", name: "Transifex", category: "Internationalization", description: "Translation management platform", website: "https://transifex.com", color: "#009688", npm: "# Web service", icon: "https://transifex.com/press/img/favicon.ico" },
-    { id: "square", name: "Square", category: "Payment", description: "Payments and point of sale", website: "https://squareup.com", color: "#000000", npm: "npm install square", icon: "https://squareup.com/checkout/images/favicon.ico" },
-    { id: "docsify", name: "Docsify", category: "Documentation", description: "Documentation generator", website: "https://docsify.js.org", color: "#000000", npm: "# Documentation tool", icon: "https://docsify.js.org/img/favicon.ico" },
-    { id: "parse-server", name: "Parse Server", category: "BaaS", description: "Open source backend server", website: "https://parseplatform.org", color: "#000000", npm: "npm install parse", icon: "https://parseplatform.org/img/logo.png" },
-    { id: "shaka-player", name: "Shaka Player", category: "Video/Streaming", description: "DASH/HLS player by Google", website: "https://shaka-player.github.io/shaka-player/", color: "#000000", npm: "npm install shaka-player", icon: "https://shaka-player.github.io/shaka-player/docs/images/logo.svg" },
-    { id: "matomo", name: "Matomo", category: "Analytics", description: "Open source analytics platform", website: "https://matomo.org", color: "#000000", npm: "npm install matomo-tracker", icon: "https://matomo.org/assets/img/favicon.ico" },
-    { id: "supabase-baaS", name: "Supabase", category: "BaaS", description: "Open source Firebase alternative", website: "https://supabase.com", color: "#3ECF8E", npm: "npm install @supabase/supabase-js", icon: "https://supabase.com/favicon/favicon-32x32.png" },
-    { id: "hlsjs-video", name: "HLS.js", category: "Video/Streaming", description: "HLS streaming client", website: "https://github.com/video-dev/hls.js", color: "#000000", npm: "npm install hls.js", icon: "https://github.com/video-dev/hls.js/raw/master/docs/images/logo.png" },
-    { id: "kong-api-gateway", name: "Kong", category: "API Gateway", description: "API gateway and management", website: "https://konghq.com", color: "#FF6600", npm: "npm install kong-admin", icon: "https://konghq.com/favicon.ico" },
-    { id: "unleash-ff", name: "Unleash", category: "Feature Flags", description: "Open-source feature toggle system", website: "https://getunleash.io", color: "#E11D48", npm: "npm install unleash-client", icon: "https://getunleash.io/img/favicon-32x32.png" },
-    { id: "web-push-notif", name: "Web Push", category: "Push Notifications", description: "Web Push Notifications API", website: "https://github.com/web-push-libs/web-push", color: "#000000", npm: "npm install web-push", icon: "https://github.com/web-push-libs/web-push/raw/master/docs/img/icon.png" },
-    { id: "superstruct-validation", name: "Superstruct", category: "Validation", description: "TypeScript-first validation library", website: "https://github.com/ianstormtaylor/superstruct", color: "#FF6600", npm: "npm install superstruct", icon: "https://github.com/ianstormtaylor/superstruct/raw/master/docs/img/logo.svg" },
-    { id: "deno-cloudflare", name: "Cloudflare Workers Runtime", category: "Runtime", description: "Edge runtime environment", website: "https://workers.cloudflare.com", color: "#F29F05", npm: "npm install wrangler", icon: "https://developers.cloudflare.com/workers/images/favicons/mstile-150x150.png" },
-    { id: "bun-package-manager", name: "Bun Package Manager", category: "Package Manager", description: "Built-in package manager for Bun", website: "https://bun.sh", color: "#FBF0DF", npm: "npx bun pm", icon: "https://bun.sh/img/logo.svg" },
-    { id: "typesense-search", name: "Typesense", category: "Search", description: "Typo-tolerant search engine", website: "https://typesense.org", color: "#D23669", npm: "npm install typesense", icon: "https://typesense.org/img/favicon.ico" },
-    { id: "ghost-cms", name: "Ghost CMS", category: "CMS", description: "Publishing platform", website: "https://ghost.org", color: "#F45D01", npm: "npm install ghost-cli", icon: "https://ghost.org/favicon.ico" },
-    { id: "cloudinary-storage", name: "Cloudinary Storage", category: "Storage", description: "Media asset management platform", website: "https://cloudinary.com", color: "#2C528C", npm: "npm install cloudinary", icon: "https://cloudinary.com/favicon.ico" },
-
-    // =====================================================================
-    // 2026 Trend Additions
-    // Researched via JS Rising Stars 2025, State of JS 2025 and 2026
-    // web-development trend reports (AI-first development, agentic
-    // workflows, Rust tooling, meta-frameworks, edge compute, animation).
-    // =====================================================================
-
-    // AI Coding Assistants (new category - AI-first development trend)
-    { id: "github-copilot", name: "GitHub Copilot", category: "AI Coding Assistants", description: "AI pair programmer that suggests code and entire functions in real time", website: "https://github.com/features/copilot", color: "#2088FF", npm: "# IDE extension", icon: "https://github.com/github.png", skills: ["AI-assisted development", "Prompting", "Code review"], compatibleWith: ["typescript", "javascript", "vscode"] },
-    { id: "cursor", name: "Cursor", category: "AI Coding Assistants", description: "AI-first code editor built for agentic coding workflows", website: "https://cursor.com", color: "#000000", npm: "# Install from cursor.com", icon: "https://github.com/getcursor.png", skills: ["AI-assisted development", "Agentic workflows", "Refactoring"], compatibleWith: ["typescript", "git", "github"] },
-    { id: "v0", name: "v0 by Vercel", category: "AI Coding Assistants", description: "Generative UI builder that scaffolds Next.js apps from prompts", website: "https://v0.dev", color: "#000000", npm: "# Web service", icon: "https://github.com/vercel.png", skills: ["Generative UI", "Prototyping", "Design-to-code"], compatibleWith: ["nextjs", "shadcn", "tailwind", "react"] },
-    { id: "bolt-new", name: "bolt.new", category: "AI Coding Assistants", description: "Prompt, run, edit, and deploy full-stack web applications in the browser", website: "https://bolt.new", color: "#0EA5A5", npm: "# Web service", icon: "https://github.com/stackblitz.png", skills: ["AI app generation", "Full-stack prototyping", "Deployment"], compatibleWith: ["vite", "react", "typescript"] },
-    { id: "dyad", name: "Dyad", category: "AI Coding Assistants", description: "Free, local, open-source AI app builder and v0/Bolt alternative", website: "https://dyad.sh", color: "#6366F1", npm: "# Install from dyad.sh", icon: "https://github.com/dyad-sh.png", skills: ["Local AI development", "App generation", "Privacy-first AI"], compatibleWith: ["react", "ollama", "typescript"] },
-    { id: "lovable", name: "Lovable", category: "AI Coding Assistants", description: "AI platform that generates and deploys full-stack apps from prompts", website: "https://lovable.dev", color: "#FF5C37", npm: "# Web service", icon: "https://lovable.dev/favicon.ico", skills: ["AI app generation", "No-code building", "Rapid prototyping"], compatibleWith: ["supabase", "react", "tailwind"] },
-
-    // Animation (new category - memorable, motion-rich UI trend)
-    { id: "motion", name: "Motion", category: "Animation", description: "Production-ready animation library for the web, successor of Framer Motion", website: "https://motion.dev", color: "#FF2E88", npm: "npm install motion", icon: "https://github.com/motiondivision.png", skills: ["Animation", "Gestures", "Layout transitions"], compatibleWith: ["react", "vue", "solid", "svelte"] },
-    { id: "gsap", name: "GSAP", category: "Animation", description: "Industry-standard JavaScript animation engine for the web", website: "https://gsap.com", color: "#88CE02", npm: "npm install gsap", icon: "https://github.com/greensock.png", skills: ["Timeline animation", "ScrollTrigger", "SVG animation"], compatibleWith: ["threejs", "astro", "nextjs"] },
-    { id: "react-bits", name: "React Bits", category: "Animation", description: "Open-source collection of animated, interactive React components", website: "https://reactbits.dev", color: "#A78BFA", npm: "# Copy-paste registry", icon: "https://github.com/DavidHDev.png", skills: ["Component design", "Micro-interactions", "Visual effects"], compatibleWith: ["react", "shadcn", "motion", "gsap"] },
-    { id: "react-spring", name: "React Spring", category: "Animation", description: "Spring-physics based animation library for React", website: "https://react-spring.dev", color: "#FF6B9D", npm: "npm install @react-spring/web", icon: "https://avatars.githubusercontent.com/u/45790596?s=200&v=4", skills: ["Physics-based animation", "React hooks", "Cross-platform UI"], compatibleWith: ["react", "react-three-fiber"] },
-    { id: "lottie", name: "Lottie", category: "Animation", description: "Lightweight runtime for rendering After Effects vector animations", website: "https://lottiefiles.com", color: "#00DDB6", npm: "npm install lottie-react", icon: "https://github.com/airbnb.png", skills: ["Vector animation", "Asset optimization", "Designer handoff"], compatibleWith: ["react", "vue", "reactnative"] },
-
-    // Web Framework additions (HTMX and rising frameworks trend)
-    { id: "htmx", name: "htmx", category: "Web Framework", description: "Access AJAX, WebSockets and Server Sent Events directly in HTML", website: "https://htmx.org", color: "#3366CC", npm: "npm install htmx.org", icon: "https://htmx.org/favicon.ico", skills: ["Progressive enhancement", "Server-driven UI", "Hypermedia"], compatibleWith: ["django", "laravel", "rails", "express", "fastify", "aspnet-core"] },
-    { id: "ripple", name: "Ripple", category: "Web Framework", description: "Elegant TypeScript UI framework combining ideas from React, Solid and Svelte", website: "https://ripplejs.com", color: "#6366F1", npm: "npm install @lazarv/ripple", icon: "https://github.com/Ripple-TS.png", skills: ["Reactivity", "TypeScript", "Component architecture"], compatibleWith: ["typescript", "vite"] },
-
-    // Backend Framework additions (unified backend trend)
-    { id: "motia", name: "Motia", category: "Backend Framework", description: "Multi-language backend framework unifying APIs, jobs, queues, workflows and AI agents", website: "https://motia.dev", color: "#7C3AED", npm: "npm install motia", icon: "https://github.com/MotiaDev.png", skills: ["Backend architecture", "Event-driven design", "Observability"], compatibleWith: ["typescript", "python", "docker"] },
-
-    // Build Tools additions (Rust toolchain and React Compiler trend)
-    { id: "rolldown", name: "Rolldown", category: "Build Tools", description: "Fast Rust-based bundler with Rollup-compatible API, built for Vite", website: "https://rolldown.rs", color: "#F97316", npm: "npm install rolldown", icon: "https://github.com/rolldown.png", skills: ["Bundling", "Build optimization", "Rust tooling"], compatibleWith: ["vite", "typescript"] },
-    { id: "react-compiler", name: "React Compiler", category: "Build Tools", description: "Build-time compiler that automatically memoizes React code", website: "https://react.dev/learn/react-compiler", color: "#61DAFB", npm: "npm install babel-plugin-react-compiler", icon: "https://react.dev/favicon.ico", skills: ["Performance optimization", "React internals", "Build pipelines"], compatibleWith: ["react", "nextjs", "vite", "expo"] },
-
-    // Code Quality/Linting additions (Rust linter/formatter trend)
-    { id: "biome", name: "Biome", category: "Code Quality/Linting", description: "Fast Rust-based formatter and linter for the web ecosystem", website: "https://biomejs.dev", color: "#60A5FA", npm: "npm install -D @biomejs/biome", icon: "https://github.com/biomejs.png", skills: ["Formatting", "Linting", "CI quality gates"], compatibleWith: ["typescript", "github-actions"] },
-    { id: "oxlint", name: "Oxlint", category: "Code Quality/Linting", description: "High-performance Rust-based JavaScript linter from the Oxc project", website: "https://oxc.rs", color: "#4F46E5", npm: "npm install -D oxlint", icon: "https://github.com/oxc-project.png", skills: ["Linting", "Static analysis", "Performance tooling"], compatibleWith: ["eslint", "typescript"] },
-
-    // CSS Framework additions (headless primitives and design tokens trend)
-    { id: "radix-ui", name: "Radix UI", category: "CSS Framework", description: "Unstyled, accessible UI component primitives for the web", website: "https://radix-ui.com", color: "#6E56CF", npm: "npm install @radix-ui/react-dialog", icon: "https://github.com/radix-ui.png", skills: ["Accessibility", "Headless components", "Design systems"], compatibleWith: ["react", "tailwind", "shadcn", "styled-components"] },
-    { id: "base-ui", name: "Base UI", category: "CSS Framework", description: "Unstyled UI components and headless primitives from the MUI team", website: "https://base-ui.com", color: "#007FFF", npm: "npm install @base-ui-components/react", icon: "https://github.com/base-ui-components.png", skills: ["Headless components", "Accessibility", "Design systems"], compatibleWith: ["react", "tailwind", "shadcn"] },
-
-    // State Management additions (TanStack-ification of frontend logic)
-    { id: "tanstack-query", name: "TanStack Query", category: "State Management", description: "Powerful asynchronous state management for data fetching and caching", website: "https://tanstack.com/query", color: "#EF4444", npm: "npm install @tanstack/react-query", icon: "https://avatars.githubusercontent.com/u/72518640?s=200&v=4", skills: ["Server state", "Caching", "Data synchronization"], compatibleWith: ["react", "vue", "solid", "svelte", "angular", "trpc"] },
-    { id: "swr", name: "SWR", category: "State Management", description: "React hooks for data fetching with stale-while-revalidate caching", website: "https://swr.vercel.app", color: "#000000", npm: "npm install swr", icon: "https://github.com/vercel.png", skills: ["Data fetching", "Caching strategies", "React hooks"], compatibleWith: ["react", "nextjs"] },
-
-    // AI Agents additions (agentic workflow trend)
-    { id: "mastra", name: "Mastra", category: "AI Agents", description: "TypeScript framework for building AI-powered applications and agents", website: "https://mastra.ai", color: "#1E90FF", npm: "npm install mastra", icon: "https://github.com/mastra-ai.png", skills: ["Agent orchestration", "Workflow design", "RAG pipelines"], compatibleWith: ["typescript", "vercel-ai-sdk", "openai", "anthropic"] },
-    { id: "stagehand", name: "Stagehand", category: "AI Agents", description: "AI browser automation framework built on Playwright", website: "https://stagehand.dev", color: "#F5C518", npm: "npm install @browserbasehq/stagehand", icon: "https://github.com/browserbase.png", skills: ["Browser automation", "Agent tooling", "E2E scripting"], compatibleWith: ["playwright", "typescript", "openai"] },
-    { id: "voltagent", name: "VoltAgent", category: "AI Agents", description: "Open-source TypeScript AI agent framework with built-in LLM observability", website: "https://voltagent.dev", color: "#EAB308", npm: "npm install @voltagent/core", icon: "https://github.com/VoltAgent.png", skills: ["Agent development", "LLM observability", "TypeScript"], compatibleWith: ["typescript", "vercel-ai-sdk", "langchain"] },
-    { id: "genkit", name: "Genkit", category: "AI Agents", description: "Google's open-source framework for building AI-powered apps and agents", website: "https://genkit.dev", color: "#4285F4", npm: "npm install genkit", icon: "https://github.com/firebase.png", skills: ["Agent flows", "Model evaluation", "Multi-turn conversations"], compatibleWith: ["typescript", "firebase-firestore", "gemini"] },
-    { id: "browser-use", name: "browser-use", category: "AI Agents", description: "Python framework that lets AI agents control web browsers", website: "https://browser-use.com", color: "#5B5BD6", npm: "pip install browser-use", icon: "https://github.com/browser-use.png", skills: ["Browser automation", "Agent tooling", "Python"], compatibleWith: ["playwright", "python", "langchain"] },
-
-    // AI/LLM additions (MCP protocol and multi-provider trend)
-    { id: "mcp", name: "Model Context Protocol", category: "AI/LLM", description: "Open standard for connecting AI assistants to data sources and tools", website: "https://modelcontextprotocol.io", color: "#10B981", npm: "npm install @modelcontextprotocol/sdk", icon: "https://github.com/modelcontextprotocol.png", skills: ["AI integration", "Tool servers", "Agent interoperability"], compatibleWith: ["openai", "anthropic", "langchain", "vercel-ai-sdk"] },
-    { id: "gemini", name: "Google Gemini", category: "AI/LLM", description: "Google's multimodal AI models and developer API", website: "https://ai.google.dev", color: "#886CE4", npm: "npm install @google/genai", icon: "https://ai.google.dev/favicon.ico", skills: ["Multimodal AI", "Prompt engineering", "Grounding"], compatibleWith: ["vercel-ai-sdk", "genkit", "firebase-firestore"] },
-    { id: "mistral", name: "Mistral AI", category: "AI/LLM", description: "European frontier AI models with open-weight options", website: "https://mistral.ai", color: "#FA520F", npm: "npm install @mistralai/mistralai", icon: "https://mistral.ai/favicon.ico", skills: ["LLM integration", "Fine-tuning", "Prompt engineering"], compatibleWith: ["vercel-ai-sdk", "langchain", "ollama"] },
-    { id: "deepseek", name: "DeepSeek", category: "AI/LLM", description: "Cost-efficient open-weight reasoning models and API", website: "https://deepseek.com", color: "#4D6BFE", npm: "npm install deepseek-sdk", icon: "https://www.deepseek.com/favicon.ico", skills: ["Reasoning models", "Cost optimization", "LLM integration"], compatibleWith: ["vercel-ai-sdk", "ollama", "openrouter"] },
-    { id: "langfuse", name: "Langfuse", category: "AI/LLM", description: "Open-source LLM observability, tracing and evaluation platform", website: "https://langfuse.com", color: "#2563EB", npm: "npm install langfuse", icon: "https://github.com/langfuse.png", skills: ["LLM observability", "Evaluation", "Prompt management"], compatibleWith: ["langchain", "vercel-ai-sdk", "openai", "anthropic"] },
-
-    // Database additions (edge database trend)
-    { id: "cloudflare-d1", name: "Cloudflare D1", category: "Database", description: "Serverless SQLite database running on Cloudflare Workers at the edge", website: "https://developers.cloudflare.com/d1", color: "#F38020", npm: "npm install -g wrangler", icon: "https://avatars.githubusercontent.com/u/314135?s=200&v=4", skills: ["Edge computing", "SQLite", "Serverless data"], compatibleWith: ["cloudflare-workers", "drizzle", "prisma"] },
-
-    // Vector Database additions (serverless AI memory trend)
-    { id: "turbopuffer", name: "Turbopuffer", category: "Vector Database", description: "Serverless vector database with object-storage-backed indexes", website: "https://turbopuffer.com", color: "#14B8A6", npm: "npm install @turbopuffer/turbopuffer", icon: "https://turbopuffer.com/favicon.ico", skills: ["Vector search", "RAG architecture", "Cost scaling"], compatibleWith: ["openai", "vercel-ai-sdk", "llamaindex"] },
-    { id: "lancedb", name: "LanceDB", category: "Vector Database", description: "Embedded serverless vector database for AI applications", website: "https://lancedb.com", color: "#5E6AD2", npm: "npm install @lancedb/lancedb", icon: "https://github.com/lancedb.png", skills: ["Embedded search", "Multimodal retrieval", "RAG architecture"], compatibleWith: ["llamaindex", "langchain", "duckdb"] },
-
-    // Native Framework additions (cross-platform newcomer trend)
-    { id: "lynx", name: "Lynx", category: "Native Framework", description: "ByteDance's open-source cross-platform framework with dual-thread rendering", website: "https://lynxjs.org", color: "#12B8CB", npm: "npm install -g @lynx-dev/lynx-cli", icon: "https://github.com/lynx-family.png", skills: ["Cross-platform UI", "Web-like rendering", "Performance tuning"], compatibleWith: ["react", "typescript"] },
-    { id: "dioxus", name: "Dioxus", category: "Native Framework", description: "Rust fullstack app framework for web, desktop, and mobile", website: "https://dioxuslabs.com", color: "#E5484D", npm: "cargo install dioxus-cli", icon: "https://github.com/DioxusLabs.png", skills: ["Rust", "Cross-platform UI", "Reactivity"], compatibleWith: ["rust", "tauri"] },
-    { id: "nativewind", name: "NativeWind", category: "Native Framework", description: "Tailwind CSS utility-first styling for React Native", website: "https://nativewind.dev", color: "#06B6D4", npm: "npm install nativewind", icon: "https://github.com/nativewind.png", skills: ["Mobile styling", "Design systems", "Tailwind workflows"], compatibleWith: ["reactnative", "expo", "tailwind"] },
-    { id: "tamagui", name: "Tamagui", category: "Native Framework", description: "Universal UI kit and style system for React Native and web with an optimizing compiler", website: "https://tamagui.dev", color: "#17A2B8", npm: "npm install tamagui", icon: "https://github.com/tamagui.png", skills: ["Universal UI", "Style compilation", "Theming"], compatibleWith: ["reactnative", "expo", "react"] },
-
-    // Testing additions (AI-driven UI automation trend)
-    { id: "midscene", name: "Midscene.js", category: "Testing", description: "Vision-based AI UI automation framework for web and mobile", website: "https://midscenejs.com", color: "#3370FF", npm: "npm install @midscene/web", icon: "https://github.com/web-infra-dev.png", skills: ["AI testing", "UI automation", "Natural-language scripting"], compatibleWith: ["playwright", "typescript", "vitest"] },
-
-    // CMS additions (git-based content trend)
-    { id: "tina-cms", name: "Tina CMS", category: "CMS", description: "Git-backed headless CMS with visual editing", website: "https://tina.io", color: "#EC4815", npm: "npx @tinacms/cli@latest init", icon: "https://github.com/tinacms.png", skills: ["Content modeling", "Git workflows", "Visual editing"], compatibleWith: ["nextjs", "astro", "react"] },
-
-    // Hosting additions (developer cloud trend)
-    { id: "zeabur", name: "Zeabur", category: "Hosting", description: "Platform for deploying full-stack apps with zero configuration", website: "https://zeabur.com", color: "#6C2BD9", npm: "npm install -g @zeabur/cli", icon: "https://github.com/zeabur.png", skills: ["Deployment", "CI/CD", "Infrastructure basics"], compatibleWith: ["nextjs", "docker", "github-actions"] },
-
-    // Monitoring/Observability additions (log analytics trend)
-    { id: "axiom", name: "Axiom", category: "Monitoring/Observability", description: "Serverless observability platform for logs, traces and metrics", website: "https://axiom.co", color: "#3B82F6", npm: "npm install @axiomhq/js", icon: "https://axiom.co/favicon.ico", skills: ["Log analytics", "Tracing", "OpenTelemetry"], compatibleWith: ["opentelemetry", "vercel", "nextjs"] },
-
-    // Validation additions (next-gen type-safe validation trend)
-    { id: "arktype", name: "ArkType", category: "Validation", description: "TypeScript's optimal validation library with inferred static types", website: "https://arktype.io", color: "#8B5CF6", npm: "npm install arktype", icon: "https://github.com/arktypeio.png", skills: ["Schema validation", "Type inference", "Performance profiling"], compatibleWith: ["typescript", "hono", "trpc"] },
-
-    // Documentation additions (developer presentations trend)
-    { id: "slidev", name: "Slidev", category: "Documentation", description: "Presentation slides for developers, powered by Vue and Markdown", website: "https://sli.dev", color: "#FFB800", npm: "npm create slidev@latest", icon: "https://github.com/slidevjs.png", skills: ["Technical writing", "Markdown", "Live coding demos"], compatibleWith: ["vue", "vite", "typescript"] },
-
-    // OpenRouter (multi-provider AI routing trend)
-    { id: "openrouter", name: "OpenRouter", category: "AI/LLM", description: "Unified API gateway for routing between hundreds of LLM providers", website: "https://openrouter.ai", color: "#6B7280", npm: "npm install openai", icon: "https://openrouter.ai/favicon.ico", skills: ["Model routing", "Cost optimization", "Fallback strategies"], compatibleWith: ["vercel-ai-sdk", "langchain", "openai"] },
-    // Local-First / Sync additions (local-first architecture trend)
-    { id: "zero-sync", name: "Zero", category: "Local-First", description: "Query-driven real-time sync engine for local-first web applications", website: "https://zero.rocicorp.dev", color: "#000000", npm: "npm install @rocicorp/zero", icon: "https://zero.rocicorp.dev/favicon.ico", skills: ["Local-first sync", "Query-driven caching", "Optimistic UI"], compatibleWith: ["react", "typescript", "postgresql", "drizzle", "nextjs"] },
-    { id: "electric-sql", name: "ElectricSQL", category: "Local-First", description: "Active sync engine replicating Postgres to client SQLite in real-time", website: "https://electric-sql.com", color: "#00D26A", npm: "npm install @electric-sql/client", icon: "https://electric-sql.com/img/favicon.ico", skills: ["Postgres replication", "Offline-first sync", "Client-side SQLite"], compatibleWith: ["postgresql", "react", "typescript", "drizzle", "tanstack-query"] },
-    { id: "tinybase", name: "TinyBase", category: "Local-First", description: "The reactive data store for local-first apps with CRDT and sync support", website: "https://tinybase.org", color: "#FF4081", npm: "npm install tinybase", icon: "https://tinybase.org/favicon.ico", skills: ["Reactive data store", "CRDT conflict resolution", "Local persistence"], compatibleWith: ["react", "typescript", "sqlite", "tanstack-query"] },
-    { id: "jazz-tools", name: "Jazz", category: "Local-First", description: "Open-source framework for local-first apps with collaborative state and secure sync", website: "https://jazz.tools", color: "#7928CA", npm: "npm install jazz-tools", icon: "https://jazz.tools/favicon.ico", skills: ["Collaborative state", "Peer-to-peer sync", "End-to-end encryption"], compatibleWith: ["react", "typescript", "expo", "nextjs"] },
-    { id: "powersync", name: "PowerSync", category: "Local-First", description: "Offline-first sync engine connecting client SQLite to backend SQL databases", website: "https://powersync.com", color: "#4F46E5", npm: "npm install @powersync/web", icon: "https://powersync.com/favicon.ico", skills: ["Offline data sync", "Dynamic partial replication", "Relational caching"], compatibleWith: ["postgresql", "sqlite", "react", "reactnative", "supabase"] },
-    { id: "automerge", name: "Automerge", category: "Local-First", description: "CRDT library for building collaborative, local-first applications", website: "https://automerge.org", color: "#E0234E", npm: "npm install @automerge/automerge", icon: "https://automerge.org/img/favicon.ico", skills: ["CRDT data structures", "Multi-user collaboration", "Conflict-free replication"], compatibleWith: ["typescript", "javascript", "react"] },
-
-    // AI Agents & Agentic Infrastructure additions
-    { id: "pydantic-ai", name: "PydanticAI", category: "AI Agents", description: "Type-safe Python agent framework built by the Pydantic team", website: "https://ai.pydantic.dev", color: "#E92063", npm: "pip install pydantic-ai", icon: "https://ai.pydantic.dev/img/favicon.ico", skills: ["Type-safe agents", "Structured generation", "Model evaluation"], compatibleWith: ["python", "openai", "anthropic", "gemini", "fastmcp"] },
-    { id: "smolagents", name: "smolagents", category: "AI Agents", description: "Minimalist, code-centric AI agent library from Hugging Face", website: "https://github.com/huggingface/smolagents", color: "#FFD21E", npm: "pip install smolagents", icon: "https://huggingface.co/front/images/logos/mark/favicon.ico", skills: ["Code-based agents", "Tool calling", "Lightweight orchestration"], compatibleWith: ["python", "huggingface", "openai", "anthropic"] },
-    { id: "firecrawl", name: "Firecrawl", category: "AI Agents", description: "Web scraping and crawling API that turns websites into clean markdown for LLMs", website: "https://firecrawl.dev", color: "#FF5722", npm: "npm install @mendable/firecrawl-js", icon: "https://firecrawl.dev/favicon.ico", skills: ["Web data extraction", "AI agent toolkits", "Markdown conversion"], compatibleWith: ["typescript", "python", "langchain", "llamaindex", "openai", "mastra"] },
-    { id: "agentkit", name: "AgentKit", category: "AI Agents", description: "Framework enabling AI agents to take onchain actions and manage crypto wallets", website: "https://docs.cdp.coinbase.com/agentkit/docs/welcome", color: "#0052FF", npm: "npm install @coinbase/agentkit", icon: "https://docs.cdp.coinbase.com/img/favicon.png", skills: ["Onchain agent actions", "Wallet management", "Autonomous transactions"], compatibleWith: ["typescript", "python", "langchain", "solidity", "ethers"] },
-
-    // AI/LLM & AI Coding Assistant additions
-    { id: "fastmcp", name: "FastMCP", category: "AI/LLM", description: "High-level framework for building Model Context Protocol servers", website: "https://gofastmcp.com", color: "#059669", npm: "pip install fastmcp", icon: "https://gofastmcp.com/favicon.ico", skills: ["MCP server development", "Tool definitions", "Context protocol"], compatibleWith: ["mcp", "python", "typescript", "openai", "anthropic", "claude-code"] },
-    { id: "braintrust", name: "Braintrust", category: "AI/LLM", description: "Enterprise evaluation, observability, and prompt engineering platform for AI", website: "https://braintrust.dev", color: "#4338CA", npm: "npm install braintrust", icon: "https://braintrust.dev/favicon.ico", skills: ["AI evaluations", "Prompt management", "LLM tracing"], compatibleWith: ["openai", "anthropic", "vercel-ai-sdk", "langchain", "typescript"] },
-    { id: "litellm", name: "LiteLLM", category: "AI/LLM", description: "Unified proxy and SDK to call 100+ LLMs with OpenAI format and cost tracking", website: "https://litellm.ai", color: "#2563EB", npm: "pip install litellm", icon: "https://docs.litellm.ai/img/favicon.ico", skills: ["Model routing", "Load balancing", "Cost observability"], compatibleWith: ["openai", "anthropic", "gemini", "mistral", "vllm", "openrouter"] },
-    { id: "vllm", name: "vLLM", category: "AI/LLM", description: "High-throughput and memory-efficient LLM inference and serving engine", website: "https://vllm.ai", color: "#1E293B", npm: "pip install vllm", icon: "https://vllm.ai/favicon.ico", skills: ["PagedAttention", "High-throughput serving", "Quantization"], compatibleWith: ["python", "docker", "huggingface", "litellm"] },
-    { id: "ragflow", name: "RAGFlow", category: "AI/LLM", description: "Open-source RAG engine based on deep document understanding", website: "https://ragflow.io", color: "#10B981", npm: "# Docker deployment", icon: "https://ragflow.io/favicon.ico", skills: ["Document parsing", "Hybrid retrieval", "RAG architecture"], compatibleWith: ["docker", "python", "elasticsearch", "ollama"] },
-    { id: "claude-code", name: "Claude Code", category: "AI Coding Assistants", description: "Anthropic's agentic CLI tool for automated codebase navigation and editing", website: "https://claude.ai/code", color: "#CC785C", npm: "npm install -g @anthropic-ai/claude-code", icon: "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png", skills: ["CLI agentic workflows", "Autonomous code editing", "Terminal automation"], compatibleWith: ["anthropic", "mcp", "typescript", "python", "git", "github"] },
-    { id: "open-webui", name: "Open WebUI", category: "AI/LLM", description: "Extensible, self-hosted web UI and orchestration for local and cloud LLMs", website: "https://openwebui.com", color: "#0F172A", npm: "pip install open-webui", icon: "https://openwebui.com/favicon.ico", skills: ["Self-hosted AI UI", "Model orchestration", "RAG integration"], compatibleWith: ["ollama", "openai", "litellm", "docker"] },
-
-    // Modern Developer Tooling & Package Management additions
-    { id: "uv", name: "uv", category: "Package Manager", description: "Extremely fast Python package and project manager written in Rust", website: "https://astral.sh/uv", color: "#DE5B43", npm: "curl -LsSf https://astral.sh/uv/install.sh | sh", icon: "https://astral.sh/favicon.ico", skills: ["High-speed dependency resolution", "Python workspace management", "Rust-based CLI"], compatibleWith: ["python", "fastapi", "django", "pydantic-ai"] },
-    { id: "rsbuild", name: "Rsbuild", category: "Build Tools", description: "Rspack-based build tool offering out-of-the-box build configurations", website: "https://rsbuild.dev", color: "#F28B25", npm: "npm create rsbuild@latest", icon: "https://rsbuild.dev/favicon.ico", skills: ["Instant build startup", "Rspack ecosystem", "Zero-config bundling"], compatibleWith: ["rspack", "react", "vue", "svelte", "typescript", "tailwind"] },
-
-    // UI Components & Modern CSS additions
-    { id: "ark-ui", name: "Ark UI", category: "CSS Framework", description: "Headless, accessible UI component library powered by state machines", website: "https://ark-ui.com", color: "#EB5757", npm: "npm install @ark-ui/react", icon: "https://ark-ui.com/favicon.ico", skills: ["Headless UI architecture", "State machine components", "WAI-ARIA accessibility"], compatibleWith: ["react", "vue", "solid", "tailwind", "zag-js"] },
-    { id: "zag-js", name: "Zag.js", category: "CSS Framework", description: "UI component logic modeled as finite state machines for React, Vue, and Solid", website: "https://zagjs.com", color: "#F59E0B", npm: "npm install @zag-js/react", icon: "https://zagjs.com/favicon.ico", skills: ["State machine UI logic", "Cross-framework components", "Complex interaction design"], compatibleWith: ["react", "vue", "solid", "ark-ui", "typescript"] },
-    { id: "park-ui", name: "Park UI", category: "CSS Framework", description: "Modern component library built with Ark UI and customizable design tokens", website: "https://park-ui.com", color: "#2DD4BF", npm: "npx @park-ui/cli init", icon: "https://park-ui.com/favicon.ico", skills: ["Design system development", "Token-driven styling", "Accessible components"], compatibleWith: ["ark-ui", "react", "vue", "solid", "tailwind"] },
-    { id: "bits-ui", name: "Bits UI", category: "CSS Framework", description: "Headless, accessible component primitives for Svelte", website: "https://bits-ui.com", color: "#FF3E00", npm: "npm install bits-ui", icon: "https://bits-ui.com/favicon.ico", skills: ["Svelte 5 runes", "Headless components", "Accessible UI"], compatibleWith: ["svelte", "tailwind", "typescript"] },
-
-    // Modern Cloud & Hosting additions
-    { id: "val-town", name: "Val Town", category: "Hosting", description: "Social compute platform to write, deploy, and schedule TypeScript functions", website: "https://val.town", color: "#3B82F6", npm: "npm install @valtown/sdk", icon: "https://val.town/favicon.ico", skills: ["Serverless functions", "Scheduled cron jobs", "API prototyping"], compatibleWith: ["typescript", "javascript", "hono", "deno"] },
-
-    // AI Agents & Autonomous Workflows additions
-    { id: "openai-agents", name: "OpenAI Agents SDK", category: "AI Agents", description: "Framework for building multi-agent workflows with human-in-the-loop and handoffs", website: "https://github.com/openai/openai-agents-python", color: "#10A37F", npm: "pip install openai-agents", icon: "https://openai.com/favicon.ico", skills: ["Multi-agent orchestration", "Agent handoffs", "Guardrails"], compatibleWith: ["python", "openai", "fastmcp"] },
-    { id: "agno", name: "Agno", category: "AI Agents", description: "Lightweight, multimodal agent framework for building autonomous workflows", website: "https://agno.com", color: "#6366F1", npm: "pip install agno", icon: "https://agno.com/favicon.ico", skills: ["Multimodal agents", "Knowledge retrieval", "Autonomous workflows"], compatibleWith: ["python", "openai", "anthropic", "gemini", "postgresql"] },
-
-    // Fast AI Inference & Platform additions
-    { id: "groq", name: "Groq", category: "AI/LLM", description: "Ultra-fast LPU inference engine for open-source LLMs", website: "https://groq.com", color: "#F55036", npm: "npm install groq-sdk", icon: "https://groq.com/favicon.ico", skills: ["LPU acceleration", "Low-latency inference", "Real-time AI"], compatibleWith: ["vercel-ai-sdk", "langchain", "typescript", "python"] },
-    { id: "cerebras", name: "Cerebras", category: "AI/LLM", description: "World's fastest AI inference powered by the Wafer-Scale Engine", website: "https://cerebras.ai", color: "#0A2540", npm: "pip install cerebras_cloud_sdk", icon: "https://cerebras.ai/favicon.ico", skills: ["Wafer-Scale inference", "Ultra-fast generation", "LLM hosting"], compatibleWith: ["python", "openai", "langchain"] },
-    { id: "together-ai", name: "Together AI", category: "AI/LLM", description: "Cloud platform for building, fine-tuning, and running open-source AI models", website: "https://together.ai", color: "#0F172A", npm: "npm install together-ai", icon: "https://together.ai/favicon.ico", skills: ["Open-source model hosting", "Fine-tuning", "Fast token generation"], compatibleWith: ["vercel-ai-sdk", "langchain", "typescript", "python"] },
-    { id: "fireworks-ai", name: "Fireworks AI", category: "AI/LLM", description: "Production-ready fast inference engine for generative AI and compound systems", website: "https://fireworks.ai", color: "#EC4899", npm: "npm install fireworks-ai", icon: "https://fireworks.ai/favicon.ico", skills: ["Compound AI systems", "Fast model serving", "Function calling"], compatibleWith: ["vercel-ai-sdk", "langchain", "typescript", "python"] },
-    { id: "deepgram", name: "Deepgram", category: "Voice/Audio", description: "Voice AI platform for high-accuracy speech-to-text and conversational AI", website: "https://deepgram.com", color: "#13EF95", npm: "npm install @deepgram/sdk", icon: "https://deepgram.com/favicon.ico", skills: ["Speech-to-text", "Text-to-speech", "Real-time voice AI"], compatibleWith: ["typescript", "python", "nextjs", "openai"] },
-    { id: "cohere", name: "Cohere", category: "AI/LLM", description: "Enterprise AI platform offering Command R+ models and Rerank APIs", website: "https://cohere.com", color: "#39594C", npm: "npm install cohere-ai", icon: "https://cohere.com/favicon.ico", skills: ["Semantic search", "Rerank models", "Command R+ inference"], compatibleWith: ["langchain", "llamaindex", "typescript", "python"] },
-
-    // Next-Gen Web Frameworks & Documentation
-    { id: "waku", name: "Waku", category: "Web Framework", description: "Minimalist React Server Components (RSC) framework powered by Vite", website: "https://waku.gg", color: "#E10098", npm: "npm create waku@latest", icon: "https://waku.gg/favicon.ico", skills: ["React Server Components", "Vite integration", "Minimalist SSR"], compatibleWith: ["react", "vite", "tailwind", "typescript"] },
-    { id: "qwik-city", name: "Qwik City", category: "Web Framework", description: "Meta-framework for Qwik featuring resumability and zero-hydration architecture", website: "https://qwik.dev/docs/qwikcity/", color: "#18B6F6", npm: "npm create qwik@latest", icon: "https://qwik.dev/favicon.ico", skills: ["Resumability", "Directory-based routing", "Zero-hydration architecture"], compatibleWith: ["typescript", "vite", "tailwind"] },
-    { id: "honox", name: "HonoX", category: "Web Framework", description: "Simple, fast meta-framework based on Hono, Vite, and JSX", website: "https://github.com/honojs/honox", color: "#E36002", npm: "npm create hono@latest", icon: "https://avatars.githubusercontent.com/u/78773850?s=200&v=4", skills: ["Edge SSR", "Multi-runtime meta-framework", "Islands architecture"], compatibleWith: ["hono", "vite", "cloudflare-workers", "deno"] },
-    { id: "starlight", name: "Starlight", category: "Documentation", description: "Documentation framework built on Astro for rapid, accessible documentation", website: "https://starlight.astro.build", color: "#883AE1", npm: "npm create astro@latest -- --template starlight", icon: "https://starlight.astro.build/favicon.svg", skills: ["Documentation sites", "Markdown & MDX", "Content collections"], compatibleWith: ["astro", "tailwind", "typescript"] },
-    { id: "fumadocs", name: "Fumadocs", category: "Documentation", description: "Beautiful, fast documentation framework built for Next.js and App Router", website: "https://fumadocs.vercel.app", color: "#000000", npm: "npm create fumadocs-app", icon: "https://fumadocs.vercel.app/favicon.ico", skills: ["Next.js documentation", "MDX processing", "Full-text search"], compatibleWith: ["nextjs", "react", "tailwind", "typescript"] },
-
-    // Universal Server Engines & Language Tooling
-    { id: "nitro", name: "Nitro", category: "Backend Framework", description: "Next-generation server toolkit and engine powering Nuxt and universal servers", website: "https://nitro.unjs.io", color: "#F43F5E", npm: "npm install nitropack", icon: "https://nitro.unjs.io/favicon.ico", skills: ["Universal server engine", "Multi-provider deployment", "Zero-config routing"], compatibleWith: ["typescript", "hono", "cloudflare-workers", "vercel"] },
-    { id: "encore", name: "Encore.ts", category: "Backend Framework", description: "Backend development platform with built-in microservices and cloud automation", website: "https://encore.dev", color: "#FF4F00", npm: "npm install encore.dev", icon: "https://encore.dev/favicon.ico", skills: ["Type-safe microservices", "Automatic cloud architecture", "Tracing & metrics"], compatibleWith: ["typescript", "postgresql", "docker"] },
-    { id: "effect", name: "Effect", category: "Languages", description: "Build robust, type-safe TypeScript programs with structured concurrency", website: "https://effect.website", color: "#18181B", npm: "npm install effect", icon: "https://effect.website/favicon.ico", skills: ["Structured concurrency", "Type-safe error handling", "Functional programming"], compatibleWith: ["typescript", "nodejs", "react"] },
-
-    // Cloud, Serverless & Reactive BaaS
-    { id: "convex", name: "Convex", category: "BaaS", description: "Reactive backend-as-a-service with real-time automatic synchronization", website: "https://convex.dev", color: "#FF385C", npm: "npm install convex", icon: "https://convex.dev/favicon.ico", skills: ["Reactive backend functions", "Automatic real-time sync", "ACID transactions"], compatibleWith: ["react", "nextjs", "typescript", "tailwind"] },
-    { id: "upstash", name: "Upstash", category: "Database", description: "Serverless Redis, Kafka, and QStash for serverless and edge architectures", website: "https://upstash.com", color: "#00E699", npm: "npm install @upstash/redis", icon: "https://upstash.com/favicon.ico", skills: ["Serverless Redis", "QStash message queues", "Edge rate limiting"], compatibleWith: ["nextjs", "cloudflare-workers", "hono", "typescript"] },
-    { id: "tigris", name: "Tigris", category: "Storage", description: "Globally distributed, low-latency S3-compatible object storage", website: "https://tigrisdata.com", color: "#4F46E5", npm: "npm install @aws-sdk/client-s3", icon: "https://tigrisdata.com/favicon.ico", skills: ["Globally distributed S3", "Zero egress storage", "Object storage"], compatibleWith: ["nextjs", "typescript", "cloudflare-workers", "fly"] },
-    { id: "sst", name: "SST", category: "DevOps/Infrastructure", description: "Framework for deploying full-stack apps on AWS and Cloudflare with Pulumi", website: "https://sst.dev", color: "#E27525", npm: "npx sst init", icon: "https://sst.dev/favicon.ico", skills: ["Infrastructure as code", "Live lambda debugging", "Serverless deployment"], compatibleWith: ["nextjs", "aws", "cloudflare-workers", "typescript"] },
-
-    // Universal Auth Platforms
-    { id: "logto", name: "Logto", category: "Authentication", description: "Modern, open-source identity and user management platform", website: "https://logto.io", color: "#5438FF", npm: "npm install @logto/next", icon: "https://logto.io/favicon.ico", skills: ["OIDC identity provider", "Multi-tenant auth", "Role-based access control"], compatibleWith: ["nextjs", "react", "typescript", "docker"] },
-    { id: "openauth", name: "OpenAuth", category: "Authentication", description: "Universal, self-hosted authentication server by the SST team", website: "https://openauth.js.org", color: "#FFB800", npm: "npm install @openauthjs/openauth", icon: "https://openauth.js.org/favicon.ico", skills: ["Universal auth server", "OAuth2 & PKCE", "Multi-framework clients"], compatibleWith: ["hono", "cloudflare-workers", "nextjs", "typescript"] },
-
-    // Local-First Sync & Client Storage
-    { id: "replicache", name: "Replicache", category: "Local-First", description: "Real-time, client-side sync framework enabling instant collaborative UIs", website: "https://replicache.dev", color: "#10B981", npm: "npm install replicache", icon: "https://replicache.dev/favicon.ico", skills: ["Client-side optimistic UI", "Multiplayer real-time sync", "Offline support"], compatibleWith: ["react", "typescript", "postgresql", "nextjs"] },
-    { id: "triplit", name: "Triplit", category: "Local-First", description: "Open-source local-first database that syncs in real-time with relational schemas", website: "https://triplit.dev", color: "#06B6D4", npm: "npm install @triplit/client", icon: "https://triplit.dev/favicon.ico", skills: ["Local-first relational DB", "Schema migrations", "Real-time subscriptions"], compatibleWith: ["react", "typescript", "svelte", "expo"] },
-    { id: "dexie", name: "Dexie.js", category: "Local-First", description: "Fast, minimalist wrapper for IndexedDB with reactive live queries", website: "https://dexie.org", color: "#3B82F6", npm: "npm install dexie", icon: "https://dexie.org/favicon.ico", skills: ["IndexedDB wrapper", "Observable queries", "Client-side storage"], compatibleWith: ["react", "vue", "svelte", "typescript"] },
-
-    // Developer Tooling & Package Management
-    { id: "oxc", name: "OXC", category: "Code Quality/Linting", description: "High-performance compiler toolchain for JavaScript and TypeScript written in Rust", website: "https://oxc.rs", color: "#E38833", npm: "npm install -D oxlint", icon: "https://oxc.rs/favicon.ico", skills: ["Rust JS/TS parser", "Ultra-fast AST tooling", "Static analysis"], compatibleWith: ["typescript", "javascript", "oxlint", "vite"] },
-    { id: "pkgx", name: "pkgx", category: "Package Manager", description: "Blazing-fast virtual environment and CLI package manager", website: "https://pkgx.sh", color: "#000000", npm: "curl -fsS https://pkgx.sh | sh", icon: "https://pkgx.sh/favicon.ico", skills: ["Zero-install package execution", "Virtual environments", "Cross-platform CLI"], compatibleWith: ["nodejs", "python", "rust", "go"] },
-
-    // CSS Utilities & React State Helpers
-    { id: "cva", name: "CVA", category: "CSS Framework", description: "Class Variance Authority for type-safe UI component variants", website: "https://cva.style", color: "#6366F1", npm: "npm install class-variance-authority", icon: "https://cva.style/favicon.ico", skills: ["Component variant design", "Type-safe CSS", "Design systems"], compatibleWith: ["tailwind", "react", "typescript", "shadcn"] },
-    { id: "tailwind-merge", name: "tailwind-merge", category: "CSS Framework", description: "Utility to efficiently merge Tailwind CSS classes without style conflicts", website: "https://github.com/dcastilho/tailwind-merge", color: "#38BDF8", npm: "npm install tailwind-merge", icon: "https://tailwindcss.com/favicons/favicon.ico", skills: ["Tailwind class merging", "Conflict resolution", "Dynamic styling"], compatibleWith: ["tailwind", "react", "vue", "typescript"] },
-    { id: "clsx", name: "clsx", category: "CSS Framework", description: "Tiny utility for constructing conditional className strings", website: "https://github.com/lukeed/clsx", color: "#475569", npm: "npm install clsx", icon: "https://github.com/lukeed.png", skills: ["Conditional classes", "Bundle-size optimization", "Utility styling"], compatibleWith: ["react", "vue", "svelte", "tailwind"] },
-    { id: "sonner", name: "Sonner", category: "CSS Framework", description: "An opinionated, customizable toast notification component for React", website: "https://sonner.emilkowal.ski", color: "#000000", npm: "npm install sonner", icon: "https://sonner.emilkowal.ski/favicon.ico", skills: ["Toast notifications", "Micro-interactions", "Accessible overlays"], compatibleWith: ["react", "nextjs", "tailwind", "typescript"] },
-    { id: "nuqs", name: "nuqs", category: "State Management", description: "Type-safe search params state manager for React and Next.js", website: "https://nuqs.47ng.com", color: "#FB7185", npm: "npm install nuqs", icon: "https://nuqs.47ng.com/favicon.ico", skills: ["URL search params state", "Type-safe query strings", "SSR-safe state"], compatibleWith: ["nextjs", "react", "typescript"] },
-
-    // Security & Developer APIs
-    { id: "arcjet", name: "Arcjet", category: "Security", description: "Security layer for Node.js, Next.js, and Bun with bot detection and rate limiting", website: "https://arcjet.com", color: "#22C55E", npm: "npm install @arcjet/next", icon: "https://arcjet.com/favicon.ico", skills: ["Application security", "Bot detection", "Rate limiting"], compatibleWith: ["nextjs", "hono", "nodejs", "typescript"] },
-    { id: "unkey", name: "Unkey", category: "Security", description: "Open-source API key management and distributed rate-limiting platform", website: "https://unkey.com", color: "#000000", npm: "npm install @unkey/api", icon: "https://unkey.com/favicon.ico", skills: ["API key management", "Distributed rate limiting", "API analytics"], compatibleWith: ["nextjs", "hono", "typescript", "cloudflare-workers"] },
-    { id: "dub", name: "Dub.co", category: "Analytics", description: "Open-source link management and conversion tracking platform for developers", website: "https://dub.co", color: "#000000", npm: "npm install dub", icon: "https://dub.co/favicon.ico", skills: ["Link management", "Conversion tracking", "Analytics API"], compatibleWith: ["nextjs", "typescript", "react"] }
-
+  {
+    "id": "react",
+    "name": "React",
+    "category": "Web Framework",
+    "description": "A JavaScript library for building user interfaces",
+    "website": "https://reactjs.org",
+    "color": "#61DAFB",
+    "npm": "npm install react",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    "skills": [
+      "Component composition",
+      "Virtual DOM",
+      "Hooks & state"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "tailwind",
+      "nextjs",
+      "vite"
+    ]
+  },
+  {
+    "id": "tanstack-router",
+    "name": "TanStack Router",
+    "category": "Web Framework",
+    "description": "Type-safe router for React applications",
+    "website": "https://tanstack.com/router",
+    "color": "#FD4F00",
+    "npm": "npm install @tanstack/react-router",
+    "icon": "https://avatars.githubusercontent.com/u/72518640?s=200&v=4",
+    "skills": [
+      "Type-safe routing",
+      "Search params state",
+      "Route loaders"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "vite",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "nextjs",
+    "name": "Next.js",
+    "category": "Web Framework",
+    "description": "The React Framework for Production",
+    "website": "https://nextjs.org",
+    "color": "#000000",
+    "npm": "npx create-next-app@latest",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    "skills": [
+      "App Router",
+      "Server Components (RSC)",
+      "Server Actions",
+      "Edge routing"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "tailwind",
+      "prisma",
+      "vercel"
+    ]
+  },
+  {
+    "id": "vue",
+    "name": "Vue.js",
+    "category": "Web Framework",
+    "description": "The Progressive JavaScript Framework",
+    "website": "https://vuejs.org",
+    "color": "#4FC08D",
+    "npm": "npm install vue",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg",
+    "skills": [
+      "Reactivity system",
+      "Single-file components",
+      "Composition API"
+    ],
+    "compatibleWith": [
+      "vite",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "nuxt",
+    "name": "Nuxt.js",
+    "category": "Web Framework",
+    "description": "The Intuitive Vue Framework",
+    "website": "https://nuxt.com",
+    "color": "#00DC82",
+    "npm": "npx nuxi@latest init",
+    "icon": "https://nuxt.com/assets/design-kit/icon-green.png",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "angular",
+    "name": "Angular",
+    "category": "Web Framework",
+    "description": "Platform for building mobile and desktop web applications",
+    "website": "https://angular.io",
+    "color": "#DD0031",
+    "npm": "npm install -g @angular/cli",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg",
+    "skills": [
+      "Dependency injection",
+      "TypeScript decorators",
+      "RxJS reactive streams"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "svelte",
+    "name": "Svelte",
+    "category": "Web Framework",
+    "description": "Cybernetically enhanced web apps",
+    "website": "https://svelte.dev",
+    "color": "#FF3E00",
+    "npm": "npm create svelte@latest my-app",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
+    "skills": [
+      "Compile-time reactivity",
+      "Zero-runtime overhead",
+      "Store state"
+    ],
+    "compatibleWith": [
+      "vite",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "sveltekit",
+    "name": "SvelteKit",
+    "category": "Web Framework",
+    "description": "The fastest way to build svelte apps",
+    "website": "https://kit.svelte.dev",
+    "color": "#FF3E00",
+    "npm": "npm create sveltekit@latest",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "remix",
+    "name": "Remix",
+    "category": "Web Framework",
+    "description": "Full stack web framework focused on web standards",
+    "website": "https://remix.run",
+    "color": "#000000",
+    "npm": "npx create-remix@latest",
+    "icon": "https://avatars.githubusercontent.com/u/64235328?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "astro",
+    "name": "Astro",
+    "category": "Web Framework",
+    "description": "The web framework for content-driven websites",
+    "website": "https://astro.build",
+    "color": "#FF5D01",
+    "npm": "npm create astro@latest",
+    "icon": "https://avatars.githubusercontent.com/u/44914786?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "solid",
+    "name": "SolidJS",
+    "category": "Web Framework",
+    "description": "Simple and performant reactivity for building user interfaces",
+    "website": "https://solidjs.com",
+    "color": "#2C4F7C",
+    "npm": "npx degit solidjs/templates/js my-app",
+    "icon": "https://avatars.githubusercontent.com/u/79330284?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "qwik",
+    "name": "Qwik",
+    "category": "Web Framework",
+    "description": "The HTML-first framework",
+    "website": "https://qwik.builder.io",
+    "color": "#AC7EF4",
+    "npm": "npm create qwik@latest",
+    "icon": "https://qwik.builder.io/logos/qwik-logo.svg",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "fresh",
+    "name": "Fresh",
+    "category": "Web Framework",
+    "description": "The next-gen web framework for Deno",
+    "website": "https://fresh.deno.dev",
+    "color": "#00D2FF",
+    "npm": "deno run -A -r https://fresh.deno.dev",
+    "icon": "https://avatars.githubusercontent.com/u/86735756?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lit",
+    "name": "Lit",
+    "category": "Web Framework",
+    "description": "Simple. Fast. Web Components.",
+    "website": "https://lit.dev",
+    "color": "#324FFF",
+    "npm": "npm install lit",
+    "icon": "https://avatars.githubusercontent.com/u/18489846?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "preact",
+    "name": "Preact",
+    "category": "Web Framework",
+    "description": "Fast 3kB React alternative",
+    "website": "https://preactjs.com",
+    "color": "#673AB8",
+    "npm": "npm install preact",
+    "icon": "https://avatars.githubusercontent.com/u/26872990?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-router",
+    "name": "React Router",
+    "category": "Web Framework",
+    "description": "Declarative routing for React",
+    "website": "https://reactrouter.com",
+    "color": "#CA4245",
+    "npm": "npm install react-router-dom",
+    "icon": "https://avatars.githubusercontent.com/u/12504344?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "tanstack-start",
+    "name": "TanStack Start",
+    "category": "Web Framework",
+    "description": "Full-stack React framework powered by TanStack Router",
+    "website": "https://tanstack.com/start",
+    "color": "#FD4F00",
+    "npm": "npm create @tanstack/start@latest",
+    "icon": "https://avatars.githubusercontent.com/u/72518640?s=200&v=4",
+    "skills": [
+      "Full-stack React",
+      "SSR & streaming",
+      "Server functions"
+    ],
+    "compatibleWith": [
+      "react",
+      "tanstack-router",
+      "tanstack-query",
+      "vite",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "redwoodjs",
+    "name": "RedwoodJS",
+    "category": "Web Framework",
+    "description": "Full-stack JS framework for the JAMstack",
+    "website": "https://redwoodjs.com",
+    "color": "#BF4722",
+    "npm": "yarn create redwood-app",
+    "icon": "https://avatars.githubusercontent.com/u/45009844?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "analog",
+    "name": "Analog",
+    "category": "Web Framework",
+    "description": "Full-stack meta-framework for Angular",
+    "website": "https://analogjs.org",
+    "color": "#DD0031",
+    "npm": "npm create analog@latest",
+    "icon": "https://avatars.githubusercontent.com/u/107374264?s=200&v=4",
+    "skills": [
+      "Component architecture",
+      "Routing & state",
+      "Client-side rendering"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sqlite",
+    "name": "SQLite",
+    "category": "Database",
+    "description": "Self-contained, serverless, zero-configuration SQL database",
+    "website": "https://sqlite.org",
+    "color": "#003B57",
+    "npm": "npm install sqlite3",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg",
+    "skills": [
+      "Embedded relational queries",
+      "ACID transactions",
+      "Zero-configuration storage"
+    ],
+    "compatibleWith": [
+      "drizzle",
+      "prisma",
+      "bun"
+    ]
+  },
+  {
+    "id": "postgresql",
+    "name": "PostgreSQL",
+    "category": "Database",
+    "description": "Advanced open source relational database",
+    "website": "https://postgresql.org",
+    "color": "#336791",
+    "npm": "npm install pg",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg",
+    "skills": [
+      "Relational schema design",
+      "ACID guarantees",
+      "JSONB indexing",
+      "Complex joins"
+    ],
+    "compatibleWith": [
+      "prisma",
+      "drizzle",
+      "nodejs",
+      "docker"
+    ]
+  },
+  {
+    "id": "mongodb",
+    "name": "MongoDB",
+    "category": "Database",
+    "description": "Document-oriented NoSQL database",
+    "website": "https://mongodb.com",
+    "color": "#47A248",
+    "npm": "npm install mongodb",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg",
+    "skills": [
+      "Document-based schema",
+      "Aggregation pipelines",
+      "Flexible data models"
+    ],
+    "compatibleWith": [
+      "mongoose",
+      "nodejs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "mysql",
+    "name": "MySQL",
+    "category": "Database",
+    "description": "The world's most popular open source database",
+    "website": "https://mysql.com",
+    "color": "#4479A1",
+    "npm": "npm install mysql2",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+    "skills": [
+      "Relational indexing",
+      "High-concurrency transactions",
+      "Replication clusters"
+    ],
+    "compatibleWith": [
+      "prisma",
+      "drizzle",
+      "typeorm",
+      "nodejs"
+    ]
+  },
+  {
+    "id": "redis",
+    "name": "Redis",
+    "category": "Database",
+    "description": "In-memory data structure store",
+    "website": "https://redis.io",
+    "color": "#DC382D",
+    "npm": "npm install redis",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg",
+    "skills": [
+      "In-memory key-value caching",
+      "Pub/Sub messaging",
+      "Rate limiting data structures"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "fastify",
+      "bullmq",
+      "docker"
+    ]
+  },
+  {
+    "id": "supabase",
+    "name": "Supabase",
+    "category": "Database",
+    "description": "Open source Firebase alternative",
+    "website": "https://supabase.com",
+    "color": "#3ECF8E",
+    "npm": "npm install @supabase/supabase-js",
+    "icon": "https://supabase.com/favicon/favicon-32x32.png",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "planetscale",
+    "name": "PlanetScale",
+    "category": "Database",
+    "description": "The MySQL-compatible serverless database platform",
+    "website": "https://planetscale.com",
+    "color": "#000000",
+    "npm": "npm install @planetscale/database",
+    "icon": "https://avatars.githubusercontent.com/u/35612527?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "turso",
+    "name": "Turso",
+    "category": "Database",
+    "description": "SQLite for Production",
+    "website": "https://turso.tech",
+    "color": "#4FF8D2",
+    "npm": "npm install @libsql/client",
+    "icon": "https://avatars.githubusercontent.com/u/88491428?s=200&v=4",
+    "skills": [
+      "Edge SQLite",
+      "Embedded replicas",
+      "LibSQL"
+    ],
+    "compatibleWith": [
+      "drizzle",
+      "prisma",
+      "cloudflare-workers",
+      "nextjs",
+      "sqlite"
+    ]
+  },
+  {
+    "id": "dynamodb",
+    "name": "DynamoDB",
+    "category": "Database",
+    "description": "NoSQL database service",
+    "website": "https://aws.amazon.com/dynamodb",
+    "color": "#FF9900",
+    "icon": "https://avatars.githubusercontent.com/u/2232217?s=200&v=4",
+    "npm": "npm install @aws-sdk/client-dynamodb",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cockroachdb",
+    "name": "CockroachDB",
+    "category": "Database",
+    "description": "Distributed SQL database",
+    "website": "https://cockroachlabs.com",
+    "color": "#6933FF",
+    "icon": "https://avatars.githubusercontent.com/u/6748139?s=200&v=4",
+    "npm": "npm install pg",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "neon",
+    "name": "Neon",
+    "category": "Database",
+    "description": "Serverless Postgres",
+    "website": "https://neon.tech",
+    "color": "#00E599",
+    "icon": "https://avatars.githubusercontent.com/u/77690634?s=200&v=4",
+    "npm": "npm install @neondatabase/serverless",
+    "skills": [
+      "Serverless Postgres",
+      "Database branching",
+      "Connection pooling"
+    ],
+    "compatibleWith": [
+      "drizzle",
+      "prisma",
+      "nextjs",
+      "hono",
+      "postgresql"
+    ]
+  },
+  {
+    "id": "xata",
+    "name": "Xata",
+    "category": "Database",
+    "description": "Serverless database with built-in search",
+    "website": "https://xata.io",
+    "color": "#7C3AED",
+    "icon": "https://avatars.githubusercontent.com/u/75191490?s=200&v=4",
+    "npm": "npm install @xata.io/client",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "firebase-firestore",
+    "name": "Firebase Firestore",
+    "category": "Database",
+    "description": "NoSQL document database",
+    "website": "https://firebase.google.com/products/firestore",
+    "color": "#FFCA28",
+    "npm": "npm install firebase",
+    "icon": "https://avatars.githubusercontent.com/u/1335026?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cassandra",
+    "name": "Apache Cassandra",
+    "category": "Database",
+    "description": "Distributed NoSQL database",
+    "website": "https://cassandra.apache.org",
+    "color": "#1287B1",
+    "npm": "npm install cassandra-driver",
+    "icon": "https://avatars.githubusercontent.com/u/47359?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "influxdb",
+    "name": "InfluxDB",
+    "category": "Database",
+    "description": "Time series database",
+    "website": "https://influxdata.com",
+    "color": "#22ADF6",
+    "npm": "npm install @influxdata/influxdb-client",
+    "icon": "https://avatars.githubusercontent.com/u/5713248?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "neo4j",
+    "name": "Neo4j",
+    "category": "Database",
+    "description": "Graph database",
+    "website": "https://neo4j.com",
+    "color": "#008CC1",
+    "npm": "npm install neo4j-driver",
+    "icon": "https://avatars.githubusercontent.com/u/201120?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "clickhouse",
+    "name": "ClickHouse",
+    "category": "Database",
+    "description": "Open-source columnar database for analytics",
+    "website": "https://clickhouse.com",
+    "color": "#FFCC01",
+    "npm": "npm install @clickhouse/client",
+    "icon": "https://avatars.githubusercontent.com/u/54801242?s=200&v=4",
+    "skills": [
+      "Columnar analytics",
+      "High-throughput log ingestion",
+      "Real-time SQL aggregations"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "kafka",
+      "grafana",
+      "docker"
+    ]
+  },
+  {
+    "id": "tidb",
+    "name": "TiDB",
+    "category": "Database",
+    "description": "Distributed SQL database with MySQL compatibility",
+    "website": "https://tidbcloud.com",
+    "color": "#E6006D",
+    "npm": "npm install mysql2",
+    "icon": "https://avatars.githubusercontent.com/u/41984085?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mariadb",
+    "name": "MariaDB",
+    "category": "Database",
+    "description": "Open-source relational database, MySQL drop-in replacement",
+    "website": "https://mariadb.org",
+    "color": "#003545",
+    "npm": "npm install mariadb",
+    "icon": "https://avatars.githubusercontent.com/u/111519?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "surrealdb",
+    "name": "SurrealDB",
+    "category": "Database",
+    "description": "Multi-model database for modern applications",
+    "website": "https://surrealdb.com",
+    "color": "#FF00A0",
+    "npm": "npm install surrealdb.js",
+    "icon": "https://avatars.githubusercontent.com/u/10026800?s=200&v=4",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bun",
+    "name": "Bun",
+    "category": "Runtime",
+    "description": "Fast all-in-one JavaScript runtime",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "curl -fsSL https://bun.sh/install | bash",
+    "icon": "https://avatars.githubusercontent.com/u/99155232?s=200&v=4",
+    "skills": [
+      "Ultra-fast JavaScript runtime",
+      "Built-in package manager",
+      "Native TypeScript execution"
+    ],
+    "compatibleWith": [
+      "hono",
+      "elysia",
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nodejs",
+    "name": "Node.js",
+    "category": "Runtime",
+    "description": "JavaScript runtime built on Chrome's V8 engine",
+    "website": "https://nodejs.org",
+    "color": "#339933",
+    "npm": "# Install from nodejs.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    "skills": [
+      "Asynchronous event loop",
+      "Non-blocking I/O",
+      "NPM ecosystem"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "express",
+      "fastify",
+      "docker"
+    ]
+  },
+  {
+    "id": "deno",
+    "name": "Deno",
+    "category": "Runtime",
+    "description": "A secure runtime for JavaScript and TypeScript",
+    "website": "https://deno.land",
+    "color": "#000000",
+    "npm": "curl -fsSL https://deno.land/install.sh | sh",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg",
+    "skills": [
+      "Secure-by-default runtime",
+      "Web-standard APIs",
+      "Built-in TypeScript"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "hono",
+      "fresh"
+    ]
+  },
+  {
+    "id": "hono",
+    "name": "Hono",
+    "category": "Backend Framework",
+    "description": "Fast, lightweight web framework",
+    "website": "https://hono.dev",
+    "color": "#E36002",
+    "npm": "npm install hono",
+    "icon": "https://avatars.githubusercontent.com/u/78773850?s=200&v=4",
+    "skills": [
+      "Multi-runtime API routing",
+      "Edge middleware",
+      "TypeScript RPC endpoints"
+    ],
+    "compatibleWith": [
+      "bun",
+      "cloudflare-workers",
+      "drizzle",
+      "typescript"
+    ]
+  },
+  {
+    "id": "express",
+    "name": "Express.js",
+    "category": "Backend Framework",
+    "description": "Fast, unopinionated, minimalist web framework for Node.js",
+    "website": "https://expressjs.com",
+    "color": "#000000",
+    "npm": "npm install express",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+    "skills": [
+      "Middleware chains",
+      "RESTful API design",
+      "Route handling"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "typescript",
+      "mongoose",
+      "prisma"
+    ]
+  },
+  {
+    "id": "fastify",
+    "name": "Fastify",
+    "category": "Backend Framework",
+    "description": "Fast and low overhead web framework for Node.js",
+    "website": "https://fastify.io",
+    "color": "#000000",
+    "npm": "npm install fastify",
+    "icon": "https://avatars.githubusercontent.com/u/24939410?s=200&v=4",
+    "skills": [
+      "High-throughput JSON parsing",
+      "Schema validation (TypeBox/Ajv)",
+      "Plugin architecture"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "typescript",
+      "prisma",
+      "redis"
+    ]
+  },
+  {
+    "id": "nestjs",
+    "name": "NestJS",
+    "category": "Backend Framework",
+    "description": "A progressive Node.js framework for building efficient server-side applications",
+    "website": "https://nestjs.com",
+    "color": "#E0234E",
+    "npm": "npm install @nestjs/core",
+    "icon": "https://avatars.githubusercontent.com/u/28507035?s=200&v=4",
+    "skills": [
+      "Enterprise module architecture",
+      "Dependency injection",
+      "Microservices routing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "typeorm",
+      "prisma",
+      "docker"
+    ]
+  },
+  {
+    "id": "koa",
+    "name": "Koa.js",
+    "category": "Backend Framework",
+    "description": "Expressive middleware for node.js using ES2017 async functions",
+    "website": "https://koajs.com",
+    "color": "#33333D",
+    "npm": "npm install koa",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "trpc",
+    "name": "tRPC",
+    "category": "Backend Framework",
+    "description": "End-to-end typesafe APIs made easy",
+    "website": "https://trpc.io",
+    "color": "#398CCB",
+    "npm": "npm install @trpc/server",
+    "icon": "https://trpc.io/img/logo.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "adonisjs",
+    "name": "AdonisJS",
+    "category": "Backend Framework",
+    "description": "Node.js web framework",
+    "website": "https://adonisjs.com",
+    "color": "#220052",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/adonisjs/adonisjs-original.svg",
+    "npm": "npm init adonisjs@latest",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "elysia",
+    "name": "Elysia",
+    "category": "Backend Framework",
+    "description": "Fast and ergonomic Bun web framework",
+    "website": "https://elysiajs.com",
+    "color": "#7C3AED",
+    "icon": "https://elysiajs.com/assets/elysia.svg",
+    "npm": "bun add elysia",
+    "skills": [
+      "High-performance API",
+      "End-to-end type safety",
+      "Bun runtime"
+    ],
+    "compatibleWith": [
+      "bun",
+      "typescript",
+      "drizzle",
+      "prisma"
+    ]
+  },
+  {
+    "id": "django",
+    "name": "Django",
+    "category": "Backend Framework",
+    "description": "Python web framework",
+    "website": "https://djangoproject.com",
+    "color": "#092E20",
+    "npm": "pip install django",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "flask",
+    "name": "Flask",
+    "category": "Backend Framework",
+    "description": "Lightweight Python web framework",
+    "website": "https://flask.palletsprojects.com",
+    "color": "#000000",
+    "npm": "pip install flask",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "spring",
+    "name": "Spring Boot",
+    "category": "Backend Framework",
+    "description": "Java application framework",
+    "website": "https://spring.io/projects/spring-boot",
+    "color": "#6DB33F",
+    "npm": "# Use Spring Initializr",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "laravel",
+    "name": "Laravel",
+    "category": "Backend Framework",
+    "description": "PHP web application framework",
+    "website": "https://laravel.com",
+    "color": "#FF2D20",
+    "npm": "composer create-project laravel/laravel",
+    "icon": "https://avatars.githubusercontent.com/u/958072?s=200&v=4",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rails",
+    "name": "Ruby on Rails",
+    "category": "Backend Framework",
+    "description": "Ruby web application framework",
+    "website": "https://rubyonrails.org",
+    "color": "#CC0000",
+    "npm": "gem install rails",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rails/rails-original-wordmark.svg",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gin",
+    "name": "Gin",
+    "category": "Backend Framework",
+    "description": "Go web framework",
+    "website": "https://gin-gonic.com",
+    "color": "#00ADD8",
+    "npm": "go get github.com/gin-gonic/gin",
+    "icon": "https://avatars.githubusercontent.com/u/7894478?s=200&v=4",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "fiber",
+    "name": "Fiber",
+    "category": "Backend Framework",
+    "description": "Express inspired Go web framework",
+    "website": "https://gofiber.io",
+    "color": "#00ADD8",
+    "npm": "go get github.com/gofiber/fiber/v2",
+    "icon": "https://avatars.githubusercontent.com/u/59947262?s=200&v=4",
+    "skills": [
+      "High-throughput fasthttp routing",
+      "Low-latency microservices",
+      "Middleware pipelines in Go"
+    ],
+    "compatibleWith": [
+      "go",
+      "postgresql",
+      "redis"
+    ]
+  },
+  {
+    "id": "fastapi",
+    "name": "FastAPI",
+    "category": "Backend Framework",
+    "description": "Modern Python web framework for building APIs",
+    "website": "https://fastapi.tiangolo.com",
+    "color": "#009688",
+    "npm": "pip install fastapi",
+    "icon": "https://avatars.githubusercontent.com/u/15635592?s=200&v=4",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aspnet-core",
+    "name": "ASP.NET Core",
+    "category": "Backend Framework",
+    "description": "Cross-platform .NET web framework",
+    "website": "https://dotnet.microsoft.com/apps/aspnet",
+    "color": "#512BD4",
+    "npm": "dotnet new webapi",
+    "icon": "https://avatars.githubusercontent.com/u/9141961?s=200&v=4",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "phoenix",
+    "name": "Phoenix",
+    "category": "Backend Framework",
+    "description": "Productive web framework for Elixir",
+    "website": "https://phoenixframework.org",
+    "color": "#FD4F00",
+    "npm": "mix archive.install hex phx_new",
+    "icon": "https://avatars.githubusercontent.com/u/164?s=200&v=4",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "axum",
+    "name": "Axum",
+    "category": "Backend Framework",
+    "description": "Ergonomic Rust web framework",
+    "website": "https://github.com/tokio-rs/axum",
+    "color": "#000000",
+    "npm": "cargo add axum",
+    "icon": "https://avatars.githubusercontent.com/u/14062570?s=200&v=4",
+    "skills": [
+      "Memory-safe async routing",
+      "Tokio service extractors",
+      "Zero-cost abstractions in Rust"
+    ],
+    "compatibleWith": [
+      "rust",
+      "postgresql",
+      "docker"
+    ]
+  },
+  {
+    "id": "tailwind",
+    "name": "Tailwind CSS",
+    "category": "CSS Framework",
+    "description": "Utility-first CSS framework",
+    "website": "https://tailwindcss.com",
+    "color": "#06B6D4",
+    "npm": "npm install tailwindcss",
+    "icon": "https://avatars.githubusercontent.com/u/67109815?s=200&v=4",
+    "skills": [
+      "Utility-first styling",
+      "Responsive breakpoint design",
+      "Arbitrary value configuration"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "vue",
+      "vite"
+    ]
+  },
+  {
+    "id": "bootstrap",
+    "name": "Bootstrap",
+    "category": "CSS Framework",
+    "description": "The most popular HTML, CSS, and JS library",
+    "website": "https://getbootstrap.com",
+    "color": "#7952B3",
+    "npm": "npm install bootstrap",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg",
+    "skills": [
+      "Grid system layout",
+      "Pre-built component primitives",
+      "Sass theming"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "javascript"
+    ]
+  },
+  {
+    "id": "chakra",
+    "name": "Chakra UI",
+    "category": "CSS Framework",
+    "description": "Simple, modular and accessible component library",
+    "website": "https://chakra-ui.com",
+    "color": "#319795",
+    "npm": "npm install @chakra-ui/react",
+    "icon": "https://avatars.githubusercontent.com/u/54212428?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mui",
+    "name": "Material-UI",
+    "category": "CSS Framework",
+    "description": "React components for faster and easier web development",
+    "website": "https://mui.com",
+    "color": "#007FFF",
+    "npm": "npm install @mui/material",
+    "icon": "https://mui.com/static/logo.png",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "antd",
+    "name": "Ant Design",
+    "category": "CSS Framework",
+    "description": "Enterprise-class UI design language and React UI library",
+    "website": "https://ant.design",
+    "color": "#1890FF",
+    "npm": "npm install antd",
+    "icon": "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mantine",
+    "name": "Mantine",
+    "category": "CSS Framework",
+    "description": "Full-featured React components library",
+    "website": "https://mantine.dev",
+    "color": "#339AF0",
+    "npm": "npm install @mantine/core",
+    "icon": "https://mantine.dev/favicon.svg",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "shadcn",
+    "name": "shadcn/ui",
+    "category": "CSS Framework",
+    "description": "Beautifully designed components built with Radix UI and Tailwind CSS",
+    "website": "https://ui.shadcn.com",
+    "color": "#000000",
+    "npm": "npx shadcn-ui@latest init",
+    "icon": "https://avatars.githubusercontent.com/u/124599?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "panda-css",
+    "name": "Panda CSS",
+    "category": "CSS Framework",
+    "description": "Zero-runtime CSS-in-JS",
+    "website": "https://panda-css.com",
+    "color": "#FED7AA",
+    "icon": "https://avatars.githubusercontent.com/u/155136102?s=200&v=4",
+    "npm": "npm install -D @pandacss/dev",
+    "skills": [
+      "Build-time CSS-in-JS",
+      "Design tokens",
+      "Type-safe styles"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "solid",
+      "nextjs",
+      "park-ui"
+    ]
+  },
+  {
+    "id": "unocss",
+    "name": "UnoCSS",
+    "category": "CSS Framework",
+    "description": "Instant on-demand atomic CSS engine",
+    "website": "https://unocss.dev",
+    "color": "#333333",
+    "icon": "https://unocss.dev/favicon.svg",
+    "npm": "npm install -D unocss",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "styled-components",
+    "name": "Styled Components",
+    "category": "CSS Framework",
+    "description": "CSS-in-JS library",
+    "website": "https://styled-components.com",
+    "color": "#DB7093",
+    "icon": "https://avatars.githubusercontent.com/u/20658825?s=200&v=4",
+    "npm": "npm install styled-components",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "emotion",
+    "name": "Emotion",
+    "category": "CSS Framework",
+    "description": "CSS-in-JS library",
+    "website": "https://emotion.sh",
+    "color": "#D26AC2",
+    "icon": "https://avatars.githubusercontent.com/u/28973759?s=200&v=4",
+    "npm": "npm install @emotion/react @emotion/styled",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bulma",
+    "name": "Bulma",
+    "category": "CSS Framework",
+    "description": "Modern CSS framework based on Flexbox",
+    "website": "https://bulma.io",
+    "color": "#00D1B2",
+    "npm": "npm install bulma",
+    "icon": "https://avatars.githubusercontent.com/u/22254154?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "foundation",
+    "name": "Foundation",
+    "category": "CSS Framework",
+    "description": "Responsive front-end framework",
+    "website": "https://get.foundation",
+    "color": "#1779BA",
+    "npm": "npm install foundation-sites",
+    "icon": "https://avatars.githubusercontent.com/u/1142434?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "semantic-ui",
+    "name": "Semantic UI",
+    "category": "CSS Framework",
+    "description": "User interface component framework",
+    "website": "https://semantic-ui.com",
+    "color": "#35BDB2",
+    "npm": "npm install semantic-ui",
+    "icon": "https://avatars.githubusercontent.com/u/6543015?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "windicss",
+    "name": "Windi CSS",
+    "category": "CSS Framework",
+    "description": "Next generation utility-first CSS framework",
+    "website": "https://windicss.org",
+    "color": "#48B0F1",
+    "npm": "npm install windicss",
+    "icon": "https://avatars.githubusercontent.com/u/78513062?s=200&v=4",
+    "skills": [
+      "Responsive UI",
+      "Component design tokens",
+      "Styling systems"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "reactnative",
+    "name": "React Native",
+    "category": "Native Framework",
+    "description": "Create native apps for Android and iOS using React",
+    "website": "https://reactnative.dev",
+    "color": "#61DAFB",
+    "npm": "npx react-native init",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    "skills": [
+      "Cross-platform mobile UI",
+      "Native bridge interaction",
+      "Gesture handling"
+    ],
+    "compatibleWith": [
+      "react",
+      "expo",
+      "typescript",
+      "tamagui"
+    ]
+  },
+  {
+    "id": "flutter",
+    "name": "Flutter",
+    "category": "Native Framework",
+    "description": "Google's UI toolkit for building natively compiled applications",
+    "website": "https://flutter.dev",
+    "color": "#02569B",
+    "npm": "flutter create my_app",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg",
+    "skills": [
+      "Dart reactive widgets",
+      "Skia/Impeller rendering",
+      "Cross-platform compilation"
+    ],
+    "compatibleWith": [
+      "dart",
+      "firebase-firestore",
+      "sqlite"
+    ]
+  },
+  {
+    "id": "ionic",
+    "name": "Ionic",
+    "category": "Native Framework",
+    "description": "Cross-platform mobile app development",
+    "website": "https://ionicframework.com",
+    "color": "#3880FF",
+    "npm": "npm install -g @ionic/cli",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ionic/ionic-original.svg",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "expo",
+    "name": "Expo",
+    "category": "Native Framework",
+    "description": "Platform for making universal native apps with React",
+    "website": "https://expo.dev",
+    "color": "#000020",
+    "npm": "npm install -g @expo/cli",
+    "icon": "https://avatars.githubusercontent.com/u/12504344?s=200&v=4",
+    "skills": [
+      "Managed mobile workflows",
+      "EAS builds & OTA updates",
+      "Expo Router"
+    ],
+    "compatibleWith": [
+      "reactnative",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "tauri",
+    "name": "Tauri",
+    "category": "Native Framework",
+    "description": "Build smaller, faster, and more secure desktop applications",
+    "website": "https://tauri.app",
+    "color": "#FFC131",
+    "npm": "npm install @tauri-apps/cli",
+    "icon": "https://avatars.githubusercontent.com/u/54536011?s=200&v=4",
+    "skills": [
+      "Rust native webview backend",
+      "Lightweight executable bundling",
+      "Cross-platform desktop"
+    ],
+    "compatibleWith": [
+      "rust",
+      "react",
+      "vite",
+      "typescript"
+    ]
+  },
+  {
+    "id": "electron",
+    "name": "Electron",
+    "category": "Native Framework",
+    "description": "Build cross-platform desktop apps with JavaScript, HTML, and CSS",
+    "website": "https://electronjs.org",
+    "color": "#47848F",
+    "npm": "npm install electron",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/electron/electron-original.svg",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "capacitor",
+    "name": "Capacitor",
+    "category": "Native Framework",
+    "description": "Cross-platform native runtime for web apps",
+    "website": "https://capacitorjs.com",
+    "color": "#119EFF",
+    "npm": "npm install @capacitor/core",
+    "icon": "https://avatars.githubusercontent.com/u/32264020?s=200&v=4",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cordova",
+    "name": "Apache Cordova",
+    "category": "Native Framework",
+    "description": "Mobile app development framework",
+    "website": "https://cordova.apache.org",
+    "color": "#E8E8E8",
+    "npm": "npm install -g cordova",
+    "icon": "https://avatars.githubusercontent.com/u/47359?s=200&v=4",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nwjs",
+    "name": "NW.js",
+    "category": "Native Framework",
+    "description": "Desktop app framework with web technologies",
+    "website": "https://nwjs.io",
+    "color": "#3D3D3D",
+    "npm": "npm install nw",
+    "icon": "https://avatars.githubusercontent.com/u/10180421?s=200&v=4",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "prisma",
+    "name": "Prisma",
+    "category": "ORM",
+    "description": "Next-generation Node.js and TypeScript ORM",
+    "website": "https://prisma.io",
+    "color": "#2D3748",
+    "npm": "npm install prisma",
+    "icon": "https://avatars.githubusercontent.com/u/17219288?s=200&v=4",
+    "skills": [
+      "Declarative schema modeling",
+      "Type-safe database queries",
+      "Automated migrations"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "mysql",
+      "sqlite",
+      "nextjs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "drizzle",
+    "name": "Drizzle ORM",
+    "category": "ORM",
+    "description": "TypeScript ORM that is production ready",
+    "website": "https://orm.drizzle.team",
+    "color": "#C5F74F",
+    "npm": "npm install drizzle-orm",
+    "icon": "https://avatars.githubusercontent.com/u/108468352?s=200&v=4",
+    "skills": [
+      "SQL-like TypeScript queries",
+      "Zero-overhead ORM",
+      "Dialect-accurate schema"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "sqlite",
+      "mysql",
+      "nextjs",
+      "turso"
+    ]
+  },
+  {
+    "id": "typeorm",
+    "name": "TypeORM",
+    "category": "ORM",
+    "description": "ORM for TypeScript and JavaScript supporting many databases",
+    "website": "https://typeorm.io",
+    "color": "#E83524",
+    "npm": "npm install typeorm",
+    "icon": "https://typeorm.io/img/typeorm.png",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sequelize",
+    "name": "Sequelize",
+    "category": "ORM",
+    "description": "Promise-based ORM for Postgres, MySQL, SQLite and more",
+    "website": "https://sequelize.org",
+    "color": "#52B0E7",
+    "npm": "npm install sequelize",
+    "icon": "https://sequelize.org/img/logo-gradient.svg",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mongoose",
+    "name": "Mongoose",
+    "category": "ORM",
+    "description": "Elegant MongoDB object modeling for Node.js",
+    "website": "https://mongoosejs.com",
+    "color": "#880000",
+    "npm": "npm install mongoose",
+    "icon": "https://mongoosejs.com/docs/images/mongoose-logo-white.png",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "knex",
+    "name": "Knex.js",
+    "category": "ORM",
+    "description": "SQL query builder for PostgreSQL, MySQL, SQLite and more",
+    "website": "https://knexjs.org",
+    "color": "#D26B38",
+    "npm": "npm install knex",
+    "icon": "https://knexjs.org/img/knex-icon.svg",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "objection",
+    "name": "Objection.js",
+    "category": "ORM",
+    "description": "SQL-friendly ORM for Node.js",
+    "website": "https://vincit.github.io/objection.js",
+    "color": "#FF6B35",
+    "npm": "npm install objection",
+    "icon": "https://avatars.githubusercontent.com/u/3514357?s=200&v=4",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "turborepo",
+    "name": "Turborepo",
+    "category": "Monorepo",
+    "description": "High-performance build system for JavaScript and TypeScript codebases",
+    "website": "https://turbo.build",
+    "color": "#EF4444",
+    "npm": "npm install turbo",
+    "icon": "https://turbo.build/img/favicon.ico",
+    "skills": [
+      "High-speed monorepo build caching",
+      "Remote cache sharing",
+      "Pipeline orchestration"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "typescript",
+      "pnpm",
+      "react"
+    ]
+  },
+  {
+    "id": "nx",
+    "name": "Nx",
+    "category": "Monorepo",
+    "description": "Smart, fast and extensible build system",
+    "website": "https://nx.dev",
+    "color": "#143055",
+    "npm": "npx create-nx-workspace",
+    "icon": "https://avatars.githubusercontent.com/u/23692104?s=200&v=4",
+    "skills": [
+      "Smart monorepo dependency graph",
+      "Distributed task execution",
+      "Code generation generators"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "angular",
+      "react",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "lerna",
+    "name": "Lerna",
+    "category": "Monorepo",
+    "description": "A tool for managing JavaScript projects with multiple packages",
+    "website": "https://lerna.js.org",
+    "color": "#9333EA",
+    "npm": "npm install lerna",
+    "icon": "https://avatars.githubusercontent.com/u/19333396?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rush",
+    "name": "Rush",
+    "category": "Monorepo",
+    "description": "Scalable monorepo manager for the web",
+    "website": "https://rushjs.io",
+    "color": "#087CFA",
+    "npm": "npm install -g @microsoft/rush",
+    "icon": "https://avatars.githubusercontent.com/u/19333396?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "npm",
+    "name": "npm",
+    "category": "Package Manager",
+    "description": "Node package manager",
+    "website": "https://npmjs.com",
+    "color": "#CB3837",
+    "npm": "# Built into Node.js",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "yarn",
+    "name": "Yarn",
+    "category": "Package Manager",
+    "description": "Fast, reliable, and secure dependency management",
+    "website": "https://yarnpkg.com",
+    "color": "#2C8EBB",
+    "npm": "npm install -g yarn",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pnpm",
+    "name": "pnpm",
+    "category": "Package Manager",
+    "description": "Fast, disk space efficient package manager",
+    "website": "https://pnpm.io",
+    "color": "#F69220",
+    "npm": "npm install -g pnpm",
+    "icon": "https://pnpm.io/img/pnpm-no-name-with-frame.svg",
+    "skills": [
+      "Hard-link symlinked node_modules",
+      "Disk space efficiency",
+      "Strict dependency isolation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "turborepo",
+      "nodejs"
+    ]
+  },
+  {
+    "id": "bun-pm",
+    "name": "Bun (Package Manager)",
+    "category": "Package Manager",
+    "description": "Ultra-fast package manager",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "curl -fsSL https://bun.sh/install | bash",
+    "icon": "https://avatars.githubusercontent.com/u/99155232?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "jest",
+    "name": "Jest",
+    "category": "Testing",
+    "description": "Delightful JavaScript testing framework",
+    "website": "https://jestjs.io",
+    "color": "#C21325",
+    "npm": "npm install jest",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg",
+    "skills": [
+      "Snapshot testing",
+      "Mocking & spies",
+      "Code coverage reporting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react",
+      "nodejs"
+    ]
+  },
+  {
+    "id": "vitest",
+    "name": "Vitest",
+    "category": "Testing",
+    "description": "A blazing fast unit test framework powered by Vite",
+    "website": "https://vitest.dev",
+    "color": "#6E9F18",
+    "npm": "npm install vitest",
+    "icon": "https://avatars.githubusercontent.com/u/95747107?s=200&v=4",
+    "skills": [
+      "Vite-native test execution",
+      "Instant HMR test runner",
+      "ESM module mocking"
+    ],
+    "compatibleWith": [
+      "vite",
+      "typescript",
+      "react",
+      "vue"
+    ]
+  },
+  {
+    "id": "cypress",
+    "name": "Cypress",
+    "category": "Testing",
+    "description": "Fast, easy and reliable testing for anything that runs in a browser",
+    "website": "https://cypress.io",
+    "color": "#17202C",
+    "npm": "npm install cypress",
+    "icon": "https://avatars.githubusercontent.com/u/8908513?s=200&v=4",
+    "skills": [
+      "Interactive browser testing",
+      "Real-time DOM assertions",
+      "Network stubbing"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "javascript"
+    ]
+  },
+  {
+    "id": "playwright",
+    "name": "Playwright",
+    "category": "Testing",
+    "description": "Fast and reliable end-to-end testing for modern web apps",
+    "website": "https://playwright.dev",
+    "color": "#2EAD33",
+    "npm": "npm install @playwright/test",
+    "icon": "https://playwright.dev/img/playwright-logo.svg",
+    "skills": [
+      "Cross-browser E2E automation",
+      "Visual regression testing",
+      "Parallel trace inspection"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "nextjs",
+      "react"
+    ]
+  },
+  {
+    "id": "testing-library",
+    "name": "Testing Library",
+    "category": "Testing",
+    "description": "Simple and complete testing utilities",
+    "website": "https://testing-library.com",
+    "color": "#E33332",
+    "npm": "npm install @testing-library/react",
+    "icon": "https://avatars.githubusercontent.com/u/49996085?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "storybook",
+    "name": "Storybook",
+    "category": "Testing",
+    "description": "UI component development environment",
+    "website": "https://storybook.js.org",
+    "color": "#FF4785",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg",
+    "npm": "npx storybook@latest init",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "msw",
+    "name": "Mock Service Worker (MSW)",
+    "category": "Testing",
+    "description": "API mocking library",
+    "website": "https://mswjs.io",
+    "color": "#FF6A33",
+    "icon": "https://avatars.githubusercontent.com/u/64637271?s=200&v=4",
+    "npm": "npm install msw",
+    "skills": [
+      "Network mocking",
+      "Service workers",
+      "Integration testing"
+    ],
+    "compatibleWith": [
+      "vitest",
+      "jest",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "jasmine",
+    "name": "Jasmine",
+    "category": "Testing",
+    "description": "Behavior-driven development framework",
+    "website": "https://jasmine.github.io",
+    "color": "#8A4182",
+    "npm": "npm install jasmine",
+    "icon": "https://avatars.githubusercontent.com/u/4624710?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mocha",
+    "name": "Mocha",
+    "category": "Testing",
+    "description": "JavaScript test framework",
+    "website": "https://mochajs.org",
+    "color": "#8D6748",
+    "npm": "npm install mocha",
+    "icon": "https://avatars.githubusercontent.com/u/8770005?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ava",
+    "name": "AVA",
+    "category": "Testing",
+    "description": "Node.js test runner",
+    "website": "https://github.com/avajs/ava",
+    "color": "#663399",
+    "npm": "npm install ava",
+    "icon": "https://avatars.githubusercontent.com/u/8527916?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "webdriverio",
+    "name": "WebdriverIO",
+    "category": "Testing",
+    "description": "Browser and mobile automation test framework",
+    "website": "https://webdriver.io",
+    "color": "#EA5906",
+    "npm": "npm install @wdio/cli",
+    "icon": "https://avatars.githubusercontent.com/u/6512473?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "k6",
+    "name": "k6",
+    "category": "Testing",
+    "description": "Developer-first load testing tool",
+    "website": "https://k6.io",
+    "color": "#7D64FF",
+    "npm": "npm install -g k6",
+    "icon": "https://avatars.githubusercontent.com/u/17356833?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "testcontainers",
+    "name": "Testcontainers",
+    "category": "Testing",
+    "description": "Throwaway Docker containers for testing",
+    "website": "https://testcontainers.com",
+    "color": "#0F2B4D",
+    "npm": "npm install -D @testcontainers/postgresql",
+    "icon": "https://avatars.githubusercontent.com/u/15209772?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pact",
+    "name": "Pact",
+    "category": "Testing",
+    "description": "Contract testing framework",
+    "website": "https://pact.io",
+    "color": "#FFA000",
+    "npm": "npm install -D @pact-foundation/pact",
+    "icon": "https://avatars.githubusercontent.com/u/2013204?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "faker",
+    "name": "Faker",
+    "category": "Testing",
+    "description": "Generate massive amounts of fake data",
+    "website": "https://fakerjs.dev",
+    "color": "#0F9D58",
+    "npm": "npm install -D @faker-js/faker",
+    "icon": "https://avatars.githubusercontent.com/u/29155814?s=200&v=4",
+    "skills": [
+      "Automated test suites",
+      "Assertion design",
+      "Regression defense"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nextauth",
+    "name": "NextAuth.js",
+    "category": "Authentication",
+    "description": "Complete open source authentication solution for Next.js applications",
+    "website": "https://next-auth.js.org",
+    "color": "#EB5424",
+    "npm": "npm install next-auth",
+    "icon": "https://avatars.githubusercontent.com/u/67470890?s=200&v=4",
+    "skills": [
+      "OAuth 2.0 provider integration",
+      "JWT session tokens",
+      "Database adapter syncing"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "prisma",
+      "typescript"
+    ]
+  },
+  {
+    "id": "auth0",
+    "name": "Auth0",
+    "category": "Authentication",
+    "description": "Secure access for everyone",
+    "website": "https://auth0.com",
+    "color": "#EB5424",
+    "npm": "npm install @auth0/nextjs-auth0",
+    "icon": "https://avatars.githubusercontent.com/u/2824157?s=200&v=4",
+    "skills": [
+      "Universal Login configuration",
+      "Multi-factor authentication",
+      "Enterprise identity federation"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "nodejs"
+    ]
+  },
+  {
+    "id": "clerk",
+    "name": "Clerk",
+    "category": "Authentication",
+    "description": "More than authentication",
+    "website": "https://clerk.com",
+    "color": "#6C47FF",
+    "npm": "npm install @clerk/nextjs",
+    "icon": "https://avatars.githubusercontent.com/u/49538330?s=200&v=4",
+    "skills": [
+      "User authentication",
+      "Pre-built UI components",
+      "Organization management"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "expo",
+      "typescript"
+    ]
+  },
+  {
+    "id": "supabase-auth",
+    "name": "Supabase Auth",
+    "category": "Authentication",
+    "description": "User management and authentication",
+    "website": "https://supabase.com/auth",
+    "color": "#3ECF8E",
+    "npm": "npm install @supabase/auth-ui-react",
+    "icon": "https://supabase.com/favicon/favicon-32x32.png",
+    "skills": [
+      "Identity management",
+      "Session handling",
+      "Security tokens"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "firebase-auth",
+    "name": "Firebase Auth",
+    "category": "Authentication",
+    "description": "Simple, free multi-platform sign-in",
+    "website": "https://firebase.google.com/products/auth",
+    "color": "#FFCA28",
+    "npm": "npm install firebase",
+    "icon": "https://avatars.githubusercontent.com/u/1335026?s=200&v=4",
+    "skills": [
+      "Identity management",
+      "Session handling",
+      "Security tokens"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lucia",
+    "name": "Lucia",
+    "category": "Authentication",
+    "description": "Authentication library for TypeScript",
+    "website": "https://lucia-auth.com",
+    "color": "#5F57FF",
+    "icon": "https://avatars.githubusercontent.com/u/89729670?s=200&v=4",
+    "npm": "npm install lucia",
+    "skills": [
+      "Session management",
+      "Database adapters",
+      "OAuth2 flows"
+    ],
+    "compatibleWith": [
+      "drizzle",
+      "prisma",
+      "nextjs",
+      "svelte",
+      "typescript"
+    ]
+  },
+  {
+    "id": "better-auth",
+    "name": "Better Auth",
+    "category": "Authentication",
+    "description": "The most comprehensive authentication framework",
+    "website": "https://better-auth.com",
+    "color": "#10B981",
+    "icon": "https://avatars.githubusercontent.com/u/180618636?s=200&v=4",
+    "npm": "npm install better-auth",
+    "skills": [
+      "Authentication",
+      "OAuth2 & SSO",
+      "Session management"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "svelte",
+      "hono",
+      "astro",
+      "drizzle",
+      "prisma"
+    ]
+  },
+  {
+    "id": "passport",
+    "name": "Passport.js",
+    "category": "Authentication",
+    "description": "Authentication middleware for Node.js",
+    "website": "https://passportjs.org",
+    "color": "#34E27A",
+    "npm": "npm install passport",
+    "icon": "https://avatars.githubusercontent.com/u/1160530?s=200&v=4",
+    "skills": [
+      "Identity management",
+      "Session handling",
+      "Security tokens"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kinde",
+    "name": "Kinde",
+    "category": "Authentication",
+    "description": "Modern authentication for apps",
+    "website": "https://kinde.com",
+    "color": "#FFC700",
+    "npm": "npm install @kinde-oss/kinde-auth-nextjs",
+    "icon": "https://avatars.githubusercontent.com/u/101196420?s=200&v=4",
+    "skills": [
+      "Authentication",
+      "User management",
+      "Feature flags"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "svelte",
+      "typescript"
+    ]
+  },
+  {
+    "id": "workos",
+    "name": "WorkOS",
+    "category": "Authentication",
+    "description": "Enterprise-grade auth for developers",
+    "website": "https://workos.com",
+    "color": "#6366F1",
+    "npm": "npm install @workos-inc/node",
+    "icon": "https://workos.com/favicon.ico",
+    "skills": [
+      "Enterprise SSO",
+      "SCIM directory sync",
+      "Magic link auth"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript",
+      "hono"
+    ]
+  },
+  {
+    "id": "keycloak",
+    "name": "Keycloak",
+    "category": "Authentication",
+    "description": "Open-source identity and access management",
+    "website": "https://keycloak.org",
+    "color": "#008AAA",
+    "npm": "# Deploy via Docker",
+    "icon": "https://avatars.githubusercontent.com/u/10639145?s=200&v=4",
+    "skills": [
+      "Identity management",
+      "Session handling",
+      "Security tokens"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zod",
+    "name": "Zod",
+    "category": "Validation",
+    "description": "TypeScript-first schema validation with static type inference",
+    "website": "https://zod.dev",
+    "color": "#3E67B1",
+    "npm": "npm install zod",
+    "icon": "https://zod.dev/logo.svg",
+    "skills": [
+      "Runtime schema validation",
+      "Static type inference",
+      "Form data parsing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "yup",
+    "name": "Yup",
+    "category": "Validation",
+    "description": "Dead simple Object schema validation",
+    "website": "https://github.com/jquense/yup",
+    "color": "#FF6B6B",
+    "npm": "npm install yup",
+    "icon": "https://avatars.githubusercontent.com/u/1496508?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "joi",
+    "name": "Joi",
+    "category": "Validation",
+    "description": "The most powerful schema description language and data validator for JavaScript",
+    "website": "https://joi.dev",
+    "color": "#F7931E",
+    "npm": "npm install joi",
+    "icon": "https://joi.dev/img/joiLogo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "valibot",
+    "name": "Valibot",
+    "category": "Validation",
+    "description": "The modular and type safe schema library for validating structural data",
+    "website": "https://valibot.dev",
+    "color": "#8B5CF6",
+    "npm": "npm install valibot",
+    "icon": "https://valibot.dev/favicon.svg",
+    "skills": [
+      "Modular schema validation",
+      "Tree-shaking",
+      "Type inference"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react",
+      "hono"
+    ]
+  },
+  {
+    "id": "apollo-graphql",
+    "name": "Apollo GraphQL",
+    "category": "GraphQL/API",
+    "description": "Comprehensive state management library for JavaScript that enables you to manage both local and remote data with GraphQL",
+    "website": "https://apollographql.com",
+    "color": "#311C87",
+    "npm": "npm install @apollo/client graphql",
+    "icon": "https://avatars.githubusercontent.com/u/17189275?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "graphql-yoga",
+    "name": "GraphQL Yoga",
+    "category": "GraphQL/API",
+    "description": "Fully-featured GraphQL Server with focus on easy setup, performance & great developer experience",
+    "website": "https://the-guild.dev/graphql/yoga-server",
+    "color": "#E10098",
+    "npm": "npm install graphql-yoga graphql",
+    "icon": "https://avatars.githubusercontent.com/u/20284515?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "hasura",
+    "name": "Hasura",
+    "category": "GraphQL/API",
+    "description": "Instant GraphQL on all your data",
+    "website": "https://hasura.io",
+    "color": "#1EB4D4",
+    "npm": "# Deploy via Docker",
+    "icon": "https://avatars.githubusercontent.com/u/25479918?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pothos",
+    "name": "Pothos",
+    "category": "GraphQL/API",
+    "description": "Pothos GraphQL is library for creating GraphQL schemas in typescript using a strongly typed code first approach",
+    "website": "https://pothos-graphql.dev",
+    "color": "#FF6B35",
+    "npm": "npm install @pothos/core graphql",
+    "icon": "https://pothos-graphql.dev/assets/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "graphql-codegen",
+    "name": "GraphQL Code Generator",
+    "category": "GraphQL/API",
+    "description": "Generate code from your GraphQL schema and operations with a simple CLI",
+    "website": "https://the-guild.dev/graphql/codegen",
+    "color": "#E535AB",
+    "npm": "npm install -D @graphql-codegen/cli",
+    "icon": "https://avatars.githubusercontent.com/u/20284515?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "socketio",
+    "name": "Socket.io",
+    "category": "Real-time",
+    "description": "Bidirectional and low-latency communication for every platform",
+    "website": "https://socket.io",
+    "color": "#010101",
+    "npm": "npm install socket.io socket.io-client",
+    "icon": "https://socket.io/images/logo.svg",
+    "skills": [
+      "Bi-directional WebSocket streaming",
+      "Room & namespace routing",
+      "Heartbeat & reconnection"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "react",
+      "express",
+      "redis"
+    ]
+  },
+  {
+    "id": "pusher",
+    "name": "Pusher",
+    "category": "Real-time",
+    "description": "Hosted APIs to build realtime features",
+    "website": "https://pusher.com",
+    "color": "#300D4F",
+    "npm": "npm install pusher pusher-js",
+    "icon": "https://avatars.githubusercontent.com/u/739550?s=200&v=4",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ably",
+    "name": "Ably",
+    "category": "Real-time",
+    "description": "APIs to build, extend, and deliver powerful digital experiences in realtime",
+    "website": "https://ably.com",
+    "color": "#FF5416",
+    "npm": "npm install ably",
+    "icon": "https://avatars.githubusercontent.com/u/5665186?s=200&v=4",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "partykit",
+    "name": "PartyKit",
+    "category": "Real-time",
+    "description": "Everything's better with friends. Add a real-time, collaborative layer to your app, fast",
+    "website": "https://partykit.io",
+    "color": "#FF6B9D",
+    "npm": "npm install partykit",
+    "icon": "https://avatars.githubusercontent.com/u/98838967?s=200&v=4",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "liveblocks",
+    "name": "Liveblocks",
+    "category": "Real-time",
+    "description": "Real-time collaboration infrastructure",
+    "website": "https://liveblocks.io",
+    "color": "#F00000",
+    "npm": "npm install @liveblocks/client",
+    "icon": "https://liveblocks.io/favicon.ico",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "livekit",
+    "name": "LiveKit",
+    "category": "Real-time",
+    "description": "Open-source WebRTC infrastructure",
+    "website": "https://livekit.io",
+    "color": "#00A3FF",
+    "npm": "npm install livekit-client",
+    "icon": "https://livekit.io/favicon.ico",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "yjs",
+    "name": "Yjs",
+    "category": "Real-time",
+    "description": "CRDT framework for collaborative applications",
+    "website": "https://yjs.dev",
+    "color": "#000000",
+    "npm": "npm install yjs",
+    "icon": "https://yjs.dev/favicon.ico",
+    "skills": [
+      "CRDT shared types",
+      "Collaborative text editing",
+      "WebSocket sync"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "socketio",
+      "automerge",
+      "tinybase"
+    ]
+  },
+  {
+    "id": "sanity",
+    "name": "Sanity",
+    "category": "CMS",
+    "description": "Platform for structured content that comes with an open-source editing environment",
+    "website": "https://sanity.io",
+    "color": "#F03E2F",
+    "npm": "npm install @sanity/client",
+    "icon": "https://avatars.githubusercontent.com/u/17177659?s=200&v=4",
+    "skills": [
+      "Structured content schema",
+      "GROQ querying",
+      "Real-time collaborative editing Studio"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "contentful",
+    "name": "Contentful",
+    "category": "CMS",
+    "description": "The composable content platform for business at scale",
+    "website": "https://contentful.com",
+    "color": "#2478CC",
+    "npm": "npm install contentful",
+    "icon": "https://avatars.githubusercontent.com/u/472182?s=200&v=4",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "strapi",
+    "name": "Strapi",
+    "category": "CMS",
+    "description": "The leading open-source headless CMS",
+    "website": "https://strapi.io",
+    "color": "#4945FF",
+    "npm": "npx create-strapi-app@latest",
+    "icon": "https://avatars.githubusercontent.com/u/19872173?s=200&v=4",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "payload",
+    "name": "Payload CMS",
+    "category": "CMS",
+    "description": "The best way to build a modern backend + admin UI. No black magic, all TypeScript",
+    "website": "https://payloadcms.com",
+    "color": "#000000",
+    "npm": "npx create-payload-app@latest",
+    "icon": "https://avatars.githubusercontent.com/u/62968818?s=200&v=4",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "keystatic",
+    "name": "Keystatic",
+    "category": "CMS",
+    "description": "The content management system for the component age",
+    "website": "https://keystatic.com",
+    "color": "#6366F1",
+    "npm": "npm install @keystatic/core",
+    "icon": "https://avatars.githubusercontent.com/u/84868432?s=200&v=4",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "algolia",
+    "name": "Algolia",
+    "category": "Search",
+    "description": "AI-powered search and discovery platform",
+    "website": "https://algolia.com",
+    "color": "#003DFF",
+    "npm": "npm install algoliasearch",
+    "icon": "https://avatars.githubusercontent.com/u/2034458?s=200&v=4",
+    "skills": [
+      "Instant search indexing",
+      "Typo-tolerant ranking",
+      "Faceted search filtering"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "meilisearch",
+    "name": "Meilisearch",
+    "category": "Search",
+    "description": "A lightning-fast search engine that fits effortlessly into your apps, websites, and workflow",
+    "website": "https://meilisearch.com",
+    "color": "#FF5CAA",
+    "npm": "npm install meilisearch",
+    "icon": "https://avatars.githubusercontent.com/u/43250847?s=200&v=4",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "typesense",
+    "name": "Typesense",
+    "category": "Search",
+    "description": "Fast, typo-tolerant search engine for building delightful search experiences",
+    "website": "https://typesense.org",
+    "color": "#D23669",
+    "npm": "npm install typesense",
+    "icon": "https://avatars.githubusercontent.com/u/10323546?s=200&v=4",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "elasticsearch",
+    "name": "Elasticsearch",
+    "category": "Search",
+    "description": "Distributed, RESTful search and analytics engine",
+    "website": "https://elastic.co",
+    "color": "#005571",
+    "npm": "npm install @elastic/elasticsearch",
+    "icon": "https://avatars.githubusercontent.com/u/6764390?s=200&v=4",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "resend",
+    "name": "Resend",
+    "category": "Email",
+    "description": "The best API to reach humans instead of spam folders",
+    "website": "https://resend.com",
+    "color": "#000000",
+    "npm": "npm install resend",
+    "icon": "https://avatars.githubusercontent.com/u/96661497?s=200&v=4",
+    "skills": [
+      "Transactional email",
+      "React email templates",
+      "Webhooks"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript",
+      "react-email"
+    ]
+  },
+  {
+    "id": "sendgrid",
+    "name": "SendGrid",
+    "category": "Email",
+    "description": "Email delivery service",
+    "website": "https://sendgrid.com",
+    "color": "#1A82E2",
+    "npm": "npm install @sendgrid/mail",
+    "icon": "https://avatars.githubusercontent.com/u/181234?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "postmark",
+    "name": "Postmark",
+    "category": "Email",
+    "description": "Fast and reliable transactional email service",
+    "website": "https://postmarkapp.com",
+    "color": "#FFDD00",
+    "npm": "npm install postmark",
+    "icon": "https://avatars.githubusercontent.com/u/629503?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-email",
+    "name": "React Email",
+    "category": "Email",
+    "description": "Build and send emails using React",
+    "website": "https://react.email",
+    "color": "#000000",
+    "npm": "npm install @react-email/components",
+    "icon": "https://avatars.githubusercontent.com/u/109174925?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "posthog",
+    "name": "PostHog",
+    "category": "Analytics",
+    "description": "How engineers build successful products",
+    "website": "https://posthog.com",
+    "color": "#1D4AFF",
+    "npm": "npm install posthog-js",
+    "icon": "https://avatars.githubusercontent.com/u/53387734?s=200&v=4",
+    "skills": [
+      "Product analytics",
+      "Session replay",
+      "A/B testing"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "id": "plausible",
+    "name": "Plausible Analytics",
+    "category": "Analytics",
+    "description": "Simple and privacy-friendly alternative to Google Analytics",
+    "website": "https://plausible.io",
+    "color": "#5850EC",
+    "npm": "npm install plausible-tracker",
+    "icon": "https://avatars.githubusercontent.com/u/52078544?s=200&v=4",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "umami",
+    "name": "Umami",
+    "category": "Analytics",
+    "description": "Simple, fast, privacy-focused alternative to Google Analytics",
+    "website": "https://umami.is",
+    "color": "#FF6B35",
+    "npm": "# Deploy via Docker",
+    "icon": "https://avatars.githubusercontent.com/u/65772953?s=200&v=4",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "google-analytics",
+    "name": "Google Analytics",
+    "category": "Analytics",
+    "description": "Web analytics service offered by Google",
+    "website": "https://analytics.google.com",
+    "color": "#E37400",
+    "npm": "npm install @vercel/analytics",
+    "icon": "https://avatars.githubusercontent.com/u/1342004?s=200&v=4",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mixpanel",
+    "name": "Mixpanel",
+    "category": "Analytics",
+    "description": "Product analytics for modern teams",
+    "website": "https://mixpanel.com",
+    "color": "#7856FF",
+    "npm": "npm install mixpanel-browser",
+    "icon": "https://mixpanel.com/favicon.ico",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "amplitude",
+    "name": "Amplitude",
+    "category": "Analytics",
+    "description": "Product analytics platform",
+    "website": "https://amplitude.com",
+    "color": "#1D4ED8",
+    "npm": "npm install @amplitude/analytics-browser",
+    "icon": "https://amplitude.com/favicon.ico",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "segment",
+    "name": "Segment",
+    "category": "Analytics",
+    "description": "Customer data platform",
+    "website": "https://segment.com",
+    "color": "#00B295",
+    "npm": "npm install @segment/analytics-next",
+    "icon": "https://segment.com/favicon.ico",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "stripe",
+    "name": "Stripe",
+    "category": "Payment",
+    "description": "Online payment processing for internet businesses",
+    "website": "https://stripe.com",
+    "color": "#635BFF",
+    "npm": "npm install stripe @stripe/stripe-js",
+    "icon": "https://avatars.githubusercontent.com/u/856813?s=200&v=4",
+    "skills": [
+      "Payment intent flows",
+      "Subscription billing cycles",
+      "Webhook verification"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "nodejs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "paypal",
+    "name": "PayPal",
+    "category": "Payment",
+    "description": "Online payments system",
+    "website": "https://paypal.com",
+    "color": "#00457C",
+    "npm": "npm install @paypal/checkout-server-sdk",
+    "icon": "https://avatars.githubusercontent.com/u/476675?s=200&v=4",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lemon-squeezy",
+    "name": "Lemon Squeezy",
+    "category": "Payment",
+    "description": "The all-in-one platform for running your SaaS business",
+    "website": "https://lemonsqueezy.com",
+    "color": "#FFD23F",
+    "npm": "npm install @lemonsqueezy/lemonsqueezy.js",
+    "icon": "https://avatars.githubusercontent.com/u/82379168?s=200&v=4",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "paddle",
+    "name": "Paddle",
+    "category": "Payment",
+    "description": "Merchant of record for SaaS businesses",
+    "website": "https://paddle.com",
+    "color": "#FFD23F",
+    "npm": "npm install @paddle/paddle-js",
+    "icon": "https://paddle.com/favicon.ico",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudinary",
+    "name": "Cloudinary",
+    "category": "Storage",
+    "description": "Image and video management in the cloud",
+    "website": "https://cloudinary.com",
+    "color": "#3448C5",
+    "npm": "npm install cloudinary",
+    "icon": "https://avatars.githubusercontent.com/u/1460763?s=200&v=4",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "uploadthing",
+    "name": "UploadThing",
+    "category": "Storage",
+    "description": "File uploads for modern web apps",
+    "website": "https://uploadthing.com",
+    "color": "#F97316",
+    "npm": "npm install uploadthing",
+    "icon": "https://avatars.githubusercontent.com/u/106103625?s=200&v=4",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aws-s3",
+    "name": "AWS S3",
+    "category": "Storage",
+    "description": "Object storage built to retrieve any amount of data from anywhere",
+    "website": "https://aws.amazon.com/s3",
+    "color": "#FF9900",
+    "npm": "npm install @aws-sdk/client-s3",
+    "icon": "https://avatars.githubusercontent.com/u/2232217?s=200&v=4",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vercel-blob",
+    "name": "Vercel Blob",
+    "category": "Storage",
+    "description": "Fast object storage for the frontend",
+    "website": "https://vercel.com/storage/blob",
+    "color": "#000000",
+    "npm": "npm install @vercel/blob",
+    "icon": "https://avatars.githubusercontent.com/u/14985020?s=200&v=4",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudflare-r2",
+    "name": "Cloudflare R2",
+    "category": "Storage",
+    "description": "S3-compatible object storage with zero egress fees",
+    "website": "https://cloudflare.com/r2",
+    "color": "#F38020",
+    "npm": "npm install @aws-sdk/client-s3",
+    "icon": "https://avatars.githubusercontent.com/u/314135?s=200&v=4",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "backblaze-b2",
+    "name": "Backblaze B2",
+    "category": "Storage",
+    "description": "Affordable cloud object storage",
+    "website": "https://backblaze.com/b2",
+    "color": "#E31F24",
+    "npm": "npm install b2sdk",
+    "icon": "https://www.backblaze.com/favicon.ico",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "turbopack",
+    "name": "Turbopack",
+    "category": "Build Tools",
+    "description": "The Rust-powered successor to Webpack",
+    "website": "https://turbo.build/pack",
+    "color": "#0EA5E9",
+    "npm": "# Built into Next.js 13+",
+    "icon": "https://avatars.githubusercontent.com/u/84177906?s=200&v=4",
+    "skills": [
+      "Incremental compilation",
+      "Next.js dev server",
+      "Rust bundler"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "rspack",
+    "name": "Rspack",
+    "category": "Build Tools",
+    "description": "A fast Rust-based web bundler",
+    "website": "https://rspack.dev",
+    "color": "#FF6B35",
+    "npm": "npm install @rspack/cli",
+    "icon": "https://avatars.githubusercontent.com/u/108205785?s=200&v=4",
+    "skills": [
+      "Bundling",
+      "Build optimization",
+      "Rust web tooling"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "typescript",
+      "tailwind",
+      "rsbuild"
+    ]
+  },
+  {
+    "id": "farm",
+    "name": "Farm",
+    "category": "Build Tools",
+    "description": "Extremely fast Vite-compatible web build tool written in Rust",
+    "website": "https://farmfe.org",
+    "color": "#00D8FF",
+    "npm": "npm create farm@latest",
+    "icon": "https://avatars.githubusercontent.com/u/108205785?s=200&v=4",
+    "skills": [
+      "Incremental compilation",
+      "Module-level caching",
+      "Rust web tooling"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "typescript",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "coolify",
+    "name": "Coolify",
+    "category": "Hosting",
+    "description": "An open-source & self-hostable Heroku / Netlify / Vercel alternative",
+    "website": "https://coolify.io",
+    "color": "#6366F1",
+    "npm": "# Deploy via Docker",
+    "icon": "https://avatars.githubusercontent.com/u/83192107?s=200&v=4",
+    "skills": [
+      "Self-hosted PaaS",
+      "Docker orchestration",
+      "Automated deployments"
+    ],
+    "compatibleWith": [
+      "docker",
+      "nextjs",
+      "postgresql",
+      "redis",
+      "github-actions"
+    ]
+  },
+  {
+    "id": "dokku",
+    "name": "Dokku",
+    "category": "Hosting",
+    "description": "A docker-powered PaaS that helps you build and manage the lifecycle of applications",
+    "website": "https://dokku.com",
+    "color": "#3E4C96",
+    "npm": "# Deploy via Git push",
+    "icon": "https://avatars.githubusercontent.com/u/13455795?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "heroku",
+    "name": "Heroku",
+    "category": "Hosting",
+    "description": "Cloud platform as a service supporting several programming languages",
+    "website": "https://heroku.com",
+    "color": "#430098",
+    "npm": "npm install -g heroku",
+    "icon": "https://avatars.githubusercontent.com/u/23211?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zustand",
+    "name": "Zustand",
+    "category": "State Management",
+    "description": "Small, fast and scalable bearbones state-management solution",
+    "website": "https://zustand-demo.pmnd.rs",
+    "color": "#443E38",
+    "npm": "npm install zustand",
+    "icon": "https://avatars.githubusercontent.com/u/45790596?s=200&v=4",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "redux",
+    "name": "Redux Toolkit",
+    "category": "State Management",
+    "description": "The official, opinionated, batteries-included toolset for efficient Redux development",
+    "website": "https://redux-toolkit.js.org",
+    "color": "#764ABC",
+    "npm": "npm install @reduxjs/toolkit react-redux",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "jotai",
+    "name": "Jotai",
+    "category": "State Management",
+    "description": "Primitive and flexible state management for React",
+    "website": "https://jotai.org",
+    "color": "#000000",
+    "npm": "npm install jotai",
+    "icon": "https://jotai.org/favicon.svg",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "valtio",
+    "name": "Valtio",
+    "category": "State Management",
+    "description": "Makes proxy-state simple for React and Vanilla",
+    "website": "https://valtio.pmnd.rs",
+    "color": "#1E40AF",
+    "npm": "npm install valtio",
+    "icon": "https://avatars.githubusercontent.com/u/45790596?s=200&v=4",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "recoil",
+    "name": "Recoil",
+    "category": "State Management",
+    "description": "Experimental state management library for React apps",
+    "website": "https://recoiljs.org",
+    "color": "#3578E5",
+    "npm": "npm install recoil",
+    "icon": "https://recoiljs.org/img/favicon.png",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mobx",
+    "name": "MobX",
+    "category": "State Management",
+    "description": "Simple, scalable state management",
+    "website": "https://mobx.js.org",
+    "color": "#FF9955",
+    "icon": "https://avatars.githubusercontent.com/u/17475736?s=200&v=4",
+    "npm": "npm install mobx mobx-react-lite",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "xstate",
+    "name": "XState",
+    "category": "State Management",
+    "description": "State machines and statecharts",
+    "website": "https://xstate.js.org",
+    "color": "#2C3E50",
+    "icon": "https://avatars.githubusercontent.com/u/28773662?s=200&v=4",
+    "npm": "npm install xstate",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nanostores",
+    "name": "Nanostores",
+    "category": "State Management",
+    "description": "Tiny state manager",
+    "website": "https://github.com/nanostores/nanostores",
+    "color": "#FF6B35",
+    "icon": "https://avatars.githubusercontent.com/u/84611369?s=200&v=4",
+    "npm": "npm install nanostores",
+    "skills": [
+      "Global state container",
+      "Action dispatching",
+      "Reactive store subscriptions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vite",
+    "name": "Vite",
+    "category": "Build Tools",
+    "description": "Next generation frontend tooling",
+    "website": "https://vitejs.dev",
+    "color": "#646CFF",
+    "npm": "npm create vite@latest",
+    "icon": "https://vitejs.dev/logo.svg",
+    "skills": [
+      "Module bundling",
+      "Asset optimization",
+      "Developer compilation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "webpack",
+    "name": "Webpack",
+    "category": "Build Tools",
+    "description": "Static module bundler for modern JavaScript applications",
+    "website": "https://webpack.js.org",
+    "color": "#8DD6F9",
+    "npm": "npm install webpack",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg",
+    "skills": [
+      "Module bundling",
+      "Asset optimization",
+      "Developer compilation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rollup",
+    "name": "Rollup",
+    "category": "Build Tools",
+    "description": "Module bundler for JavaScript",
+    "website": "https://rollupjs.org",
+    "color": "#EC4A3F",
+    "npm": "npm install rollup",
+    "icon": "https://rollupjs.org/favicon.png",
+    "skills": [
+      "Module bundling",
+      "Asset optimization",
+      "Developer compilation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "parcel",
+    "name": "Parcel",
+    "category": "Build Tools",
+    "description": "The zero configuration build tool for the web",
+    "website": "https://parceljs.org",
+    "color": "#E7A427",
+    "npm": "npm install parcel",
+    "icon": "https://avatars.githubusercontent.com/u/22735755?s=200&v=4",
+    "skills": [
+      "Module bundling",
+      "Asset optimization",
+      "Developer compilation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "esbuild",
+    "name": "esbuild",
+    "category": "Build Tools",
+    "description": "An extremely fast JavaScript bundler",
+    "website": "https://esbuild.github.io",
+    "color": "#FFCF00",
+    "npm": "npm install esbuild",
+    "icon": "https://esbuild.github.io/favicon.svg",
+    "skills": [
+      "Module bundling",
+      "Asset optimization",
+      "Developer compilation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vercel",
+    "name": "Vercel",
+    "category": "Hosting",
+    "description": "Platform for frontend frameworks and static sites",
+    "website": "https://vercel.com",
+    "color": "#000000",
+    "npm": "npm install -g vercel",
+    "icon": "https://assets.vercel.com/image/upload/v1662130559/nextjs/Icon_light_background.png",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "netlify",
+    "name": "Netlify",
+    "category": "Hosting",
+    "description": "All-in-one platform for automating modern web projects",
+    "website": "https://netlify.com",
+    "color": "#00C7B7",
+    "npm": "npm install -g netlify-cli",
+    "icon": "https://www.netlify.com/v3/img/components/logomark.png",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "railway",
+    "name": "Railway",
+    "category": "Hosting",
+    "description": "Deploy from GitHub with zero configuration",
+    "website": "https://railway.app",
+    "color": "#0B0D0E",
+    "npm": "npm install -g @railway/cli",
+    "icon": "https://railway.app/brand/logo-light.png",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "render",
+    "name": "Render",
+    "category": "Hosting",
+    "description": "Cloud platform for developers and teams",
+    "website": "https://render.com",
+    "color": "#46E3B7",
+    "npm": "# Deploy via Git",
+    "icon": "https://avatars.githubusercontent.com/u/36424661?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "fly",
+    "name": "Fly.io",
+    "category": "Hosting",
+    "description": "Deploy app servers close to your users",
+    "website": "https://fly.io",
+    "color": "#8B5CF6",
+    "npm": "npm install -g @fly/flyctl",
+    "icon": "https://avatars.githubusercontent.com/u/22525303?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudflare-pages",
+    "name": "Cloudflare Pages",
+    "category": "Hosting",
+    "description": "JAMstack platform for frontend developers",
+    "website": "https://pages.cloudflare.com",
+    "color": "#F38020",
+    "npm": "npm install -g wrangler",
+    "icon": "https://avatars.githubusercontent.com/u/314135?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aws",
+    "name": "AWS",
+    "category": "Hosting",
+    "description": "Amazon Web Services cloud platform",
+    "website": "https://aws.amazon.com",
+    "color": "#FF9900",
+    "npm": "npm install aws-cdk",
+    "icon": "https://avatars.githubusercontent.com/u/2232217?s=200&v=4",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "digitalocean",
+    "name": "DigitalOcean",
+    "category": "Hosting",
+    "description": "Cloud infrastructure for developers",
+    "website": "https://digitalocean.com",
+    "color": "#0080FF",
+    "npm": "npm install -g doctl",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/digitalocean/digitalocean-original.svg",
+    "skills": [
+      "Cloud deployment",
+      "Edge CDN routing",
+      "Custom domain configuration"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "typescript",
+    "name": "TypeScript",
+    "category": "Languages",
+    "description": "Typed superset of JavaScript",
+    "website": "https://typescriptlang.org",
+    "color": "#3178C6",
+    "npm": "npm install typescript",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "javascript",
+    "name": "JavaScript",
+    "category": "Languages",
+    "description": "Programming language of the web",
+    "website": "https://developer.mozilla.org/en-US/docs/Web/JavaScript",
+    "color": "#F7DF1E",
+    "npm": "# Built into browsers",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "python",
+    "name": "Python",
+    "category": "Languages",
+    "description": "High-level programming language",
+    "website": "https://python.org",
+    "color": "#3776AB",
+    "npm": "# Install from python.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "go",
+    "name": "Go",
+    "category": "Languages",
+    "description": "Open source programming language",
+    "website": "https://golang.org",
+    "color": "#00ADD8",
+    "npm": "# Install from golang.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rust",
+    "name": "Rust",
+    "category": "Languages",
+    "description": "Systems programming language",
+    "website": "https://rust-lang.org",
+    "color": "#000000",
+    "npm": "# Install from rustup.rs",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "java",
+    "name": "Java",
+    "category": "Languages",
+    "description": "Object-oriented programming language",
+    "website": "https://java.com",
+    "color": "#ED8B00",
+    "npm": "# Install JDK",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "csharp",
+    "name": "C#",
+    "category": "Languages",
+    "description": "Modern object-oriented language",
+    "website": "https://docs.microsoft.com/en-us/dotnet/csharp",
+    "color": "#239120",
+    "npm": "# Install .NET SDK",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "php",
+    "name": "PHP",
+    "category": "Languages",
+    "description": "Server-side scripting language",
+    "website": "https://php.net",
+    "color": "#777BB4",
+    "npm": "# Install from php.net",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ruby",
+    "name": "Ruby",
+    "category": "Languages",
+    "description": "Dynamic programming language",
+    "website": "https://ruby-lang.org",
+    "color": "#CC342D",
+    "npm": "# Install from ruby-lang.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ruby/ruby-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kotlin",
+    "name": "Kotlin",
+    "category": "Languages",
+    "description": "Modern programming language",
+    "website": "https://kotlinlang.org",
+    "color": "#7F52FF",
+    "npm": "# Install Kotlin compiler",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "swift",
+    "name": "Swift",
+    "category": "Languages",
+    "description": "Apple's programming language",
+    "website": "https://swift.org",
+    "color": "#FA7343",
+    "npm": "# Install Xcode",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dart",
+    "name": "Dart",
+    "category": "Languages",
+    "description": "Client-optimized language",
+    "website": "https://dart.dev",
+    "color": "#0175C2",
+    "npm": "# Install Dart SDK",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "docker",
+    "name": "Docker",
+    "category": "DevOps/Infrastructure",
+    "description": "Containerization platform",
+    "website": "https://docker.com",
+    "color": "#2496ED",
+    "npm": "# Install Docker Desktop",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    "skills": [
+      "Multi-stage Dockerfiles",
+      "Container isolation",
+      "Layer caching optimization"
+    ],
+    "compatibleWith": [
+      "kubernetes",
+      "nodejs",
+      "python",
+      "postgresql"
+    ]
+  },
+  {
+    "id": "kubernetes",
+    "name": "Kubernetes",
+    "category": "DevOps/Infrastructure",
+    "description": "Container orchestration",
+    "website": "https://kubernetes.io",
+    "color": "#326CE5",
+    "npm": "# Install kubectl",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
+    "skills": [
+      "Container orchestration",
+      "Helm charts",
+      "Ingress & service routing"
+    ],
+    "compatibleWith": [
+      "docker",
+      "terraform",
+      "prometheus",
+      "aws"
+    ]
+  },
+  {
+    "id": "terraform",
+    "name": "Terraform",
+    "category": "DevOps/Infrastructure",
+    "description": "Infrastructure as code",
+    "website": "https://terraform.io",
+    "color": "#623CE4",
+    "npm": "# Install from terraform.io",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg",
+    "skills": [
+      "Infrastructure as Code (IaC)",
+      "State file management",
+      "Cloud provider provisioning"
+    ],
+    "compatibleWith": [
+      "aws",
+      "docker"
+    ]
+  },
+  {
+    "id": "ansible",
+    "name": "Ansible",
+    "category": "DevOps/Infrastructure",
+    "description": "IT automation platform",
+    "website": "https://ansible.com",
+    "color": "#EE0000",
+    "npm": "pip install ansible",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ansible/ansible-original.svg",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "jenkins",
+    "name": "Jenkins",
+    "category": "DevOps/Infrastructure",
+    "description": "Automation server",
+    "website": "https://jenkins.io",
+    "color": "#D33833",
+    "npm": "# Install from jenkins.io",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jenkins/jenkins-original.svg",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "github-actions",
+    "name": "GitHub Actions",
+    "category": "DevOps/Infrastructure",
+    "description": "CI/CD platform",
+    "website": "https://github.com/features/actions",
+    "color": "#2088FF",
+    "npm": "# Configure in .github/workflows",
+    "icon": "https://avatars.githubusercontent.com/u/44036562?s=200&v=4",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gitlab-ci",
+    "name": "GitLab CI",
+    "category": "DevOps/Infrastructure",
+    "description": "Continuous integration",
+    "website": "https://docs.gitlab.com/ee/ci",
+    "color": "#FC6D26",
+    "npm": "# Configure in .gitlab-ci.yml",
+    "icon": "https://avatars.githubusercontent.com/u/22032?s=200&v=4",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "circleci",
+    "name": "CircleCI",
+    "category": "DevOps/Infrastructure",
+    "description": "Continuous integration platform",
+    "website": "https://circleci.com",
+    "color": "#343434",
+    "npm": "# Configure in .circleci/config.yml",
+    "icon": "https://avatars.githubusercontent.com/u/1231870?s=200&v=4",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sentry",
+    "name": "Sentry",
+    "category": "Monitoring/Observability",
+    "description": "Error tracking and performance monitoring",
+    "website": "https://sentry.io",
+    "color": "#362D59",
+    "npm": "npm install @sentry/node",
+    "icon": "https://avatars.githubusercontent.com/u/1396951?s=200&v=4",
+    "skills": [
+      "Error tracking",
+      "Performance monitoring",
+      "Session replay"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "vue",
+      "nodejs",
+      "python"
+    ]
+  },
+  {
+    "id": "datadog",
+    "name": "Datadog",
+    "category": "Monitoring/Observability",
+    "description": "Monitoring and analytics platform",
+    "website": "https://datadoghq.com",
+    "color": "#632CA6",
+    "npm": "npm install dd-trace",
+    "icon": "https://avatars.githubusercontent.com/u/365230?s=200&v=4",
+    "skills": [
+      "APM distributed tracing",
+      "Custom metrics dashboards",
+      "Log aggregation & alerting"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "nodejs",
+      "opentelemetry",
+      "docker"
+    ]
+  },
+  {
+    "id": "newrelic",
+    "name": "New Relic",
+    "category": "Monitoring/Observability",
+    "description": "Application performance monitoring",
+    "website": "https://newrelic.com",
+    "color": "#008C99",
+    "npm": "npm install newrelic",
+    "icon": "https://avatars.githubusercontent.com/u/31739?s=200&v=4",
+    "skills": [
+      "Telemetry instrumentation",
+      "Metrics dashboards",
+      "Error alerting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "prometheus",
+    "name": "Prometheus",
+    "category": "Monitoring/Observability",
+    "description": "Monitoring system and time series database",
+    "website": "https://prometheus.io",
+    "color": "#E6522C",
+    "npm": "npm install prom-client",
+    "icon": "https://avatars.githubusercontent.com/u/3380462?s=200&v=4",
+    "skills": [
+      "Time-series metric scraping",
+      "PromQL querying",
+      "Alertmanager rules"
+    ],
+    "compatibleWith": [
+      "grafana",
+      "kubernetes",
+      "docker",
+      "opentelemetry"
+    ]
+  },
+  {
+    "id": "grafana",
+    "name": "Grafana",
+    "category": "Monitoring/Observability",
+    "description": "Analytics and monitoring platform",
+    "website": "https://grafana.com",
+    "color": "#F46800",
+    "npm": "# Install Grafana server",
+    "icon": "https://avatars.githubusercontent.com/u/7195757?s=200&v=4",
+    "skills": [
+      "Multi-source visualization",
+      "Custom alert dashboarding",
+      "Log and trace correlation"
+    ],
+    "compatibleWith": [
+      "prometheus",
+      "grafana-loki",
+      "opentelemetry"
+    ]
+  },
+  {
+    "id": "jaeger",
+    "name": "Jaeger",
+    "category": "Monitoring/Observability",
+    "description": "Distributed tracing system",
+    "website": "https://jaegertracing.io",
+    "color": "#60D0E4",
+    "npm": "npm install jaeger-client",
+    "icon": "https://avatars.githubusercontent.com/u/28545596?s=200&v=4",
+    "skills": [
+      "Telemetry instrumentation",
+      "Metrics dashboards",
+      "Error alerting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rabbitmq",
+    "name": "RabbitMQ",
+    "category": "Message Queues/Event Streaming",
+    "description": "Message broker",
+    "website": "https://rabbitmq.com",
+    "color": "#FF6600",
+    "npm": "npm install amqplib",
+    "icon": "https://avatars.githubusercontent.com/u/96669?s=200&v=4",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "apache-kafka",
+    "name": "Apache Kafka",
+    "category": "Message Queues/Event Streaming",
+    "description": "Distributed event streaming platform",
+    "website": "https://kafka.apache.org",
+    "color": "#231F20",
+    "npm": "npm install kafkajs",
+    "icon": "https://avatars.githubusercontent.com/u/47359?s=200&v=4",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nats",
+    "name": "NATS",
+    "category": "Message Queues/Event Streaming",
+    "description": "Cloud native messaging system",
+    "website": "https://nats.io",
+    "color": "#199bfc",
+    "npm": "npm install nats",
+    "icon": "https://avatars.githubusercontent.com/u/6501170?s=200&v=4",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bull",
+    "name": "Bull",
+    "category": "Message Queues/Event Streaming",
+    "description": "Redis-based queue for Node.js",
+    "website": "https://github.com/OptimalBits/bull",
+    "color": "#D82C20",
+    "npm": "npm install bull",
+    "icon": "https://avatars.githubusercontent.com/u/1045194?s=200&v=4",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "swagger",
+    "name": "Swagger/OpenAPI",
+    "category": "API Documentation",
+    "description": "API documentation and design",
+    "website": "https://swagger.io",
+    "color": "#85EA2D",
+    "npm": "npm install swagger-ui-express",
+    "icon": "https://avatars.githubusercontent.com/u/7658037?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "postman",
+    "name": "Postman",
+    "category": "API Documentation",
+    "description": "API development platform",
+    "website": "https://postman.com",
+    "color": "#FF6C37",
+    "npm": "# Install Postman app",
+    "icon": "https://avatars.githubusercontent.com/u/10251060?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "insomnia",
+    "name": "Insomnia",
+    "category": "API Documentation",
+    "description": "API client and design tool",
+    "website": "https://insomnia.rest",
+    "color": "#4000BF",
+    "npm": "# Install Insomnia app",
+    "icon": "https://avatars.githubusercontent.com/u/25882507?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "git",
+    "name": "Git",
+    "category": "Version Control",
+    "description": "Distributed version control system",
+    "website": "https://git-scm.com",
+    "color": "#F05032",
+    "npm": "# Install from git-scm.com",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "github",
+    "name": "GitHub",
+    "category": "Version Control",
+    "description": "Git repository hosting service",
+    "website": "https://github.com",
+    "color": "#181717",
+    "npm": "# Create account at github.com",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gitlab",
+    "name": "GitLab",
+    "category": "Version Control",
+    "description": "Git repository manager",
+    "website": "https://gitlab.com",
+    "color": "#FC6D26",
+    "npm": "# Create account at gitlab.com",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gitlab/gitlab-original.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bitbucket",
+    "name": "Bitbucket",
+    "category": "Version Control",
+    "description": "Git repository hosting",
+    "website": "https://bitbucket.org",
+    "color": "#0052CC",
+    "npm": "# Create account at bitbucket.org",
+    "icon": "https://avatars.githubusercontent.com/u/2263316?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "eslint",
+    "name": "ESLint",
+    "category": "Code Quality/Linting",
+    "description": "JavaScript linter",
+    "website": "https://eslint.org",
+    "color": "#4B32C3",
+    "npm": "npm install eslint",
+    "icon": "https://eslint.org/img/favicon-32x32.png",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "prettier",
+    "name": "Prettier",
+    "category": "Code Quality/Linting",
+    "description": "Code formatter",
+    "website": "https://prettier.io",
+    "color": "#F7B93E",
+    "npm": "npm install prettier",
+    "icon": "https://prettier.io/img/favicon-32x32.png",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "husky",
+    "name": "Husky",
+    "category": "Code Quality/Linting",
+    "description": "Git hooks made easy",
+    "website": "https://typicode.github.io/husky",
+    "color": "#42B883",
+    "npm": "npm install husky",
+    "icon": "https://avatars.githubusercontent.com/u/5502029?s=200&v=4",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lint-staged",
+    "name": "lint-staged",
+    "category": "Code Quality/Linting",
+    "description": "Run linters on git staged files",
+    "website": "https://github.com/okonet/lint-staged",
+    "color": "#000000",
+    "npm": "npm install lint-staged",
+    "icon": "https://avatars.githubusercontent.com/u/1282980?s=200&v=4",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sonarqube",
+    "name": "SonarQube",
+    "category": "Code Quality/Linting",
+    "description": "Code quality and security analysis",
+    "website": "https://sonarqube.org",
+    "color": "#4E9BCD",
+    "npm": "# Install SonarQube server",
+    "icon": "https://avatars.githubusercontent.com/u/2607971?s=200&v=4",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vercel-ai-sdk",
+    "name": "Vercel AI SDK",
+    "category": "AI/LLM",
+    "description": "TypeScript toolkit for building AI applications",
+    "website": "https://ai-sdk.dev",
+    "color": "#000000",
+    "npm": "npm install ai",
+    "icon": "https://avatars.githubusercontent.com/u/14985020?s=200&v=4",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "langchain",
+    "name": "LangChain",
+    "category": "AI/LLM",
+    "description": "Framework for developing LLM-powered applications",
+    "website": "https://langchain.com",
+    "color": "#1C3C3C",
+    "npm": "npm install langchain",
+    "icon": "https://langchain.com/favicon.ico",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "llamaindex",
+    "name": "LlamaIndex",
+    "category": "AI/LLM",
+    "description": "Data framework for LLM applications",
+    "website": "https://llamaindex.ai",
+    "color": "#FF6F00",
+    "npm": "npm install llamaindex",
+    "icon": "https://avatars.githubusercontent.com/u/108554348?s=200&v=4",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "openai",
+    "name": "OpenAI",
+    "category": "AI/LLM",
+    "description": "AI models and APIs for building intelligent applications",
+    "website": "https://openai.com",
+    "color": "#412991",
+    "npm": "npm install openai",
+    "icon": "https://avatars.githubusercontent.com/u/14957082?s=200&v=4",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "anthropic",
+    "name": "Anthropic",
+    "category": "AI/LLM",
+    "description": "Claude AI models and API",
+    "website": "https://anthropic.com",
+    "color": "#D97757",
+    "npm": "npm install @anthropic-ai/sdk",
+    "icon": "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "huggingface",
+    "name": "Hugging Face",
+    "category": "AI/LLM",
+    "description": "AI model hub and inference API",
+    "website": "https://huggingface.co",
+    "color": "#FFD21E",
+    "npm": "npm install @huggingface/inference",
+    "icon": "https://huggingface.co/front/images/logos/mark/favicon.ico",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ollama",
+    "name": "Ollama",
+    "category": "AI/LLM",
+    "description": "Run LLMs locally",
+    "website": "https://ollama.com",
+    "color": "#000000",
+    "npm": "curl -fsSL https://ollama.com/install.sh | sh",
+    "icon": "https://ollama.ai/favicon.ico",
+    "skills": [
+      "Prompt engineering",
+      "LLM inference",
+      "RAG architectures"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pgvector",
+    "name": "pgvector",
+    "category": "AI/LLM",
+    "description": "Open-source vector similarity search for Postgres",
+    "website": "https://github.com/pgvector/pgvector",
+    "color": "#336791",
+    "npm": "# Postgres extension",
+    "icon": "https://github.com/pgvector.png",
+    "skills": [
+      "Vector similarity search",
+      "Postgres embeddings",
+      "HNSW indexing"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "prisma",
+      "drizzle",
+      "openai",
+      "langchain"
+    ]
+  },
+  {
+    "id": "pinecone",
+    "name": "Pinecone",
+    "category": "Vector Database",
+    "description": "Vector database for AI applications",
+    "website": "https://pinecone.io",
+    "color": "#00C853",
+    "npm": "npm install @pinecone-database/pinecone",
+    "icon": "https://www.pinecone.io/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "weaviate",
+    "name": "Weaviate",
+    "category": "Vector Database",
+    "description": "Open-source vector database",
+    "website": "https://weaviate.io",
+    "color": "#5A67D8",
+    "npm": "npm install weaviate-ts-client",
+    "icon": "https://weaviate.io/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "qdrant",
+    "name": "Qdrant",
+    "category": "Vector Database",
+    "description": "Vector search engine",
+    "website": "https://qdrant.tech",
+    "color": "#FF3D00",
+    "npm": "npm install @qdrant/js-client-rest",
+    "icon": "https://qdrant.tech/favicon.ico",
+    "skills": [
+      "Rust vector indexing",
+      "HNSW graph search",
+      "Payload filtering for RAG"
+    ],
+    "compatibleWith": [
+      "python",
+      "langchain",
+      "llamaindex",
+      "openai"
+    ]
+  },
+  {
+    "id": "chroma",
+    "name": "Chroma",
+    "category": "Vector Database",
+    "description": "AI-native open-source embedding database",
+    "website": "https://trychroma.com",
+    "color": "#7C3AED",
+    "npm": "npm install chromadb",
+    "icon": "https://trychroma.com/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "milvus",
+    "name": "Milvus",
+    "category": "Vector Database",
+    "description": "Vector database for scalable similarity search",
+    "website": "https://milvus.io",
+    "color": "#00A1EA",
+    "npm": "npm install @zilliz/milvus2-sdk-node",
+    "icon": "https://milvus.io/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudflare-workers",
+    "name": "Cloudflare Workers",
+    "category": "Edge/Serverless",
+    "description": "Serverless execution at the edge",
+    "website": "https://workers.cloudflare.com",
+    "color": "#F38020",
+    "npm": "npm install -g wrangler",
+    "icon": "https://workers.cloudflare.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "deno-deploy",
+    "name": "Deno Deploy",
+    "category": "Edge/Serverless",
+    "description": "Global edge runtime for JavaScript and TypeScript",
+    "website": "https://deno.com/deploy",
+    "color": "#000000",
+    "npm": "npm install -g deployctl",
+    "icon": "https://deno.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aws-lambda",
+    "name": "AWS Lambda",
+    "category": "Edge/Serverless",
+    "description": "Serverless compute service",
+    "website": "https://aws.amazon.com/lambda",
+    "color": "#FF9900",
+    "npm": "npm install @aws-sdk/client-lambda",
+    "icon": "https://avatars.githubusercontent.com/u/2232217?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vercel-edge",
+    "name": "Vercel Edge",
+    "category": "Edge/Serverless",
+    "description": "Edge functions on Vercel",
+    "website": "https://vercel.com/docs/edge-network",
+    "color": "#000000",
+    "npm": "# Built into Vercel",
+    "icon": "https://avatars.githubusercontent.com/u/14985020?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "launchdarkly",
+    "name": "LaunchDarkly",
+    "category": "Feature Flags",
+    "description": "Feature management platform",
+    "website": "https://launchdarkly.com",
+    "color": "#00A3FF",
+    "npm": "npm install launchdarkly-node-server-sdk",
+    "icon": "https://launchdarkly.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "flagsmith",
+    "name": "Flagsmith",
+    "category": "Feature Flags",
+    "description": "Open-source feature flag and remote config service",
+    "website": "https://flagsmith.com",
+    "color": "#FF6B35",
+    "npm": "npm install flagsmith",
+    "icon": "https://flagsmith.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "unleash",
+    "name": "Unleash",
+    "category": "Feature Flags",
+    "description": "Open-source feature management",
+    "website": "https://getunleash.io",
+    "color": "#E11D48",
+    "npm": "npm install unleash-client",
+    "icon": "https://www.getunleash.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "growthbook",
+    "name": "GrowthBook",
+    "category": "Feature Flags",
+    "description": "Open-source feature flags and A/B testing",
+    "website": "https://growthbook.io",
+    "color": "#7C3AED",
+    "npm": "npm install @growthbook/growthbook",
+    "icon": "https://www.growthbook.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "inngest",
+    "name": "Inngest",
+    "category": "Background Jobs",
+    "description": "Serverless background jobs and workflows",
+    "website": "https://inngest.com",
+    "color": "#7C3AED",
+    "npm": "npm install inngest",
+    "icon": "https://inngest.com/favicon.ico",
+    "skills": [
+      "Durable execution",
+      "Step functions",
+      "Event-driven workflows"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "typescript",
+      "hono",
+      "express"
+    ]
+  },
+  {
+    "id": "trigger-dev",
+    "name": "Trigger.dev",
+    "category": "Background Jobs",
+    "description": "Background jobs for TypeScript",
+    "website": "https://trigger.dev",
+    "color": "#FF4D00",
+    "npm": "npm install @trigger.dev/sdk",
+    "icon": "https://trigger.dev/favicon.ico",
+    "skills": [
+      "Background jobs",
+      "Long-running tasks",
+      "Serverless workflows"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript",
+      "prisma"
+    ]
+  },
+  {
+    "id": "temporal",
+    "name": "Temporal",
+    "category": "Background Jobs",
+    "description": "Durable execution platform",
+    "website": "https://temporal.io",
+    "color": "#000000",
+    "npm": "npm install @temporalio/client",
+    "icon": "https://temporal.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dev-container",
+    "name": "Dev Container",
+    "category": "Dev Environments",
+    "description": "Development containers specification",
+    "website": "https://containers.dev",
+    "color": "#2496ED",
+    "npm": "# VS Code extension",
+    "icon": "https://containers.dev/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "devpod",
+    "name": "DevPod",
+    "category": "Dev Environments",
+    "description": "Client-only, open-source dev environment tool",
+    "website": "https://devpod.sh",
+    "color": "#7C3AED",
+    "npm": "curl -fsSL https://devpod.sh/install.sh | bash",
+    "icon": "https://devpod.sh/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "codespaces",
+    "name": "GitHub Codespaces",
+    "category": "Dev Environments",
+    "description": "Cloud development environments",
+    "website": "https://github.com/features/codespaces",
+    "color": "#2088FF",
+    "npm": "# GitHub feature",
+    "icon": "https://avatars.githubusercontent.com/u/44036562?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nix",
+    "name": "Nix",
+    "category": "Dev Environments",
+    "description": "Reproducible builds and dev environments",
+    "website": "https://nixos.org",
+    "color": "#5277C3",
+    "npm": "curl -L https://nixos.org/nix/install | sh",
+    "icon": "https://nixos.org/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "solidity",
+    "name": "Solidity",
+    "category": "Web3/Blockchain",
+    "description": "Contract-oriented programming language for Ethereum",
+    "website": "https://soliditylang.org",
+    "color": "#363636",
+    "npm": "npm install solc",
+    "icon": "https://soliditylang.org/favicon.ico",
+    "skills": [
+      "EVM smart contract engineering",
+      "Reentrancy security audits",
+      "Gas optimization"
+    ],
+    "compatibleWith": [
+      "hardhat",
+      "foundry",
+      "wagmi",
+      "viem"
+    ]
+  },
+  {
+    "id": "hardhat",
+    "name": "Hardhat",
+    "category": "Web3/Blockchain",
+    "description": "Ethereum development environment",
+    "website": "https://hardhat.org",
+    "color": "#FFF100",
+    "npm": "npm install -D hardhat",
+    "icon": "https://hardhat.org/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "foundry",
+    "name": "Foundry",
+    "category": "Web3/Blockchain",
+    "description": "Blazing fast, portable toolkit for Ethereum",
+    "website": "https://getfoundry.sh",
+    "color": "#FF6B35",
+    "npm": "curl -L https://foundry.paradigm.xyz | bash",
+    "icon": "https://getfoundry.sh/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "wagmi",
+    "name": "Wagmi",
+    "category": "Web3/Blockchain",
+    "description": "React Hooks for Ethereum",
+    "website": "https://wagmi.sh",
+    "color": "#000000",
+    "npm": "npm install wagmi viem",
+    "icon": "https://wagmi.sh/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "viem",
+    "name": "Viem",
+    "category": "Web3/Blockchain",
+    "description": "TypeScript interface for Ethereum",
+    "website": "https://viem.sh",
+    "color": "#FFC94D",
+    "npm": "npm install viem",
+    "icon": "https://viem.sh/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ipfs",
+    "name": "IPFS",
+    "category": "Web3/Blockchain",
+    "description": "Peer-to-peer hypermedia protocol",
+    "website": "https://ipfs.tech",
+    "color": "#65C2CB",
+    "npm": "npm install ipfs-http-client",
+    "icon": "https://ipfs.tech/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "thirdweb",
+    "name": "Thirdweb",
+    "category": "Web3/Blockchain",
+    "description": "Complete web3 development framework",
+    "website": "https://thirdweb.com",
+    "color": "#F213A4",
+    "npm": "npm install thirdweb",
+    "icon": "https://thirdweb.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dbt",
+    "name": "dbt",
+    "category": "Data Engineering",
+    "description": "Data build tool for analytics engineering",
+    "website": "https://getdbt.com",
+    "color": "#FF694B",
+    "npm": "pip install dbt-core",
+    "icon": "https://www.getdbt.com/favicon.ico",
+    "skills": [
+      "SQL data transformation",
+      "Data lineage DAGs",
+      "Automated warehouse testing"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "python"
+    ]
+  },
+  {
+    "id": "airflow",
+    "name": "Apache Airflow",
+    "category": "Data Engineering",
+    "description": "Platform to programmatically author and schedule workflows",
+    "website": "https://airflow.apache.org",
+    "color": "#017CEE",
+    "npm": "pip install apache-airflow",
+    "icon": "https://airflow.apache.org/images/feature-image.png",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "metabase",
+    "name": "Metabase",
+    "category": "Data Engineering",
+    "description": "Open-source business intelligence tool",
+    "website": "https://metabase.com",
+    "color": "#509EE3",
+    "npm": "# Deploy via Docker",
+    "icon": "https://www.metabase.com/favicon.ico",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dagster",
+    "name": "Dagster",
+    "category": "Data Engineering",
+    "description": "Orchestration platform for data pipelines",
+    "website": "https://dagster.io",
+    "color": "#4E61A6",
+    "npm": "pip install dagster",
+    "icon": "https://dagster.io/favicon.ico",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "prefect",
+    "name": "Prefect",
+    "category": "Data Engineering",
+    "description": "Workflow orchestration for data teams",
+    "website": "https://prefect.io",
+    "color": "#024DFF",
+    "npm": "pip install prefect",
+    "icon": "https://www.prefect.io/favicon.ico",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "great-expectations",
+    "name": "Great Expectations",
+    "category": "Data Engineering",
+    "description": "Data quality validation framework",
+    "website": "https://greatexpectations.io",
+    "color": "#FF6B35",
+    "npm": "pip install great-expectations",
+    "icon": "https://greatexpectations.io/favicon.ico",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kong",
+    "name": "Kong",
+    "category": "API Gateway",
+    "description": "Commercial-grade API gateway and micro-service management layer",
+    "website": "https://konghq.com",
+    "color": "#003459",
+    "npm": "# Deploy via Docker",
+    "icon": "https://konghq.com/images/new-kong-logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "traefik",
+    "name": "Traefik",
+    "category": "API Gateway",
+    "description": "Cloud-native application proxy",
+    "website": "https://traefik.io",
+    "color": "#24A1C1",
+    "npm": "# Deploy via Docker",
+    "icon": "https://traefik.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "envoy",
+    "name": "Envoy",
+    "category": "API Gateway",
+    "description": "Cloud-native high-performance proxy",
+    "website": "https://envoyproxy.io",
+    "color": "#AC6199",
+    "npm": "# Deploy via Docker",
+    "icon": "https://www.envoyproxy.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nginx",
+    "name": "NGINX",
+    "category": "API Gateway",
+    "description": "High-performance web server and reverse proxy",
+    "website": "https://nginx.org",
+    "color": "#009639",
+    "npm": "# Install from nginx.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "istio",
+    "name": "Istio",
+    "category": "API Gateway",
+    "description": "Service mesh for Kubernetes",
+    "website": "https://istio.io",
+    "color": "#466BB0",
+    "npm": "curl -L https://istio.io/downloadIstio | sh",
+    "icon": "https://istio.io/favicons/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "snyk",
+    "name": "Snyk",
+    "category": "Security",
+    "description": "Developer security platform",
+    "website": "https://snyk.io",
+    "color": "#4C4A73",
+    "npm": "npm install -g snyk",
+    "icon": "https://snyk.io/favicon.ico",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "trivy",
+    "name": "Trivy",
+    "category": "Security",
+    "description": "Comprehensive vulnerability scanner",
+    "website": "https://trivy.dev",
+    "color": "#1904DA",
+    "npm": "brew install trivy",
+    "icon": "https://trivy.dev/favicon.ico",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vault",
+    "name": "HashiCorp Vault",
+    "category": "Security",
+    "description": "Secrets management and data protection",
+    "website": "https://vaultproject.io",
+    "color": "#000000",
+    "npm": "# Install from vaultproject.io",
+    "icon": "https://www.vaultproject.io/favicon.ico",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "owasp-zap",
+    "name": "OWASP ZAP",
+    "category": "Security",
+    "description": "Web application security scanner",
+    "website": "https://zaproxy.org",
+    "color": "#4B4B4B",
+    "npm": "# Install ZAP app",
+    "icon": "https://www.zaproxy.org/favicon.ico",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "docusaurus",
+    "name": "Docusaurus",
+    "category": "Documentation",
+    "description": "Documentation website generator",
+    "website": "https://docusaurus.io",
+    "color": "#3ECC5F",
+    "npm": "npx create-docusaurus@latest",
+    "icon": "https://docusaurus.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vitepress",
+    "name": "VitePress",
+    "category": "Documentation",
+    "description": "Vite-powered static site generator for docs",
+    "website": "https://vitepress.dev",
+    "color": "#646CFF",
+    "npm": "npm install -D vitepress",
+    "icon": "https://vitepress.dev/vitepress-logo-mini.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mintlify",
+    "name": "Mintlify",
+    "category": "Documentation",
+    "description": "Modern documentation platform",
+    "website": "https://mintlify.com",
+    "color": "#0B0B0F",
+    "npm": "npm install -g mintlify",
+    "icon": "https://mintlify.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gitbook",
+    "name": "GitBook",
+    "category": "Documentation",
+    "description": "Documentation and knowledge base platform",
+    "website": "https://gitbook.com",
+    "color": "#3884FF",
+    "npm": "# Web platform",
+    "icon": "https://www.gitbook.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "appwrite",
+    "name": "Appwrite",
+    "category": "BaaS",
+    "description": "Open-source backend server",
+    "website": "https://appwrite.io",
+    "color": "#FD366E",
+    "npm": "npm install appwrite",
+    "icon": "https://appwrite.io/favicon.ico",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pocketbase",
+    "name": "PocketBase",
+    "category": "BaaS",
+    "description": "Open-source backend in a single file",
+    "website": "https://pocketbase.io",
+    "color": "#B8DBE4",
+    "npm": "# Download binary",
+    "icon": "https://pocketbase.io/images/favicon.png",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "directus",
+    "name": "Directus",
+    "category": "BaaS",
+    "description": "Open-source data platform",
+    "website": "https://directus.io",
+    "color": "#263238",
+    "npm": "npm install directus",
+    "icon": "https://directus.io/favicon.ico",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nhost",
+    "name": "Nhost",
+    "category": "BaaS",
+    "description": "Open-source Firebase alternative with GraphQL",
+    "website": "https://nhost.io",
+    "color": "#0EA5E9",
+    "npm": "npm install @nhost/react",
+    "icon": "https://nhost.io/favicon.ico",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "n8n",
+    "name": "n8n",
+    "category": "Workflow Automation",
+    "description": "Fair-code workflow automation tool",
+    "website": "https://n8n.io",
+    "color": "#EA4B71",
+    "npm": "npx n8n",
+    "icon": "https://n8n.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "windmill",
+    "name": "Windmill",
+    "category": "Workflow Automation",
+    "description": "Developer platform for workflows and internal tools",
+    "website": "https://windmill.dev",
+    "color": "#4E80EE",
+    "npm": "npm install -g windmill-cli",
+    "icon": "https://windmill.dev/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "d3",
+    "name": "D3.js",
+    "category": "Data Visualization",
+    "description": "Data-driven documents for the web",
+    "website": "https://d3js.org",
+    "color": "#F9A03C",
+    "npm": "npm install d3",
+    "icon": "https://d3js.org/d3icon.PNG",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "chartjs",
+    "name": "Chart.js",
+    "category": "Data Visualization",
+    "description": "Simple yet flexible JavaScript charting",
+    "website": "https://chartjs.org",
+    "color": "#FF6384",
+    "npm": "npm install chart.js",
+    "icon": "https://www.chartjs.org/img/logo.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "echarts",
+    "name": "Apache ECharts",
+    "category": "Data Visualization",
+    "description": "Powerful charting and visualization library",
+    "website": "https://echarts.apache.org",
+    "color": "#AA344D",
+    "npm": "npm install echarts",
+    "icon": "https://echarts.apache.org/en/images/favicon.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "recharts",
+    "name": "Recharts",
+    "category": "Data Visualization",
+    "description": "Composable charting library built on React components",
+    "website": "https://recharts.org",
+    "color": "#22B8CF",
+    "npm": "npm install recharts",
+    "icon": "https://recharts.org/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mux",
+    "name": "Mux",
+    "category": "Video/Streaming",
+    "description": "Video API for developers",
+    "website": "https://mux.com",
+    "color": "#1B1B1F",
+    "npm": "npm install @mux/mux-node",
+    "icon": "https://mux.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudflare-stream",
+    "name": "Cloudflare Stream",
+    "category": "Video/Streaming",
+    "description": "Video streaming and encoding",
+    "website": "https://cloudflare.com/stream",
+    "color": "#F38020",
+    "npm": "# Cloudflare API",
+    "icon": "https://avatars.githubusercontent.com/u/314135?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "twilio",
+    "name": "Twilio",
+    "category": "Video/Streaming",
+    "description": "Communication APIs for voice, video, and messaging",
+    "website": "https://twilio.com",
+    "color": "#F22F46",
+    "npm": "npm install twilio",
+    "icon": "https://www.twilio.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mlflow",
+    "name": "MLflow",
+    "category": "MLOps",
+    "description": "Open-source platform for ML lifecycle",
+    "website": "https://mlflow.org",
+    "color": "#0194E2",
+    "npm": "pip install mlflow",
+    "icon": "https://mlflow.org/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "weights-biases",
+    "name": "Weights & Biases",
+    "category": "MLOps",
+    "description": "ML experiment tracking and visualization",
+    "website": "https://wandb.ai",
+    "color": "#FFBE00",
+    "npm": "pip install wandb",
+    "icon": "https://wandb.ai/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ray",
+    "name": "Ray",
+    "category": "MLOps",
+    "description": "Distributed computing framework for AI",
+    "website": "https://ray.io",
+    "color": "#028CF0",
+    "npm": "pip install ray",
+    "icon": "https://www.ray.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "elixir",
+    "name": "Elixir",
+    "category": "Languages",
+    "description": "Functional language built on the Erlang VM",
+    "website": "https://elixir-lang.org",
+    "color": "#4E2A8E",
+    "npm": "# Install from elixir-lang.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/elixir/elixir-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zig",
+    "name": "Zig",
+    "category": "Languages",
+    "description": "General-purpose low-level programming language",
+    "website": "https://ziglang.org",
+    "color": "#F7A41D",
+    "npm": "# Install from ziglang.org",
+    "icon": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/zig/zig-original.svg",
+    "skills": [
+      "Syntax mastery",
+      "Memory management",
+      "Type safety"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "timescaledb",
+    "name": "TimescaleDB",
+    "category": "Database",
+    "description": "PostgreSQL extension for time-series data",
+    "website": "https://timescale.com",
+    "color": "#FDB515",
+    "npm": "# Postgres extension",
+    "icon": "https://timescale.com/images/timescale-logo-colour.svg",
+    "skills": [
+      "Data modeling",
+      "Query optimization",
+      "Storage management"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "duckdb",
+    "name": "DuckDB",
+    "category": "Database",
+    "description": "In-process analytical database system",
+    "website": "https://duckdb.org",
+    "color": "#FFF000",
+    "npm": "npm install duckdb",
+    "icon": "https://duckdb.org/img/duckdb-logo.svg",
+    "skills": [
+      "Embedded analytics",
+      "Columnar SQL",
+      "Fast parquet querying"
+    ],
+    "compatibleWith": [
+      "python",
+      "nodejs",
+      "lancedb",
+      "postgresql",
+      "sqlite"
+    ]
+  },
+  {
+    "id": "grafana-loki",
+    "name": "Grafana Loki",
+    "category": "Monitoring/Observability",
+    "description": "Log aggregation system",
+    "website": "https://grafana.com/oss/loki",
+    "color": "#F46800",
+    "npm": "# Deploy via Docker",
+    "icon": "https://avatars.githubusercontent.com/u/7195757?s=200&v=4",
+    "skills": [
+      "Telemetry instrumentation",
+      "Metrics dashboards",
+      "Error alerting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "better-stack",
+    "name": "Better Stack",
+    "category": "Monitoring/Observability",
+    "description": "Log management and uptime monitoring",
+    "website": "https://betterstack.com",
+    "color": "#000000",
+    "npm": "npm install @betterstack/logging",
+    "icon": "https://betterstack.com/favicon.ico",
+    "skills": [
+      "Uptime monitoring",
+      "Incident alerting",
+      "Log streaming"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "nodejs",
+      "docker",
+      "kubernetes"
+    ]
+  },
+  {
+    "id": "langgraph",
+    "name": "LangGraph",
+    "category": "AI Agents",
+    "description": "Build stateful, agentic AI applications",
+    "website": "https://langchain-ai.github.io/langgraph",
+    "color": "#1C3C3C",
+    "npm": "npm install @langchain/langgraph",
+    "icon": "https://avatars.githubusercontent.com/u/126733545?s=200&v=4",
+    "skills": [
+      "Multi-agent workflows",
+      "Stateful graphs",
+      "Human-in-the-loop AI"
+    ],
+    "compatibleWith": [
+      "langchain",
+      "python",
+      "typescript",
+      "openai",
+      "anthropic"
+    ]
+  },
+  {
+    "id": "crewai",
+    "name": "CrewAI",
+    "category": "AI Agents",
+    "description": "Framework for orchestrating role-playing AI agents",
+    "website": "https://crewai.com",
+    "color": "#FF5A5F",
+    "npm": "pip install crewai",
+    "icon": "https://crewai.com/favicon.ico",
+    "skills": [
+      "Autonomous task execution",
+      "Multi-agent coordination",
+      "Context memory"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "autogen",
+    "name": "AutoGen",
+    "category": "AI Agents",
+    "description": "Multi-agent conversation framework from Microsoft",
+    "website": "https://microsoft.github.io/autogen",
+    "color": "#0078D4",
+    "npm": "pip install pyautogen",
+    "icon": "https://microsoft.github.io/autogen/img/favicon.svg",
+    "skills": [
+      "Autonomous task execution",
+      "Multi-agent coordination",
+      "Context memory"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "flowise",
+    "name": "Flowise",
+    "category": "AI Agents",
+    "description": "Drag & drop UI to build LLM apps",
+    "website": "https://flowiseai.com",
+    "color": "#7C3AED",
+    "npm": "npx flowise start",
+    "icon": "https://flowiseai.com/favicon.ico",
+    "skills": [
+      "Autonomous task execution",
+      "Multi-agent coordination",
+      "Context memory"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "threejs",
+    "name": "Three.js",
+    "category": "3D/Game Dev",
+    "description": "3D library for the web",
+    "website": "https://threejs.org",
+    "color": "#000000",
+    "npm": "npm install three",
+    "icon": "https://threejs.org/files/favicon.ico",
+    "skills": [
+      "WebGL 3D rendering",
+      "Custom GLSL shaders",
+      "Scene lighting & geometry"
+    ],
+    "compatibleWith": [
+      "react",
+      "react-three-fiber",
+      "typescript"
+    ]
+  },
+  {
+    "id": "babylonjs",
+    "name": "Babylon.js",
+    "category": "3D/Game Dev",
+    "description": "Powerful 3D engine for the web",
+    "website": "https://babylonjs.com",
+    "color": "#BB464B",
+    "npm": "npm install @babylonjs/core",
+    "icon": "https://babylonjs.com/images/favicon.ico",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "phaser",
+    "name": "Phaser",
+    "category": "3D/Game Dev",
+    "description": "Fast 2D game framework",
+    "website": "https://phaser.io",
+    "color": "#8BC34A",
+    "npm": "npm install phaser",
+    "icon": "https://phaser.io/images/favicon.ico",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-three-fiber",
+    "name": "React Three Fiber",
+    "category": "3D/Game Dev",
+    "description": "React renderer for Three.js",
+    "website": "https://docs.pmnd.rs/react-three-fiber",
+    "color": "#000000",
+    "npm": "npm install @react-three/fiber",
+    "icon": "https://docs.pmnd.rs/favicon.ico",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mapbox",
+    "name": "Mapbox",
+    "category": "Maps/Geo",
+    "description": "Custom maps and location services",
+    "website": "https://mapbox.com",
+    "color": "#4264FB",
+    "npm": "npm install mapbox-gl",
+    "icon": "https://maps.mapbox.com/mapbox-gl-js/docs/img/mapbox-icon.png",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "leaflet",
+    "name": "Leaflet",
+    "category": "Maps/Geo",
+    "description": "Open-source interactive maps",
+    "website": "https://leafletjs.com",
+    "color": "#199900",
+    "npm": "npm install leaflet",
+    "icon": "https://leafletjs.com/docs/img/logo-mark.png",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "maplibre",
+    "name": "MapLibre GL",
+    "category": "Maps/Geo",
+    "description": "Open-source vector map renderer",
+    "website": "https://maplibre.org",
+    "color": "#396CB2",
+    "npm": "npm install maplibre-gl",
+    "icon": "https://maplibre.org/favicon.ico",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "google-maps",
+    "name": "Google Maps",
+    "category": "Maps/Geo",
+    "description": "Google Maps Platform",
+    "website": "https://developers.google.com/maps",
+    "color": "#4285F4",
+    "npm": "npm install @googlemaps/js-api-loader",
+    "icon": "https://maps.google.com/favicon.ico",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "onesignal",
+    "name": "OneSignal",
+    "category": "Push Notifications",
+    "description": "Push notifications for web and mobile",
+    "website": "https://onesignal.com",
+    "color": "#E54B4B",
+    "npm": "npm install onesignal",
+    "icon": "https://onesignal.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "firebase-messaging",
+    "name": "Firebase Cloud Messaging",
+    "category": "Push Notifications",
+    "description": "Cross-platform messaging solution",
+    "website": "https://firebase.google.com/products/cloud-messaging",
+    "color": "#FFCA28",
+    "npm": "npm install firebase",
+    "icon": "https://firebase.google.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "whisper",
+    "name": "OpenAI Whisper",
+    "category": "Voice/Audio",
+    "description": "Speech recognition and transcription",
+    "website": "https://openai.com/research/whisper",
+    "color": "#412991",
+    "npm": "pip install openai-whisper",
+    "icon": "https://openai.com/favicon.ico",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "elevenlabs",
+    "name": "ElevenLabs",
+    "category": "Voice/Audio",
+    "description": "AI voice generation and text-to-speech",
+    "website": "https://elevenlabs.io",
+    "color": "#000000",
+    "npm": "npm install elevenlabs",
+    "icon": "https://elevenlabs.io/favicon.ico",
+    "skills": [
+      "Voice synthesis",
+      "Voice cloning",
+      "Streaming audio generation"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "python",
+      "typescript",
+      "openai"
+    ]
+  },
+  {
+    "id": "howler",
+    "name": "Howler.js",
+    "category": "Voice/Audio",
+    "description": "Audio library for the modern web with Web Audio API",
+    "website": "https://howlerjs.com",
+    "color": "#FF6B35",
+    "npm": "npm install howler",
+    "icon": "https://howlerjs.com/img/favicon.ico",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lighthouse",
+    "name": "Lighthouse",
+    "category": "Performance",
+    "description": "Automated auditing for web performance",
+    "website": "https://developers.google.com/web/tools/lighthouse",
+    "color": "#F44B21",
+    "npm": "npm install -g lighthouse",
+    "icon": "https://developers.google.com/web/tools/lighthouse/images/lighthouse-icon.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "web-vitals",
+    "name": "Web Vitals",
+    "category": "Performance",
+    "description": "Essential metrics for healthy site",
+    "website": "https://web.dev/vitals",
+    "color": "#4285F4",
+    "npm": "npm install web-vitals",
+    "icon": "https://web.dev/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bundlephobia",
+    "name": "BundlePhobia",
+    "category": "Performance",
+    "description": "Bundle size analysis for npm packages",
+    "website": "https://bundlephobia.com",
+    "color": "#EF4444",
+    "npm": "# Web tool",
+    "icon": "https://bundlephobia.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "axe-core",
+    "name": "axe-core",
+    "category": "Accessibility",
+    "description": "Accessibility testing engine",
+    "website": "https://deque.com/axe",
+    "color": "#F04E23",
+    "npm": "npm install axe-core",
+    "icon": "https://www.deque.com/axe/images/axe-icon@3x.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pa11y",
+    "name": "Pa11y",
+    "category": "Accessibility",
+    "description": "Automated accessibility testing",
+    "website": "https://pa11y.org",
+    "color": "#4B0082",
+    "npm": "npm install -g pa11y",
+    "icon": "https://pa11y.org/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "i18next",
+    "name": "i18next",
+    "category": "Internationalization",
+    "description": "Internationalization framework for JavaScript",
+    "website": "https://i18next.com",
+    "color": "#26A69A",
+    "npm": "npm install i18next",
+    "icon": "https://www.i18next.com/img/favicon.ico",
+    "skills": [
+      "Locale bundle management",
+      "Pluralization & interpolation",
+      "SSR localization"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "next-intl",
+    "name": "next-intl",
+    "category": "Internationalization",
+    "description": "Internationalization for Next.js",
+    "website": "https://next-intl-docs.vercel.app",
+    "color": "#000000",
+    "npm": "npm install next-intl",
+    "icon": "https://next-intl-docs.vercel.app/favicon.ico",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-i18next",
+    "name": "react-i18next",
+    "category": "Internationalization",
+    "description": "React bindings for i18next",
+    "website": "https://react.i18next.com",
+    "color": "#26A69A",
+    "npm": "npm install react-i18next",
+    "icon": "https://react.i18next.com/favicon.ico",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry",
+    "name": "OpenTelemetry",
+    "category": "OpenTelemetry",
+    "description": "Vendor-neutral observability framework for distributed systems",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/api",
+    "icon": "https://opentelemetry.io/img/full-colorLogo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mqtt",
+    "name": "MQTT",
+    "category": "IoT",
+    "description": "Lightweight messaging protocol for IoT",
+    "website": "https://mqtt.org",
+    "color": "#660066",
+    "npm": "npm install mqtt",
+    "icon": "https://mqtt.org/favicon.ico",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "esp32",
+    "name": "ESP32",
+    "category": "IoT",
+    "description": "Low-cost microcontroller with WiFi/Bluetooth",
+    "website": "https://espressif.com",
+    "color": "#E7352C",
+    "npm": "# Hardware platform",
+    "icon": "https://www.espressif.com/favicon.ico",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "arduino",
+    "name": "Arduino",
+    "category": "IoT",
+    "description": "Open-source electronics platform",
+    "website": "https://arduino.cc",
+    "color": "#00979D",
+    "npm": "# Hardware platform",
+    "icon": "https://www.arduino.cc/favicon.ico",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "graphql",
+    "name": "GraphQL",
+    "category": "GraphQL/API",
+    "description": "Query language for APIs and runtime for executing those queries",
+    "website": "https://graphql.org",
+    "color": "#E535AB",
+    "npm": "npm install graphql",
+    "icon": "https://graphql.org/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "grpc",
+    "name": "gRPC",
+    "category": "GraphQL/API",
+    "description": "High-performance RPC framework using HTTP/2",
+    "website": "https://grpc.io",
+    "color": "#4285F4",
+    "npm": "npm install @grpc/grpc-js @grpc/proto-loader",
+    "icon": "https://grpc.io/img/icons/icon-192x192.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aws-api-gateway",
+    "name": "AWS API Gateway",
+    "category": "API Gateway",
+    "description": "Fully managed service for creating, publishing, and maintaining APIs at any scale",
+    "website": "https://aws.amazon.com/api-gateway",
+    "color": "#FF9900",
+    "npm": "npm install aws-sdk",
+    "icon": "https://avatars.githubusercontent.com/u/2232217?s=200&v=4",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "logrocket",
+    "name": "LogRocket",
+    "category": "Monitoring/Observability",
+    "description": "Session replay and performance monitoring for web apps",
+    "website": "https://logrocket.com",
+    "color": "#00A884",
+    "npm": "npm install logrocket",
+    "icon": "https://logrocket.com/favicon.ico",
+    "skills": [
+      "Telemetry instrumentation",
+      "Metrics dashboards",
+      "Error alerting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "raptor",
+    "name": "Raptor",
+    "category": "Monitoring/Observability",
+    "description": "Real-user monitoring for web applications",
+    "website": "https://raptor.com.au",
+    "color": "#0066CC",
+    "npm": "# Browser RUM",
+    "icon": "https://github.com/raptor.png",
+    "skills": [
+      "Telemetry instrumentation",
+      "Metrics dashboards",
+      "Error alerting"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "google-lighthouse",
+    "name": "Google Lighthouse",
+    "category": "Performance",
+    "description": "Automated auditing tool for web performance, accessibility, and SEO",
+    "website": "https://developers.google.com/web/tools/lighthouse",
+    "color": "#4CAF50",
+    "npm": "npm install -g lighthouse",
+    "icon": "https://developers.google.com/web/tools/lighthouse/images/lighthouse-icon.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "webpagetest",
+    "name": "WebPageTest",
+    "category": "Performance",
+    "description": "Website speed test from global locations with real browsers",
+    "website": "https://webpagetest.org",
+    "color": "#0F60AB",
+    "npm": "# Web tool",
+    "icon": "https://www.webpagetest.org/assets/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sitespeedio",
+    "name": "Sitespeed.io",
+    "category": "Performance",
+    "description": "Web performance monitoring and benchmarking tool",
+    "website": "https://sitespeed.io",
+    "color": "#FF8C00",
+    "npm": "npm install -g @sitespeedio/sitespeed.io",
+    "icon": "https://sitespeed.io/images/favicons/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dependency-check",
+    "name": "OWASP Dependency-Check",
+    "category": "Security",
+    "description": "Identify project dependencies with known vulnerabilities",
+    "website": "https://owasp.org/www-project-dependency-check/",
+    "color": "#000000",
+    "npm": "npm install -g dependency-check",
+    "icon": "https://owasp.org/assets/img/pages/projects/dependency-check/logo-horizontal.svg",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bullmq",
+    "name": "BullMQ",
+    "category": "Background Jobs",
+    "description": "Redis-based queue for Node.js with priority and delayed jobs",
+    "website": "https://github.com/taskforcesh/bullmq",
+    "color": "#00AD66",
+    "npm": "npm install bullmq",
+    "icon": "https://taskforcesh.github.io/bullmq/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "agenda",
+    "name": "Agenda",
+    "category": "Background Jobs",
+    "description": "Mongo-backed job scheduling for Node.js",
+    "website": "https://github.com/rs/node-agenda",
+    "color": "#456194",
+    "npm": "npm install agenda",
+    "icon": "https://github.com/agenda.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "videojs",
+    "name": "Video.js",
+    "category": "Video/Streaming",
+    "description": "HTML5 video player library",
+    "website": "https://videojs.com",
+    "color": "#000000",
+    "npm": "npm install video.js",
+    "icon": "https://videojs.com/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "plyr",
+    "name": "Plyr",
+    "category": "Video/Streaming",
+    "description": "Simple, responsive HTML5 media player",
+    "website": "https://plyr.io",
+    "color": "#000000",
+    "npm": "npm install plyr",
+    "icon": "https://plyr.io/img/favicon-192x192.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "hlsjs",
+    "name": "HLS.js",
+    "category": "Video/Streaming",
+    "description": "JavaScript HLS client for adaptive streaming",
+    "website": "https://github.com/video-dev/hls.js",
+    "color": "#000000",
+    "npm": "npm install hls.js",
+    "icon": "https://github.com/video-dev/hls.js/raw/master/docs/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "tonejs",
+    "name": "Tone.js",
+    "category": "Voice/Audio",
+    "description": "Web Audio framework for creating musically meaningful sounds",
+    "website": "https://tonejs.github.io",
+    "color": "#FF6B35",
+    "npm": "npm install tone",
+    "icon": "https://tonejs.github.io/img/tone.svg",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "aws-cdk",
+    "name": "AWS CDK",
+    "category": "DevOps/Infrastructure",
+    "description": "Infrastructure as code using familiar programming languages",
+    "website": "https://docs.aws.amazon.com/cdk",
+    "color": "#FF9900",
+    "npm": "npm install aws-cdk",
+    "icon": "https://docs.aws.amazon.com/cdk/api/latest/img/aws-cdk-icon.png",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "argo-cd",
+    "name": "Argo CD",
+    "category": "DevOps/Infrastructure",
+    "description": "Continuous delivery tool for Kubernetes with GitOps",
+    "website": "https://argoproj.github.io/argo-cd/",
+    "color": "#0084B5",
+    "npm": "kubectl apply -n argocd",
+    "icon": "https://argoproj.github.io/img/logo-argo-cd.svg",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "crowdin",
+    "name": "Crowdin",
+    "category": "Internationalization",
+    "description": "Continuous localization platform for software and content",
+    "website": "https://crowdin.com",
+    "color": "#00C1B5",
+    "npm": "# Web service",
+    "icon": "https://crowdin.com/favicon.ico",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "lokalise",
+    "name": "Lokalise",
+    "category": "Internationalization",
+    "description": "Translation management platform for teams",
+    "website": "https://lokalise.com",
+    "color": "#FF6F00",
+    "npm": "# Web service",
+    "icon": "https://lokalise.com/favicon.ico",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zapier",
+    "name": "Zapier",
+    "category": "Workflow Automation",
+    "description": "No-code automation platform connecting 5,000+ apps",
+    "website": "https://zapier.com",
+    "color": "#FF4D00",
+    "npm": "# Web service",
+    "icon": "https://zapier.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "make",
+    "name": "Make (Integromat)",
+    "category": "Workflow Automation",
+    "description": "Visual automation platform for business workflows",
+    "website": "https://make.com",
+    "color": "#002B5C",
+    "npm": "# Web service",
+    "icon": "https://make.com/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "raspberrypi",
+    "name": "Raspberry Pi",
+    "category": "IoT",
+    "description": "Single-board computer for IoT projects",
+    "website": "https://raspberrypi.org",
+    "color": "#A2AAAD",
+    "npm": "# Hardware platform",
+    "icon": "https://avatars.githubusercontent.com/u/43035311?s=200&v=4",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "micropython",
+    "name": "MicroPython",
+    "category": "IoT",
+    "description": "Python implementation for microcontrollers",
+    "website": "https://micropython.org",
+    "color": "#A2AAAD",
+    "npm": "pip install micropython",
+    "icon": "https://avatars.githubusercontent.com/u/41427671?s=200&v=4",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "prisma-client",
+    "name": "Prisma Client",
+    "category": "ORM",
+    "description": "Generated TypeScript/JavaScript ORM for type-safe database access",
+    "website": "https://www.prisma.io",
+    "color": "#2D3748",
+    "npm": "npm install @prisma/client",
+    "icon": "https://www.prisma.io/images/favicon/favicon.ico",
+    "skills": [
+      "Schema modeling",
+      "Type-safe database access",
+      "Database migrations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "redoc-cli",
+    "name": "Redoc CLI",
+    "category": "API Documentation",
+    "description": "CLI for OpenAPI docs",
+    "website": "https://redocly.com",
+    "color": "#00707C",
+    "npm": "npm install -g redoc-cli",
+    "icon": "https://redocly.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sidekiq",
+    "name": "Sidekiq",
+    "category": "Background Jobs",
+    "description": "Background job processing for Ruby",
+    "website": "https://sidekiq.com",
+    "color": "#000000",
+    "npm": "gem install sidekiq",
+    "icon": "https://sidekiq.com/img/sidekiq-icon@2x-180x180.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "resque",
+    "name": "Resque",
+    "category": "Message Queues/Event Streaming",
+    "description": "Redis-backed job queue for Ruby",
+    "website": "https://github.com/resque/resque",
+    "color": "#FF6600",
+    "npm": "gem install resque",
+    "icon": "https://avatars.githubusercontent.com/u/12885341?s=200&v=4",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "celery",
+    "name": "Celery",
+    "category": "Message Queues/Event Streaming",
+    "description": "Distributed task queue for Python",
+    "website": "https://docs.celeryproject.org",
+    "color": "#FDB515",
+    "npm": "pip install celery",
+    "icon": "https://docs.celeryproject.org/en/stable/_static/celery-logo-dark.png",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "rq",
+    "name": "RQ",
+    "category": "Message Queues/Event Streaming",
+    "description": "Redis Queue for Python",
+    "website": "https://python-rq.org",
+    "color": "#DC382D",
+    "npm": "pip install rq",
+    "icon": "https://python-rq.org/img/rq-logo.png",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "web-push",
+    "name": "Web Push",
+    "category": "Push Notifications",
+    "description": "Self-hosted push notifications",
+    "website": "https://github.com/web-push-libs/web-push",
+    "color": "#000000",
+    "npm": "npm install web-push",
+    "icon": "https://github.com/web-push-libs.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "web3",
+    "name": "Web3.js",
+    "category": "Web3/Blockchain",
+    "description": "JavaScript library for Ethereum",
+    "website": "https://web3js.readthedocs.io",
+    "color": "#8B0000",
+    "npm": "npm install web3",
+    "icon": "https://web3js.readthedocs.io/en/stable/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ethers",
+    "name": "Ethers.js",
+    "category": "Web3/Blockchain",
+    "description": "Ethereum library and provider",
+    "website": "https://docs.ethers.io",
+    "color": "#C0C0C0",
+    "npm": "npm install ethers",
+    "icon": "https://docs.ethers.io/v5/assets/logos/ethers-32.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "solana",
+    "name": "Solana",
+    "category": "Web3/Blockchain",
+    "description": "Solana blockchain SDK",
+    "website": "https://solana.com",
+    "color": "#99451B",
+    "npm": "npm install @solana/web3.js",
+    "icon": "https://solana.com/solana-logo1.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bun-package",
+    "name": "Bun Package",
+    "category": "Package Manager",
+    "description": "Package manager for Bun",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "# Built into Bun",
+    "icon": "https://bun.sh/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gitpod",
+    "name": "Gitpod",
+    "category": "Dev Environments",
+    "description": "Cloud dev environments",
+    "website": "https://gitpod.io",
+    "color": "#FF6600",
+    "npm": "# Web service",
+    "icon": "https://gitpod.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ghost",
+    "name": "Ghost",
+    "category": "CMS",
+    "description": "Publishing platform",
+    "website": "https://ghost.org",
+    "color": "#F45D01",
+    "npm": "npm install ghost-cli",
+    "icon": "https://ghost.org/favicon.ico",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "backendless",
+    "name": "Backendless",
+    "category": "BaaS",
+    "description": "Mobile backend service",
+    "website": "https://backendless.com",
+    "color": "#0066CC",
+    "npm": "# Web service",
+    "icon": "https://backendless.com/favicon.ico",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "parseserver",
+    "name": "Parse Server",
+    "category": "BaaS",
+    "description": "Open source BaaS",
+    "website": "https://parseplatform.org",
+    "color": "#000000",
+    "npm": "npm install parse",
+    "icon": "https://parseplatform.org/img/parse-logo.png",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "faiss",
+    "name": "FAISS",
+    "category": "Vector Database",
+    "description": "Facebook AI Similarity Search",
+    "website": "https://faiss.ai",
+    "color": "#000000",
+    "npm": "pip install faiss-cpu",
+    "icon": "https://faiss.ai/img/faiss-logo.svg",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "voyage",
+    "name": "Voyage AI",
+    "category": "Vector Database",
+    "description": "Embedding API",
+    "website": "https://www.voyage.ai",
+    "color": "#000000",
+    "npm": "npm install voyage-api",
+    "icon": "https://www.voyage.ai/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "seldon-core",
+    "name": "Seldon Core",
+    "category": "MLOps",
+    "description": "ML serving platform",
+    "website": "https://seldon.io",
+    "color": "#000000",
+    "npm": "# Helm chart",
+    "icon": "https://seldon.io/img/seldon-logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bentoml",
+    "name": "BentoML",
+    "category": "MLOps",
+    "description": "ML model serving",
+    "website": "https://bentoml.com",
+    "color": "#FF6600",
+    "npm": "pip install bentoml",
+    "icon": "https://bentoml.com/img/bentoml_logo.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kubeflow",
+    "name": "Kubeflow",
+    "category": "MLOps",
+    "description": "Kubernetes ML platform",
+    "website": "https://kubeflow.org",
+    "color": "#9074D4",
+    "npm": "# Kubernetes",
+    "icon": "https://kubeflow.org/img/logo.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "tfserving",
+    "name": "TensorFlow Serving",
+    "category": "MLOps",
+    "description": "Model serving for TensorFlow",
+    "website": "https://www.tensorflow.org/tfx/guide/serving",
+    "color": "#FF6600",
+    "npm": "# Docker",
+    "icon": "https://www.tensorflow.org/images/tf-logo2-green-bg.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "torchserve",
+    "name": "TorchServe",
+    "category": "MLOps",
+    "description": "Model serving for PyTorch",
+    "website": "https://pytorch.org/torchserve/",
+    "color": "#EE4C24",
+    "npm": "pip install torchserve",
+    "icon": "https://pytorch.org/meta-images/logo-icon-dark.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-native",
+    "name": "React Native",
+    "category": "Native Framework",
+    "description": "Mobile app development",
+    "website": "https://reactnative.dev",
+    "color": "#26B2A7",
+    "npm": "npm install react-native",
+    "icon": "https://reactnative.dev/img/react_native_icon.png",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nativebase",
+    "name": "NativeBase",
+    "category": "Native Framework",
+    "description": "React Native component library",
+    "website": "https://nativebase.io",
+    "color": "#4092C5",
+    "npm": "npm install native-base",
+    "icon": "https://nativebase.io/img/icon-square.png",
+    "skills": [
+      "Mobile UI patterns",
+      "Native platform integration",
+      "Mobile performance"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry-collector",
+    "name": "OpenTelemetry Collector",
+    "category": "OpenTelemetry",
+    "description": "Vendor-neutral observability collector",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/collector",
+    "icon": "https://opentelemetry.io/img/full-colorLogo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zipkin",
+    "name": "Zipkin",
+    "category": "OpenTelemetry",
+    "description": "Distributed tracing system",
+    "website": "https://zipkin.io",
+    "color": "#000000",
+    "npm": "npm install zipkin",
+    "icon": "https://zipkin.io/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bun-types",
+    "name": "Bun:types",
+    "category": "Runtime",
+    "description": "Type definitions for Bun",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "npm install @types/bun",
+    "icon": "https://bun.sh/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "one-signal",
+    "name": "OneSignal",
+    "category": "Push Notifications",
+    "description": "Push notification service",
+    "website": "https://onesignal.com",
+    "color": "#00C4CC",
+    "npm": "npm install onesignal-node",
+    "icon": "https://onesignal.com/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-aria",
+    "name": "React Aria",
+    "category": "Accessibility",
+    "description": "React hooks for accessibility",
+    "website": "https://react-spectrum.adobe.com/react-aria/",
+    "color": "#6736D3",
+    "npm": "npm install @react-aria/react",
+    "icon": "https://react-spectrum.adobe.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "elasticsearch-js",
+    "name": "Elasticsearch JS Client",
+    "category": "Search",
+    "description": "Official Elasticsearch client for Node.js",
+    "website": "https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html",
+    "color": "#00557C",
+    "npm": "npm install @elastic/elasticsearch",
+    "icon": "https://www.elastic.co/static/img/favicon.ico",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mailgun-js",
+    "name": "Mailgun JS",
+    "category": "Email",
+    "description": "Mailgun API client for Node.js",
+    "website": "https://www.mailgun.com",
+    "color": "#FF6600",
+    "npm": "npm install mailgun-js",
+    "icon": "https://www.mailgun.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "stripe-cli",
+    "name": "Stripe CLI",
+    "category": "Payment",
+    "description": "Command-line tool for Stripe development",
+    "website": "https://stripe.com/docs/stripe-cli",
+    "color": "#635BFF",
+    "npm": "npm install -g stripe",
+    "icon": "https://stripe.com/img/favicon.ico",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "paypal-checkout",
+    "name": "PayPal Checkout",
+    "category": "Payment",
+    "description": "PayPal payment buttons SDK",
+    "website": "https://developer.paypal.com",
+    "color": "#003087",
+    "npm": "npm install @paypal/checkout-server-sdk",
+    "icon": "https://www.paypalobjects.com/webstatic/mktg/logo/pp_cc_mark_37x23.jpg",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "swagger-cli",
+    "name": "Swagger CLI",
+    "category": "API Documentation",
+    "description": "OpenAPI/Swagger tooling",
+    "website": "https://swagger.io/tools/swagger-cli/",
+    "color": "#85EA2D",
+    "npm": "npm install -g @apidevtools/swagger-cli",
+    "icon": "https://swagger.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "svn",
+    "name": "Subversion",
+    "category": "Version Control",
+    "description": "Apache Subversion version control",
+    "website": "https://subversion.apache.org",
+    "color": "#8BB447",
+    "npm": "# Command line tools",
+    "icon": "https://subversion.apache.org/images/subversion_32x32.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mkdocs",
+    "name": "MkDocs",
+    "category": "Documentation",
+    "description": "Static site generator for docs",
+    "website": "https://www.mkdocs.org",
+    "color": "#009688",
+    "npm": "pip install mkdocs",
+    "icon": "https://www.mkdocs.org/_static/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "trayio",
+    "name": "Tray.io",
+    "category": "Workflow Automation",
+    "description": "Integration platform automation",
+    "website": "https://tray.io",
+    "color": "#6366F1",
+    "npm": "# Web service",
+    "icon": "https://tray.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "workato",
+    "name": "Workato",
+    "category": "Workflow Automation",
+    "description": "Enterprise automation platform",
+    "website": "https://www.workato.com",
+    "color": "#FF6600",
+    "npm": "# Web service",
+    "icon": "https://www.workato.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "azure-bicep",
+    "name": "Azure Bicep",
+    "category": "DevOps/Infrastructure",
+    "description": "Declarative Azure deployment language",
+    "website": "https://learn.microsoft.com/azure/azure-resource-manager/bicep",
+    "color": "#0078D4",
+    "npm": "npm install -g bicep",
+    "icon": "https://learn.microsoft.com/static/devops/icons/bicep.png",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "redis-pubsub",
+    "name": "Redis Pub/Sub",
+    "category": "Message Queues/Event Streaming",
+    "description": "Redis built-in pub/sub messaging",
+    "website": "https://redis.io",
+    "color": "#DC382D",
+    "npm": "npm install redis",
+    "icon": "https://redis.io/images/brand/redis-brand-rgb-icon.svg",
+    "skills": [
+      "Asynchronous message queues",
+      "Event-driven architecture",
+      "Worker processing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "helmet",
+    "name": "Helmet",
+    "category": "Security",
+    "description": "Express middleware for security headers",
+    "website": "https://helmetjs.github.io",
+    "color": "#48A9A6",
+    "npm": "npm install helmet",
+    "icon": "https://helmetjs.github.io/img/helmet-icon.svg",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cors",
+    "name": "CORS",
+    "category": "Security",
+    "description": "Node.js CORS middleware",
+    "website": "https://github.com/expressjs/cors",
+    "color": "#4CAF50",
+    "npm": "npm install cors",
+    "icon": "https://nodejs.org/img/favicon.ico",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "truffle",
+    "name": "Truffle Suite",
+    "category": "Web3/Blockchain",
+    "description": "Popular Ethereum development framework",
+    "website": "https://trufflesuite.com",
+    "color": "#E7AD5A",
+    "npm": "npm install -g truffle",
+    "icon": "https://trufflesuite.com/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "highcharts",
+    "name": "Highcharts",
+    "category": "Data Visualization",
+    "description": "Charting library with advanced features",
+    "website": "https://highcharts.com",
+    "color": "#7CB5E3",
+    "npm": "npm install highcharts",
+    "icon": "https://www.highcharts.com/sample/img/social.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "travis-ci",
+    "name": "Travis CI",
+    "category": "DevOps/Infrastructure",
+    "description": "CI/CD platform",
+    "website": "https://travis-ci.com",
+    "color": "#000000",
+    "npm": "# Web service",
+    "icon": "https://travis-ci.com/img/travis-ci-banner.svg",
+    "skills": [
+      "Containerization",
+      "CI/CD pipelines",
+      "Cloud deployment"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "microservices",
+    "name": "Microservices",
+    "category": "Backend Framework",
+    "description": "Architectural pattern for distributed systems",
+    "website": "https://martinfowler.com/articles/microservices.html",
+    "color": "#FF6600",
+    "npm": "# Architectural pattern",
+    "icon": "https://martinfowler.com/img/microservice.png",
+    "skills": [
+      "REST/RPC API design",
+      "Server architecture",
+      "Middleware pipeline"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "serverless",
+    "name": "Serverless",
+    "category": "Edge/Serverless",
+    "description": "Architectural pattern for cloud computing",
+    "website": "https://www.serverless.com",
+    "color": "#00DB00",
+    "npm": "# Architectural pattern",
+    "icon": "https://www.serverless.com/static/Logos/serverless-colored.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "superstruct",
+    "name": "Superstruct",
+    "category": "Validation",
+    "description": "TypeScript-first validation",
+    "website": "https://github.com/ianstormtaylor/superstruct",
+    "color": "#FF6600",
+    "npm": "npm install superstruct",
+    "icon": "https://github.com/ianstormtaylor/superstruct/raw/master/docs/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ajv",
+    "name": "Ajv",
+    "category": "Validation",
+    "description": "JSON Schema validator",
+    "website": "https://ajv.js.org",
+    "color": "#009688",
+    "npm": "npm install ajv",
+    "icon": "https://ajv.js.org/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-aria-components",
+    "name": "React Aria Components",
+    "category": "Accessibility",
+    "description": "Accessible React components from Adobe",
+    "website": "https://react-spectrum.adobe.com/react-aria-components/",
+    "color": "#6736D3",
+    "npm": "npm install @react-aria/react",
+    "icon": "https://react-spectrum.adobe.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "reach-ui",
+    "name": "Reach UI",
+    "category": "Accessibility",
+    "description": "Accessible UI components",
+    "website": "https://reach.tech",
+    "color": "#1C92D4",
+    "npm": "npm install @reach/style-hot",
+    "icon": "https://reach.tech/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "react-stately",
+    "name": "React Stately",
+    "category": "Accessibility",
+    "description": "React hooks for state management",
+    "website": "https://react-spectrum.adobe.com/react-aria/state",
+    "color": "#6736D3",
+    "npm": "npm install @react-aria/stately",
+    "icon": "https://react-spectrum.adobe.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "headlessui-react",
+    "name": "Headless UI React",
+    "category": "Accessibility",
+    "description": "Headless UI components for React",
+    "website": "https://headlessui.com",
+    "color": "#000000",
+    "npm": "npm install @headlessui/react",
+    "icon": "https://headlessui.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry-collector-contrib",
+    "name": "OTel Collector Contrib",
+    "category": "OpenTelemetry",
+    "description": "Extended OpenTelemetry Collector",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/collector",
+    "icon": "https://opentelemetry.io/img/favicons/favicon-dark.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry-sdk",
+    "name": "OpenTelemetry SDK",
+    "category": "OpenTelemetry",
+    "description": "Core SDK for instrumentation",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/sdk",
+    "icon": "https://opentelemetry.io/img/favicons/favicon-dark.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry-api",
+    "name": "OpenTelemetry API",
+    "category": "OpenTelemetry",
+    "description": "API for OpenTelemetry",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/api",
+    "icon": "https://opentelemetry.io/img/favicons/favicon-dark.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "opentelemetry-node",
+    "name": "OpenTelemetry Node",
+    "category": "OpenTelemetry",
+    "description": "Node.js instrumentation",
+    "website": "https://opentelemetry.io",
+    "color": "#425CC7",
+    "npm": "npm install @opentelemetry/node",
+    "icon": "https://opentelemetry.io/img/favicons/favicon-dark.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "deno-fresh",
+    "name": "Deno Fresh",
+    "category": "Runtime",
+    "description": "Full-stack framework for Deno",
+    "website": "https://fresh.deno.dev",
+    "color": "#00D2FF",
+    "npm": "deno run -A -r https://fresh.deno.dev",
+    "icon": "https://fresh.deno.dev/icon.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bun-runtime",
+    "name": "Bun Runtime",
+    "category": "Runtime",
+    "description": "Ultra-fast JavaScript runtime",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "bun run",
+    "icon": "https://bun.sh/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "volta",
+    "name": "Volta",
+    "category": "Package Manager",
+    "description": "Pin JavaScript dependencies",
+    "website": "https://volta.sh",
+    "color": "#5A2CF0",
+    "npm": "npm install -g @volta/tool",
+    "icon": "https://volta.sh/img/volta-logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "typesense-client",
+    "name": "Typesense Client",
+    "category": "Search",
+    "description": "Client for Typesense",
+    "website": "https://typesense.org",
+    "color": "#D23669",
+    "npm": "npm install typesense",
+    "icon": "https://typesense.org/img/favicon.ico",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "meilisearch-client",
+    "name": "MeiliSearch Client",
+    "category": "Search",
+    "description": "Client for MeiliSearch",
+    "website": "https://meilisearch.com",
+    "color": "#FF5CAA",
+    "npm": "npm install meilisearch",
+    "icon": "https://www.meilisearch.com/img/favicon.ico",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mailjet",
+    "name": "Mailjet",
+    "category": "Email",
+    "description": "Email marketing and transactional service",
+    "website": "https://www.mailjet.com",
+    "color": "#FF6600",
+    "npm": "npm install @mailjet/mailjet-rest",
+    "icon": "https://www.mailjet.com/images/logos/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ses",
+    "name": "Amazon SES",
+    "category": "Email",
+    "description": "AWS email service",
+    "website": "https://aws.amazon.com/ses",
+    "color": "#FF9900",
+    "npm": "npm install @aws-sdk/client-ses",
+    "icon": "https://aws.amazon.com/images/faces/favicons/fav-cloud.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mailgun",
+    "name": "Mailgun",
+    "category": "Email",
+    "description": "Email delivery service",
+    "website": "https://www.mailgun.com",
+    "color": "#FF6600",
+    "npm": "npm install mailgun-js",
+    "icon": "https://www.mailgun.com/images/mgl-icon.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "git-lfs",
+    "name": "Git LFS",
+    "category": "Version Control",
+    "description": "Large file storage for Git",
+    "website": "https://git-lfs.github.com",
+    "color": "#000000",
+    "npm": "git lfs install",
+    "icon": "https://github.com/git-lfs/git-lfs/raw/main/docs/img/git-lfs-logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "sourcegraph",
+    "name": "Sourcegraph",
+    "category": "Version Control",
+    "description": "Code search and navigation platform",
+    "website": "https://sourcegraph.com",
+    "color": "#000000",
+    "npm": "npm install -g sourcegraph",
+    "icon": "https://sourcegraph.com/.static/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "splitio",
+    "name": "Split",
+    "category": "Feature Flags",
+    "description": "Feature flagging platform",
+    "website": "https://split.io",
+    "color": "#000000",
+    "npm": "npm install splitio",
+    "icon": "https://split.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "replit",
+    "name": "Replit",
+    "category": "Dev Environments",
+    "description": "Online IDE",
+    "website": "https://replit.com",
+    "color": "#000000",
+    "npm": "# Web service",
+    "icon": "https://replit.com/_next/static/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "playcanvas",
+    "name": "PlayCanvas",
+    "category": "3D/Game Dev",
+    "description": "3D web game engine",
+    "website": "https://playcanvas.com",
+    "color": "#E74C3C",
+    "npm": "# Web service",
+    "icon": "https://playcanvas.com/img/favicon.ico",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cannon-es",
+    "name": "Cannon-ES",
+    "category": "3D/Game Dev",
+    "description": "Physics engine",
+    "website": "https://github.com/pmndrs/cannon-es",
+    "color": "#000000",
+    "npm": "npm install cannon-es",
+    "icon": "https://github.com/pmndrs/cannon-es/raw/master/docs/img/cannon-es.png",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pusher-beams",
+    "name": "Pusher Beams",
+    "category": "Push Notifications",
+    "description": "Push notifications service",
+    "website": "https://pusher.com/beams",
+    "color": "#FF4C00",
+    "npm": "npm install @pusher/beams-server-sdk",
+    "icon": "https://pusher.com/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "fcm",
+    "name": "Firebase Cloud Messaging",
+    "category": "Push Notifications",
+    "description": "Google's messaging solution",
+    "website": "https://firebase.google.com/docs/cloud-messaging",
+    "color": "#FFCA28",
+    "npm": "npm install firebase",
+    "icon": "https://firebase.google.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "tone",
+    "name": "Tone.js",
+    "category": "Voice/Audio",
+    "description": "Web Audio framework",
+    "website": "https://tonejs.github.io",
+    "color": "#FF6B35",
+    "npm": "npm install tone",
+    "icon": "https://tonejs.github.io/img/tone.svg",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "wavesurfer",
+    "name": "WaveSurfer",
+    "category": "Voice/Audio",
+    "description": "Audio waveform visualization",
+    "website": "https://wavesurfer.xyz",
+    "color": "#FF6600",
+    "npm": "npm install wavesurfer",
+    "icon": "https://wavesurfer.xyz/img/favicon.ico",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "phrase",
+    "name": "Phrase",
+    "category": "Internationalization",
+    "description": "Translation management",
+    "website": "https://phrase.com",
+    "color": "#00AEEF",
+    "npm": "# Web service",
+    "icon": "https://phrase.com/images/phrase-icon.png",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "zephyr",
+    "name": "Zephyr RTOS",
+    "category": "IoT",
+    "description": "Real-time operating system",
+    "website": "https://www.zephyrproject.org",
+    "color": "#000000",
+    "npm": "# RTOS",
+    "icon": "https://www.zephyrproject.org/img/logo.png",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ghost-cli",
+    "name": "Ghost CLI",
+    "category": "CMS",
+    "description": "Ghost management CLI",
+    "website": "https://ghost.org",
+    "color": "#F45D01",
+    "npm": "npm install ghost-cli",
+    "icon": "https://ghost.org/favicon.ico",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "minio",
+    "name": "MinIO",
+    "category": "Storage",
+    "description": "High-performance object storage",
+    "website": "https://min.io",
+    "color": "#DE55FF",
+    "npm": "docker run -p 9000:9000 minio/minio server /data",
+    "icon": "https://min.io/img/minio-black-icon.svg",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "netlify-functions",
+    "name": "Netlify Functions",
+    "category": "Edge/Serverless",
+    "description": "Serverless functions on Netlify",
+    "website": "https://docs.netlify.com/functions/overview/",
+    "color": "#00C73A",
+    "npm": "# Netlify feature",
+    "icon": "https://www.netlify.com/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "n8n-io",
+    "name": "n8n",
+    "category": "Workflow Automation",
+    "description": "Workflow automation tool",
+    "website": "https://n8n.io",
+    "color": "#FF481C",
+    "npm": "npm install n8n",
+    "icon": "https://n8n.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "huginn",
+    "name": "Huginn",
+    "category": "Workflow Automation",
+    "description": "Self-hosted automation agent",
+    "website": "https://huginn.ai",
+    "color": "#000000",
+    "npm": "gem install huginn",
+    "icon": "https://huginn.ai/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "calibre",
+    "name": "Calibre",
+    "category": "Performance",
+    "description": "Performance monitoring",
+    "website": "https://calibreapp.com",
+    "color": "#5C7CFA",
+    "npm": "# Web service",
+    "icon": "https://calibreapp.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pinecone-client",
+    "name": "Pinecone Client",
+    "category": "Vector Database",
+    "description": "Official Pinecone client",
+    "website": "https://pinecone.io",
+    "color": "#000000",
+    "npm": "npm install @pinecone-database/pinecone",
+    "icon": "https://pinecone.io/img/favicon.ico",
+    "skills": [
+      "Vector embeddings search",
+      "Similarity indexing",
+      "RAG pipeline storage"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "class-validator",
+    "name": "class-validator",
+    "category": "Validation",
+    "description": "Decorators for validation",
+    "website": "https://github.com/typestack/class-validator",
+    "color": "#0077CC",
+    "npm": "npm install class-validator",
+    "icon": "https://typestack.github.io/class-validator/assets/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "turbo",
+    "name": "Turborepo",
+    "category": "Monorepo",
+    "description": "High-performance build pipeline",
+    "website": "https://turborepo.org",
+    "color": "#00ADD8",
+    "npm": "npx create-turbo@latest",
+    "icon": "https://turborepo.org/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "swagger-editor",
+    "name": "Swagger Editor",
+    "category": "API Documentation",
+    "description": "OpenAPI editor in browser",
+    "website": "https://swagger.io/tools/swagger-editor/",
+    "color": "#85EA2D",
+    "npm": "npm install @apidevtools/swagger-editor",
+    "icon": "https://swagger.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "redoc",
+    "name": "Redoc",
+    "category": "API Documentation",
+    "description": "Interactive API documentation",
+    "website": "https://redoc.ly",
+    "color": "#00707C",
+    "npm": "npm install redoc",
+    "icon": "https://redocly.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "openapi-cli",
+    "name": "OpenAPI CLI",
+    "category": "API Documentation",
+    "description": "OpenAPI tooling",
+    "website": "https://github.com/APIDevTools/swagger-cli",
+    "color": "#009688",
+    "npm": "npm install @apidevtools/swagger-cli",
+    "icon": "https://swagger.io/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vscode",
+    "name": "VS Code",
+    "category": "Dev Environments",
+    "description": "Microsoft's source code editor",
+    "website": "https://code.visualstudio.com",
+    "color": "#007ACC",
+    "npm": "code .",
+    "icon": "https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "peerjs",
+    "name": "PeerJS",
+    "category": "Voice/Audio",
+    "description": "WebRTC peer-to-peer data sharing",
+    "website": "https://peerjs.com",
+    "color": "#333333",
+    "npm": "npm install peerjs",
+    "icon": "https://peerjs.com/img/favicon.ico",
+    "skills": [
+      "Audio processing",
+      "Speech-to-text / TTS",
+      "Web Audio API"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "formatjs",
+    "name": "FormatJS",
+    "category": "Internationalization",
+    "description": "i18n library from FormatJS",
+    "website": "https://formatjs.io",
+    "color": "#000000",
+    "npm": "npm install react-intl",
+    "icon": "https://formatjs.io/img/logo.svg",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "freertos",
+    "name": "FreeRTOS",
+    "category": "IoT",
+    "description": "Real-time OS for microcontrollers",
+    "website": "https://www.freertos.org",
+    "color": "#000000",
+    "npm": "# RTOS",
+    "icon": "https://www.freertos.org/images/FreeRTOSToken.png",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kue",
+    "name": "Kue",
+    "category": "Background Jobs",
+    "description": "Redis-backed job queue",
+    "website": "https://github.com/Automattic/kue",
+    "color": "#555555",
+    "npm": "npm install kue",
+    "icon": "https://github.com/Automattic/kue/raw/master/docs/img/kue-logo-horizontal.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "spark",
+    "name": "Apache Spark",
+    "category": "Data Engineering",
+    "description": "Unified analytics engine",
+    "website": "https://spark.apache.org",
+    "color": "#E36C0A",
+    "npm": "pip install pyspark",
+    "icon": "https://spark.apache.org/images/spark-logo1b.png",
+    "skills": [
+      "ETL/ELT data pipelines",
+      "Warehouse transformations",
+      "Data quality validation"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "mapbox-gl",
+    "name": "Mapbox GL JS",
+    "category": "Maps/Geo",
+    "description": "Custom map design platform",
+    "website": "https://docs.mapbox.com/mapbox-gl-js",
+    "color": "#1E74C5",
+    "npm": "npm install mapbox-gl",
+    "icon": "https://mapbox.com/img/logo-icon.png",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "openlayers",
+    "name": "OpenLayers",
+    "category": "Maps/Geo",
+    "description": "High-performance 3D GIS",
+    "website": "https://openlayers.org",
+    "color": "#000000",
+    "npm": "npm install ol",
+    "icon": "https://openlayers.org/version/latest/theme/images/olLogo.png",
+    "skills": [
+      "Geospatial data mapping",
+      "Tile layer rendering",
+      "Geolocation querying"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "webpugins",
+    "name": "WebPageTest",
+    "category": "Performance",
+    "description": "Website speed test",
+    "website": "https://webpagetest.org",
+    "color": "#0F60AB",
+    "npm": "# Web tool",
+    "icon": "https://www.webpagetest.org/assets/images/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "apollo-server",
+    "name": "Apollo Server",
+    "category": "GraphQL/API",
+    "description": "GraphQL server framework",
+    "website": "https://www.apollographql.com/docs/apollo-server/",
+    "color": "#449868",
+    "npm": "npm install @apollo/server",
+    "icon": "https://www.apollographql.com/img/apollo-p-logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "firebase-database",
+    "name": "Firebase Realtime Database",
+    "category": "Real-time",
+    "description": "Cloud-hosted NoSQL database",
+    "website": "https://firebase.google.com/docs/database",
+    "color": "#FFCA28",
+    "npm": "npm install firebase",
+    "icon": "https://firebase.google.com/favicon.ico",
+    "skills": [
+      "WebSocket communication",
+      "Live event streaming",
+      "Multiplayer synchronization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "eslint-plugin",
+    "name": "ESLint Plugin",
+    "category": "Code Quality/Linting",
+    "description": "ESLint plugins",
+    "website": "https://eslint.org",
+    "color": "#4B32C5",
+    "npm": "npm install eslint-plugin",
+    "icon": "https://eslint.org/img/favicon-32x32.png",
+    "skills": [
+      "Static analysis",
+      "Code style enforcement",
+      "AST linting rules"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "csurf",
+    "name": "csurf",
+    "category": "Security",
+    "description": "CSRF protection middleware",
+    "website": "https://github.com/expressjs/csurf",
+    "color": "#000000",
+    "npm": "npm install csurf",
+    "icon": "https://github.com/expressjs/csurf/raw/master/docs/img/csurf.svg",
+    "skills": [
+      "Vulnerability scanning",
+      "Access control",
+      "Zero-trust security"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "autogpt",
+    "name": "AutoGPT",
+    "category": "AI Agents",
+    "description": "Autonomous LLM agent",
+    "website": "https://github.com/Significant-Gravitons/AutoGPT",
+    "color": "#000000",
+    "npm": "pip install autogpt",
+    "icon": "https://github.com/Significant-Gravitons/AutoGPT/raw/main/docs/images/favicon.ico",
+    "skills": [
+      "Autonomous task execution",
+      "Multi-agent coordination",
+      "Context memory"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "babyagi",
+    "name": "BabyAGI",
+    "category": "AI Agents",
+    "description": "Task execution autonomous agent",
+    "website": "https://github.com/yushi-shihad/babyagi",
+    "color": "#000000",
+    "npm": "pip install babyagi",
+    "icon": "https://github.com/yushi-shihad/babyagi/raw/main/docs/images/favicon.ico",
+    "skills": [
+      "Autonomous task execution",
+      "Multi-agent coordination",
+      "Context memory"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bee-queue",
+    "name": "Bee-Queue",
+    "category": "Background Jobs",
+    "description": "Fast and reliable job queue",
+    "website": "https://github.com/bee-queue/bee-queue",
+    "color": "#000000",
+    "npm": "npm install bee-queue",
+    "icon": "https://github.com/bee-queue/bee-queue/raw/master/docs/img/logo.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kafka",
+    "name": "Apache Kafka",
+    "category": "Data Engineering",
+    "description": "Distributed event streaming",
+    "website": "https://kafka.apache.org",
+    "color": "#2C528C",
+    "npm": "pip install kafka-python",
+    "icon": "https://kafka.apache.org/img/kafka-icon.png",
+    "skills": [
+      "Distributed event streaming",
+      "Partition consumer groups",
+      "High-throughput log retention"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "python",
+      "docker",
+      "kubernetes"
+    ]
+  },
+  {
+    "id": "mkdocs-material",
+    "name": "MkDocs Material",
+    "category": "Documentation",
+    "description": "Material theme for MkDocs",
+    "website": "https://squidfunk.github.io/mkdocs-material/",
+    "color": "#009688",
+    "npm": "pip install mkdocs-material",
+    "icon": "https://www.mkdocs.org/_static/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "vercel-functions",
+    "name": "Vercel Functions",
+    "category": "Edge/Serverless",
+    "description": "Serverless functions",
+    "website": "https://vercel.com/docs/concepts/functions/serverless-functions",
+    "color": "#000000",
+    "npm": "npx vercel",
+    "icon": "https://vercel.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "espidf",
+    "name": "ESP-IDF",
+    "category": "IoT",
+    "description": "Espressif IoT development Framework",
+    "website": "https://docs.espressif.com",
+    "color": "#E7352C",
+    "npm": "# IoT SDK",
+    "icon": "https://espressif.com/images/product-icon.png",
+    "skills": [
+      "Hardware sensor integration",
+      "Embedded firmware",
+      "Low-power protocols"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "changeset",
+    "name": "Changeset",
+    "category": "Monorepo",
+    "description": "Collect and publish changelogs",
+    "website": "https://github.com/atlassian/changeset",
+    "color": "#0052CC",
+    "npm": "npm install @changeset/cli",
+    "icon": "https://github.com/atlassian/changeset/raw/main/docs/media/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "corepack",
+    "name": "Corepack",
+    "category": "Package Manager",
+    "description": "Built-in package manager coordinator",
+    "website": "https://nodejs.org/api/corepack.html",
+    "color": "#68AC57",
+    "npm": "corepack enable",
+    "icon": "https://nodejs.org/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "adyen",
+    "name": "Adyen",
+    "category": "Payment",
+    "description": "Payment platform for businesses",
+    "website": "https://adyen.com",
+    "color": "#000000",
+    "npm": "pip install Adyen",
+    "icon": "https://www.adyen.com/h/image/logo?scale=square&background=fff&quality=80",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "nx-cloud",
+    "name": "Nx Cloud",
+    "category": "Monorepo",
+    "description": "Cloud-powered Nx workspace",
+    "website": "https://nx.dev",
+    "color": "#4A90E2",
+    "npm": "npm install nx",
+    "icon": "https://nx.dev/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bit",
+    "name": "Bit",
+    "category": "Version Control",
+    "description": "Distributed version control for components",
+    "website": "https://Bit.dev",
+    "color": "#0052CC",
+    "npm": "npm install @teambit/bvm",
+    "icon": "https://bit.dev/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "split",
+    "name": "Split",
+    "category": "Feature Flags",
+    "description": "Feature flagging platform",
+    "website": "https://split.io",
+    "color": "#000000",
+    "npm": "npm install splitio",
+    "icon": "https://split.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "gitpod-worker",
+    "name": "Gitpod Worker",
+    "category": "Dev Environments",
+    "description": "Gitpod infrastructure",
+    "website": "https://gitpod.io",
+    "color": "#FF6600",
+    "npm": "# Web service",
+    "icon": "https://gitpod.io/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "pixijs",
+    "name": "PixiJS",
+    "category": "3D/Game Dev",
+    "description": "2D rendering engine",
+    "website": "https://pixijs.com",
+    "color": "#000000",
+    "npm": "npm install pixi.js",
+    "icon": "https://pixijs.com/favicon.ico",
+    "skills": [
+      "3D scene rendering",
+      "Mesh physics & collisions",
+      "Game loop architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "transifex",
+    "name": "Transifex",
+    "category": "Internationalization",
+    "description": "Translation management platform",
+    "website": "https://transifex.com",
+    "color": "#009688",
+    "npm": "# Web service",
+    "icon": "https://transifex.com/press/img/favicon.ico",
+    "skills": [
+      "Multi-language localization",
+      "Translation extraction",
+      "RTL layout support"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "square",
+    "name": "Square",
+    "category": "Payment",
+    "description": "Payments and point of sale",
+    "website": "https://squareup.com",
+    "color": "#000000",
+    "npm": "npm install square",
+    "icon": "https://squareup.com/checkout/images/favicon.ico",
+    "skills": [
+      "Payment checkout flows",
+      "Subscription billing",
+      "Webhook handling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "docsify",
+    "name": "Docsify",
+    "category": "Documentation",
+    "description": "Documentation generator",
+    "website": "https://docsify.js.org",
+    "color": "#000000",
+    "npm": "# Documentation tool",
+    "icon": "https://docsify.js.org/img/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "parse-server",
+    "name": "Parse Server",
+    "category": "BaaS",
+    "description": "Open source backend server",
+    "website": "https://parseplatform.org",
+    "color": "#000000",
+    "npm": "npm install parse",
+    "icon": "https://parseplatform.org/img/logo.png",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "shaka-player",
+    "name": "Shaka Player",
+    "category": "Video/Streaming",
+    "description": "DASH/HLS player by Google",
+    "website": "https://shaka-player.github.io/shaka-player/",
+    "color": "#000000",
+    "npm": "npm install shaka-player",
+    "icon": "https://shaka-player.github.io/shaka-player/docs/images/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "matomo",
+    "name": "Matomo",
+    "category": "Analytics",
+    "description": "Open source analytics platform",
+    "website": "https://matomo.org",
+    "color": "#000000",
+    "npm": "npm install matomo-tracker",
+    "icon": "https://matomo.org/assets/img/favicon.ico",
+    "skills": [
+      "User behavior tracking",
+      "Conversion funnels",
+      "Privacy-first metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "supabase-baaS",
+    "name": "Supabase",
+    "category": "BaaS",
+    "description": "Open source Firebase alternative",
+    "website": "https://supabase.com",
+    "color": "#3ECF8E",
+    "npm": "npm install @supabase/supabase-js",
+    "icon": "https://supabase.com/favicon/favicon-32x32.png",
+    "skills": [
+      "Backend infrastructure",
+      "Serverless database",
+      "Managed authentication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "hlsjs-video",
+    "name": "HLS.js",
+    "category": "Video/Streaming",
+    "description": "HLS streaming client",
+    "website": "https://github.com/video-dev/hls.js",
+    "color": "#000000",
+    "npm": "npm install hls.js",
+    "icon": "https://github.com/video-dev/hls.js/raw/master/docs/images/logo.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "kong-api-gateway",
+    "name": "Kong",
+    "category": "API Gateway",
+    "description": "API gateway and management",
+    "website": "https://konghq.com",
+    "color": "#FF6600",
+    "npm": "npm install kong-admin",
+    "icon": "https://konghq.com/favicon.ico",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "unleash-ff",
+    "name": "Unleash",
+    "category": "Feature Flags",
+    "description": "Open-source feature toggle system",
+    "website": "https://getunleash.io",
+    "color": "#E11D48",
+    "npm": "npm install unleash-client",
+    "icon": "https://getunleash.io/img/favicon-32x32.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "web-push-notif",
+    "name": "Web Push",
+    "category": "Push Notifications",
+    "description": "Web Push Notifications API",
+    "website": "https://github.com/web-push-libs/web-push",
+    "color": "#000000",
+    "npm": "npm install web-push",
+    "icon": "https://github.com/web-push-libs/web-push/raw/master/docs/img/icon.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "superstruct-validation",
+    "name": "Superstruct",
+    "category": "Validation",
+    "description": "TypeScript-first validation library",
+    "website": "https://github.com/ianstormtaylor/superstruct",
+    "color": "#FF6600",
+    "npm": "npm install superstruct",
+    "icon": "https://github.com/ianstormtaylor/superstruct/raw/master/docs/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "deno-cloudflare",
+    "name": "Cloudflare Workers Runtime",
+    "category": "Runtime",
+    "description": "Edge runtime environment",
+    "website": "https://workers.cloudflare.com",
+    "color": "#F29F05",
+    "npm": "npm install wrangler",
+    "icon": "https://developers.cloudflare.com/workers/images/favicons/mstile-150x150.png",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "bun-package-manager",
+    "name": "Bun Package Manager",
+    "category": "Package Manager",
+    "description": "Built-in package manager for Bun",
+    "website": "https://bun.sh",
+    "color": "#FBF0DF",
+    "npm": "npx bun pm",
+    "icon": "https://bun.sh/img/logo.svg",
+    "skills": [
+      "System design",
+      "Integration",
+      "Performance optimization"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "typesense-search",
+    "name": "Typesense",
+    "category": "Search",
+    "description": "Typo-tolerant search engine",
+    "website": "https://typesense.org",
+    "color": "#D23669",
+    "npm": "npm install typesense",
+    "icon": "https://typesense.org/img/favicon.ico",
+    "skills": [
+      "Full-text indexing",
+      "Relevance scoring",
+      "Faceted search"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "ghost-cms",
+    "name": "Ghost CMS",
+    "category": "CMS",
+    "description": "Publishing platform",
+    "website": "https://ghost.org",
+    "color": "#F45D01",
+    "npm": "npm install ghost-cli",
+    "icon": "https://ghost.org/favicon.ico",
+    "skills": [
+      "Content modeling",
+      "Headless API distribution",
+      "Editorial workflows"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "cloudinary-storage",
+    "name": "Cloudinary Storage",
+    "category": "Storage",
+    "description": "Media asset management platform",
+    "website": "https://cloudinary.com",
+    "color": "#2C528C",
+    "npm": "npm install cloudinary",
+    "icon": "https://cloudinary.com/favicon.ico",
+    "skills": [
+      "Asset management",
+      "CDN distribution",
+      "Secure file uploads"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "github-copilot",
+    "name": "GitHub Copilot",
+    "category": "AI Coding Assistants",
+    "description": "AI pair programmer that suggests code and entire functions in real time",
+    "website": "https://github.com/features/copilot",
+    "color": "#2088FF",
+    "npm": "# IDE extension",
+    "icon": "https://github.com/github.png",
+    "skills": [
+      "AI-assisted development",
+      "Prompting",
+      "Code review"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "javascript",
+      "vscode"
+    ]
+  },
+  {
+    "id": "cursor",
+    "name": "Cursor",
+    "category": "AI Coding Assistants",
+    "description": "AI-first code editor built for agentic coding workflows",
+    "website": "https://cursor.com",
+    "color": "#000000",
+    "npm": "# Install from cursor.com",
+    "icon": "https://github.com/getcursor.png",
+    "skills": [
+      "AI-assisted development",
+      "Agentic workflows",
+      "Refactoring"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "git",
+      "github"
+    ]
+  },
+  {
+    "id": "v0",
+    "name": "v0 by Vercel",
+    "category": "AI Coding Assistants",
+    "description": "Generative UI builder that scaffolds Next.js apps from prompts",
+    "website": "https://v0.dev",
+    "color": "#000000",
+    "npm": "# Web service",
+    "icon": "https://github.com/vercel.png",
+    "skills": [
+      "Generative UI",
+      "Prototyping",
+      "Design-to-code"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "shadcn",
+      "tailwind",
+      "react"
+    ]
+  },
+  {
+    "id": "bolt-new",
+    "name": "bolt.new",
+    "category": "AI Coding Assistants",
+    "description": "Prompt, run, edit, and deploy full-stack web applications in the browser",
+    "website": "https://bolt.new",
+    "color": "#0EA5A5",
+    "npm": "# Web service",
+    "icon": "https://github.com/stackblitz.png",
+    "skills": [
+      "AI app generation",
+      "Full-stack prototyping",
+      "Deployment"
+    ],
+    "compatibleWith": [
+      "vite",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "dyad",
+    "name": "Dyad",
+    "category": "AI Coding Assistants",
+    "description": "Free, local, open-source AI app builder and v0/Bolt alternative",
+    "website": "https://dyad.sh",
+    "color": "#6366F1",
+    "npm": "# Install from dyad.sh",
+    "icon": "https://github.com/dyad-sh.png",
+    "skills": [
+      "Local AI development",
+      "App generation",
+      "Privacy-first AI"
+    ],
+    "compatibleWith": [
+      "react",
+      "ollama",
+      "typescript"
+    ]
+  },
+  {
+    "id": "lovable",
+    "name": "Lovable",
+    "category": "AI Coding Assistants",
+    "description": "AI platform that generates and deploys full-stack apps from prompts",
+    "website": "https://lovable.dev",
+    "color": "#FF5C37",
+    "npm": "# Web service",
+    "icon": "https://lovable.dev/favicon.ico",
+    "skills": [
+      "AI app generation",
+      "No-code building",
+      "Rapid prototyping"
+    ],
+    "compatibleWith": [
+      "supabase",
+      "react",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "motion",
+    "name": "Motion",
+    "category": "Animation",
+    "description": "Production-ready animation library for the web, successor of Framer Motion",
+    "website": "https://motion.dev",
+    "color": "#FF2E88",
+    "npm": "npm install motion",
+    "icon": "https://github.com/motiondivision.png",
+    "skills": [
+      "Animation",
+      "Gestures",
+      "Layout transitions"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "solid",
+      "svelte"
+    ]
+  },
+  {
+    "id": "gsap",
+    "name": "GSAP",
+    "category": "Animation",
+    "description": "Industry-standard JavaScript animation engine for the web",
+    "website": "https://gsap.com",
+    "color": "#88CE02",
+    "npm": "npm install gsap",
+    "icon": "https://github.com/greensock.png",
+    "skills": [
+      "Timeline animation",
+      "ScrollTrigger",
+      "SVG animation"
+    ],
+    "compatibleWith": [
+      "threejs",
+      "astro",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "react-bits",
+    "name": "React Bits",
+    "category": "Animation",
+    "description": "Open-source collection of animated, interactive React components",
+    "website": "https://reactbits.dev",
+    "color": "#A78BFA",
+    "npm": "# Copy-paste registry",
+    "icon": "https://github.com/DavidHDev.png",
+    "skills": [
+      "Component design",
+      "Micro-interactions",
+      "Visual effects"
+    ],
+    "compatibleWith": [
+      "react",
+      "shadcn",
+      "motion",
+      "gsap"
+    ]
+  },
+  {
+    "id": "react-spring",
+    "name": "React Spring",
+    "category": "Animation",
+    "description": "Spring-physics based animation library for React",
+    "website": "https://react-spring.dev",
+    "color": "#FF6B9D",
+    "npm": "npm install @react-spring/web",
+    "icon": "https://avatars.githubusercontent.com/u/45790596?s=200&v=4",
+    "skills": [
+      "Physics-based animation",
+      "React hooks",
+      "Cross-platform UI"
+    ],
+    "compatibleWith": [
+      "react",
+      "react-three-fiber"
+    ]
+  },
+  {
+    "id": "lottie",
+    "name": "Lottie",
+    "category": "Animation",
+    "description": "Lightweight runtime for rendering After Effects vector animations",
+    "website": "https://lottiefiles.com",
+    "color": "#00DDB6",
+    "npm": "npm install lottie-react",
+    "icon": "https://github.com/airbnb.png",
+    "skills": [
+      "Vector animation",
+      "Asset optimization",
+      "Designer handoff"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "reactnative"
+    ]
+  },
+  {
+    "id": "htmx",
+    "name": "htmx",
+    "category": "Web Framework",
+    "description": "Access AJAX, WebSockets and Server Sent Events directly in HTML",
+    "website": "https://htmx.org",
+    "color": "#3366CC",
+    "npm": "npm install htmx.org",
+    "icon": "https://htmx.org/favicon.ico",
+    "skills": [
+      "Progressive enhancement",
+      "Server-driven UI",
+      "Hypermedia"
+    ],
+    "compatibleWith": [
+      "django",
+      "laravel",
+      "rails",
+      "express",
+      "fastify",
+      "aspnet-core"
+    ]
+  },
+  {
+    "id": "ripple",
+    "name": "Ripple",
+    "category": "Web Framework",
+    "description": "Elegant TypeScript UI framework combining ideas from React, Solid and Svelte",
+    "website": "https://ripplejs.com",
+    "color": "#6366F1",
+    "npm": "npm install @lazarv/ripple",
+    "icon": "https://github.com/Ripple-TS.png",
+    "skills": [
+      "Reactivity",
+      "TypeScript",
+      "Component architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "vite"
+    ]
+  },
+  {
+    "id": "motia",
+    "name": "Motia",
+    "category": "Backend Framework",
+    "description": "Multi-language backend framework unifying APIs, jobs, queues, workflows and AI agents",
+    "website": "https://motia.dev",
+    "color": "#7C3AED",
+    "npm": "npm install motia",
+    "icon": "https://github.com/MotiaDev.png",
+    "skills": [
+      "Backend architecture",
+      "Event-driven design",
+      "Observability"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "python",
+      "docker"
+    ]
+  },
+  {
+    "id": "rolldown",
+    "name": "Rolldown",
+    "category": "Build Tools",
+    "description": "Fast Rust-based bundler with Rollup-compatible API, built for Vite",
+    "website": "https://rolldown.rs",
+    "color": "#F97316",
+    "npm": "npm install rolldown",
+    "icon": "https://github.com/rolldown.png",
+    "skills": [
+      "Bundling",
+      "Build optimization",
+      "Rust tooling"
+    ],
+    "compatibleWith": [
+      "vite",
+      "typescript"
+    ]
+  },
+  {
+    "id": "react-compiler",
+    "name": "React Compiler",
+    "category": "Build Tools",
+    "description": "Build-time compiler that automatically memoizes React code",
+    "website": "https://react.dev/learn/react-compiler",
+    "color": "#61DAFB",
+    "npm": "npm install babel-plugin-react-compiler",
+    "icon": "https://react.dev/favicon.ico",
+    "skills": [
+      "Performance optimization",
+      "React internals",
+      "Build pipelines"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "vite",
+      "expo"
+    ]
+  },
+  {
+    "id": "biome",
+    "name": "Biome",
+    "category": "Code Quality/Linting",
+    "description": "Fast Rust-based formatter and linter for the web ecosystem",
+    "website": "https://biomejs.dev",
+    "color": "#60A5FA",
+    "npm": "npm install -D @biomejs/biome",
+    "icon": "https://github.com/biomejs.png",
+    "skills": [
+      "Formatting",
+      "Linting",
+      "CI quality gates"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "github-actions"
+    ]
+  },
+  {
+    "id": "oxlint",
+    "name": "Oxlint",
+    "category": "Code Quality/Linting",
+    "description": "High-performance Rust-based JavaScript linter from the Oxc project",
+    "website": "https://oxc.rs",
+    "color": "#4F46E5",
+    "npm": "npm install -D oxlint",
+    "icon": "https://github.com/oxc-project.png",
+    "skills": [
+      "Linting",
+      "Static analysis",
+      "Performance tooling"
+    ],
+    "compatibleWith": [
+      "eslint",
+      "typescript"
+    ]
+  },
+  {
+    "id": "radix-ui",
+    "name": "Radix UI",
+    "category": "CSS Framework",
+    "description": "Unstyled, accessible UI component primitives for the web",
+    "website": "https://radix-ui.com",
+    "color": "#6E56CF",
+    "npm": "npm install @radix-ui/react-dialog",
+    "icon": "https://github.com/radix-ui.png",
+    "skills": [
+      "Accessibility",
+      "Headless components",
+      "Design systems"
+    ],
+    "compatibleWith": [
+      "react",
+      "tailwind",
+      "shadcn",
+      "styled-components"
+    ]
+  },
+  {
+    "id": "base-ui",
+    "name": "Base UI",
+    "category": "CSS Framework",
+    "description": "Unstyled UI components and headless primitives from the MUI team",
+    "website": "https://base-ui.com",
+    "color": "#007FFF",
+    "npm": "npm install @base-ui-components/react",
+    "icon": "https://github.com/base-ui-components.png",
+    "skills": [
+      "Headless components",
+      "Accessibility",
+      "Design systems"
+    ],
+    "compatibleWith": [
+      "react",
+      "tailwind",
+      "shadcn"
+    ]
+  },
+  {
+    "id": "tanstack-query",
+    "name": "TanStack Query",
+    "category": "State Management",
+    "description": "Powerful asynchronous state management for data fetching and caching",
+    "website": "https://tanstack.com/query",
+    "color": "#EF4444",
+    "npm": "npm install @tanstack/react-query",
+    "icon": "https://avatars.githubusercontent.com/u/72518640?s=200&v=4",
+    "skills": [
+      "Server state",
+      "Caching",
+      "Data synchronization"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "solid",
+      "svelte",
+      "angular",
+      "trpc"
+    ]
+  },
+  {
+    "id": "swr",
+    "name": "SWR",
+    "category": "State Management",
+    "description": "React hooks for data fetching with stale-while-revalidate caching",
+    "website": "https://swr.vercel.app",
+    "color": "#000000",
+    "npm": "npm install swr",
+    "icon": "https://github.com/vercel.png",
+    "skills": [
+      "Data fetching",
+      "Caching strategies",
+      "React hooks"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "mastra",
+    "name": "Mastra",
+    "category": "AI Agents",
+    "description": "TypeScript framework for building AI-powered applications and agents",
+    "website": "https://mastra.ai",
+    "color": "#1E90FF",
+    "npm": "npm install mastra",
+    "icon": "https://github.com/mastra-ai.png",
+    "skills": [
+      "Agent orchestration",
+      "Workflow design",
+      "RAG pipelines"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "vercel-ai-sdk",
+      "openai",
+      "anthropic"
+    ]
+  },
+  {
+    "id": "stagehand",
+    "name": "Stagehand",
+    "category": "AI Agents",
+    "description": "AI browser automation framework built on Playwright",
+    "website": "https://stagehand.dev",
+    "color": "#F5C518",
+    "npm": "npm install @browserbasehq/stagehand",
+    "icon": "https://github.com/browserbase.png",
+    "skills": [
+      "Browser automation",
+      "Agent tooling",
+      "E2E scripting"
+    ],
+    "compatibleWith": [
+      "playwright",
+      "typescript",
+      "openai"
+    ]
+  },
+  {
+    "id": "voltagent",
+    "name": "VoltAgent",
+    "category": "AI Agents",
+    "description": "Open-source TypeScript AI agent framework with built-in LLM observability",
+    "website": "https://voltagent.dev",
+    "color": "#EAB308",
+    "npm": "npm install @voltagent/core",
+    "icon": "https://github.com/VoltAgent.png",
+    "skills": [
+      "Agent development",
+      "LLM observability",
+      "TypeScript"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "vercel-ai-sdk",
+      "langchain"
+    ]
+  },
+  {
+    "id": "genkit",
+    "name": "Genkit",
+    "category": "AI Agents",
+    "description": "Google's open-source framework for building AI-powered apps and agents",
+    "website": "https://genkit.dev",
+    "color": "#4285F4",
+    "npm": "npm install genkit",
+    "icon": "https://github.com/firebase.png",
+    "skills": [
+      "Agent flows",
+      "Model evaluation",
+      "Multi-turn conversations"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "firebase-firestore",
+      "gemini"
+    ]
+  },
+  {
+    "id": "browser-use",
+    "name": "browser-use",
+    "category": "AI Agents",
+    "description": "Python framework that lets AI agents control web browsers",
+    "website": "https://browser-use.com",
+    "color": "#5B5BD6",
+    "npm": "pip install browser-use",
+    "icon": "https://github.com/browser-use.png",
+    "skills": [
+      "Browser automation",
+      "Agent tooling",
+      "Python"
+    ],
+    "compatibleWith": [
+      "playwright",
+      "python",
+      "langchain"
+    ]
+  },
+  {
+    "id": "mcp",
+    "name": "Model Context Protocol",
+    "category": "AI/LLM",
+    "description": "Open standard for connecting AI assistants to data sources and tools",
+    "website": "https://modelcontextprotocol.io",
+    "color": "#10B981",
+    "npm": "npm install @modelcontextprotocol/sdk",
+    "icon": "https://github.com/modelcontextprotocol.png",
+    "skills": [
+      "AI integration",
+      "Tool servers",
+      "Agent interoperability"
+    ],
+    "compatibleWith": [
+      "openai",
+      "anthropic",
+      "langchain",
+      "vercel-ai-sdk"
+    ]
+  },
+  {
+    "id": "gemini",
+    "name": "Google Gemini",
+    "category": "AI/LLM",
+    "description": "Google's multimodal AI models and developer API",
+    "website": "https://ai.google.dev",
+    "color": "#886CE4",
+    "npm": "npm install @google/genai",
+    "icon": "https://ai.google.dev/favicon.ico",
+    "skills": [
+      "Multimodal AI",
+      "Prompt engineering",
+      "Grounding"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "genkit",
+      "firebase-firestore"
+    ]
+  },
+  {
+    "id": "mistral",
+    "name": "Mistral AI",
+    "category": "AI/LLM",
+    "description": "European frontier AI models with open-weight options",
+    "website": "https://mistral.ai",
+    "color": "#FA520F",
+    "npm": "npm install @mistralai/mistralai",
+    "icon": "https://mistral.ai/favicon.ico",
+    "skills": [
+      "LLM integration",
+      "Fine-tuning",
+      "Prompt engineering"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "langchain",
+      "ollama"
+    ]
+  },
+  {
+    "id": "deepseek",
+    "name": "DeepSeek",
+    "category": "AI/LLM",
+    "description": "Cost-efficient open-weight reasoning models and API",
+    "website": "https://deepseek.com",
+    "color": "#4D6BFE",
+    "npm": "npm install deepseek-sdk",
+    "icon": "https://www.deepseek.com/favicon.ico",
+    "skills": [
+      "Reasoning models",
+      "Cost optimization",
+      "LLM integration"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "ollama",
+      "openrouter"
+    ]
+  },
+  {
+    "id": "langfuse",
+    "name": "Langfuse",
+    "category": "AI/LLM",
+    "description": "Open-source LLM observability, tracing and evaluation platform",
+    "website": "https://langfuse.com",
+    "color": "#2563EB",
+    "npm": "npm install langfuse",
+    "icon": "https://github.com/langfuse.png",
+    "skills": [
+      "LLM observability",
+      "Evaluation",
+      "Prompt management"
+    ],
+    "compatibleWith": [
+      "langchain",
+      "vercel-ai-sdk",
+      "openai",
+      "anthropic"
+    ]
+  },
+  {
+    "id": "cloudflare-d1",
+    "name": "Cloudflare D1",
+    "category": "Database",
+    "description": "Serverless SQLite database running on Cloudflare Workers at the edge",
+    "website": "https://developers.cloudflare.com/d1",
+    "color": "#F38020",
+    "npm": "npm install -g wrangler",
+    "icon": "https://avatars.githubusercontent.com/u/314135?s=200&v=4",
+    "skills": [
+      "Edge computing",
+      "SQLite",
+      "Serverless data"
+    ],
+    "compatibleWith": [
+      "cloudflare-workers",
+      "drizzle",
+      "prisma"
+    ]
+  },
+  {
+    "id": "turbopuffer",
+    "name": "Turbopuffer",
+    "category": "Vector Database",
+    "description": "Serverless vector database with object-storage-backed indexes",
+    "website": "https://turbopuffer.com",
+    "color": "#14B8A6",
+    "npm": "npm install @turbopuffer/turbopuffer",
+    "icon": "https://turbopuffer.com/favicon.ico",
+    "skills": [
+      "Vector search",
+      "RAG architecture",
+      "Cost scaling"
+    ],
+    "compatibleWith": [
+      "openai",
+      "vercel-ai-sdk",
+      "llamaindex"
+    ]
+  },
+  {
+    "id": "lancedb",
+    "name": "LanceDB",
+    "category": "Vector Database",
+    "description": "Embedded serverless vector database for AI applications",
+    "website": "https://lancedb.com",
+    "color": "#5E6AD2",
+    "npm": "npm install @lancedb/lancedb",
+    "icon": "https://github.com/lancedb.png",
+    "skills": [
+      "Embedded search",
+      "Multimodal retrieval",
+      "RAG architecture"
+    ],
+    "compatibleWith": [
+      "llamaindex",
+      "langchain",
+      "duckdb"
+    ]
+  },
+  {
+    "id": "lynx",
+    "name": "Lynx",
+    "category": "Native Framework",
+    "description": "ByteDance's open-source cross-platform framework with dual-thread rendering",
+    "website": "https://lynxjs.org",
+    "color": "#12B8CB",
+    "npm": "npm install -g @lynx-dev/lynx-cli",
+    "icon": "https://github.com/lynx-family.png",
+    "skills": [
+      "Cross-platform UI",
+      "Web-like rendering",
+      "Performance tuning"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "dioxus",
+    "name": "Dioxus",
+    "category": "Native Framework",
+    "description": "Rust fullstack app framework for web, desktop, and mobile",
+    "website": "https://dioxuslabs.com",
+    "color": "#E5484D",
+    "npm": "cargo install dioxus-cli",
+    "icon": "https://github.com/DioxusLabs.png",
+    "skills": [
+      "Rust",
+      "Cross-platform UI",
+      "Reactivity"
+    ],
+    "compatibleWith": [
+      "rust",
+      "tauri"
+    ]
+  },
+  {
+    "id": "nativewind",
+    "name": "NativeWind",
+    "category": "Native Framework",
+    "description": "Tailwind CSS utility-first styling for React Native",
+    "website": "https://nativewind.dev",
+    "color": "#06B6D4",
+    "npm": "npm install nativewind",
+    "icon": "https://github.com/nativewind.png",
+    "skills": [
+      "Mobile styling",
+      "Design systems",
+      "Tailwind workflows"
+    ],
+    "compatibleWith": [
+      "reactnative",
+      "expo",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "tamagui",
+    "name": "Tamagui",
+    "category": "Native Framework",
+    "description": "Universal UI kit and style system for React Native and web with an optimizing compiler",
+    "website": "https://tamagui.dev",
+    "color": "#17A2B8",
+    "npm": "npm install tamagui",
+    "icon": "https://github.com/tamagui.png",
+    "skills": [
+      "Universal UI",
+      "Style compilation",
+      "Theming"
+    ],
+    "compatibleWith": [
+      "reactnative",
+      "expo",
+      "react"
+    ]
+  },
+  {
+    "id": "midscene",
+    "name": "Midscene.js",
+    "category": "Testing",
+    "description": "Vision-based AI UI automation framework for web and mobile",
+    "website": "https://midscenejs.com",
+    "color": "#3370FF",
+    "npm": "npm install @midscene/web",
+    "icon": "https://github.com/web-infra-dev.png",
+    "skills": [
+      "AI testing",
+      "UI automation",
+      "Natural-language scripting"
+    ],
+    "compatibleWith": [
+      "playwright",
+      "typescript",
+      "vitest"
+    ]
+  },
+  {
+    "id": "tina-cms",
+    "name": "Tina CMS",
+    "category": "CMS",
+    "description": "Git-backed headless CMS with visual editing",
+    "website": "https://tina.io",
+    "color": "#EC4815",
+    "npm": "npx @tinacms/cli@latest init",
+    "icon": "https://github.com/tinacms.png",
+    "skills": [
+      "Content modeling",
+      "Git workflows",
+      "Visual editing"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "astro",
+      "react"
+    ]
+  },
+  {
+    "id": "zeabur",
+    "name": "Zeabur",
+    "category": "Hosting",
+    "description": "Platform for deploying full-stack apps with zero configuration",
+    "website": "https://zeabur.com",
+    "color": "#6C2BD9",
+    "npm": "npm install -g @zeabur/cli",
+    "icon": "https://github.com/zeabur.png",
+    "skills": [
+      "Deployment",
+      "CI/CD",
+      "Infrastructure basics"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "docker",
+      "github-actions"
+    ]
+  },
+  {
+    "id": "axiom",
+    "name": "Axiom",
+    "category": "Monitoring/Observability",
+    "description": "Serverless observability platform for logs, traces and metrics",
+    "website": "https://axiom.co",
+    "color": "#3B82F6",
+    "npm": "npm install @axiomhq/js",
+    "icon": "https://axiom.co/favicon.ico",
+    "skills": [
+      "Log analytics",
+      "Tracing",
+      "OpenTelemetry"
+    ],
+    "compatibleWith": [
+      "opentelemetry",
+      "vercel",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "arktype",
+    "name": "ArkType",
+    "category": "Validation",
+    "description": "TypeScript's optimal validation library with inferred static types",
+    "website": "https://arktype.io",
+    "color": "#8B5CF6",
+    "npm": "npm install arktype",
+    "icon": "https://github.com/arktypeio.png",
+    "skills": [
+      "Schema validation",
+      "Type inference",
+      "Performance profiling"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "hono",
+      "trpc"
+    ]
+  },
+  {
+    "id": "slidev",
+    "name": "Slidev",
+    "category": "Documentation",
+    "description": "Presentation slides for developers, powered by Vue and Markdown",
+    "website": "https://sli.dev",
+    "color": "#FFB800",
+    "npm": "npm create slidev@latest",
+    "icon": "https://github.com/slidevjs.png",
+    "skills": [
+      "Technical writing",
+      "Markdown",
+      "Live coding demos"
+    ],
+    "compatibleWith": [
+      "vue",
+      "vite",
+      "typescript"
+    ]
+  },
+  {
+    "id": "openrouter",
+    "name": "OpenRouter",
+    "category": "AI/LLM",
+    "description": "Unified API gateway for routing between hundreds of LLM providers",
+    "website": "https://openrouter.ai",
+    "color": "#6B7280",
+    "npm": "npm install openai",
+    "icon": "https://openrouter.ai/favicon.ico",
+    "skills": [
+      "Model routing",
+      "Cost optimization",
+      "Fallback strategies"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "langchain",
+      "openai"
+    ]
+  },
+  {
+    "id": "zero-sync",
+    "name": "Zero",
+    "category": "Local-First",
+    "description": "Query-driven real-time sync engine for local-first web applications",
+    "website": "https://zero.rocicorp.dev",
+    "color": "#000000",
+    "npm": "npm install @rocicorp/zero",
+    "icon": "https://zero.rocicorp.dev/favicon.ico",
+    "skills": [
+      "Local-first sync",
+      "Query-driven caching",
+      "Optimistic UI"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "postgresql",
+      "drizzle",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "electric-sql",
+    "name": "ElectricSQL",
+    "category": "Local-First",
+    "description": "Active sync engine replicating Postgres to client SQLite in real-time",
+    "website": "https://electric-sql.com",
+    "color": "#00D26A",
+    "npm": "npm install @electric-sql/client",
+    "icon": "https://electric-sql.com/img/favicon.ico",
+    "skills": [
+      "Postgres replication",
+      "Offline-first sync",
+      "Client-side SQLite"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "react",
+      "typescript",
+      "drizzle",
+      "tanstack-query"
+    ]
+  },
+  {
+    "id": "tinybase",
+    "name": "TinyBase",
+    "category": "Local-First",
+    "description": "The reactive data store for local-first apps with CRDT and sync support",
+    "website": "https://tinybase.org",
+    "color": "#FF4081",
+    "npm": "npm install tinybase",
+    "icon": "https://tinybase.org/favicon.ico",
+    "skills": [
+      "Reactive data store",
+      "CRDT conflict resolution",
+      "Local persistence"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "sqlite",
+      "tanstack-query"
+    ]
+  },
+  {
+    "id": "jazz-tools",
+    "name": "Jazz",
+    "category": "Local-First",
+    "description": "Open-source framework for local-first apps with collaborative state and secure sync",
+    "website": "https://jazz.tools",
+    "color": "#7928CA",
+    "npm": "npm install jazz-tools",
+    "icon": "https://jazz.tools/favicon.ico",
+    "skills": [
+      "Collaborative state",
+      "Peer-to-peer sync",
+      "End-to-end encryption"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "expo",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "powersync",
+    "name": "PowerSync",
+    "category": "Local-First",
+    "description": "Offline-first sync engine connecting client SQLite to backend SQL databases",
+    "website": "https://powersync.com",
+    "color": "#4F46E5",
+    "npm": "npm install @powersync/web",
+    "icon": "https://powersync.com/favicon.ico",
+    "skills": [
+      "Offline data sync",
+      "Dynamic partial replication",
+      "Relational caching"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "sqlite",
+      "react",
+      "reactnative",
+      "supabase"
+    ]
+  },
+  {
+    "id": "automerge",
+    "name": "Automerge",
+    "category": "Local-First",
+    "description": "CRDT library for building collaborative, local-first applications",
+    "website": "https://automerge.org",
+    "color": "#E0234E",
+    "npm": "npm install @automerge/automerge",
+    "icon": "https://automerge.org/img/favicon.ico",
+    "skills": [
+      "CRDT data structures",
+      "Multi-user collaboration",
+      "Conflict-free replication"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "javascript",
+      "react"
+    ]
+  },
+  {
+    "id": "pydantic-ai",
+    "name": "PydanticAI",
+    "category": "AI Agents",
+    "description": "Type-safe Python agent framework built by the Pydantic team",
+    "website": "https://ai.pydantic.dev",
+    "color": "#E92063",
+    "npm": "pip install pydantic-ai",
+    "icon": "https://ai.pydantic.dev/img/favicon.ico",
+    "skills": [
+      "Type-safe agents",
+      "Structured generation",
+      "Model evaluation"
+    ],
+    "compatibleWith": [
+      "python",
+      "openai",
+      "anthropic",
+      "gemini",
+      "fastmcp"
+    ]
+  },
+  {
+    "id": "smolagents",
+    "name": "smolagents",
+    "category": "AI Agents",
+    "description": "Minimalist, code-centric AI agent library from Hugging Face",
+    "website": "https://github.com/huggingface/smolagents",
+    "color": "#FFD21E",
+    "npm": "pip install smolagents",
+    "icon": "https://huggingface.co/front/images/logos/mark/favicon.ico",
+    "skills": [
+      "Code-based agents",
+      "Tool calling",
+      "Lightweight orchestration"
+    ],
+    "compatibleWith": [
+      "python",
+      "huggingface",
+      "openai",
+      "anthropic"
+    ]
+  },
+  {
+    "id": "firecrawl",
+    "name": "Firecrawl",
+    "category": "AI Agents",
+    "description": "Web scraping and crawling API that turns websites into clean markdown for LLMs",
+    "website": "https://firecrawl.dev",
+    "color": "#FF5722",
+    "npm": "npm install @mendable/firecrawl-js",
+    "icon": "https://firecrawl.dev/favicon.ico",
+    "skills": [
+      "Web data extraction",
+      "AI agent toolkits",
+      "Markdown conversion"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "python",
+      "langchain",
+      "llamaindex",
+      "openai",
+      "mastra"
+    ]
+  },
+  {
+    "id": "agentkit",
+    "name": "AgentKit",
+    "category": "AI Agents",
+    "description": "Framework enabling AI agents to take onchain actions and manage crypto wallets",
+    "website": "https://docs.cdp.coinbase.com/agentkit/docs/welcome",
+    "color": "#0052FF",
+    "npm": "npm install @coinbase/agentkit",
+    "icon": "https://docs.cdp.coinbase.com/img/favicon.png",
+    "skills": [
+      "Onchain agent actions",
+      "Wallet management",
+      "Autonomous transactions"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "python",
+      "langchain",
+      "solidity",
+      "ethers"
+    ]
+  },
+  {
+    "id": "fastmcp",
+    "name": "FastMCP",
+    "category": "AI/LLM",
+    "description": "High-level framework for building Model Context Protocol servers",
+    "website": "https://gofastmcp.com",
+    "color": "#059669",
+    "npm": "pip install fastmcp",
+    "icon": "https://gofastmcp.com/favicon.ico",
+    "skills": [
+      "MCP server development",
+      "Tool definitions",
+      "Context protocol"
+    ],
+    "compatibleWith": [
+      "mcp",
+      "python",
+      "typescript",
+      "openai",
+      "anthropic",
+      "claude-code"
+    ]
+  },
+  {
+    "id": "braintrust",
+    "name": "Braintrust",
+    "category": "AI/LLM",
+    "description": "Enterprise evaluation, observability, and prompt engineering platform for AI",
+    "website": "https://braintrust.dev",
+    "color": "#4338CA",
+    "npm": "npm install braintrust",
+    "icon": "https://braintrust.dev/favicon.ico",
+    "skills": [
+      "AI evaluations",
+      "Prompt management",
+      "LLM tracing"
+    ],
+    "compatibleWith": [
+      "openai",
+      "anthropic",
+      "vercel-ai-sdk",
+      "langchain",
+      "typescript"
+    ]
+  },
+  {
+    "id": "litellm",
+    "name": "LiteLLM",
+    "category": "AI/LLM",
+    "description": "Unified proxy and SDK to call 100+ LLMs with OpenAI format and cost tracking",
+    "website": "https://litellm.ai",
+    "color": "#2563EB",
+    "npm": "pip install litellm",
+    "icon": "https://docs.litellm.ai/img/favicon.ico",
+    "skills": [
+      "Model routing",
+      "Load balancing",
+      "Cost observability"
+    ],
+    "compatibleWith": [
+      "openai",
+      "anthropic",
+      "gemini",
+      "mistral",
+      "vllm",
+      "openrouter"
+    ]
+  },
+  {
+    "id": "vllm",
+    "name": "vLLM",
+    "category": "AI/LLM",
+    "description": "High-throughput and memory-efficient LLM inference and serving engine",
+    "website": "https://vllm.ai",
+    "color": "#1E293B",
+    "npm": "pip install vllm",
+    "icon": "https://vllm.ai/favicon.ico",
+    "skills": [
+      "PagedAttention",
+      "High-throughput serving",
+      "Quantization"
+    ],
+    "compatibleWith": [
+      "python",
+      "docker",
+      "huggingface",
+      "litellm"
+    ]
+  },
+  {
+    "id": "ragflow",
+    "name": "RAGFlow",
+    "category": "AI/LLM",
+    "description": "Open-source RAG engine based on deep document understanding",
+    "website": "https://ragflow.io",
+    "color": "#10B981",
+    "npm": "# Docker deployment",
+    "icon": "https://ragflow.io/favicon.ico",
+    "skills": [
+      "Document parsing",
+      "Hybrid retrieval",
+      "RAG architecture"
+    ],
+    "compatibleWith": [
+      "docker",
+      "python",
+      "elasticsearch",
+      "ollama"
+    ]
+  },
+  {
+    "id": "claude-code",
+    "name": "Claude Code",
+    "category": "AI Coding Assistants",
+    "description": "Anthropic's agentic CLI tool for automated codebase navigation and editing",
+    "website": "https://claude.ai/code",
+    "color": "#CC785C",
+    "npm": "npm install -g @anthropic-ai/claude-code",
+    "icon": "https://cdn-anthropic-com.translr.app/prod/images/branding/brand-logo-small.png",
+    "skills": [
+      "CLI agentic workflows",
+      "Autonomous code editing",
+      "Terminal automation"
+    ],
+    "compatibleWith": [
+      "anthropic",
+      "mcp",
+      "typescript",
+      "python",
+      "git",
+      "github"
+    ]
+  },
+  {
+    "id": "open-webui",
+    "name": "Open WebUI",
+    "category": "AI/LLM",
+    "description": "Extensible, self-hosted web UI and orchestration for local and cloud LLMs",
+    "website": "https://openwebui.com",
+    "color": "#0F172A",
+    "npm": "pip install open-webui",
+    "icon": "https://openwebui.com/favicon.ico",
+    "skills": [
+      "Self-hosted AI UI",
+      "Model orchestration",
+      "RAG integration"
+    ],
+    "compatibleWith": [
+      "ollama",
+      "openai",
+      "litellm",
+      "docker"
+    ]
+  },
+  {
+    "id": "uv",
+    "name": "uv",
+    "category": "Package Manager",
+    "description": "Extremely fast Python package and project manager written in Rust",
+    "website": "https://astral.sh/uv",
+    "color": "#DE5B43",
+    "npm": "curl -LsSf https://astral.sh/uv/install.sh | sh",
+    "icon": "https://astral.sh/favicon.ico",
+    "skills": [
+      "High-speed dependency resolution",
+      "Python workspace management",
+      "Rust-based CLI"
+    ],
+    "compatibleWith": [
+      "python",
+      "fastapi",
+      "django",
+      "pydantic-ai"
+    ]
+  },
+  {
+    "id": "rsbuild",
+    "name": "Rsbuild",
+    "category": "Build Tools",
+    "description": "Rspack-based build tool offering out-of-the-box build configurations",
+    "website": "https://rsbuild.dev",
+    "color": "#F28B25",
+    "npm": "npm create rsbuild@latest",
+    "icon": "https://rsbuild.dev/favicon.ico",
+    "skills": [
+      "Instant build startup",
+      "Rspack ecosystem",
+      "Zero-config bundling"
+    ],
+    "compatibleWith": [
+      "rspack",
+      "react",
+      "vue",
+      "svelte",
+      "typescript",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "ark-ui",
+    "name": "Ark UI",
+    "category": "CSS Framework",
+    "description": "Headless, accessible UI component library powered by state machines",
+    "website": "https://ark-ui.com",
+    "color": "#EB5757",
+    "npm": "npm install @ark-ui/react",
+    "icon": "https://ark-ui.com/favicon.ico",
+    "skills": [
+      "Headless UI architecture",
+      "State machine components",
+      "WAI-ARIA accessibility"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "solid",
+      "tailwind",
+      "zag-js"
+    ]
+  },
+  {
+    "id": "zag-js",
+    "name": "Zag.js",
+    "category": "CSS Framework",
+    "description": "UI component logic modeled as finite state machines for React, Vue, and Solid",
+    "website": "https://zagjs.com",
+    "color": "#F59E0B",
+    "npm": "npm install @zag-js/react",
+    "icon": "https://zagjs.com/favicon.ico",
+    "skills": [
+      "State machine UI logic",
+      "Cross-framework components",
+      "Complex interaction design"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "solid",
+      "ark-ui",
+      "typescript"
+    ]
+  },
+  {
+    "id": "park-ui",
+    "name": "Park UI",
+    "category": "CSS Framework",
+    "description": "Modern component library built with Ark UI and customizable design tokens",
+    "website": "https://park-ui.com",
+    "color": "#2DD4BF",
+    "npm": "npx @park-ui/cli init",
+    "icon": "https://park-ui.com/favicon.ico",
+    "skills": [
+      "Design system development",
+      "Token-driven styling",
+      "Accessible components"
+    ],
+    "compatibleWith": [
+      "ark-ui",
+      "react",
+      "vue",
+      "solid",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "bits-ui",
+    "name": "Bits UI",
+    "category": "CSS Framework",
+    "description": "Headless, accessible component primitives for Svelte",
+    "website": "https://bits-ui.com",
+    "color": "#FF3E00",
+    "npm": "npm install bits-ui",
+    "icon": "https://bits-ui.com/favicon.ico",
+    "skills": [
+      "Svelte 5 runes",
+      "Headless components",
+      "Accessible UI"
+    ],
+    "compatibleWith": [
+      "svelte",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "val-town",
+    "name": "Val Town",
+    "category": "Hosting",
+    "description": "Social compute platform to write, deploy, and schedule TypeScript functions",
+    "website": "https://val.town",
+    "color": "#3B82F6",
+    "npm": "npm install @valtown/sdk",
+    "icon": "https://val.town/favicon.ico",
+    "skills": [
+      "Serverless functions",
+      "Scheduled cron jobs",
+      "API prototyping"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "javascript",
+      "hono",
+      "deno"
+    ]
+  },
+  {
+    "id": "openai-agents",
+    "name": "OpenAI Agents SDK",
+    "category": "AI Agents",
+    "description": "Framework for building multi-agent workflows with human-in-the-loop and handoffs",
+    "website": "https://github.com/openai/openai-agents-python",
+    "color": "#10A37F",
+    "npm": "pip install openai-agents",
+    "icon": "https://openai.com/favicon.ico",
+    "skills": [
+      "Multi-agent orchestration",
+      "Agent handoffs",
+      "Guardrails"
+    ],
+    "compatibleWith": [
+      "python",
+      "openai",
+      "fastmcp"
+    ]
+  },
+  {
+    "id": "agno",
+    "name": "Agno",
+    "category": "AI Agents",
+    "description": "Lightweight, multimodal agent framework for building autonomous workflows",
+    "website": "https://agno.com",
+    "color": "#6366F1",
+    "npm": "pip install agno",
+    "icon": "https://agno.com/favicon.ico",
+    "skills": [
+      "Multimodal agents",
+      "Knowledge retrieval",
+      "Autonomous workflows"
+    ],
+    "compatibleWith": [
+      "python",
+      "openai",
+      "anthropic",
+      "gemini",
+      "postgresql"
+    ]
+  },
+  {
+    "id": "groq",
+    "name": "Groq",
+    "category": "AI/LLM",
+    "description": "Ultra-fast LPU inference engine for open-source LLMs",
+    "website": "https://groq.com",
+    "color": "#F55036",
+    "npm": "npm install groq-sdk",
+    "icon": "https://groq.com/favicon.ico",
+    "skills": [
+      "LPU acceleration",
+      "Low-latency inference",
+      "Real-time AI"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "langchain",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "id": "cerebras",
+    "name": "Cerebras",
+    "category": "AI/LLM",
+    "description": "World's fastest AI inference powered by the Wafer-Scale Engine",
+    "website": "https://cerebras.ai",
+    "color": "#0A2540",
+    "npm": "pip install cerebras_cloud_sdk",
+    "icon": "https://cerebras.ai/favicon.ico",
+    "skills": [
+      "Wafer-Scale inference",
+      "Ultra-fast generation",
+      "LLM hosting"
+    ],
+    "compatibleWith": [
+      "python",
+      "openai",
+      "langchain"
+    ]
+  },
+  {
+    "id": "together-ai",
+    "name": "Together AI",
+    "category": "AI/LLM",
+    "description": "Cloud platform for building, fine-tuning, and running open-source AI models",
+    "website": "https://together.ai",
+    "color": "#0F172A",
+    "npm": "npm install together-ai",
+    "icon": "https://together.ai/favicon.ico",
+    "skills": [
+      "Open-source model hosting",
+      "Fine-tuning",
+      "Fast token generation"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "langchain",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "id": "fireworks-ai",
+    "name": "Fireworks AI",
+    "category": "AI/LLM",
+    "description": "Production-ready fast inference engine for generative AI and compound systems",
+    "website": "https://fireworks.ai",
+    "color": "#EC4899",
+    "npm": "npm install fireworks-ai",
+    "icon": "https://fireworks.ai/favicon.ico",
+    "skills": [
+      "Compound AI systems",
+      "Fast model serving",
+      "Function calling"
+    ],
+    "compatibleWith": [
+      "vercel-ai-sdk",
+      "langchain",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "id": "deepgram",
+    "name": "Deepgram",
+    "category": "Voice/Audio",
+    "description": "Voice AI platform for high-accuracy speech-to-text and conversational AI",
+    "website": "https://deepgram.com",
+    "color": "#13EF95",
+    "npm": "npm install @deepgram/sdk",
+    "icon": "https://deepgram.com/favicon.ico",
+    "skills": [
+      "Speech-to-text",
+      "Text-to-speech",
+      "Real-time voice AI"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "python",
+      "nextjs",
+      "openai"
+    ]
+  },
+  {
+    "id": "cohere",
+    "name": "Cohere",
+    "category": "AI/LLM",
+    "description": "Enterprise AI platform offering Command R+ models and Rerank APIs",
+    "website": "https://cohere.com",
+    "color": "#39594C",
+    "npm": "npm install cohere-ai",
+    "icon": "https://cohere.com/favicon.ico",
+    "skills": [
+      "Semantic search",
+      "Rerank models",
+      "Command R+ inference"
+    ],
+    "compatibleWith": [
+      "langchain",
+      "llamaindex",
+      "typescript",
+      "python"
+    ]
+  },
+  {
+    "id": "waku",
+    "name": "Waku",
+    "category": "Web Framework",
+    "description": "Minimalist React Server Components (RSC) framework powered by Vite",
+    "website": "https://waku.gg",
+    "color": "#E10098",
+    "npm": "npm create waku@latest",
+    "icon": "https://waku.gg/favicon.ico",
+    "skills": [
+      "React Server Components",
+      "Vite integration",
+      "Minimalist SSR"
+    ],
+    "compatibleWith": [
+      "react",
+      "vite",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "qwik-city",
+    "name": "Qwik City",
+    "category": "Web Framework",
+    "description": "Meta-framework for Qwik featuring resumability and zero-hydration architecture",
+    "website": "https://qwik.dev/docs/qwikcity/",
+    "color": "#18B6F6",
+    "npm": "npm create qwik@latest",
+    "icon": "https://qwik.dev/favicon.ico",
+    "skills": [
+      "Resumability",
+      "Directory-based routing",
+      "Zero-hydration architecture"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "vite",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "honox",
+    "name": "HonoX",
+    "category": "Web Framework",
+    "description": "Simple, fast meta-framework based on Hono, Vite, and JSX",
+    "website": "https://github.com/honojs/honox",
+    "color": "#E36002",
+    "npm": "npm create hono@latest",
+    "icon": "https://avatars.githubusercontent.com/u/78773850?s=200&v=4",
+    "skills": [
+      "Edge SSR",
+      "Multi-runtime meta-framework",
+      "Islands architecture"
+    ],
+    "compatibleWith": [
+      "hono",
+      "vite",
+      "cloudflare-workers",
+      "deno"
+    ]
+  },
+  {
+    "id": "starlight",
+    "name": "Starlight",
+    "category": "Documentation",
+    "description": "Documentation framework built on Astro for rapid, accessible documentation",
+    "website": "https://starlight.astro.build",
+    "color": "#883AE1",
+    "npm": "npm create astro@latest -- --template starlight",
+    "icon": "https://starlight.astro.build/favicon.svg",
+    "skills": [
+      "Documentation sites",
+      "Markdown & MDX",
+      "Content collections"
+    ],
+    "compatibleWith": [
+      "astro",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "fumadocs",
+    "name": "Fumadocs",
+    "category": "Documentation",
+    "description": "Beautiful, fast documentation framework built for Next.js and App Router",
+    "website": "https://fumadocs.vercel.app",
+    "color": "#000000",
+    "npm": "npm create fumadocs-app",
+    "icon": "https://fumadocs.vercel.app/favicon.ico",
+    "skills": [
+      "Next.js documentation",
+      "MDX processing",
+      "Full-text search"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "nitro",
+    "name": "Nitro",
+    "category": "Backend Framework",
+    "description": "Next-generation server toolkit and engine powering Nuxt and universal servers",
+    "website": "https://nitro.unjs.io",
+    "color": "#F43F5E",
+    "npm": "npm install nitropack",
+    "icon": "https://nitro.unjs.io/favicon.ico",
+    "skills": [
+      "Universal server engine",
+      "Multi-provider deployment",
+      "Zero-config routing"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "hono",
+      "cloudflare-workers",
+      "vercel"
+    ]
+  },
+  {
+    "id": "encore",
+    "name": "Encore.ts",
+    "category": "Backend Framework",
+    "description": "Backend development platform with built-in microservices and cloud automation",
+    "website": "https://encore.dev",
+    "color": "#FF4F00",
+    "npm": "npm install encore.dev",
+    "icon": "https://encore.dev/favicon.ico",
+    "skills": [
+      "Type-safe microservices",
+      "Automatic cloud architecture",
+      "Tracing & metrics"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "postgresql",
+      "docker"
+    ]
+  },
+  {
+    "id": "effect",
+    "name": "Effect",
+    "category": "Languages",
+    "description": "Build robust, type-safe TypeScript programs with structured concurrency",
+    "website": "https://effect.website",
+    "color": "#18181B",
+    "npm": "npm install effect",
+    "icon": "https://effect.website/favicon.ico",
+    "skills": [
+      "Structured concurrency",
+      "Type-safe error handling",
+      "Functional programming"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "nodejs",
+      "react"
+    ]
+  },
+  {
+    "id": "convex",
+    "name": "Convex",
+    "category": "BaaS",
+    "description": "Reactive backend-as-a-service with real-time automatic synchronization",
+    "website": "https://convex.dev",
+    "color": "#FF385C",
+    "npm": "npm install convex",
+    "icon": "https://convex.dev/favicon.ico",
+    "skills": [
+      "Reactive backend functions",
+      "Automatic real-time sync",
+      "ACID transactions"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "typescript",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "upstash",
+    "name": "Upstash",
+    "category": "Database",
+    "description": "Serverless Redis, Kafka, and QStash for serverless and edge architectures",
+    "website": "https://upstash.com",
+    "color": "#00E699",
+    "npm": "npm install @upstash/redis",
+    "icon": "https://upstash.com/favicon.ico",
+    "skills": [
+      "Serverless Redis",
+      "QStash message queues",
+      "Edge rate limiting"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "cloudflare-workers",
+      "hono",
+      "typescript"
+    ]
+  },
+  {
+    "id": "tigris",
+    "name": "Tigris",
+    "category": "Storage",
+    "description": "Globally distributed, low-latency S3-compatible object storage",
+    "website": "https://tigrisdata.com",
+    "color": "#4F46E5",
+    "npm": "npm install @aws-sdk/client-s3",
+    "icon": "https://tigrisdata.com/favicon.ico",
+    "skills": [
+      "Globally distributed S3",
+      "Zero egress storage",
+      "Object storage"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "typescript",
+      "cloudflare-workers",
+      "fly"
+    ]
+  },
+  {
+    "id": "sst",
+    "name": "SST",
+    "category": "DevOps/Infrastructure",
+    "description": "Framework for deploying full-stack apps on AWS and Cloudflare with Pulumi",
+    "website": "https://sst.dev",
+    "color": "#E27525",
+    "npm": "npx sst init",
+    "icon": "https://sst.dev/favicon.ico",
+    "skills": [
+      "Infrastructure as code",
+      "Live lambda debugging",
+      "Serverless deployment"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "aws",
+      "cloudflare-workers",
+      "typescript"
+    ]
+  },
+  {
+    "id": "logto",
+    "name": "Logto",
+    "category": "Authentication",
+    "description": "Modern, open-source identity and user management platform",
+    "website": "https://logto.io",
+    "color": "#5438FF",
+    "npm": "npm install @logto/next",
+    "icon": "https://logto.io/favicon.ico",
+    "skills": [
+      "OIDC identity provider",
+      "Multi-tenant auth",
+      "Role-based access control"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript",
+      "docker"
+    ]
+  },
+  {
+    "id": "openauth",
+    "name": "OpenAuth",
+    "category": "Authentication",
+    "description": "Universal, self-hosted authentication server by the SST team",
+    "website": "https://openauth.js.org",
+    "color": "#FFB800",
+    "npm": "npm install @openauthjs/openauth",
+    "icon": "https://openauth.js.org/favicon.ico",
+    "skills": [
+      "Universal auth server",
+      "OAuth2 & PKCE",
+      "Multi-framework clients"
+    ],
+    "compatibleWith": [
+      "hono",
+      "cloudflare-workers",
+      "nextjs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "replicache",
+    "name": "Replicache",
+    "category": "Local-First",
+    "description": "Real-time, client-side sync framework enabling instant collaborative UIs",
+    "website": "https://replicache.dev",
+    "color": "#10B981",
+    "npm": "npm install replicache",
+    "icon": "https://replicache.dev/favicon.ico",
+    "skills": [
+      "Client-side optimistic UI",
+      "Multiplayer real-time sync",
+      "Offline support"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "postgresql",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "triplit",
+    "name": "Triplit",
+    "category": "Local-First",
+    "description": "Open-source local-first database that syncs in real-time with relational schemas",
+    "website": "https://triplit.dev",
+    "color": "#06B6D4",
+    "npm": "npm install @triplit/client",
+    "icon": "https://triplit.dev/favicon.ico",
+    "skills": [
+      "Local-first relational DB",
+      "Schema migrations",
+      "Real-time subscriptions"
+    ],
+    "compatibleWith": [
+      "react",
+      "typescript",
+      "svelte",
+      "expo"
+    ]
+  },
+  {
+    "id": "dexie",
+    "name": "Dexie.js",
+    "category": "Local-First",
+    "description": "Fast, minimalist wrapper for IndexedDB with reactive live queries",
+    "website": "https://dexie.org",
+    "color": "#3B82F6",
+    "npm": "npm install dexie",
+    "icon": "https://dexie.org/favicon.ico",
+    "skills": [
+      "IndexedDB wrapper",
+      "Observable queries",
+      "Client-side storage"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "svelte",
+      "typescript"
+    ]
+  },
+  {
+    "id": "oxc",
+    "name": "OXC",
+    "category": "Code Quality/Linting",
+    "description": "High-performance compiler toolchain for JavaScript and TypeScript written in Rust",
+    "website": "https://oxc.rs",
+    "color": "#E38833",
+    "npm": "npm install -D oxlint",
+    "icon": "https://oxc.rs/favicon.ico",
+    "skills": [
+      "Rust JS/TS parser",
+      "Ultra-fast AST tooling",
+      "Static analysis"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "javascript",
+      "oxlint",
+      "vite"
+    ]
+  },
+  {
+    "id": "pkgx",
+    "name": "pkgx",
+    "category": "Package Manager",
+    "description": "Blazing-fast virtual environment and CLI package manager",
+    "website": "https://pkgx.sh",
+    "color": "#000000",
+    "npm": "curl -fsS https://pkgx.sh | sh",
+    "icon": "https://pkgx.sh/favicon.ico",
+    "skills": [
+      "Zero-install package execution",
+      "Virtual environments",
+      "Cross-platform CLI"
+    ],
+    "compatibleWith": [
+      "nodejs",
+      "python",
+      "rust",
+      "go"
+    ]
+  },
+  {
+    "id": "cva",
+    "name": "CVA",
+    "category": "CSS Framework",
+    "description": "Class Variance Authority for type-safe UI component variants",
+    "website": "https://cva.style",
+    "color": "#6366F1",
+    "npm": "npm install class-variance-authority",
+    "icon": "https://cva.style/favicon.ico",
+    "skills": [
+      "Component variant design",
+      "Type-safe CSS",
+      "Design systems"
+    ],
+    "compatibleWith": [
+      "tailwind",
+      "react",
+      "typescript",
+      "shadcn"
+    ]
+  },
+  {
+    "id": "tailwind-merge",
+    "name": "tailwind-merge",
+    "category": "CSS Framework",
+    "description": "Utility to efficiently merge Tailwind CSS classes without style conflicts",
+    "website": "https://github.com/dcastilho/tailwind-merge",
+    "color": "#38BDF8",
+    "npm": "npm install tailwind-merge",
+    "icon": "https://tailwindcss.com/favicons/favicon.ico",
+    "skills": [
+      "Tailwind class merging",
+      "Conflict resolution",
+      "Dynamic styling"
+    ],
+    "compatibleWith": [
+      "tailwind",
+      "react",
+      "vue",
+      "typescript"
+    ]
+  },
+  {
+    "id": "clsx",
+    "name": "clsx",
+    "category": "CSS Framework",
+    "description": "Tiny utility for constructing conditional className strings",
+    "website": "https://github.com/lukeed/clsx",
+    "color": "#475569",
+    "npm": "npm install clsx",
+    "icon": "https://github.com/lukeed.png",
+    "skills": [
+      "Conditional classes",
+      "Bundle-size optimization",
+      "Utility styling"
+    ],
+    "compatibleWith": [
+      "react",
+      "vue",
+      "svelte",
+      "tailwind"
+    ]
+  },
+  {
+    "id": "sonner",
+    "name": "Sonner",
+    "category": "CSS Framework",
+    "description": "An opinionated, customizable toast notification component for React",
+    "website": "https://sonner.emilkowal.ski",
+    "color": "#000000",
+    "npm": "npm install sonner",
+    "icon": "https://sonner.emilkowal.ski/favicon.ico",
+    "skills": [
+      "Toast notifications",
+      "Micro-interactions",
+      "Accessible overlays"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "tailwind",
+      "typescript"
+    ]
+  },
+  {
+    "id": "nuqs",
+    "name": "nuqs",
+    "category": "State Management",
+    "description": "Type-safe search params state manager for React and Next.js",
+    "website": "https://nuqs.47ng.com",
+    "color": "#FB7185",
+    "npm": "npm install nuqs",
+    "icon": "https://nuqs.47ng.com/favicon.ico",
+    "skills": [
+      "URL search params state",
+      "Type-safe query strings",
+      "SSR-safe state"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "react",
+      "typescript"
+    ]
+  },
+  {
+    "id": "arcjet",
+    "name": "Arcjet",
+    "category": "Security",
+    "description": "Security layer for Node.js, Next.js, and Bun with bot detection and rate limiting",
+    "website": "https://arcjet.com",
+    "color": "#22C55E",
+    "npm": "npm install @arcjet/next",
+    "icon": "https://arcjet.com/favicon.ico",
+    "skills": [
+      "Application security",
+      "Bot detection",
+      "Rate limiting"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "hono",
+      "nodejs",
+      "typescript"
+    ]
+  },
+  {
+    "id": "unkey",
+    "name": "Unkey",
+    "category": "Security",
+    "description": "Open-source API key management and distributed rate-limiting platform",
+    "website": "https://unkey.com",
+    "color": "#000000",
+    "npm": "npm install @unkey/api",
+    "icon": "https://unkey.com/favicon.ico",
+    "skills": [
+      "API key management",
+      "Distributed rate limiting",
+      "API analytics"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "hono",
+      "typescript",
+      "cloudflare-workers"
+    ]
+  },
+  {
+    "id": "dub",
+    "name": "Dub.co",
+    "category": "Analytics",
+    "description": "Open-source link management and conversion tracking platform for developers",
+    "website": "https://dub.co",
+    "color": "#000000",
+    "npm": "npm install dub",
+    "icon": "https://dub.co/favicon.ico",
+    "skills": [
+      "Link management",
+      "Conversion tracking",
+      "Analytics API"
+    ],
+    "compatibleWith": [
+      "nextjs",
+      "typescript",
+      "react"
+    ]
+  },
+  {
+    "id": "dspy",
+    "name": "DSPy",
+    "category": "AI/LLM",
+    "description": "Framework for algorithmically optimizing LLM prompts and weights",
+    "website": "https://dspy.ai",
+    "color": "#2C3E50",
+    "npm": "# pip install dspy-ai",
+    "icon": "https://github.com/stanfordnlp.png",
+    "skills": [
+      "Prompt optimization",
+      "Declarative AI pipelines",
+      "Few-shot compilation"
+    ],
+    "compatibleWith": [
+      "python",
+      "openai",
+      "anthropic",
+      "qdrant",
+      "langchain"
+    ]
+  },
+  {
+    "id": "unsloth",
+    "name": "Unsloth",
+    "category": "MLOps",
+    "description": "5x faster LLM fine-tuning and training with 80% less memory usage",
+    "website": "https://unsloth.ai",
+    "color": "#FF5722",
+    "npm": "# pip install unsloth",
+    "icon": "https://github.com/unslothai.png",
+    "skills": [
+      "LoRA fine-tuning",
+      "QLoRA quantization",
+      "VRAM optimization"
+    ],
+    "compatibleWith": [
+      "python",
+      "huggingface",
+      "docker"
+    ]
+  },
+  {
+    "id": "electricsql",
+    "name": "ElectricSQL",
+    "category": "Local-First",
+    "description": "Postgres-to-SQLite replication and real-time reactive sync engine",
+    "website": "https://electric-sql.com",
+    "color": "#7E57C2",
+    "npm": "npm install electric-sql",
+    "icon": "https://github.com/electric-sql.png",
+    "skills": [
+      "Local-first sync",
+      "Postgres shape replication",
+      "Offline persistence"
+    ],
+    "compatibleWith": [
+      "postgresql",
+      "sqlite",
+      "react",
+      "typescript",
+      "drizzle"
+    ]
+  },
+  {
+    "id": "instantdb",
+    "name": "InstantDB",
+    "category": "Local-First",
+    "description": "Modern client-side graph database with multiplayer real-time sync",
+    "website": "https://instantdb.com",
+    "color": "#FF4081",
+    "npm": "npm install @instantdb/react",
+    "icon": "https://github.com/instantdb.png",
+    "skills": [
+      "Relational graph sync",
+      "Multiplayer reactivity",
+      "Offline mutations"
+    ],
+    "compatibleWith": [
+      "react",
+      "reactnative",
+      "typescript",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "simplewebauthn",
+    "name": "SimpleWebAuthn",
+    "category": "Authentication",
+    "description": "TypeScript-first WebAuthn and Passkeys authentication library",
+    "website": "https://simplewebauthn.dev",
+    "color": "#00BCD4",
+    "npm": "npm install @simplewebauthn/server @simplewebauthn/browser",
+    "icon": "https://github.com/MasterKale.png",
+    "skills": [
+      "Passkey registration",
+      "FIDO2 authentication",
+      "Biometric login"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "nextjs",
+      "hono",
+      "better-auth",
+      "nodejs"
+    ]
+  },
+  {
+    "id": "dragonfly",
+    "name": "Dragonfly",
+    "category": "Database",
+    "description": "Modern multi-threaded in-memory cache and Redis replacement",
+    "website": "https://dragonflydb.io",
+    "color": "#FF3366",
+    "npm": "# Docker run dragonfly",
+    "icon": "https://github.com/dragonflydb.png",
+    "skills": [
+      "Multi-threaded caching",
+      "High-throughput memory store",
+      "Redis API compatibility"
+    ],
+    "compatibleWith": [
+      "redis",
+      "postgresql",
+      "fastify",
+      "axum",
+      "docker"
+    ]
+  },
+  {
+    "id": "vaul",
+    "name": "Vaul",
+    "category": "CSS Framework",
+    "description": "Drawer component for React with fluid drag physics and animations",
+    "website": "https://vaul.emilkowal.ski",
+    "color": "#000000",
+    "npm": "npm install vaul",
+    "icon": "https://github.com/emilkowalski.png",
+    "skills": [
+      "Fluid gesture animation",
+      "Mobile drawer UI",
+      "Radix primitive composition"
+    ],
+    "compatibleWith": [
+      "react",
+      "tailwind",
+      "shadcn"
+    ]
+  },
+  {
+    "id": "motion-number",
+    "name": "Motion Number",
+    "category": "Animation",
+    "description": "Fluid and accessible animated number transitions for React",
+    "website": "https://motion-number.barvian.me",
+    "color": "#6366F1",
+    "npm": "npm install motion-number",
+    "icon": "https://github.com/barvian.png",
+    "skills": [
+      "Numeric transitions",
+      "Micro-interactions",
+      "Accessible layout animation"
+    ],
+    "compatibleWith": [
+      "react",
+      "tailwind",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "repomix",
+    "name": "Repomix",
+    "category": "Build Tools",
+    "description": "Pack entire codebases into single AI-friendly context files for LLMs",
+    "website": "https://repomix.com",
+    "color": "#E65100",
+    "npm": "npx repomix",
+    "icon": "https://github.com/yamadashy.png",
+    "skills": [
+      "Codebase flattening",
+      "Token counting",
+      "AI context packaging"
+    ],
+    "compatibleWith": [
+      "typescript",
+      "javascript",
+      "python",
+      "nextjs"
+    ]
+  },
+  {
+    "id": "svgl",
+    "name": "SVGL",
+    "category": "Documentation",
+    "description": "Curated library of modern tech and framework SVG logos",
+    "website": "https://svgl.app",
+    "color": "#000000",
+    "npm": "npm install @svgl/core",
+    "icon": "https://github.com/pheralb.png",
+    "skills": [
+      "SVG asset integration",
+      "Design token icons",
+      "Brand consistency"
+    ],
+    "compatibleWith": [
+      "react",
+      "nextjs",
+      "tailwind",
+      "typescript"
+    ]
+  }
 ];
 
-export const categories: string[] = Array.from(
-    new Set(technologyData.map((t) => t.category))
-);
+export const categories = [
+  "Web Framework",
+  "Database",
+  "Runtime",
+  "Backend Framework",
+  "CSS Framework",
+  "Native Framework",
+  "ORM",
+  "Monorepo",
+  "Package Manager",
+  "Testing",
+  "Authentication",
+  "Validation",
+  "GraphQL/API",
+  "Real-time",
+  "CMS",
+  "Search",
+  "Email",
+  "Analytics",
+  "Payment",
+  "Storage",
+  "Build Tools",
+  "Hosting",
+  "State Management",
+  "Languages",
+  "DevOps/Infrastructure",
+  "Monitoring/Observability",
+  "Message Queues/Event Streaming",
+  "API Documentation",
+  "Version Control",
+  "Code Quality/Linting",
+  "AI/LLM",
+  "Vector Database",
+  "Edge/Serverless",
+  "Feature Flags",
+  "Background Jobs",
+  "Dev Environments",
+  "Web3/Blockchain",
+  "Data Engineering",
+  "API Gateway",
+  "Security",
+  "Documentation",
+  "BaaS",
+  "Workflow Automation",
+  "Data Visualization",
+  "Video/Streaming",
+  "MLOps",
+  "AI Agents",
+  "3D/Game Dev",
+  "Maps/Geo",
+  "Push Notifications",
+  "Voice/Audio",
+  "Performance",
+  "Accessibility",
+  "Internationalization",
+  "OpenTelemetry",
+  "IoT",
+  "AI Coding Assistants",
+  "Animation",
+  "Local-First"
+] as const;

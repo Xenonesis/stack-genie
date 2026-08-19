@@ -13,7 +13,7 @@ const dangling = newTech.flatMap((tech) =>
   (tech.compatibleWith ?? []).filter((ref) => !idSet.has(ref)).map((ref) => `${tech.id} -> ${ref}`)
 );
 
-const categorySet = new Set(categories);
+const categorySet = new Set<string>(categories);
 const unknownCategories = technologyData.filter((tech) => !categorySet.has(tech.category));
 
 console.log(`Total technologies: ${technologyData.length}`);
