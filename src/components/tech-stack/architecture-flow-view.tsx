@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Technology, TechStack } from "@/types/tech-stack";
-import { Layers, ArrowDownRight, Server, Database, Cpu, ShieldCheck, Activity } from "lucide-react";
 import React from "react";
+import { motion } from "framer-motion";
+import { TechStack } from "@/types/tech-stack";
+import { Layers, ArrowDownRight, Server, Database, Cpu, Activity } from "lucide-react";
 
 interface ArchitectureFlowViewProps {
   selectedStack: TechStack;

@@ -1,24 +1,17 @@
 "use client";
 
 import React from "react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-export function BuilderMobileHeader() {
-  const toggleMobileSidebar = () => {
-    const sidebar = document.getElementById('mobile-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    if (sidebar) sidebar.classList.toggle('sidebar-open');
-    if (overlay) overlay.classList.toggle('active');
-  };
+export interface BuilderMobileHeaderProps {
+  isSidebarOpen: boolean;
+  onToggleSidebar: () => void;
+  onCloseSidebar: () => void;
+}
 
-  const closeMobileSidebar = () => {
-    const sidebar = document.getElementById('mobile-sidebar');
-    const overlay = document.getElementById('sidebar-overlay');
-    if (sidebar) sidebar.classList.remove('sidebar-open');
-    if (overlay) overlay.classList.remove('active');
-  };
-
+export function BuilderMobileHeader({ isSidebarOpen, onToggleSidebar, onCloseSidebar }: BuilderMobileHeaderProps) {
   return (
     <>
       {/* Mobile Header - Show/Hide Sidebar Toggle */}
@@ -34,21 +27,23 @@ export function BuilderMobileHeader() {
           <Button
             variant="outline"
             size="sm"
-            onClick={toggleMobileSidebar}
+            onClick={onToggleSidebar}
+            aria-label={isSidebarOpen ? "Close sidebar" : "Open sidebar"}
+            aria-expanded={isSidebarOpen}
             className="bg-transparent border-border dark:border-[#212121] text-foreground dark:text-[#f3f3f3]"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
+            {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Sidebar Overlay */}
       <div
-        id="sidebar-overlay"
-        className="sidebar-overlay lg:hidden"
-        onClick={closeMobileSidebar}
+        className={`fixed inset-0 z-20 bg-black/50 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden ${
+          isSidebarOpen ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        onClick={onCloseSidebar}
+        aria-hidden="true"
       />
     </>
   );

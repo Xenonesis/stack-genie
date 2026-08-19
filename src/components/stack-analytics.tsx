@@ -1,30 +1,18 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-    TrendingUp, 
-    TrendingDown, 
-    AlertTriangle, 
     CheckCircle, 
     Clock, 
-    Users, 
     Star,
     Zap,
-    Shield,
-    Code,
-    Database,
-    Globe,
     BarChart
 } from "lucide-react";
 import { Technology, TechStack } from "@/types/tech-stack";
-import { technologyData } from "@/data/technologies";
-
 interface StackAnalyticsProps {
     selectedStack: TechStack;
     projectDescription: string;
@@ -78,14 +66,28 @@ export function StackAnalytics({ selectedStack, projectDescription }: StackAnaly
         return { ...defaults, ...baseMetrics[tech.id] };   
  };
 
+    const allTechs = useMemo(() => Object.values(selectedStack).flat(), [selectedStack]);
+
     const stackMetrics = useMemo(() => {
-        return selectedStack.technologies.map(tech => ({
+        return allTechs.map(tech => ({
             name: tech.name,
             ...getTechMetrics(tech)
         }));
-    }, [selectedStack]);
+    }, [allTechs]);
 
-    const overallScore = useMemo(() => {
+    const overallScore = useMemo<StackScore>(() => {
+        const count = stackMetrics.length;
+        if (count === 0) {
+            return {
+                overall: 0,
+                performance: 0,
+                scalability: 0,
+                maintainability: 0,
+                learningCurve: 0,
+                ecosystem: 0
+            };
+        }
+
         const avgMetrics = stackMetrics.reduce((acc, tech) => {
             acc.popularity += tech.popularity;
             acc.learningCurve += tech.learningCurve;
@@ -103,7 +105,6 @@ export function StackAnalytics({ selectedStack, projectDescription }: StackAnaly
             maintenance: 0
         });
 
-        const count = stackMetrics.length;
         return {
             overall: Math.round((avgMetrics.popularity + avgMetrics.performance + avgMetrics.community) / (3 * count)),
             performance: Math.round(avgMetrics.performance / count),

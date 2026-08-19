@@ -1,5 +1,5 @@
 import { AI_CONFIG, AI_PROVIDERS } from "@/config/ai";
-import { TechStack, Technology } from "@/types/tech-stack";
+import { TechStack } from "@/types/tech-stack";
 import { technologyData } from "@/data/technologies";
 import { logger } from "@/lib/logger";
 

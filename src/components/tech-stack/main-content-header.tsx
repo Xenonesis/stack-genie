@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Sparkles, Scale, MessageSquare } from "lucide-react";
+import { Sparkles, Scale, MessageSquare, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 
@@ -9,12 +9,16 @@ export interface MainContentHeaderProps {
   onOpenComparator: () => void;
   showAiPanel: boolean;
   onToggleAiPanel: () => void;
+  isSidebarOpen: boolean;
+  onToggleSidebar: () => void;
 }
 
 export function MainContentHeader({
   onOpenComparator,
   showAiPanel,
   onToggleAiPanel,
+  isSidebarOpen,
+  onToggleSidebar,
 }: MainContentHeaderProps) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
@@ -31,6 +35,17 @@ export function MainContentHeader({
         </p>
       </div>
       <div className="flex items-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={onToggleSidebar}
+          aria-label={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
+          title={isSidebarOpen ? "Hide sidebar" : "Show sidebar"}
+          aria-expanded={isSidebarOpen}
+          className="hidden lg:inline-flex h-9 w-9 p-0 bg-transparent border border-border dark:border-[#212121] hover:border-foreground/30 dark:hover:border-[#474747] text-foreground dark:text-[#f3f3f3]"
+        >
+          {isSidebarOpen ? <PanelLeftClose className="w-4 h-4" /> : <PanelLeftOpen className="w-4 h-4" />}
+        </Button>
         <ThemeToggle />
         <Button
           variant="outline"

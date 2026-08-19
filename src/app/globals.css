@@ -284,26 +284,6 @@ body::selection {
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Mobile sidebar overlay */
-.sidebar-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 29;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
-  display: none;
-}
-
-.sidebar-overlay.active {
-  display: block;
-}
-
-/* Sidebar open state for mobile */
-#mobile-sidebar.sidebar-open {
-  display: flex !important;
-}
-
 /* Scrollbar for selected stack - show scroll indicator */
 .stack-scroll-container {
   scrollbar-gutter: stable;

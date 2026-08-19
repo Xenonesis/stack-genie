@@ -2,9 +2,8 @@
 
 import React, { useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
 import { Technology } from "@/types/tech-stack";
-import { Scale, Check, X, ExternalLink, Zap } from "lucide-react";
+import { Scale, ExternalLink } from "lucide-react";
 
 interface TechComparatorModalProps {
   isOpen: boolean;

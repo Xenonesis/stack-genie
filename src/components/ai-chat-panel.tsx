@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Card, CardContent } from "@/components/ui/card";
-import { MessageSquare, Send, Bot, User, Sparkles, Copy, ThumbsUp, ThumbsDown } from "lucide-react";
+import { MessageSquare, Send, Bot, User, Copy, ThumbsUp, ThumbsDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Technology, TechStack } from "@/types/tech-stack";
 import { AI_CONFIG } from "@/config/ai";

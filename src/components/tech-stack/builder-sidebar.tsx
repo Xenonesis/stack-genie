@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Technology, TechStack, AIAnalysis, AIRecommendation } from "@/types/tech-stack";
 import { SidebarAiSection } from "./sidebar-ai-section";
@@ -31,6 +33,8 @@ export interface BuilderSidebarProps {
   onCopyCommand: () => void;
   toggleTechnology: (tech: Technology) => void;
   onApplyPreset: (presetType: string) => void;
+  isSidebarOpen: boolean;
+  onCloseSidebar: () => void;
 }
 
 export function BuilderSidebar({
@@ -54,14 +58,19 @@ export function BuilderSidebar({
   onCopyCommand,
   toggleTechnology,
   onApplyPreset,
+  isSidebarOpen,
+  onCloseSidebar,
 }: BuilderSidebarProps) {
   return (
     <aside
-      id="mobile-sidebar"
-      className="hidden lg:flex w-full lg:w-80 xl:w-96 bg-card dark:bg-[#080808] border-r border-border dark:border-[#212121] flex-col lg:h-screen overflow-y-auto lg:sticky lg:top-0"
+      className={`flex flex-col bg-card dark:bg-[#080808] border-r border-border dark:border-[#212121] fixed inset-y-0 left-0 z-40 w-[85vw] max-w-sm transition-transform duration-300 ease-in-out ${
+        isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+      } lg:sticky lg:top-0 lg:z-auto lg:h-screen lg:translate-x-0 lg:shrink-0 lg:overflow-hidden lg:transition-[width] ${
+        isSidebarOpen ? "lg:w-80 xl:w-96" : "lg:w-0 lg:border-r-0"
+      }`}
     >
       {/* Sidebar Brand Header */}
-      <div className="p-6 flex items-center gap-4 flex-shrink-0 border-b border-border dark:border-[#212121]">
+      <div className="p-6 flex items-center gap-4 flex-shrink-0 border-b border-border dark:border-[#212121] lg:min-w-80 xl:min-w-96">
         <div className="w-9 h-9 rounded-md bg-muted/60 dark:bg-[#101010] border border-border dark:border-[#212121] p-1.5 flex items-center justify-center shrink-0">
           <img src="/logo.svg" alt="Stack Genie Logo" className="w-full h-full object-contain" />
         </div>
@@ -73,10 +82,19 @@ export function BuilderSidebar({
             AI Stack Architect
           </p>
         </div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={onCloseSidebar}
+          aria-label="Close sidebar"
+          className="lg:hidden ml-auto h-8 w-8 p-0 text-muted-foreground dark:text-[#9c9c9c] hover:text-foreground dark:hover:text-[#f3f3f3]"
+        >
+          <X className="w-4 h-4" />
+        </Button>
       </div>
 
       {/* Fixed Header - Project Name */}
-      <div className="px-6 py-6 flex-shrink-0 border-b border-border dark:border-[#212121]">
+      <div className="px-6 py-6 flex-shrink-0 border-b border-border dark:border-[#212121] lg:min-w-80 xl:min-w-96">
         <label className="block text-[11px] font-mono uppercase tracking-widest text-muted-foreground dark:text-[#9c9c9c] mb-2.5">
           Project Details
         </label>
@@ -93,7 +111,7 @@ export function BuilderSidebar({
       </div>
 
       {/* Scrollable Content */}
-      <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto lg:min-w-80 xl:min-w-96">
         <div className="flex flex-col">
           {/* AI-Powered Section */}
           <SidebarAiSection

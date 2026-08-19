@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Plus, Sparkles, Brain } from "lucide-react";
+import { Sparkles, Brain } from "lucide-react";
 import { Technology, AIRecommendation } from "@/types/tech-stack";
 import { ReactNode } from "react";
 
