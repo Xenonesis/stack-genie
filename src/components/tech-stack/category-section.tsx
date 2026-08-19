@@ -42,18 +42,21 @@ export function CategorySection({
     >
       <button
         onClick={() => toggleCategory(category)}
-        className="group flex items-center justify-between w-full mb-6 pb-3 border-b border-[#212121] text-left transition-colors"
+        className="group flex items-center justify-between w-full mb-6 pb-3 border-b border-border dark:border-[#212121] text-left transition-colors"
       >
-        <h2 className={`text-lg sm:text-xl font-normal font-sans uppercase tracking-tight transition-colors ${isExpanded ? 'text-[#f3f3f3]' : 'text-[#9c9c9c] group-hover:text-[#f3f3f3]'}`}>
+        <h2 className={`text-lg sm:text-xl font-medium dark:font-normal font-sans uppercase tracking-tight transition-colors ${
+          isExpanded ? 'text-foreground dark:text-[#f3f3f3]' : 'text-muted-foreground dark:text-[#9c9c9c] group-hover:text-foreground dark:group-hover:text-[#f3f3f3]'
+        }`}>
           {category}
         </h2>
         <div className="flex items-center gap-3">
-          <Badge variant="outline" className="bg-[#121212] border-[#212121] text-[#9c9c9c] font-mono text-[11px] px-2 py-0.5">
+          <Badge variant="outline" className="bg-muted/80 dark:bg-[#121212] border-border dark:border-[#212121] text-muted-foreground dark:text-[#9c9c9c] font-mono text-[11px] px-2 py-0.5">
             {categoryTechs.length}
           </Badge>
           <ChevronDown
-            className={`w-4 h-4 text-[#9c9c9c] transition-transform duration-200 ${isExpanded ? 'rotate-180 text-[#f3f3f3]' : ''
-              }`}
+            className={`w-4 h-4 text-muted-foreground dark:text-[#9c9c9c] transition-transform duration-200 ${
+              isExpanded ? 'rotate-180 text-foreground dark:text-[#f3f3f3]' : ''
+            }`}
           />
         </div>
       </button>
