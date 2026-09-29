@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { X } from "lucide-react";
+import { Layers, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Technology, TechStack, AIAnalysis, AIRecommendation } from "@/types/tech-stack";
@@ -113,6 +113,30 @@ export function BuilderSidebar({
       {/* Scrollable Content */}
       <div className="flex-1 overflow-y-auto lg:min-w-80 xl:min-w-96">
         <div className="flex flex-col">
+          {/* Stack Health Score */}
+          <div className="px-6 py-4 border-b border-border dark:border-[#212121] mb-4">
+            <div className="flex items-center gap-2">
+              <Layers className="w-4 h-4 text-amber-600 dark:text-[#6f6759]" />
+              <span className="text-[11px] font-mono uppercase tracking-widest text-foreground dark:text-[#f3f3f3]">Stack Health Score</span>
+            </div>
+            <div className="mt-2 flex items-baseline gap-2">
+              <span className={`text-[24px] font-medium ${
+                aiAnalysis?.stackHealth === 'healthy' ? 'text-emerald-400' : aiAnalysis?.stackHealth === 'warning' ? 'text-amber-400' : 'text-red-400'
+              } dark:text-[#1a1a1a]`}>
+                {aiAnalysis?.stackScore ?? 0}
+              </span>
+              <span className="text-xs text-muted-foreground dark:text-[#9c9c9c]">/ 100</span>
+            </div>
+            <div className="mt-2 h-2 bg-muted/30 dark:bg-[#121212] rounded-full overflow-hidden">
+              <div
+                className={`h-full rounded-full transition-colors duration-500 ${
+                  aiAnalysis?.stackHealth === 'healthy' ? 'bg-emerald-500' : aiAnalysis?.stackHealth === 'warning' ? 'bg-amber-500' : 'bg-red-500'
+                } dark:bg-[#1a1a1a]`}
+                style={{ width: `${aiAnalysis?.stackScore ?? 0}%` }}
+              />
+            </div>
+          </div>
+
           {/* AI-Powered Section */}
           <SidebarAiSection
             projectDescription={projectDescription}

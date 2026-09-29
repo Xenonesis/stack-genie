@@ -117,12 +117,55 @@ export const useTechStack = () => {
                 })
                 .filter(Boolean);
 
+            const calculateStackHealth = (selectedTechs: Technology[]): { score: number; health: 'critical' | 'warning' | 'healthy' } => {
+                if (selectedTechs.length === 0) return { score: 0, health: 'critical' };
+
+                let score = 100;
+
+                // Deduct points for conflicts
+                const orms = selectedTechs.filter(t => t.category === 'ORM');
+                if (orms.length > 1) score -= 20;
+
+                const css = selectedTechs.filter(t => t.category === 'CSS Frameworks');
+                if (css.length > 1) score -= 15;
+
+                const frontends = selectedTechs.filter(t => t.category === 'Frontend');
+                if (frontends.length > 1) score -= 25;
+
+                // Deduct points for missing categories
+                const categories = new Set(selectedTechs.map(t => t.category));
+                const requiredCategories = ['Web Framework', 'Database', 'ORM', 'Hosting'];
+                requiredCategories.forEach(cat => {
+                    if (!categories.has(cat)) score -= 15;
+                });
+
+                // Deduct points for incompatible technologies
+                const techMap = new Map(selectedTechs.map(t => [t.id, t]));
+                selectedTechs.forEach(tech => {
+                    const compat = tech.compatibleWith || [];
+                    selectedTechs.forEach(other => {
+                        if (tech.id !== other.id && !compat.includes(other.id)) {
+                            score -= 5;
+                        }
+                    });
+                });
+
+                // Cap score between 0 and 100
+                score = Math.max(0, Math.min(100, score));
+
+                const health: 'critical' | 'warning' | 'healthy' = score >= 80 ? 'healthy' : score >= 50 ? 'warning' : 'critical';
+
+                return { score, health };
+            };
+
             setAiAnalysis({
                 recommendations,
                 warnings: analysis.warnings || [],
                 suggestions: analysis.suggestions || [],
                 projectType: analysis.projectType || 'Web Application',
-                complexity: analysis.complexity || 'Moderate'
+                complexity: analysis.complexity || 'Moderate',
+                stackScore: calculateStackHealth(selectedTechs).score,
+                stackHealth: calculateStackHealth(selectedTechs).health
             });
 
             setAiRecommendations(recommendations);

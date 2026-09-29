@@ -45,7 +45,8 @@ export interface AIAnalysis {
     suggestions: string[];
     projectType: string;
     complexity: 'Simple' | 'Moderate' | 'Complex';
-    stackScore?: number;
+    stackScore: number; // 0-100 health score
+    stackHealth: 'critical' | 'warning' | 'healthy'; // visual status
     missingCategories?: string[];
     architecturalPatterns?: string[];
     deploymentStrategy?: string;
